@@ -48,41 +48,46 @@ export default function Panorama() {
   return (
     <div className="w-screen h-screen overflow-hidden flex flex-col" style={{ background: "#0c1445" }}>
       {/* Header */}
-      <div className="relative z-10 text-center pt-4 pb-1 px-4" style={{ background: "rgba(0,0,0,0.35)" }}>
-        {/* Top-right: school logo + student info */}
-        <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-4">
+      <div className="relative z-10 flex items-center px-4 py-2" style={{ background: "rgba(0,0,0,0.35)" }}>
+        {/* Left: school logo */}
+        <div className="flex items-center pr-4">
           <img
             src="https://www.musicasenzafrontiere.com/wp-content/uploads/2024/12/logo-istituto-san-leone-magno.png"
             alt="Istituto San Leone Magno"
-            className="h-8 w-auto object-contain"
+            className="h-10 w-auto object-contain"
             style={{ opacity: 0.85 }}
           />
-          <div className="flex flex-col items-start leading-tight">
-            <span className="text-xs font-bold text-white" style={{ opacity: 0.85 }}>
-              Mario Tedeschi
-            </span>
-            <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.55)" }}>
-              Classe 3A
-            </span>
-          </div>
         </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-black text-white drop-shadow-lg tracking-tight"
-        >
-          EnergiApp
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-1 text-white/70 text-sm md:text-base font-medium"
-        >
-          Progetto di Tedeschi · Classe 3A
-        </motion.p>
+        {/* Center: title */}
+        <div className="flex-1 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-5xl font-black text-white drop-shadow-lg tracking-tight"
+          >
+            EnergiApp
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-white/70 text-sm md:text-base font-medium"
+          >
+            Progetto di Tedeschi · Classe 3A
+          </motion.p>
+        </div>
+
+        {/* Right: student name + class */}
+        <div className="flex flex-col items-end leading-tight pl-4">
+          <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.38)" }}>
+            Mario Tedeschi
+          </span>
+          <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.28)" }}>
+            Classe 3A
+          </span>
+        </div>
       </div>
 
       {/* Panoramic Scene — fills remaining space */}
