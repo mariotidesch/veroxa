@@ -4,42 +4,14 @@ import { energies, EnergyType } from "@/data/energie";
 import EnergyPanel from "@/components/EnergyPanel";
 
 function SchoolLogo() {
-  const [loaded, setLoaded] = useState(false);
-  const [failed, setFailed] = useState(false);
-
   return (
-    <div className="flex flex-col items-end gap-0.5">
-      {!failed && (
-        <img
-          src="https://www.sanleonemagno.org/wp-content/uploads/logo-slm.png"
-          alt="San Leone Magno"
-          onLoad={() => setLoaded(true)}
-          onError={() => setFailed(true)}
-          className="h-10 w-auto object-contain"
-          style={{ opacity: loaded ? 0.55 : 0 }}
-        />
-      )}
-      {(failed || !loaded) && (
-        <svg
-          width="40" height="40" viewBox="0 0 40 40"
-          style={{ opacity: failed ? 0.45 : 0, transition: "opacity 0.3s" }}
-        >
-          {/* Shield shape */}
-          <path
-            d="M4 6 L20 3 L36 6 L36 24 Q36 34 20 39 Q4 34 4 24 Z"
-            fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5"
-          />
-          {/* Cross */}
-          <line x1="20" y1="10" x2="20" y2="32" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
-          <line x1="10" y1="20" x2="30" y2="20" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
-        </svg>
-      )}
-      <span
-        className="text-xs font-medium"
-        style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.6rem", letterSpacing: "0.04em" }}
-      >
-        San Leone Magno · Roma
-      </span>
+    <div className="flex flex-col items-end gap-1">
+      <img
+        src="https://www.musicasenzafrontiere.com/wp-content/uploads/2024/12/logo-istituto-san-leone-magno.png"
+        alt="Istituto San Leone Magno"
+        className="h-12 w-auto object-contain"
+        style={{ opacity: 0.85 }}
+      />
     </div>
   );
 }
@@ -77,16 +49,20 @@ export default function Panorama() {
     <div className="w-screen h-screen overflow-hidden flex flex-col" style={{ background: "#0c1445" }}>
       {/* Header */}
       <div className="relative z-10 text-center pt-4 pb-1 px-4" style={{ background: "rgba(0,0,0,0.35)" }}>
-        {/* Top-right: school logo + student name */}
+        {/* Top-right: school logo + student info */}
         <div className="absolute top-0 right-0 flex flex-col items-end gap-1 pt-2 pr-3">
-          {/* School logo */}
           <SchoolLogo />
-          {/* Student name watermark */}
           <span
-            className="text-xs font-semibold tracking-widest uppercase"
-            style={{ color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em" }}
+            className="text-sm font-bold tracking-wide text-white"
+            style={{ opacity: 0.85 }}
           >
             Mario Tedeschi
+          </span>
+          <span
+            className="text-xs font-semibold tracking-widest uppercase"
+            style={{ color: "rgba(255,255,255,0.6)", letterSpacing: "0.1em" }}
+          >
+            Classe 3A
           </span>
         </div>
 
@@ -104,7 +80,7 @@ export default function Panorama() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-1 text-white/70 text-sm md:text-base font-medium"
         >
-          Clicca su ogni zona per scoprire i segreti dell'energia
+          Progetto di Tedeschi · Classe 3A
         </motion.p>
       </div>
 
