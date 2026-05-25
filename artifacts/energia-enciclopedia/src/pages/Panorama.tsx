@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 import { Zap } from "lucide-react";
 import { energies, EnergyType } from "@/data/energie";
 import EnergyPanel from "@/components/EnergyPanel";
+import SplashScreen from "@/components/SplashScreen";
 
 function SchoolLogo() {
   return (
@@ -40,6 +41,7 @@ const zones: ZoneConfig[] = [
 
 export default function Panorama() {
   const [, setLocation] = useLocation();
+  const [showSplash, setShowSplash] = useState(true);
   const [selectedEnergy, setSelectedEnergy] = useState<EnergyType | null>(null);
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
 
@@ -359,6 +361,8 @@ export default function Panorama() {
       </div>
 
       <EnergyPanel energy={selectedEnergy} onClose={() => setSelectedEnergy(null)} />
+
+      {showSplash && <SplashScreen onStart={() => setShowSplash(false)} />}
     </div>
   );
 }
