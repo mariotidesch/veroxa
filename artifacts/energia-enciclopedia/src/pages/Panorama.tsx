@@ -50,20 +50,21 @@ export default function Panorama() {
       {/* Header */}
       <div className="relative z-10 text-center pt-4 pb-1 px-4" style={{ background: "rgba(0,0,0,0.35)" }}>
         {/* Top-right: school logo + student info */}
-        <div className="absolute top-0 right-0 flex flex-col items-end gap-1 pt-2 pr-3">
-          <SchoolLogo />
-          <span
-            className="text-sm font-bold tracking-wide text-white"
+        <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-4">
+          <img
+            src="https://www.musicasenzafrontiere.com/wp-content/uploads/2024/12/logo-istituto-san-leone-magno.png"
+            alt="Istituto San Leone Magno"
+            className="h-8 w-auto object-contain"
             style={{ opacity: 0.85 }}
-          >
-            Mario Tedeschi
-          </span>
-          <span
-            className="text-xs font-semibold tracking-widest uppercase"
-            style={{ color: "rgba(255,255,255,0.6)", letterSpacing: "0.1em" }}
-          >
-            Classe 3A
-          </span>
+          />
+          <div className="flex flex-col items-start leading-tight">
+            <span className="text-xs font-bold text-white" style={{ opacity: 0.85 }}>
+              Mario Tedeschi
+            </span>
+            <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.55)" }}>
+              Classe 3A
+            </span>
+          </div>
         </div>
 
         <motion.h1
