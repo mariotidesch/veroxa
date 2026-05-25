@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "wouter";
+import { Zap } from "lucide-react";
 import { energies, EnergyType } from "@/data/energie";
 import EnergyPanel from "@/components/EnergyPanel";
 
@@ -37,6 +39,7 @@ const zones: ZoneConfig[] = [
 ];
 
 export default function Panorama() {
+  const [, setLocation] = useLocation();
   const [selectedEnergy, setSelectedEnergy] = useState<EnergyType | null>(null);
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
 
@@ -79,14 +82,25 @@ export default function Panorama() {
           </motion.p>
         </div>
 
-        {/* Right: student name + class */}
-        <div className="flex flex-col items-end leading-tight pl-4">
-          <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.38)" }}>
-            Mario Tedeschi
-          </span>
-          <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.28)" }}>
-            Classe 3A
-          </span>
+        {/* Right: calc button + student info */}
+        <div className="flex items-center gap-3 pl-4">
+          <button
+            onClick={() => setLocation("/calcolatrice")}
+            data-testid="button-calcolatrice"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all hover:scale-105 active:scale-95"
+            style={{ background: "rgba(250,204,21,0.18)", border: "1px solid rgba(250,204,21,0.45)", color: "#facc15" }}
+          >
+            <Zap size={13} />
+            Calcolatrice
+          </button>
+          <div className="flex flex-col items-end leading-tight">
+            <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.38)" }}>
+              Mario Tedeschi
+            </span>
+            <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.28)" }}>
+              Classe 3A
+            </span>
+          </div>
         </div>
       </div>
 
