@@ -1,0 +1,132 @@
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Atom, Zap, Cog, Flame, FlaskConical, Wind, Droplets, Sun, Mountain } from "lucide-react";
+import { EnergyType } from "@/data/energie";
+
+interface EnergyPanelProps {
+  energy: EnergyType | null;
+  onClose: () => void;
+}
+
+const iconMap: Record<string, React.ElementType> = {
+  Atom, Zap, Cog, Flame, FlaskConical, Wind, Droplets, Sun, Mountain
+};
+
+export default function EnergyPanel({ energy, onClose }: EnergyPanelProps) {
+  return (
+    <AnimatePresence>
+      {energy && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black z-40 backdrop-blur-sm"
+          />
+          <motion.div
+            initial={{ x: "100%", opacity: 0, scale: 0.95 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            exit={{ x: "100%", opacity: 0, scale: 0.95 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed top-0 right-0 h-full w-full max-w-lg bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl shadow-2xl z-50 overflow-y-auto border-l border-white/20 dark:border-white/10"
+          >
+            <div 
+              className="h-32 w-full relative flex items-end p-6"
+              style={{ backgroundColor: energy.color }}
+            >
+              <button 
+                onClick={onClose}
+                className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full transition-colors"
+                aria-label="Chiudi"
+              >
+                <X size={24} />
+              </button>
+              
+              <div className="flex items-center gap-4 text-white">
+                {iconMap[energy.icon] && React.createElement(iconMap[energy.icon], { size: 48, className: "drop-shadow-md" })}
+                <h2 className="text-4xl font-black tracking-tight drop-shadow-md">{energy.name}</h2>
+              </div>
+            </div>
+
+            <div className="p-8 space-y-8">
+              <section>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                  <span className="w-8 h-1 rounded-full" style={{ backgroundColor: energy.color }}></span>
+                  Cos'è?
+                </h3>
+                <p className="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium">
+                  {energy.description}
+                </p>
+              </section>
+
+              <section>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                  <span className="w-8 h-1 rounded-full" style={{ backgroundColor: energy.color }}></span>
+                  Come funziona?
+                </h3>
+                <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  {energy.howItWorks}
+                </p>
+              </section>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-emerald-50 dark:bg-emerald-950/30 p-5 rounded-2xl border border-emerald-100 dark:border-emerald-900/50">
+                  <h4 className="font-bold text-emerald-800 dark:text-emerald-400 mb-3">Vantaggi</h4>
+                  <ul className="space-y-2">
+                    {energy.prosCons.pros.map((pro, i) => (
+                      <li key={i} className="flex items-start gap-2 text-emerald-700 dark:text-emerald-300 text-sm">
+                        <span className="mt-1 font-bold">•</span> {pro}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-rose-50 dark:bg-rose-950/30 p-5 rounded-2xl border border-rose-100 dark:border-rose-900/50">
+                  <h4 className="font-bold text-rose-800 dark:text-rose-400 mb-3">Svantaggi</h4>
+                  <ul className="space-y-2">
+                    {energy.prosCons.cons.map((con, i) => (
+                      <li key={i} className="flex items-start gap-2 text-rose-700 dark:text-rose-300 text-sm">
+                        <span className="mt-1 font-bold">•</span> {con}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <section>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                  <span className="w-8 h-1 rounded-full" style={{ backgroundColor: energy.color }}></span>
+                  Esempi
+                </h3>
+                <ul className="space-y-2">
+                  {energy.examples.map((ex, i) => (
+                    <li key={i} className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
+                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: energy.color }}></div>
+                      {ex}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                  <span className="w-8 h-1 rounded-full" style={{ backgroundColor: energy.color }}></span>
+                  Usi nella vita quotidiana
+                </h3>
+                <ul className="space-y-2">
+                  {energy.everydayUses.map((use, i) => (
+                    <li key={i} className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
+                      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: energy.color }}></div>
+                      {use}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}

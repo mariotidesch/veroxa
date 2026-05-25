@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Enciclopedia delle Energie"
+version = "1.0.0"
+id = "artifacts/energia-enciclopedia"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26135
+
+[services.development]
+run = "pnpm --filter @workspace/energia-enciclopedia run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/energia-enciclopedia", "run", "build" ]
+publicDir = "artifacts/energia-enciclopedia/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26135"
+BASE_PATH = "/"
