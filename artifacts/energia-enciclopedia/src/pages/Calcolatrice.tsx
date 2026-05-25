@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
-import { ArrowLeft, Zap, Smartphone, Gamepad2, WashingMachine, Car, Thermometer } from "lucide-react";
+import { ArrowLeft, Zap, Smartphone, Gamepad2, WashingMachine, Car, Thermometer, RefreshCw } from "lucide-react";
 
 type Activity = {
   id: string;
@@ -73,6 +73,201 @@ const activities: Activity[] = [
   },
 ];
 
+type EnergySource = {
+  id: string;
+  label: string;
+  color: string;
+  bg: string;
+  icon: string;
+  convert: (kwh: number) => { amount: string; unit: string; detail: string };
+};
+
+const energySources: EnergySource[] = [
+  {
+    id: "solare",
+    label: "Solare",
+    color: "#f59e0b",
+    bg: "#fffbeb",
+    icon: "☀",
+    convert: (kwh) => {
+      const panels = kwh / 1.5; // 300W panel × 5h sun = 1.5 kWh/day
+      if (panels < 1) {
+        const minutes = (kwh / 0.3) * 60;
+        return {
+          amount: minutes.toFixed(0),
+          unit: "minuti di sole",
+          detail: "su 1 pannello solare da 300W",
+        };
+      }
+      return {
+        amount: panels.toFixed(1),
+        unit: panels < 2 ? "pannello solare" : "pannelli solari",
+        detail: "da 300W per un'intera giornata di sole (5 h)",
+      };
+    },
+  },
+  {
+    id: "eolica",
+    label: "Eolica",
+    color: "#22d3ee",
+    bg: "#ecfeff",
+    icon: "⌀",
+    convert: (kwh) => {
+      const hours = kwh / 2; // 2 kW turbine
+      if (hours < 1) {
+        return {
+          amount: (hours * 60).toFixed(0),
+          unit: "minuti di vento",
+          detail: "su una turbina eolica da 2 kW a pieno regime",
+        };
+      }
+      return {
+        amount: hours.toFixed(1),
+        unit: hours < 2 ? "ora di turbina" : "ore di turbina",
+        detail: "eolica da 2 kW girando a piena potenza",
+      };
+    },
+  },
+  {
+    id: "nucleare",
+    label: "Nucleare",
+    color: "#22c55e",
+    bg: "#f0fdf4",
+    icon: "⚛",
+    convert: (kwh) => {
+      // 1 kg uranio arricchito → ~45 000 kWh in reattore
+      const grams = (kwh / 45000) * 1000;
+      if (grams < 0.001) {
+        return {
+          amount: (grams * 1000000).toExponential(1),
+          unit: "microgrammi di uranio",
+          detail: "arricchito in un reattore nucleare",
+        };
+      }
+      if (grams < 1) {
+        return {
+          amount: (grams * 1000).toFixed(2),
+          unit: "milligrammi di uranio",
+          detail: "arricchito in un reattore nucleare (1 kg → 45 000 kWh)",
+        };
+      }
+      return {
+        amount: grams.toFixed(4),
+        unit: "grammi di uranio",
+        detail: "arricchito in un reattore nucleare (1 kg → 45 000 kWh)",
+      };
+    },
+  },
+  {
+    id: "idroelettrica",
+    label: "Idroelettrica",
+    color: "#3b82f6",
+    bg: "#eff6ff",
+    icon: "~",
+    convert: (kwh) => {
+      // 1 m³ water dropping 100m, η=85% → 0.2316 kWh
+      const m3 = kwh / 0.2316;
+      if (m3 < 1) {
+        return {
+          amount: (m3 * 1000).toFixed(0),
+          unit: "litri d'acqua",
+          detail: "in caduta da 100 m (diga idroelettrica, η 85%)",
+        };
+      }
+      return {
+        amount: m3.toFixed(1),
+        unit: m3 < 2 ? "metro cubo d'acqua" : "metri cubi d'acqua",
+        detail: "in caduta da 100 m (diga idroelettrica, η 85%)",
+      };
+    },
+  },
+  {
+    id: "geotermica",
+    label: "Geotermica",
+    color: "#ef4444",
+    bg: "#fff1f2",
+    icon: "▲",
+    convert: (kwh) => {
+      // Geothermal efficiency ~15% → thermal energy needed = kwh / 0.15
+      const thermal = kwh / 0.15;
+      return {
+        amount: thermal.toFixed(1),
+        unit: "kWh termici",
+        detail: "di vapore geotermico a 150°C (efficienza ~15%)",
+      };
+    },
+  },
+  {
+    id: "chimica",
+    label: "Chimica (petrolio)",
+    color: "#a855f7",
+    bg: "#faf5ff",
+    icon: "◈",
+    convert: (kwh) => {
+      // 1 L petrol = 8.9 kWh_LHV, gen efficiency 35% → 3.1 kWh_e
+      const liters = kwh / 3.1;
+      if (liters < 1) {
+        return {
+          amount: (liters * 1000).toFixed(0),
+          unit: "ml di petrolio",
+          detail: "bruciato in un generatore (η 35%)",
+        };
+      }
+      return {
+        amount: liters.toFixed(2),
+        unit: "litri di petrolio",
+        detail: "bruciato in un generatore elettrico (η 35%)",
+      };
+    },
+  },
+  {
+    id: "termica",
+    label: "Termica (carbone)",
+    color: "#78716c",
+    bg: "#fafaf9",
+    icon: "◆",
+    convert: (kwh) => {
+      // 1 kg coal = 7.5 kWh_t, η 38% → 2.85 kWh_e
+      const kg = kwh / 2.85;
+      if (kg < 1) {
+        return {
+          amount: (kg * 1000).toFixed(0),
+          unit: "grammi di carbone",
+          detail: "bruciato in una centrale termoelettrica (η 38%)",
+        };
+      }
+      return {
+        amount: kg.toFixed(2),
+        unit: "kg di carbone",
+        detail: "bruciato in una centrale termoelettrica (η 38%)",
+      };
+    },
+  },
+  {
+    id: "meccanica",
+    label: "Meccanica (pedalata)",
+    color: "#60a5fa",
+    bg: "#eff6ff",
+    icon: "O",
+    convert: (kwh) => {
+      // Human cyclist: 200 W sustained
+      const hours = kwh / 0.2;
+      if (hours < 1) {
+        return {
+          amount: (hours * 60).toFixed(0),
+          unit: "minuti di pedalata",
+          detail: "di un ciclista adulto a ritmo sostenuto (200 W)",
+        };
+      }
+      return {
+        amount: hours.toFixed(1),
+        unit: hours < 2 ? "ora di pedalata" : "ore di pedalata",
+        detail: "di un ciclista adulto a ritmo sostenuto (200 W)",
+      };
+    },
+  },
+];
+
 function formatKwh(kwh: number): string {
   if (kwh < 1) return `${(kwh * 1000).toFixed(0)} Wh`;
   if (kwh < 1000) return `${kwh.toFixed(1)} kWh`;
@@ -96,13 +291,14 @@ function comparisons(kwh: number): string[] {
     results.push(`${Math.round(bulbHours).toLocaleString("it-IT")} ore di lampadina LED`);
 
   return results.slice(0, 3);
-};
+}
 
 export default function Calcolatrice() {
   const [, setLocation] = useLocation();
   const [quantities, setQuantities] = useState<Record<string, number>>(
     Object.fromEntries(activities.map((a) => [a.id, 1]))
   );
+  const [selectedSource, setSelectedSource] = useState<string>("solare");
 
   const totalKwh = activities.reduce(
     (sum, a) => sum + (quantities[a.id] ?? 0) * a.kwh,
@@ -110,6 +306,8 @@ export default function Calcolatrice() {
   );
 
   const comps = comparisons(totalKwh);
+  const activeSource = energySources.find((s) => s.id === selectedSource)!;
+  const converted = totalKwh > 0 ? activeSource.convert(totalKwh) : null;
 
   return (
     <div
@@ -246,6 +444,81 @@ export default function Calcolatrice() {
               </ul>
             </div>
           )}
+        </motion.div>
+
+        {/* ── Energy Source Converter ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mt-5 rounded-2xl p-5 shadow-xl text-white"
+          style={{ background: "linear-gradient(135deg, #1a1040, #0e1e3a)", border: "1px solid rgba(255,255,255,0.12)" }}
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <RefreshCw size={20} className="text-purple-400" />
+            <span className="text-base font-bold">Convertitore di fonti energetiche</span>
+          </div>
+          <p className="text-white/50 text-xs mb-4">
+            Scegli un tipo di energia e scopri quanta ne servirebbe per produrre il totale del tuo consumo.
+          </p>
+
+          {/* Source selector */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-5">
+            {energySources.map((src) => {
+              const isActive = selectedSource === src.id;
+              return (
+                <button
+                  key={src.id}
+                  onClick={() => setSelectedSource(src.id)}
+                  className="rounded-xl px-2 py-2.5 text-xs font-bold text-center transition-all duration-200 border"
+                  style={{
+                    background: isActive ? src.color + "33" : "rgba(255,255,255,0.04)",
+                    borderColor: isActive ? src.color : "rgba(255,255,255,0.1)",
+                    color: isActive ? src.color : "rgba(255,255,255,0.55)",
+                    boxShadow: isActive ? `0 0 12px ${src.color}44` : "none",
+                  }}
+                  data-testid={`source-${src.id}`}
+                >
+                  {src.label}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Result */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedSource + "-" + totalKwh.toFixed(3)}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="rounded-xl p-4"
+              style={{ background: activeSource.color + "18", border: `1px solid ${activeSource.color}44` }}
+            >
+              {totalKwh === 0 ? (
+                <p className="text-white/40 text-sm text-center">
+                  Regola almeno un'attività sopra per vedere il risultato.
+                </p>
+              ) : (
+                <>
+                  <p className="text-white/60 text-xs mb-1 uppercase tracking-wide font-semibold">
+                    Per produrre {formatKwh(totalKwh)} con energia {activeSource.label.toLowerCase()} servono:
+                  </p>
+                  <div className="flex items-end gap-2 mt-2 flex-wrap">
+                    <span
+                      className="text-4xl font-black"
+                      style={{ color: activeSource.color }}
+                    >
+                      {converted?.amount}
+                    </span>
+                    <span className="text-lg font-bold text-white/80 mb-0.5">{converted?.unit}</span>
+                  </div>
+                  <p className="text-white/45 text-xs mt-2 italic">{converted?.detail}</p>
+                </>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </motion.div>
 
         <p className="text-white/30 text-xs text-center mt-4 mb-6">
