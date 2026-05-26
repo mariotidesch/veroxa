@@ -105,19 +105,36 @@ export default function Panorama() {
 
       {/* ── Header ── */}
       <div
-        className="relative z-10 flex items-center px-4 py-2"
-        style={{ background: "rgba(0,0,0,0.4)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+        className="relative z-10 flex items-center px-4 py-2 overflow-hidden"
+        style={{ background: "#000", borderBottom: "1px solid rgba(250,204,21,0.25)" }}
       >
-        <div className="flex items-center pr-4">
+        {/* Decorative energy icons sprinkled in the background */}
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-around opacity-[0.09]">
+          {[
+            { Icon: Sun,          color: "#f59e0b" },
+            { Icon: Wind,         color: "#22d3ee" },
+            { Icon: Droplets,     color: "#3b82f6" },
+            { Icon: Atom,         color: "#22c55e" },
+            { Icon: Mountain,     color: "#ef4444" },
+            { Icon: Flame,        color: "#f97316" },
+            { Icon: FlaskConical, color: "#a855f7" },
+            { Icon: Cog,          color: "#60a5fa" },
+            { Icon: Zap,          color: "#facc15" },
+          ].map(({ Icon, color }, i) => (
+            <Icon key={i} size={28} style={{ color }} strokeWidth={1.5} />
+          ))}
+        </div>
+
+        <div className="relative flex items-center pr-4">
           <img
             src="https://www.musicasenzafrontiere.com/wp-content/uploads/2024/12/logo-istituto-san-leone-magno.png"
             alt="Istituto San Leone Magno"
             className="h-10 w-auto object-contain"
-            style={{ opacity: 0.85 }}
+            style={{ opacity: 0.95 }}
           />
         </div>
 
-        <div className="flex-1 text-center">
+        <div className="relative flex-1 text-center">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -136,7 +153,7 @@ export default function Panorama() {
           </motion.p>
         </div>
 
-        <div className="flex items-center gap-3 pl-4">
+        <div className="relative flex items-center gap-3 pl-4">
           <button
             onClick={() => setLocation("/calcolatrice")}
             data-testid="button-calcolatrice"
