@@ -14,53 +14,33 @@ const ICONS: Record<string, LucideIcon> = {
   Atom, Zap, Cog, Flame, FlaskConical, Wind, Droplets, Sun, Mountain,
 };
 
-// Order shown on the page (left→right, top→bottom)
-const ORDER = [
-  "solare",
-  "eolica",
-  "idroelettrica",
-  "nucleare",
-  "geotermica",
-  "termica",
-  "chimica",
-  "meccanica",
-  "elettrica",
+// Hotspot config: position over the video (% of width/height), label, color.
+// Positions can be tweaked later to match exactly the machinery visible in the video.
+type Hotspot = {
+  id: string;
+  machinery: string;
+  x: number;       // percent from left
+  y: number;       // percent from top
+  color: string;
+};
+
+const HOTSPOTS: Hotspot[] = [
+  { id: "solare",        machinery: "Pannello Solare",           x: 14, y: 28, color: "#f59e0b" },
+  { id: "eolica",        machinery: "Turbina Eolica",            x: 32, y: 45, color: "#22d3ee" },
+  { id: "idroelettrica", machinery: "Diga Idroelettrica",        x: 48, y: 55, color: "#3b82f6" },
+  { id: "nucleare",      machinery: "Reattore Nucleare",         x: 66, y: 48, color: "#22c55e" },
+  { id: "geotermica",    machinery: "Centrale Geotermica",       x: 82, y: 40, color: "#ef4444" },
+  { id: "termica",       machinery: "Centrale Termoelettrica",   x: 22, y: 72, color: "#f97316" },
+  { id: "chimica",       machinery: "Batteria / Combustione",    x: 40, y: 78, color: "#a855f7" },
+  { id: "meccanica",     machinery: "Motore Meccanico",          x: 60, y: 78, color: "#60a5fa" },
+  { id: "elettrica",     machinery: "Generatore Elettrico",      x: 78, y: 72, color: "#facc15" },
 ];
-
-// Friendly "machinery" label for each energy
-const MACHINERY: Record<string, string> = {
-  solare:        "Pannello Solare",
-  eolica:        "Turbina Eolica",
-  idroelettrica: "Diga Idroelettrica",
-  nucleare:      "Reattore Nucleare",
-  geotermica:    "Centrale Geotermica",
-  termica:       "Centrale Termoelettrica",
-  chimica:       "Batteria / Combustione",
-  meccanica:     "Motore Meccanico",
-  elettrica:     "Generatore Elettrico",
-};
-
-// Solid hex color per energy (matches existing palette)
-const COLORS: Record<string, string> = {
-  solare:        "#f59e0b",
-  eolica:        "#22d3ee",
-  idroelettrica: "#3b82f6",
-  nucleare:      "#22c55e",
-  geotermica:    "#ef4444",
-  termica:       "#f97316",
-  chimica:       "#a855f7",
-  meccanica:     "#60a5fa",
-  elettrica:     "#facc15",
-};
 
 export default function Panorama() {
   const [, setLocation] = useLocation();
   const [showSplash, setShowSplash] = useState(true);
   const [selectedEnergy, setSelectedEnergy] = useState<EnergyType | null>(null);
-
-  const orderedEnergies = ORDER
-    .map((id) => energies.find((e) => e.id === id))
-    .filter((e): e is EnergyType => Boolean(e));
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden" style={{ background: "#0c1445" }}>
@@ -136,75 +116,85 @@ export default function Panorama() {
         </div>
       </div>
 
-      {/* ── Machinery grid ── */}
-      <div className="relative z-10 flex-1 h-[calc(100vh-72px)] flex flex-col items-center justify-center px-4 py-6 overflow-y-auto">
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="text-white/65 text-sm md:text-base text-center mb-6 max-w-2xl"
+      {/* ── Hint ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="absolute top-20 left-1/2 -translate-x-1/2 z-10 pointer-events-none"
+      >
+        <span
+          className="px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md"
+          style={{
+            background: "rgba(0,0,0,0.45)",
+            color: "rgba(255,255,255,0.75)",
+            border: "1px solid rgba(255,255,255,0.12)",
+          }}
         >
-          Clicca su un macchinario per scoprire la sua fonte di energia
-        </motion.p>
+          Clicca i puntini sui macchinari per scoprire l'energia
+        </span>
+      </motion.div>
 
-        <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-3xl w-full">
-          {orderedEnergies.map((energy, i) => {
-            const Icon = ICONS[energy.icon] ?? Zap;
-            const color = COLORS[energy.id] ?? "#facc15";
-            const machinery = MACHINERY[energy.id] ?? energy.name;
+      {/* ── Small dot hotspots over the video ── */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        {HOTSPOTS.map((h, i) => {
+          const energy = energies.find((e) => e.id === h.id);
+          if (!energy) return null;
+          const Icon = ICONS[energy.icon] ?? Zap;
+          const isHovered = hoveredId === h.id;
 
-            return (
-              <motion.button
-                key={energy.id}
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.5 + i * 0.06, type: "spring", stiffness: 120 }}
-                whileHover={{ scale: 1.06, y: -4 }}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => setSelectedEnergy(energy)}
-                data-testid={`machine-${energy.id}`}
-                className="group relative flex flex-col items-center justify-center gap-2 p-4 md:p-5 rounded-2xl backdrop-blur-md transition-colors"
+          return (
+            <motion.button
+              key={h.id}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 + i * 0.08, type: "spring", stiffness: 200 }}
+              onClick={() => setSelectedEnergy(energy)}
+              onMouseEnter={() => setHoveredId(h.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              data-testid={`hotspot-${h.id}`}
+              className="absolute pointer-events-auto -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${h.x}%`, top: `${h.y}%` }}
+            >
+              {/* Pulsing outer ring */}
+              <span
+                className="absolute inset-0 rounded-full animate-ping"
                 style={{
-                  background: `linear-gradient(135deg, ${color}22, rgba(0,0,0,0.45))`,
-                  border: `1px solid ${color}55`,
-                  boxShadow: `0 6px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04) inset`,
+                  background: h.color,
+                  opacity: 0.35,
+                  animationDuration: "2.2s",
+                }}
+              />
+              {/* Solid dot with icon */}
+              <span
+                className="relative flex items-center justify-center w-9 h-9 rounded-full transition-transform hover:scale-125 active:scale-95"
+                style={{
+                  background: `radial-gradient(circle at 30% 30%, ${h.color}, ${h.color}cc)`,
+                  border: "2px solid rgba(255,255,255,0.85)",
+                  boxShadow: `0 0 14px ${h.color}, 0 2px 6px rgba(0,0,0,0.5)`,
                 }}
               >
-                {/* Glowing icon circle */}
-                <div
-                  className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all group-hover:scale-110"
+                <Icon size={16} className="text-white drop-shadow" strokeWidth={2.5} />
+              </span>
+
+              {/* Tooltip on hover */}
+              {isHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute left-1/2 -translate-x-1/2 -top-10 whitespace-nowrap px-2.5 py-1 rounded-md text-xs font-bold pointer-events-none"
                   style={{
-                    background: `radial-gradient(circle at 30% 30%, ${color}, ${color}99)`,
-                    boxShadow: `0 0 24px ${color}88, 0 4px 12px rgba(0,0,0,0.4)`,
+                    background: "rgba(0,0,0,0.85)",
+                    color: h.color,
+                    border: `1px solid ${h.color}88`,
                   }}
                 >
-                  <Icon size={28} className="text-white drop-shadow" strokeWidth={2.2} />
-                </div>
-
-                {/* Machinery label */}
-                <div className="text-center mt-1">
-                  <div className="text-white font-bold text-sm md:text-base leading-tight">
-                    {machinery}
-                  </div>
-                  <div
-                    className="text-[11px] md:text-xs font-semibold mt-0.5 uppercase tracking-wide"
-                    style={{ color }}
-                  >
-                    Energia {energy.name.replace("Energia ", "")}
-                  </div>
-                </div>
-
-                {/* Subtle "click for info" pill */}
-                <div
-                  className="text-[9px] md:text-[10px] font-bold mt-1 px-2 py-0.5 rounded-full opacity-70 group-hover:opacity-100 transition-opacity"
-                  style={{ background: `${color}22`, color, border: `1px solid ${color}44` }}
-                >
-                  scopri di più
-                </div>
-              </motion.button>
-            );
-          })}
-        </div>
+                  {h.machinery}
+                </motion.div>
+              )}
+            </motion.button>
+          );
+        })}
       </div>
 
       {/* Energy info panel slides in */}
