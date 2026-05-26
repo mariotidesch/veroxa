@@ -2,7 +2,28 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Atom, Zap, Cog, Flame, FlaskConical, Wind, Droplets, Sun, Mountain } from "lucide-react";
 import { EnergyType } from "@/data/energie";
-import EnergyEffect from "@/components/EnergyEffect";
+
+import nucleareImg     from "@assets/energy_crops/nucleare.jpg";
+import elettricaImg    from "@assets/energy_crops/elettrica.jpg";
+import termicaImg      from "@assets/energy_crops/termica.jpg";
+import eolicaImg       from "@assets/energy_crops/eolica.jpg";
+import idroelettricaImg from "@assets/energy_crops/idroelettrica.jpg";
+import solareImg       from "@assets/energy_crops/solare.jpg";
+import meccanicaImg    from "@assets/energy_crops/meccanica.jpg";
+import chimicaImg      from "@assets/energy_crops/chimica.jpg";
+import geotermicaImg   from "@assets/energy_crops/geotermica.jpg";
+
+const CROP_IMG: Record<string, string> = {
+  nucleare: nucleareImg,
+  elettrica: elettricaImg,
+  termica: termicaImg,
+  eolica: eolicaImg,
+  idroelettrica: idroelettricaImg,
+  solare: solareImg,
+  meccanica: meccanicaImg,
+  chimica: chimicaImg,
+  geotermica: geotermicaImg,
+};
 
 interface EnergyPanelProps {
   energy: EnergyType | null;
@@ -36,16 +57,28 @@ export default function EnergyPanel({ energy, onClose }: EnergyPanelProps) {
               className="h-48 w-full relative flex items-end p-6 overflow-hidden"
               style={{ backgroundColor: energy.color }}
             >
-              {/* Unique animation per energy — plays once and fades out */}
+              {/* Realistic photo of the machinery from the video — covers for 2.5s then fades out */}
               <motion.div
                 key={energy.id}
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 0 }}
-                transition={{ duration: 0.6, delay: 2.4 }}
-                className="absolute inset-0 flex items-center justify-center"
-                style={{ background: `radial-gradient(circle at 50% 50%, ${energy.color}, rgba(0,0,0,0.25))` }}
+                initial={{ opacity: 1, scale: 1.08 }}
+                animate={{ opacity: [1, 1, 0], scale: [1.08, 1, 1] }}
+                transition={{ duration: 3, times: [0, 0.83, 1], ease: "easeOut" }}
+                className="absolute inset-0"
               >
-                <EnergyEffect id={energy.id} />
+                <img
+                  src={CROP_IMG[energy.id]}
+                  alt={energy.name}
+                  className="w-full h-full object-cover"
+                  draggable={false}
+                />
+                {/* Subtle bottom gradient so the title remains readable while the photo is on */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%)",
+                  }}
+                />
               </motion.div>
 
               <button
