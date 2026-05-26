@@ -108,38 +108,51 @@ export default function Panorama() {
         className="relative z-10 flex items-center px-4 py-2 overflow-hidden"
         style={{ background: "#000", borderBottom: "1px solid rgba(250,204,21,0.25)" }}
       >
-        {/* Decorative energy icons sprinkled in the background — pulsing glow */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-around">
+        {/* Decorative energy icons — small, scattered, only in safe zones
+            (between logo and title, and between title and right controls).
+            Positions are explicit so they never overlap text or buttons. */}
+        <div className="absolute inset-0 pointer-events-none">
           {[
-            { Icon: Sun,          color: "#f59e0b" },
-            { Icon: Wind,         color: "#22d3ee" },
-            { Icon: Droplets,     color: "#3b82f6" },
-            { Icon: Atom,         color: "#22c55e" },
-            { Icon: Mountain,     color: "#ef4444" },
-            { Icon: Flame,        color: "#f97316" },
-            { Icon: FlaskConical, color: "#a855f7" },
-            { Icon: Cog,          color: "#60a5fa" },
-            { Icon: Zap,          color: "#facc15" },
-          ].map(({ Icon, color }, i) => (
+            // ── Left safe zone (between logo and centered title): x ~ 9% – 26%
+            { Icon: Sun,          color: "#f59e0b", x: 10, y: 22, size: 12 },
+            { Icon: Wind,         color: "#22d3ee", x: 14, y: 70, size: 14 },
+            { Icon: Droplets,     color: "#3b82f6", x: 19, y: 30, size: 11 },
+            { Icon: Atom,         color: "#22c55e", x: 22, y: 78, size: 13 },
+            { Icon: Mountain,     color: "#ef4444", x: 25, y: 18, size: 12 },
+            { Icon: Flame,        color: "#f97316", x: 17, y: 50, size: 10 },
+            // ── Right safe zone (between title and Calcolatrice button): x ~ 73% – 87%
+            { Icon: FlaskConical, color: "#a855f7", x: 74, y: 26, size: 12 },
+            { Icon: Cog,          color: "#60a5fa", x: 78, y: 72, size: 14 },
+            { Icon: Zap,          color: "#facc15", x: 82, y: 20, size: 11 },
+            { Icon: Sun,          color: "#facc15", x: 86, y: 58, size: 10 },
+            { Icon: Droplets,     color: "#22d3ee", x: 76, y: 50, size: 10 },
+            { Icon: Atom,         color: "#22c55e", x: 84, y: 80, size: 12 },
+          ].map(({ Icon, color, x, y, size }, i) => (
             <motion.div
               key={i}
+              className="absolute"
+              style={{
+                left: `${x}%`,
+                top: `${y}%`,
+                transform: "translate(-50%, -50%)",
+              }}
               animate={{
                 opacity: [0.35, 1, 0.35],
                 filter: [
-                  `drop-shadow(0 0 2px ${color}) drop-shadow(0 0 4px ${color}66)`,
-                  `drop-shadow(0 0 8px ${color}) drop-shadow(0 0 18px ${color})`,
-                  `drop-shadow(0 0 2px ${color}) drop-shadow(0 0 4px ${color}66)`,
+                  `drop-shadow(0 0 1px ${color}) drop-shadow(0 0 3px ${color}55)`,
+                  `drop-shadow(0 0 5px ${color}) drop-shadow(0 0 12px ${color})`,
+                  `drop-shadow(0 0 1px ${color}) drop-shadow(0 0 3px ${color}55)`,
                 ],
-                scale: [1, 1.12, 1],
+                scale: [1, 1.18, 1],
               }}
               transition={{
-                duration: 2.4,
+                duration: 2.4 + (i % 3) * 0.4,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: i * 0.25,
+                delay: i * 0.22,
               }}
             >
-              <Icon size={28} style={{ color }} strokeWidth={2} />
+              <Icon size={size} style={{ color }} strokeWidth={2} />
             </motion.div>
           ))}
         </div>
