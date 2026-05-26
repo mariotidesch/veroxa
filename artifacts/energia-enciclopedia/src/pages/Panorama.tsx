@@ -108,8 +108,8 @@ export default function Panorama() {
         className="relative z-10 flex items-center px-4 py-2 overflow-hidden"
         style={{ background: "#000", borderBottom: "1px solid rgba(250,204,21,0.25)" }}
       >
-        {/* Decorative energy icons sprinkled in the background */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-around opacity-[0.09]">
+        {/* Decorative energy icons sprinkled in the background — pulsing glow */}
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-around">
           {[
             { Icon: Sun,          color: "#f59e0b" },
             { Icon: Wind,         color: "#22d3ee" },
@@ -121,7 +121,26 @@ export default function Panorama() {
             { Icon: Cog,          color: "#60a5fa" },
             { Icon: Zap,          color: "#facc15" },
           ].map(({ Icon, color }, i) => (
-            <Icon key={i} size={28} style={{ color }} strokeWidth={1.5} />
+            <motion.div
+              key={i}
+              animate={{
+                opacity: [0.35, 1, 0.35],
+                filter: [
+                  `drop-shadow(0 0 2px ${color}) drop-shadow(0 0 4px ${color}66)`,
+                  `drop-shadow(0 0 8px ${color}) drop-shadow(0 0 18px ${color})`,
+                  `drop-shadow(0 0 2px ${color}) drop-shadow(0 0 4px ${color}66)`,
+                ],
+                scale: [1, 1.12, 1],
+              }}
+              transition={{
+                duration: 2.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.25,
+              }}
+            >
+              <Icon size={28} style={{ color }} strokeWidth={2} />
+            </motion.div>
           ))}
         </div>
 
