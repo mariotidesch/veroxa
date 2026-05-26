@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 import {
@@ -24,17 +24,22 @@ type Hotspot = {
   color: string;
 };
 
+// Positions match the actual machinery visible in the looping video.
 const HOTSPOTS: Hotspot[] = [
-  { id: "solare",        machinery: "Pannello Solare",           x: 14, y: 28, color: "#f59e0b" },
-  { id: "eolica",        machinery: "Turbina Eolica",            x: 32, y: 45, color: "#22d3ee" },
-  { id: "idroelettrica", machinery: "Diga Idroelettrica",        x: 48, y: 55, color: "#3b82f6" },
-  { id: "nucleare",      machinery: "Reattore Nucleare",         x: 66, y: 48, color: "#22c55e" },
-  { id: "geotermica",    machinery: "Centrale Geotermica",       x: 82, y: 40, color: "#ef4444" },
-  { id: "termica",       machinery: "Centrale Termoelettrica",   x: 22, y: 72, color: "#f97316" },
-  { id: "chimica",       machinery: "Batteria / Combustione",    x: 40, y: 78, color: "#a855f7" },
-  { id: "meccanica",     machinery: "Motore Meccanico",          x: 60, y: 78, color: "#60a5fa" },
-  { id: "elettrica",     machinery: "Generatore Elettrico",      x: 78, y: 72, color: "#facc15" },
+  { id: "nucleare",      machinery: "Centrale Nucleare",         x: 10, y: 27, color: "#22c55e" },
+  { id: "elettrica",     machinery: "Tralicci Alta Tensione",    x: 22, y: 34, color: "#facc15" },
+  { id: "termica",       machinery: "Centrale Termoelettrica",   x: 34, y: 47, color: "#f97316" },
+  { id: "eolica",        machinery: "Turbine Eoliche",           x: 73, y: 18, color: "#22d3ee" },
+  { id: "idroelettrica", machinery: "Diga Idroelettrica",        x: 65, y: 53, color: "#3b82f6" },
+  { id: "solare",        machinery: "Pannelli Solari",           x: 92, y: 50, color: "#f59e0b" },
+  { id: "meccanica",     machinery: "Ingranaggi Meccanici",      x: 10, y: 78, color: "#60a5fa" },
+  { id: "chimica",       machinery: "Idrogeno / Batterie",       x: 40, y: 82, color: "#a855f7" },
+  { id: "geotermica",    machinery: "Sorgenti Geotermiche",      x: 82, y: 92, color: "#ef4444" },
 ];
+
+// Intrinsic video aspect ratio (1916x1080 ≈ 16:9).
+const VIDEO_W = 1916;
+const VIDEO_H = 1080;
 
 export default function Panorama() {
   const [, setLocation] = useLocation();
@@ -42,23 +47,59 @@ export default function Panorama() {
   const [selectedEnergy, setSelectedEnergy] = useState<EnergyType | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
+  // Track the actual rendered video rect so hotspots stay anchored to machinery
+  // even with object-contain letterboxing on non-16:9 viewports.
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [videoRect, setVideoRect] = useState({ left: 0, top: 0, width: 0, height: 0 });
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => {
+      const cw = el.clientWidth;
+      const ch = el.clientHeight;
+      const videoRatio = VIDEO_W / VIDEO_H;
+      const containerRatio = cw / ch;
+      let w: number, h: number, left: number, top: number;
+      if (containerRatio > videoRatio) {
+        // Container wider → letterbox left/right
+        h = ch;
+        w = ch * videoRatio;
+        left = (cw - w) / 2;
+        top = 0;
+      } else {
+        // Container taller → letterbox top/bottom
+        w = cw;
+        h = cw / videoRatio;
+        left = 0;
+        top = (ch - h) / 2;
+      }
+      setVideoRect({ left, top, width: w, height: h });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <div className="relative w-screen h-screen overflow-hidden" style={{ background: "#0c1445" }}>
-      {/* ── Background video (loop) ── */}
+    <div ref={containerRef} className="relative w-screen h-screen overflow-hidden" style={{ background: "#0c1445" }}>
+      {/* ── Background video (loop, full visible, no crop) ── */}
       <video
         src={bgVideo}
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-contain"
+        style={{ background: "#000" }}
       />
-      {/* Dark overlay for readability */}
+      {/* Very light overlay — keeps video bright */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(8,12,40,0.78) 0%, rgba(8,12,40,0.55) 35%, rgba(8,12,40,0.78) 100%)",
+            "linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.25) 100%)",
         }}
       />
 
@@ -154,7 +195,10 @@ export default function Panorama() {
               onMouseLeave={() => setHoveredId(null)}
               data-testid={`hotspot-${h.id}`}
               className="absolute pointer-events-auto -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${h.x}%`, top: `${h.y}%` }}
+              style={{
+                left: videoRect.left + (h.x / 100) * videoRect.width,
+                top: videoRect.top + (h.y / 100) * videoRect.height,
+              }}
             >
               {/* Pulsing outer ring */}
               <span
