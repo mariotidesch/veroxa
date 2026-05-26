@@ -174,25 +174,6 @@ export default function Panorama() {
         </div>
       </div>
 
-      {/* ── Hint ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="absolute top-20 left-1/2 -translate-x-1/2 z-10 pointer-events-none"
-      >
-        <span
-          className="px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md"
-          style={{
-            background: "rgba(0,0,0,0.45)",
-            color: "rgba(255,255,255,0.75)",
-            border: "1px solid rgba(255,255,255,0.12)",
-          }}
-        >
-          Clicca i puntini sui macchinari per scoprire l'energia
-        </span>
-      </motion.div>
-
       {/* ── Small dot hotspots over the video ── */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         {HOTSPOTS.map((h, i) => {

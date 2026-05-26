@@ -135,6 +135,68 @@ export default function EnergyPanel({ energy, onClose }: EnergyPanelProps) {
                 </ul>
               </section>
 
+              <section>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                  <span className="w-8 h-1 rounded-full" style={{ backgroundColor: energy.color }}></span>
+                  Dati e numeri
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {energy.dataPoints.map((dp, i) => (
+                    <div
+                      key={i}
+                      className="rounded-2xl p-4 border bg-zinc-50 dark:bg-zinc-800/40 border-zinc-200 dark:border-zinc-700"
+                    >
+                      <div
+                        className="text-lg font-black leading-tight"
+                        style={{ color: energy.color }}
+                      >
+                        {dp.value}
+                      </div>
+                      <div className="text-xs mt-1 text-zinc-600 dark:text-zinc-400 font-medium">
+                        {dp.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                  <span className="w-8 h-1 rounded-full" style={{ backgroundColor: energy.color }}></span>
+                  Curiosità
+                </h3>
+                <ul className="space-y-2">
+                  {energy.funFacts.map((fact, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-zinc-700 dark:text-zinc-300 rounded-xl p-3"
+                      style={{ background: `${energy.color}12` }}
+                    >
+                      <span
+                        className="mt-1 font-black"
+                        style={{ color: energy.color }}
+                      >
+                        ?
+                      </span>
+                      <span className="text-sm leading-relaxed">{fact}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                  <span className="w-8 h-1 rounded-full" style={{ backgroundColor: energy.color }}></span>
+                  Un po' di storia
+                </h3>
+                <p
+                  className="text-zinc-700 dark:text-zinc-300 leading-relaxed border-l-4 pl-4 italic"
+                  style={{ borderColor: energy.color }}
+                >
+                  {energy.history}
+                </p>
+              </section>
+
             </div>
           </motion.div>
         </>
