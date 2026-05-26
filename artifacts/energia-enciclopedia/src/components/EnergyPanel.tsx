@@ -2,6 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Atom, Zap, Cog, Flame, FlaskConical, Wind, Droplets, Sun, Mountain } from "lucide-react";
 import { EnergyType } from "@/data/energie";
+import EnergyEffect from "@/components/EnergyEffect";
 
 interface EnergyPanelProps {
   energy: EnergyType | null;
@@ -31,19 +32,31 @@ export default function EnergyPanel({ energy, onClose }: EnergyPanelProps) {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed top-0 right-0 h-full w-full max-w-lg bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl shadow-2xl z-50 overflow-y-auto border-l border-white/20 dark:border-white/10"
           >
-            <div 
-              className="h-32 w-full relative flex items-end p-6"
+            <div
+              className="h-48 w-full relative flex items-end p-6 overflow-hidden"
               style={{ backgroundColor: energy.color }}
             >
-              <button 
+              {/* Unique animation per energy — plays once and fades out */}
+              <motion.div
+                key={energy.id}
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
+                transition={{ duration: 0.6, delay: 2.4 }}
+                className="absolute inset-0 flex items-center justify-center"
+                style={{ background: `radial-gradient(circle at 50% 50%, ${energy.color}, rgba(0,0,0,0.25))` }}
+              >
+                <EnergyEffect id={energy.id} />
+              </motion.div>
+
+              <button
                 onClick={onClose}
-                className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full transition-colors"
+                className="absolute top-4 right-4 z-10 p-2 bg-black/30 hover:bg-black/50 text-white rounded-full transition-colors"
                 aria-label="Chiudi"
               >
                 <X size={24} />
               </button>
-              
-              <div className="flex items-center gap-4 text-white">
+
+              <div className="relative z-10 flex items-center gap-4 text-white">
                 {iconMap[energy.icon] && React.createElement(iconMap[energy.icon], { size: 48, className: "drop-shadow-md" })}
                 <h2 className="text-4xl font-black tracking-tight drop-shadow-md">{energy.name}</h2>
               </div>

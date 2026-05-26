@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 import { energies, EnergyType } from "@/data/energie";
 import EnergyPanel from "@/components/EnergyPanel";
-import EnergyEffect from "@/components/EnergyEffect";
 import SplashScreen from "@/components/SplashScreen";
 import bgVideo from "@assets/Scene_Builder_-_Scene_1779818958401.mp4";
 
@@ -47,7 +46,6 @@ export default function Panorama() {
   const [showSplash, setShowSplash] = useState(true);
   const [selectedEnergy, setSelectedEnergy] = useState<EnergyType | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [effect, setEffect] = useState<{ id: string; x: number; y: number; key: number } | null>(null);
 
   // Track the actual rendered video rect so hotspots stay anchored to machinery
   // even with object-contain letterboxing on non-16:9 viewports.
@@ -83,13 +81,6 @@ export default function Panorama() {
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-
-  // Auto-clear click effect after its animation finishes.
-  useEffect(() => {
-    if (!effect) return;
-    const t = window.setTimeout(() => setEffect(null), 2600);
-    return () => window.clearTimeout(t);
-  }, [effect]);
 
   return (
     <div ref={containerRef} className="relative w-screen h-screen overflow-hidden" style={{ background: "#0c1445" }}>
@@ -199,12 +190,7 @@ export default function Panorama() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4 + i * 0.08, type: "spring", stiffness: 200 }}
-              onClick={() => {
-                const px = videoRect.left + (h.x / 100) * videoRect.width;
-                const py = videoRect.top + (h.y / 100) * videoRect.height;
-                setEffect({ id: h.id, x: px, y: py, key: Date.now() });
-                setSelectedEnergy(energy);
-              }}
+              onClick={() => setSelectedEnergy(energy)}
               onMouseEnter={() => setHoveredId(h.id)}
               onMouseLeave={() => setHoveredId(null)}
               data-testid={`hotspot-${h.id}`}
@@ -254,9 +240,6 @@ export default function Panorama() {
           );
         })}
       </div>
-
-      {/* Click effect (auto-clears after ~2.5s) */}
-      {effect && <EnergyEffect key={effect.key} id={effect.id} x={effect.x} y={effect.y} />}
 
       {/* Energy info panel slides in */}
       <EnergyPanel energy={selectedEnergy} onClose={() => setSelectedEnergy(null)} />

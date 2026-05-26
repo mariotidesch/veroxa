@@ -2,18 +2,13 @@ import { motion } from "framer-motion";
 
 type Props = {
   id: string;
-  x: number;
-  y: number;
 };
 
 const DURATION = 2.5;
 
-export default function EnergyEffect({ id, x, y }: Props) {
+export default function EnergyEffect({ id }: Props) {
   return (
-    <div
-      className="absolute z-20 pointer-events-none"
-      style={{ left: x, top: y, transform: "translate(-50%, -50%)" }}
-    >
+    <div className="pointer-events-none flex items-center justify-center">
       {renderEffect(id)}
     </div>
   );
