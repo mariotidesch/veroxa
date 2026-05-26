@@ -2,12 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 import {
-  Zap, Atom, Cog, Flame, FlaskConical, Wind, Droplets, Sun, Mountain,
+  Zap, Atom, Cog, Flame, FlaskConical, Wind, Droplets, Sun, Mountain, Home, Calculator,
   type LucideIcon,
 } from "lucide-react";
 import { energies, EnergyType } from "@/data/energie";
 import EnergyPanel from "@/components/EnergyPanel";
-import SplashScreen from "@/components/SplashScreen";
 import bgVideo from "@assets/Scene_Builder_-_Scene_1779818958401.mp4";
 
 const ICONS: Record<string, LucideIcon> = {
@@ -43,7 +42,6 @@ const VIDEO_H = 1080;
 
 export default function Panorama() {
   const [, setLocation] = useLocation();
-  const [showSplash, setShowSplash] = useState(true);
   const [selectedEnergy, setSelectedEnergy] = useState<EnergyType | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
@@ -113,20 +111,20 @@ export default function Panorama() {
             Positions are explicit so they never overlap text or buttons. */}
         <div className="absolute inset-0 pointer-events-none">
           {[
-            // ── Left safe zone (between logo and centered title): x ~ 9% – 26%
-            { Icon: Sun,          color: "#f59e0b", x: 10, y: 22, size: 12 },
-            { Icon: Wind,         color: "#22d3ee", x: 14, y: 70, size: 14 },
-            { Icon: Droplets,     color: "#3b82f6", x: 19, y: 30, size: 11 },
-            { Icon: Atom,         color: "#22c55e", x: 22, y: 78, size: 13 },
-            { Icon: Mountain,     color: "#ef4444", x: 25, y: 18, size: 12 },
-            { Icon: Flame,        color: "#f97316", x: 17, y: 50, size: 10 },
-            // ── Right safe zone (between title and Calcolatrice button): x ~ 73% – 87%
-            { Icon: FlaskConical, color: "#a855f7", x: 74, y: 26, size: 12 },
-            { Icon: Cog,          color: "#60a5fa", x: 78, y: 72, size: 14 },
-            { Icon: Zap,          color: "#facc15", x: 82, y: 20, size: 11 },
-            { Icon: Sun,          color: "#facc15", x: 86, y: 58, size: 10 },
-            { Icon: Droplets,     color: "#22d3ee", x: 76, y: 50, size: 10 },
-            { Icon: Atom,         color: "#22c55e", x: 84, y: 80, size: 12 },
+            // ── Left close to title: x ~ 28% – 42%
+            { Icon: Sun,          color: "#f59e0b", x: 28, y: 22, size: 11 },
+            { Icon: Wind,         color: "#22d3ee", x: 30, y: 72, size: 13 },
+            { Icon: Droplets,     color: "#3b82f6", x: 34, y: 30, size: 10 },
+            { Icon: Atom,         color: "#22c55e", x: 36, y: 78, size: 12 },
+            { Icon: Mountain,     color: "#ef4444", x: 40, y: 18, size: 11 },
+            { Icon: Flame,        color: "#f97316", x: 42, y: 64, size: 10 },
+            // ── Right close to title: x ~ 58% – 72%
+            { Icon: FlaskConical, color: "#a855f7", x: 58, y: 26, size: 12 },
+            { Icon: Cog,          color: "#60a5fa", x: 62, y: 76, size: 13 },
+            { Icon: Zap,          color: "#facc15", x: 66, y: 20, size: 11 },
+            { Icon: Sun,          color: "#facc15", x: 70, y: 70, size: 10 },
+            { Icon: Droplets,     color: "#22d3ee", x: 64, y: 50, size: 10 },
+            { Icon: Atom,         color: "#22c55e", x: 72, y: 32, size: 12 },
           ].map(({ Icon, color, x, y, size }, i) => (
             <motion.div
               key={i}
@@ -185,24 +183,25 @@ export default function Panorama() {
           </motion.p>
         </div>
 
-        <div className="relative flex items-center gap-3 pl-4">
+        <div className="relative flex items-center gap-2 pl-4">
+          <button
+            onClick={() => setLocation("/")}
+            data-testid="button-home"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all hover:scale-105 active:scale-95"
+            style={{ background: "rgba(167,139,250,0.18)", border: "1px solid rgba(167,139,250,0.5)", color: "#c4b5fd" }}
+          >
+            <Home size={13} />
+            Home
+          </button>
           <button
             onClick={() => setLocation("/calcolatrice")}
             data-testid="button-calcolatrice"
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all hover:scale-105 active:scale-95"
             style={{ background: "rgba(250,204,21,0.18)", border: "1px solid rgba(250,204,21,0.45)", color: "#facc15" }}
           >
-            <Zap size={13} />
+            <Calculator size={13} />
             Calcolatrice
           </button>
-          <div className="flex flex-col items-end leading-tight">
-            <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.38)" }}>
-              Mario Tedeschi
-            </span>
-            <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.28)" }}>
-              Classe 3A
-            </span>
-          </div>
         </div>
       </div>
 
@@ -273,9 +272,6 @@ export default function Panorama() {
 
       {/* Energy info panel slides in */}
       <EnergyPanel energy={selectedEnergy} onClose={() => setSelectedEnergy(null)} />
-
-      {/* Welcome splash overlay */}
-      {showSplash && <SplashScreen onStart={() => setShowSplash(false)} />}
     </div>
   );
 }

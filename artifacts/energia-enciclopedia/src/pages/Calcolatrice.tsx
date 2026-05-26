@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
-import { ArrowLeft, Zap, Smartphone, Gamepad2, WashingMachine, Car, Thermometer, RefreshCw } from "lucide-react";
+import { Home, Zap, Smartphone, Gamepad2, WashingMachine, Car, Thermometer, RefreshCw } from "lucide-react";
 
 type Activity = {
   id: string;
@@ -315,21 +315,25 @@ export default function Calcolatrice() {
       style={{ background: "linear-gradient(135deg, #0c1445 0%, #1e3a6e 50%, #0f2d52 100%)" }}
     >
       {/* Header */}
-      <div className="flex items-center gap-4 px-5 py-4" style={{ background: "rgba(0,0,0,0.35)" }}>
+      <div
+        className="flex items-center gap-4 px-5 py-4"
+        style={{ background: "rgba(0,0,0,0.45)", borderBottom: "1px solid rgba(250,204,21,0.25)" }}
+      >
         <button
           onClick={() => setLocation("/")}
-          className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-          data-testid="back-button"
+          className="flex items-center gap-2 text-white/85 hover:text-white transition-colors px-3 py-1.5 rounded-full"
+          style={{ background: "rgba(167,139,250,0.18)", border: "1px solid rgba(167,139,250,0.5)" }}
+          data-testid="button-home"
         >
-          <ArrowLeft size={20} />
-          <span className="text-sm font-medium">Torna al Panorama</span>
+          <Home size={18} />
+          <span className="text-sm font-bold">Home</span>
         </button>
         <div className="flex-1 text-center">
           <h1 className="text-xl md:text-2xl font-black text-white tracking-tight">
             Calcolatrice Energetica
           </h1>
         </div>
-        <div className="w-32" />
+        <div className="w-24" />
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 py-6 max-w-2xl mx-auto w-full">
