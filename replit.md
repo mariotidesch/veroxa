@@ -1,6 +1,6 @@
-# Progetto: EnergiApp + Vexora
+# Progetto: Vexora
 
-Monorepo con due siti indipendenti: **EnergiApp** (enciclopedia interattiva delle energie per la scuola, in italiano, su `/`) e **Vexora** (sito vetrina per un'attività che crea e modifica siti web per negozi, ristoranti e attività locali, in italiano, su `/vexora/`).
+Sito vetrina **Vexora** per un'attività che crea e modifica siti web per negozi, ristoranti e attività locali, in italiano, su `/vexora/`.
 
 ## Run & Operate
 
@@ -22,10 +22,8 @@ Monorepo con due siti indipendenti: **EnergiApp** (enciclopedia interattiva dell
 
 ## Where things live
 
-- `artifacts/energia-enciclopedia/` — EnergiApp (React+Vite, su `/`): pagine in `src/pages/` (Panorama, Calcolatrice, Informazioni), dati energie in `src/data/energie.ts`
-- `artifacts/vexora/` — sito Vexora (React+Vite, su `/vexora/`), frontend-only, 3 pagine: Home, Recensioni, Contatti
+- `artifacts/vexora/` — sito Vexora (React+Vite, su `/vexora/`), frontend-only, pagine Home, Chi Siamo, Cosa Facciamo, Come Funziona e Contatti
 - `artifacts/api-server/` — Express condiviso (attualmente solo healthcheck)
-- `attached_assets/energy_crops/` — immagini panorama EnergiApp
 
 ## Architecture decisions
 
@@ -33,8 +31,7 @@ _Populate as you build — non-obvious choices a reader couldn't infer from the 
 
 ## Product
 
-- **EnergiApp** (`/`): enciclopedia interattiva delle 9 forme di energia con panorama cliccabile, calcolatrice di consumi (dispositivi + periodo + ripetizioni, convertitore fonti) e pagina informazioni (Istituto San Leone Magno, classe 3A, autore Mario Tedeschi). Tutto in italiano.
-- **Vexora** (`/vexora/`): sito vetrina in italiano — home con schermata di benvenuto e sezioni "Cosa fa / Come è nata / Come funziona", pagina Recensioni (slot vuoti per recensioni future) raggiungibile da menu in alto a sinistra, pagina Contatti con CTA. 3 versioni del logo distribuite nel sito. Mai menzionare "AI". Palette chiara (bianco, azzurro, verde chiaro, celeste).
+- **Vexora** (`/vexora/`): sito vetrina in italiano — home con schermata di benvenuto, pagine Chi Siamo, Cosa Facciamo, Come Funziona e Contatti. Le recensioni dimostrative sono state rimosse. 3 versioni del logo distribuite nel sito. Mai menzionare "AI". Palette chiara (bianco, azzurro, verde chiaro, celeste).
 
 ## User preferences
 
