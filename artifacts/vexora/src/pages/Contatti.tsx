@@ -81,8 +81,8 @@ export default function Contatti() {
                   </div>
                   <div className="pt-1">
                     <h4 className="font-sans font-medium text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2">Recapito Telefonico</h4>
-                    <a href="tel:+390212345678" className="text-xl font-serif text-foreground hover:text-primary transition-colors block">
-                      +39 02 1234 5678
+                    <a href="tel:+393313830350" className="text-xl font-serif text-foreground hover:text-primary transition-colors block">
+                      +39 331 383 0350
                     </a>
                     <p className="text-sm font-sans font-light text-muted-foreground mt-2">Lun - Ven, 9:00 - 18:00</p>
                   </div>

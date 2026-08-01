@@ -131,7 +131,7 @@ export function Navbar() {
             
             <div className="p-8 sm:p-12 md:px-24 flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm font-sans text-background/40 border-t border-background/10 gap-4">
               <p>m.mariotedeschi@gmail.com</p>
-              <p>+39 02 1234 5678</p>
+              <p>+39 331 383 0350</p>
             </div>
           </motion.div>
         )}

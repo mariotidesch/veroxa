@@ -19,8 +19,8 @@ export function Footer() {
               m.mariotedeschi@gmail.com
               <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
             </a>
-            <a href="tel:+390212345678" className="hover:text-primary transition-colors w-fit">
-              +39 02 1234 5678
+            <a href="tel:+393313830350" className="hover:text-primary transition-colors w-fit">
+              +39 331 383 0350
             </a>
           </div>
         </div>
