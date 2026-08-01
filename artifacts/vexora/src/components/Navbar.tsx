@@ -89,7 +89,7 @@ export function Navbar() {
             initial={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
             animate={{ clipPath: "circle(150% at calc(100% - 3rem) 3rem)" }}
             exit={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
-            transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.8 }}
+            transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.42 }}
             className="fixed inset-0 z-50 bg-foreground text-background flex flex-col"
           >
             <div className="absolute top-0 right-0 p-8">
@@ -110,7 +110,7 @@ export function Navbar() {
                     initial={{ y: "100%", opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: "-100%", opacity: 0 }}
-                    transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: i * 0.1 }}
+                    transition={{ duration: 0.38, ease: [0.76, 0, 0.24, 1], delay: i * 0.045 }}
                   >
                     <Link href={link.href} onClick={() => setIsOpen(false)}>
                       <div className="group flex items-end gap-4 sm:gap-6 cursor-pointer">

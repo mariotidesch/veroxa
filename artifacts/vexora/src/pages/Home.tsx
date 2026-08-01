@@ -9,10 +9,10 @@ export default function Home() {
   const [showWelcome, setShowWelcome] = useState(true);
 
   useEffect(() => {
-    // 3 seconds choreographed welcome screen
+    // Apertura breve, con animazione ancora leggibile
     const timer = setTimeout(() => {
       setShowWelcome(false);
-    }, 3200);
+    }, 1800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -23,7 +23,7 @@ export default function Home() {
           <motion.div
             initial={{ y: 0 }}
             exit={{ y: "-100%" }}
-            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center overflow-hidden"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
@@ -33,7 +33,7 @@ export default function Home() {
               <motion.h1 
                 initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
+                transition={{ duration: 0.55, delay: 0.55, ease: "easeOut" }}
                 className="text-3xl md:text-4xl tracking-[0.3em] font-serif font-light text-foreground ml-3"
               >
                 VEXORA
@@ -71,7 +71,7 @@ export default function Home() {
               <div className="mt-16 flex flex-col sm:flex-row gap-6">
                 <Link href="/contatti">
                   <div className="group relative px-8 py-5 bg-foreground text-background rounded-full cursor-pointer overflow-hidden flex items-center justify-center gap-3 w-fit">
-                    <div className="absolute inset-0 bg-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
+                    <div className="absolute inset-0 bg-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
                     <span className="relative z-10 text-sm tracking-[0.1em] uppercase font-sans font-medium">Inizia il progetto</span>
                     <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                   </div>
