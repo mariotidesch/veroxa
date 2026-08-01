@@ -2,15 +2,18 @@ import { motion } from 'framer-motion';
 
 // Logo 1: Primary mark (Welcome screen / identity)
 export const Logo1 = ({ className = "w-16 h-16", animated = true }: { className?: string, animated?: boolean }) => {
-  const transition = { duration: 2, ease: "easeInOut" as const };
-  const pathProps = animated ? {
+  const drawAnimation = {
     initial: { pathLength: 0, opacity: 0 },
-    animate: { pathLength: 1, opacity: 1 },
-    transition
-  } : {
+    animate: { pathLength: 1, opacity: 1 }
+  };
+  
+  const staticAnimation = {
     initial: { pathLength: 1, opacity: 1 },
     animate: { pathLength: 1, opacity: 1 }
   };
+  
+  const animationProps = animated ? drawAnimation : staticAnimation;
+  const baseTransition = { duration: 1.5, ease: "easeInOut" as const };
 
   return (
     <motion.svg 
@@ -18,121 +21,121 @@ export const Logo1 = ({ className = "w-16 h-16", animated = true }: { className?
       fill="none" 
       xmlns="http://www.w3.org/2000/svg" 
       className={className}
-      whileHover={{ scale: 1.05, rotate: 5 }}
-      transition={{ duration: 0.6, ease: "easeOut" as const }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.4, ease: "easeOut" as const }}
     >
-      {/* Outer elegant diamond structure */}
-      <motion.path 
-        d="M50 10 L85 30 L50 90 L15 30 Z" 
+      <motion.circle 
+        cx="50" cy="50" r="45" 
         stroke="currentColor" 
         strokeWidth="1.5" 
-        strokeLinejoin="miter"
-        strokeMiterlimit="10"
-        {...pathProps}
-      />
-      {/* Inner facets */}
-      <motion.path 
-        d="M50 10 L50 90" 
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        strokeLinejoin="miter"
-        transition={{ ...transition, delay: 0.2 }}
-        {...pathProps}
+        {...animationProps}
+        transition={baseTransition}
       />
       <motion.path 
-        d="M15 30 L85 30" 
+        d="M 32 35 L 50 65 L 68 35" 
         stroke="currentColor" 
-        strokeWidth="1.5" 
+        strokeWidth="3.5" 
+        strokeLinecap="square"
         strokeLinejoin="miter"
-        transition={{ ...transition, delay: 0.3 }}
-        {...pathProps}
-      />
-      {/* Central intricate V shape */}
-      <motion.path 
-        d="M30 45 L50 75 L70 45" 
-        stroke="currentColor" 
-        strokeWidth="2.5" 
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        transition={{ ...transition, delay: 0.5 }}
-        {...pathProps}
+        {...animationProps}
+        transition={{ ...baseTransition, delay: 0.2 }}
       />
     </motion.svg>
   );
 };
 
-// Logo 2: Graphic emblem (used inside pages)
-export const Logo2 = ({ className = "w-24 h-24" }: { className?: string }) => {
+// Logo 2: Elaborate Wordmark (Inside pages / How it Works / Contacts)
+export const Logo2 = ({ className = "h-12" }: { className?: string }) => {
   return (
     <motion.svg 
-      viewBox="0 0 100 100" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg" 
-      className={className}
-      whileHover={{ rotate: 180 }}
-      transition={{ duration: 1.5, ease: "anticipate" as const }}
-    >
-      {/* Concentric circles of the seal */}
-      <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="0.5" />
-      <circle cx="50" cy="50" r="44" stroke="currentColor" strokeWidth="1" strokeDasharray="1 5" />
-      <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="0.5" />
-      
-      {/* Decorative compass/radial elements */}
-      <path d="M50 2 L50 10 M50 90 L50 98 M2 50 L10 50 M90 50 L98 50" stroke="currentColor" strokeWidth="1" />
-      <path d="M16 16 L22 22 M84 84 L78 78 M16 84 L22 78 M84 16 L78 22" stroke="currentColor" strokeWidth="0.5" />
-      
-      {/* Inner geometric structure */}
-      <path d="M50 20 L80 50 L50 80 L20 50 Z" stroke="currentColor" strokeWidth="1" />
-      <path d="M50 20 L50 80 M20 50 L80 50" stroke="currentColor" strokeWidth="0.5" />
-      
-      {/* Core V */}
-      <path d="M35 35 L50 65 L65 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      
-      {/* Inner decorative dots */}
-      <circle cx="50" cy="30" r="1.5" fill="currentColor" />
-      <circle cx="30" cy="50" r="1.5" fill="currentColor" />
-      <circle cx="70" cy="50" r="1.5" fill="currentColor" />
-      <circle cx="50" cy="70" r="1.5" fill="currentColor" />
-    </motion.svg>
-  );
-};
-
-// Logo 3: Typographic mark (Footer)
-export const Logo3 = ({ className = "h-12" }: { className?: string }) => {
-  return (
-    <motion.svg 
-      viewBox="0 0 300 80" 
+      viewBox="0 0 320 80" 
       fill="none" 
       xmlns="http://www.w3.org/2000/svg" 
       className={className}
       initial="rest"
       whileHover="hover"
     >
-      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" strokeLinejoin="miter">
-        {/* V */}
-        <path d="M 30 25 L 45 55 L 60 25" />
-        {/* E */}
-        <path d="M 90 25 L 70 25 L 70 55 L 90 55 M 70 40 L 85 40" />
-        {/* X */}
-        <path d="M 100 25 L 125 55 M 125 25 L 100 55" />
-        {/* O */}
-        <path d="M 150 55 C 135 55 135 25 150 25 C 165 25 165 55 150 55 Z" />
-        {/* R */}
-        <path d="M 175 55 L 175 25 C 200 25 200 40 185 40 L 175 40 M 185 40 L 200 55" />
-        {/* A */}
-        <path d="M 210 55 L 225 25 L 240 55 M 216 45 L 234 45" />
+      {/* Mark on the left (Scaled down Logo 1) */}
+      <g transform="translate(15, 20) scale(0.4)">
+        <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="3" />
+        <path d="M 32 35 L 50 65 L 68 35" stroke="currentColor" strokeWidth="7" strokeLinecap="square" strokeLinejoin="miter" />
       </g>
       
+      {/* Pure SVG path letters for VEXORA */}
+      <g stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
+        {/* V */}
+        <path d="M 70 25 L 85 55 L 100 25" />
+        {/* E */}
+        <path d="M 135 25 L 115 25 L 115 55 L 135 55 M 115 40 L 130 40" />
+        {/* X */}
+        <path d="M 150 25 L 175 55 M 175 25 L 150 55" />
+        {/* O */}
+        <path d="M 190 40 A 15 15 0 1 0 220 40 A 15 15 0 1 0 190 40" />
+        {/* R */}
+        <path d="M 235 55 L 235 25 L 250 25 C 265 25 265 40 250 40 L 235 40 M 245 40 L 260 55" />
+        {/* A */}
+        <path d="M 280 55 L 295 25 L 310 55 M 285 45 L 305 45" />
+      </g>
+
+      {/* Decorative Line on Hover */}
       <motion.path 
-        d="M 30 70 L 240 70"
+        d="M 70 65 L 310 65"
         stroke="currentColor"
-        strokeWidth="1"
+        strokeWidth="1.5"
         variants={{
           rest: { pathLength: 0, opacity: 0 },
           hover: { pathLength: 1, opacity: 1 }
         }}
         transition={{ duration: 0.6, ease: "easeInOut" as const }}
       />
+    </motion.svg>
+  );
+};
+
+// Logo 3: Complex Seal/Emblem (Footer)
+export const Logo3 = ({ className = "w-16 h-16" }: { className?: string }) => {
+  return (
+    <motion.svg 
+      viewBox="0 0 120 120" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg" 
+      className={className}
+      initial="rest"
+      whileHover="hover"
+    >
+      {/* Outer rotating dashed ring */}
+      <motion.circle 
+        cx="60" cy="60" r="55" 
+        stroke="currentColor" 
+        strokeWidth="1" 
+        strokeDasharray="2 4" 
+        variants={{
+          rest: { rotate: 0 },
+          hover: { rotate: 360 }
+        }}
+        transition={{ duration: 4, ease: "linear" as const, repeat: Infinity }}
+        style={{ originX: "50%", originY: "50%" }}
+      />
+
+      {/* Intermediate static ring */}
+      <circle cx="60" cy="60" r="48" stroke="currentColor" strokeWidth="0.5" />
+      
+      {/* Decorative Diamonds at cardinal points */}
+      <path d="M 60 8 L 64 12 L 60 16 L 56 12 Z" fill="currentColor" />
+      <path d="M 112 60 L 108 56 L 104 60 L 108 64 Z" fill="currentColor" />
+      <path d="M 60 112 L 64 108 L 60 104 L 56 108 Z" fill="currentColor" />
+      <path d="M 8 60 L 12 56 L 16 60 L 12 64 Z" fill="currentColor" />
+
+      {/* Simulated Text Arches (decorative dashes forming curves) */}
+      <path d="M 33.2 33.2 A 38 38 0 0 1 86.8 33.2" stroke="currentColor" strokeWidth="3" strokeDasharray="1 5" strokeLinecap="round" opacity="0.5" />
+      <path d="M 33.2 86.8 A 38 38 0 0 0 86.8 86.8" stroke="currentColor" strokeWidth="3" strokeDasharray="1 5" strokeLinecap="round" opacity="0.5" />
+      
+      {/* Inner ring */}
+      <circle cx="60" cy="60" r="28" stroke="currentColor" strokeWidth="0.5" />
+
+      {/* Core stylized V monogram */}
+      <path d="M 48 48 L 60 72 L 72 48" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" />
+      <path d="M 54 48 L 60 60 L 66 48" stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter" opacity="0.6" />
     </motion.svg>
   );
 };
