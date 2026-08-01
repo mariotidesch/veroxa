@@ -1,24 +1,102 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 
-export const Logo1 = ({ className = "w-12 h-12" }: { className?: string }) => (
-  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M20 25L50 85L80 25" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
-    <circle cx="50" cy="50" r="4" fill="currentColor"/>
-  </svg>
-);
+// Logo 1: Primary mark (Welcome screen / identity)
+export const Logo1 = ({ className = "w-16 h-16", animated = true }: { className?: string, animated?: boolean }) => {
+  const transition = { duration: 2, ease: "easeInOut" as const };
+  const pathProps = animated ? {
+    initial: { pathLength: 0, opacity: 0 },
+    animate: { pathLength: 1, opacity: 1 },
+    transition
+  } : {
+    initial: { pathLength: 1, opacity: 1 },
+    animate: { pathLength: 1, opacity: 1 }
+  };
 
-export const Logo2 = ({ className = "w-16 h-16" }: { className?: string }) => (
-  <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <rect width="120" height="120" rx="60" fill="hsl(var(--primary) / 0.1)"/>
-    <path d="M35 40L60 90L85 40" stroke="hsl(var(--primary))" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M60 90C45 70 30 50 40 30C50 10 70 10 80 30C90 50 75 70 60 90Z" stroke="hsl(var(--secondary))" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="hsl(var(--secondary) / 0.2)"/>
-  </svg>
-);
+  return (
+    <motion.svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <motion.path 
+        d="M20 20 L50 85 L80 20" 
+        stroke="currentColor" 
+        strokeWidth="2.5" 
+        strokeLinejoin="miter"
+        strokeMiterlimit="10"
+        {...pathProps}
+      />
+      <motion.path 
+        d="M35 30 L50 65 L65 30" 
+        stroke="currentColor" 
+        strokeWidth="1.5" 
+        strokeLinejoin="miter"
+        strokeMiterlimit="10"
+        transition={{ ...transition, delay: 0.2 }}
+        {...pathProps}
+      />
+      <motion.circle 
+        cx="50" 
+        cy="50" 
+        r="40" 
+        stroke="currentColor" 
+        strokeWidth="0.5" 
+        {...pathProps}
+        transition={{ ...transition, delay: 0.4 }}
+      />
+    </motion.svg>
+  );
+};
 
-export const Logo3 = ({ className = "h-8" }: { className?: string }) => (
-  <svg viewBox="0 0 300 60" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fill="currentColor" fontFamily="Outfit, sans-serif" fontWeight="300" fontSize="36" letterSpacing="0.4em">
-      VEXORA
-    </text>
-  </svg>
-);
+// Logo 2: Graphic emblem (used inside pages)
+export const Logo2 = ({ className = "w-24 h-24" }: { className?: string }) => {
+  return (
+    <motion.svg 
+      viewBox="0 0 100 100" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg" 
+      className={className}
+      whileHover={{ rotate: 90 }}
+      transition={{ duration: 0.8, ease: "anticipate" }}
+    >
+      <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" />
+      <path d="M50 10 L90 50 L50 90 L10 50 Z" stroke="currentColor" strokeWidth="1" />
+      <path d="M50 20 L80 50 L50 80 L20 50 Z" stroke="currentColor" strokeWidth="0.5" />
+      <circle cx="50" cy="50" r="15" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1" />
+    </motion.svg>
+  );
+};
+
+// Logo 3: Typographic mark (Footer)
+export const Logo3 = ({ className = "h-12" }: { className?: string }) => {
+  return (
+    <motion.svg 
+      viewBox="0 0 300 80" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg" 
+      className={className}
+      initial="rest"
+      whileHover="hover"
+    >
+      <text 
+        x="50%" 
+        y="50%" 
+        dominantBaseline="middle" 
+        textAnchor="middle" 
+        fill="currentColor" 
+        fontFamily="Playfair Display, serif" 
+        fontWeight="400" 
+        fontSize="48" 
+        letterSpacing="0.2em"
+      >
+        VEXORA
+      </text>
+      <motion.path 
+        d="M 50 70 L 250 70"
+        stroke="currentColor"
+        strokeWidth="1"
+        variants={{
+          rest: { pathLength: 0, opacity: 0 },
+          hover: { pathLength: 1, opacity: 1 }
+        }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+      />
+    </motion.svg>
+  );
+};

@@ -1,35 +1,54 @@
 import { Logo3 } from "@/components/Logos";
 import { Link } from "wouter";
+import { ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background py-20 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
-        <div className="flex flex-col gap-6">
+    <footer className="bg-foreground text-background py-24 px-6 md:px-12 relative overflow-hidden">
+      {/* Decorative background glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-t-full blur-[120px] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 relative z-10">
+        <div className="md:col-span-5 flex flex-col gap-10">
           <Logo3 className="h-10 md:h-12 text-background origin-left scale-100" />
-          <p className="text-muted-foreground max-w-sm font-serif font-light text-lg">
-            Siamo al fianco di negozi, ristoranti e attività locali per costruire una presenza digitale solida e professionale.
+          <p className="text-background/70 max-w-sm font-sans font-light text-lg leading-relaxed">
+            Siamo l'atelier digitale che affianca negozi, ristoranti e botteghe nel costruire una presenza online solida, elegante e inconfondibile.
           </p>
+          <div className="flex flex-col gap-2 font-sans font-light text-background/80 mt-4">
+            <a href="mailto:m.mariotedeschi@gmail.com" className="hover:text-primary transition-colors flex items-center gap-2 group w-fit">
+              m.mariotedeschi@gmail.com
+              <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+            </a>
+            <a href="tel:+390212345678" className="hover:text-primary transition-colors w-fit">
+              +39 02 1234 5678
+            </a>
+          </div>
         </div>
         
-        <div className="grid grid-cols-2 gap-12 md:gap-24">
-          <div className="flex flex-col gap-4">
-            <span className="font-medium text-white/50 tracking-wider text-sm uppercase">Menu</span>
-            <Link href="/"><span className="hover:text-primary transition-colors font-light cursor-pointer">Home</span></Link>
-            <Link href="/recensioni"><span className="hover:text-primary transition-colors font-light cursor-pointer">Recensioni</span></Link>
-            <Link href="/contatti"><span className="hover:text-primary transition-colors font-light cursor-pointer">Contatti</span></Link>
+        <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-16 md:justify-items-end">
+          <div className="flex flex-col gap-6">
+            <span className="font-medium text-background/40 tracking-[0.2em] text-xs uppercase font-sans">Navigazione</span>
+            <Link href="/"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">L'Atelier</span></Link>
+            <Link href="/recensioni"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Testimonianze</span></Link>
+            <Link href="/contatti"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Contatti</span></Link>
           </div>
-          <div className="flex flex-col gap-4">
-            <span className="font-medium text-white/50 tracking-wider text-sm uppercase">Social</span>
-            <a href="#" className="hover:text-primary transition-colors font-light">Instagram</a>
-            <a href="#" className="hover:text-primary transition-colors font-light">LinkedIn</a>
+          <div className="flex flex-col gap-6">
+            <span className="font-medium text-background/40 tracking-[0.2em] text-xs uppercase font-sans">Connessioni</span>
+            <a href="#" className="text-xl font-serif hover:text-primary transition-colors font-light flex items-center gap-2 group">
+              Instagram
+              <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+            </a>
+            <a href="#" className="text-xl font-serif hover:text-primary transition-colors font-light flex items-center gap-2 group">
+              LinkedIn
+              <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+            </a>
           </div>
         </div>
       </div>
       
-      <div className="max-w-6xl mx-auto mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
+      <div className="max-w-7xl mx-auto mt-32 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-background/40 tracking-wider">
         <p>&copy; {new Date().getFullYear()} Vexora Studio. Tutti i diritti riservati.</p>
-        <p>P.IVA 01234567890</p>
+        <p>Progettato con dedizione in Italia.</p>
       </div>
     </footer>
   );
