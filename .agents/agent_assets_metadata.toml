@@ -26,19 +26,19 @@ description = "Sigillo circolare Vexora su sfondo bianco. Stile artigianale/prem
 id = "vS2rM2WPBwF07YfgyV5MO"
 uri = "file://attached_assets/veroxa-logo-rotondo.png"
 type = "image"
-title = "Veroxa — logo rotondo"
-description = "Logo separato di Veroxa, semplice e circolare, pronto per profili e materiali social."
+title = "Veroxa — logo rotondo nero e oro"
+description = "Versione aggiornata del logo rotondo con palette nero e oro."
 
 [[outputs]]
 id = "jvrLLeSZIpyMXMg-O-tgo"
 uri = "file://attached_assets/veroxa-logo-scritta.png"
 type = "image"
-title = "Veroxa — logo con scritta"
-description = "Wordmark separato di Veroxa con scritta elaborata, pronto per uso social e grafico."
+title = "Veroxa — logo con scritta blu e bianco"
+description = "Versione aggiornata del logo con scritta in blu e bianco."
 
 [[outputs]]
 id = "5c5EBOrrwukjnGcXX_GJc"
 uri = "file://attached_assets/veroxa-logo-sigillo.png"
 type = "image"
-title = "Veroxa — logo complesso"
-description = "Sigillo separato di Veroxa con struttura decorativa più articolata."
+title = "Veroxa — sigillo azzurro e verde"
+description = "Versione aggiornata del logo sigillo in azzurro e verde chiaro."
