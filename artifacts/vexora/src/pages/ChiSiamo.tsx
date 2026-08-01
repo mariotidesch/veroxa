@@ -27,7 +27,7 @@ export default function ChiSiamo() {
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start mb-32">
           <FadeIn delay={0.2} direction="right" className="space-y-8 text-lg md:text-xl text-foreground/80 font-sans font-light leading-relaxed">
             <p>
-              Vexora ha preso forma da una constatazione molto semplice e al contempo preoccupante: troppe realtà straordinarie sul territorio — ristoranti di ricerca, botteghe storiche, boutique raffinate — faticavano a trasmettere la propria qualità attraverso i canali digitali.
+              Veroxa ha preso forma da una constatazione molto semplice e al contempo preoccupante: troppe realtà straordinarie sul territorio — ristoranti di ricerca, botteghe storiche, boutique raffinate — faticavano a trasmettere la propria qualità attraverso i canali digitali.
             </p>
             <p>
               Spesso costretti ad adottare soluzioni standardizzate o template anonimi, questi luoghi perdevano online tutta la loro identità, appiattendo il calore umano e l'esperienza sensoriale che li contraddistingue nel mondo reale.

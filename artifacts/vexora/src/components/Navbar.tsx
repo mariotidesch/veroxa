@@ -60,7 +60,7 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-3 group" aria-label="Home">
           <Logo1 className="w-10 h-10 opacity-80 group-hover:opacity-100 transition-opacity" animated={false} />
           <span className="text-sm tracking-[0.2em] uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 font-sans hidden sm:block">
-            Vexora
+            Veroxa
           </span>
         </Link>
         <button 

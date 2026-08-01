@@ -22,7 +22,7 @@ export default function Contatti() {
     const email = String(data.get("email") ?? "");
     const message = String(data.get("message") ?? "");
 
-    const subject = `Richiesta di contatto Vexora — ${name}`;
+    const subject = `Richiesta di contatto Veroxa — ${name}`;
     const bodyLines = [
       `Nome: ${name}`,
       company ? `Attività: ${company}` : null,

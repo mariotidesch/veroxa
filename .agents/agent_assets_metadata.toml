@@ -21,3 +21,24 @@ uri = "file://attached_assets/vexora-profilo-sigillo.png"
 type = "image"
 title = "Foto profilo — sigillo bianco"
 description = "Sigillo circolare Vexora su sfondo bianco. Stile artigianale/premium."
+
+[[outputs]]
+id = "vS2rM2WPBwF07YfgyV5MO"
+uri = "file://attached_assets/veroxa-logo-rotondo.png"
+type = "image"
+title = "Veroxa — logo rotondo"
+description = "Logo separato di Veroxa, semplice e circolare, pronto per profili e materiali social."
+
+[[outputs]]
+id = "jvrLLeSZIpyMXMg-O-tgo"
+uri = "file://attached_assets/veroxa-logo-scritta.png"
+type = "image"
+title = "Veroxa — logo con scritta"
+description = "Wordmark separato di Veroxa con scritta elaborata, pronto per uso social e grafico."
+
+[[outputs]]
+id = "5c5EBOrrwukjnGcXX_GJc"
+uri = "file://attached_assets/veroxa-logo-sigillo.png"
+type = "image"
+title = "Veroxa — logo complesso"
+description = "Sigillo separato di Veroxa con struttura decorativa più articolata."

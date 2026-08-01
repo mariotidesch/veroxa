@@ -36,7 +36,7 @@ export default function Home() {
                 transition={{ duration: 0.55, delay: 0.55, ease: "easeOut" }}
                 className="text-3xl md:text-4xl tracking-[0.3em] font-serif font-light text-foreground ml-3"
               >
-                VEXORA
+                VEROXA
               </motion.h1>
             </div>
           </motion.div>

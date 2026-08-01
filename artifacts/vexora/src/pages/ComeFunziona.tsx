@@ -30,7 +30,7 @@ export default function ComeFunziona() {
         <FadeIn direction="up">
           <header className="mb-32 text-center flex flex-col items-center">
             <div className="flex items-center gap-4 mb-8">
-              <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Il Metodo Vexora</span>
+              <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Il Metodo Veroxa</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-10 leading-[1.1] max-w-4xl">
               Una procedura sartoriale, <br/>

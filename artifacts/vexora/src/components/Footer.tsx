@@ -52,7 +52,7 @@ export function Footer() {
       </div>
       
       <div className="max-w-7xl mx-auto mt-32 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-background/40 tracking-wider">
-        <p>&copy; {new Date().getFullYear()} Vexora Studio. Tutti i diritti riservati.</p>
+        <p>&copy; {new Date().getFullYear()} Veroxa Studio. Tutti i diritti riservati.</p>
         <p>Progettato con dedizione in Italia.</p>
       </div>
     </footer>
