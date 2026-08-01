@@ -8,7 +8,9 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 
 import Home from '@/pages/Home';
-import Recensioni from '@/pages/Recensioni';
+import ChiSiamo from '@/pages/ChiSiamo';
+import CosaFacciamo from '@/pages/CosaFacciamo';
+import ComeFunziona from '@/pages/ComeFunziona';
 import Contatti from '@/pages/Contatti';
 
 const queryClient = new QueryClient();
@@ -32,7 +34,9 @@ function Router() {
       <div className="flex-1">
         <Switch>
           <Route path="/" component={Home} />
-          <Route path="/recensioni" component={Recensioni} />
+          <Route path="/chi-siamo" component={ChiSiamo} />
+          <Route path="/cosa-facciamo" component={CosaFacciamo} />
+          <Route path="/come-funziona" component={ComeFunziona} />
           <Route path="/contatti" component={Contatti} />
           <Route>
             <div className="min-h-screen flex items-center justify-center">

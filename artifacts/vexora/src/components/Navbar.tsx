@@ -48,16 +48,17 @@ export function Navbar() {
   }, [isOpen]);
 
   const links = [
-    { href: "/", label: "Home", subtitle: "L'atelier" },
-    { href: "/recensioni", label: "Recensioni", subtitle: "Testimonianze" },
-    { href: "/contatti", label: "Contatti", subtitle: "Parliamo" }
+    { href: "/chi-siamo", label: "Chi Siamo", subtitle: "Le nostre radici" },
+    { href: "/cosa-facciamo", label: "Cosa Facciamo", subtitle: "L'artigianato digitale" },
+    { href: "/come-funziona", label: "Come Funziona", subtitle: "Il nostro metodo" },
+    { href: "/contatti", label: "Contatti", subtitle: "Iniziamo un progetto" }
   ];
 
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-40 p-8 flex justify-between items-center mix-blend-difference text-white">
         <Link href="/" className="flex items-center gap-3 group" aria-label="Home">
-          <Logo1 className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity" animated={false} />
+          <Logo1 className="w-10 h-10 opacity-80 group-hover:opacity-100 transition-opacity" animated={false} />
           <span className="text-sm tracking-[0.2em] uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 font-sans hidden sm:block">
             Vexora
           </span>
