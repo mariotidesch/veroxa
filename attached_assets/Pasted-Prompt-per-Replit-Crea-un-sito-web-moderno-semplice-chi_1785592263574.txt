@@ -1,0 +1,53 @@
+Prompt per Replit:
+Crea un sito web moderno, semplice, chiaro e lineare per l’attività chiamata Vexora.
+Informazioni sull’attività:
+Vexora crea e modifica siti web per negozi, ristoranti e attività locali.
+Il sito deve spiegare chiaramente cosa fa Vexora, come è nata e come funziona, senza mai utilizzare la parola “AI” o qualsiasi riferimento all’intelligenza artificiale.
+Struttura del sito (3 pagine):
+1. Homepage
+
+All’apertura deve comparire prima una schermata di benvenuto pulita e minimal.
+Subito dopo appare il nome Vexora insieme al Logo 1.
+Scorrendo verso il basso, con una transizione fluida e moderna, devono apparire in sequenza queste sezioni:
+Cosa fa Vexora
+Come è nata
+Come funziona
+
+Il testo deve essere semplice, chiaro e professionale.
+Lascia spazio visivo elegante per eventuali elementi futuri.
+
+2. Pagina Recensioni
+
+Accessibile cliccando su un’icona o voce di menu in alto a sinistra.
+Questa pagina è dedicata alle recensioni dei clienti.
+Prepara una struttura ordinata e moderna con spazi vuoti eleganti dove potranno essere aggiunte le recensioni in futuro.
+Inserisci immagini di supporto (foto di negozi, ristoranti o mockup di siti web) in modo discreto e professionale.
+
+3. Terza pagina
+
+Crea una terza pagina (per esempio “Contatti” o “Lavora con noi”) semplice e coerente con lo stile del sito, con spazio per informazioni di contatto e una call-to-action chiara.
+
+Loghi (crea 3 versioni diverse di logo per Vexora):
+
+Logo 1: versione principale, elegante e minimal, da usare in homepage insieme al nome.
+Logo 2: versione più “fotografica” o con un elemento visivo/grafico.
+Logo 3: versione tipografica con lettere più particolari o leggermente sparse, adatta per usi secondari.
+
+Distribuisci i tre loghi in modo intelligente e bilanciato all’interno del sito (non tutti insieme nella stessa zona).
+Stile grafico e design:
+
+Stile moderno, pulito, lineare e semplice.
+Carattere tipografico chiaro e leggibile.
+Palette colori chiari: bianco, azzurro, verde chiaro, celeste e altri toni soft e luminosi.
+Layout arioso, con buoni spazi bianchi.
+Transizioni fluide e professionali.
+Design responsive (si deve vedere bene sia da computer che da telefono).
+
+Altre indicazioni:
+
+Non inserire mai la parola “AI” o riferimenti all’intelligenza artificiale.
+Tutto il testo del sito deve essere in italiano.
+Il sito deve trasmettere professionalità, chiarezza e affidabilità.
+Prepara il sito in modo che sia facile aggiungere contenuti in futuro (soprattutto le recensioni).
+
+Procedi a creare il sito completo con le 3 pagine, i 3 loghi e lo stile richiesto.

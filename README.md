@@ -1,2 +1,0 @@
-# veroxa
-sito Veroxa 
