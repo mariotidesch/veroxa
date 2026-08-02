@@ -9,19 +9,19 @@ export default function ComeFunziona() {
       num: "01",
       title: "Ascolto e direzione",
       subtitle: "Il punto di partenza",
-      desc: "Tutto nasce da una conversazione. Ascoltiamo la storia della tua attività, i tuoi obiettivi e studiamo il tuo stile. Raccogliamo i materiali utili — foto, testi, riferimenti — e definiamo insieme la direzione. Al termine di questa fase avrai una strategia chiara e una visione precisa del risultato."
+      desc: "Tutto nasce da una conversazione. Ascoltiamo la storia della tua attività, i tuoi obiettivi e studiamo il tuo stile. Raccogliamo i materiali utili — foto, testi, riferimenti — e definiamo insieme la direzione. Al termine di questa fase avrai una strategia chiara e una visione precisa del risultato, con basi solide per iniziare il lavoro."
     },
     {
       num: "02",
       title: "Progetto e sviluppo",
       subtitle: "Il lavoro concreto",
-      desc: "Disegniamo l'interfaccia scegliendo con cura i caratteri, le proporzioni e i dettagli che danno vita alla pagina. Una volta approvato il design, lo trasformiamo in codice pulito, veloce e adattato a ogni schermo. Ogni sezione viene curata per garantire fluidità su computer, tablet e smartphone."
+      desc: "Disegniamo l'interfaccia scegliendo con cura i caratteri, le proporzioni e i dettagli che danno vita alla pagina. Una volta approvato il design, lo trasformiamo in codice pulito, veloce e adattato a ogni schermo. Ogni sezione viene curata per garantire fluidità su computer, tablet e smartphone, mantenendo il progetto ordinato anche mentre cresce."
     },
     {
       num: "03",
       title: "Lancio e supporto",
       subtitle: "Online e oltre",
-      desc: "Dopo i test finali, il tuo nuovo sito viene pubblicato. Il nostro lavoro non si ferma qui: ti guidiamo nei primi passi, ti insegniamo a gestire i contenuti in autonomia — come menu o cataloghi — e rimaniamo disponibili per assistenza, aggiornamenti o nuovi sviluppi nel tempo."
+      desc: "Dopo i test finali, il tuo nuovo sito viene pubblicato. Il nostro lavoro non si ferma qui: ti guidiamo nei primi passi, ti insegniamo a gestire i contenuti in autonomia — come menu o cataloghi — e rimaniamo disponibili per assistenza, aggiornamenti o nuovi sviluppi nel tempo, così puoi affrontare il percorso con maggiore sicurezza."
     }
   ];
 
@@ -33,7 +33,7 @@ export default function ComeFunziona() {
             align="center"
             label="Come lavoriamo"
             title="Dall'idea al sito, un passo alla volta."
-            description="Un metodo chiaro e condiviso, senza tecnicismi: ti accompagniamo dall'inizio fino alla pubblicazione."
+            description="Un metodo chiaro e condiviso, senza tecnicismi: ti accompagniamo dall'inizio fino alla pubblicazione, con un confronto costante in ogni fase."
           />
           <header className="mb-32 text-center flex flex-col items-center">
             <div className="flex items-center gap-4 mb-8">
@@ -44,7 +44,7 @@ export default function ComeFunziona() {
               <span className="italic text-muted-foreground">passo dopo passo.</span>
             </h1>
             <p className="text-xl text-foreground/70 font-sans font-light leading-relaxed max-w-2xl">
-              Lavoriamo in modo trasparente e collaborativo. Senza complicazioni tecniche, ti seguiamo dall'idea iniziale fino alla pubblicazione.
+              Lavoriamo in modo trasparente e collaborativo. Senza complicazioni tecniche, ti seguiamo dall'idea iniziale fino alla pubblicazione, lasciandoti sempre una visione chiara dei passaggi e delle decisioni.
             </p>
           </header>
         </FadeIn>
@@ -85,7 +85,7 @@ export default function ComeFunziona() {
           <div className="relative bg-white border border-border p-12 md:p-20 rounded-[3rem] text-center max-w-4xl mx-auto shadow-sm">
             <h3 className="text-3xl md:text-5xl font-serif font-light mb-6">Iniziamo insieme</h3>
             <p className="text-muted-foreground font-sans font-light text-lg md:text-xl mb-12 max-w-2xl mx-auto">
-              Scrivici per una prima consulenza. Vedremo insieme come valorizzare la tua attività nel mondo digitale.
+              Scrivici per una prima consulenza. Vedremo insieme come valorizzare la tua attività nel mondo digitale e come trasformare le tue idee in una direzione concreta.
             </p>
             <Link href="/contatti">
               <div className="inline-flex group relative px-10 py-5 bg-foreground text-background rounded-full cursor-pointer overflow-hidden items-center justify-center gap-3">

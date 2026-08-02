@@ -46,7 +46,7 @@ export default function Contatti() {
       <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent/30 rounded-full blur-[100px] opacity-50 pointer-events-none" />
       
       <main className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <PageHero label="Contatti" title="Parliamo del tuo progetto." description="Raccontaci la tua idea: ascoltiamo obiettivi e desideri per trovare insieme la strada giusta." />
+        <PageHero label="Contatti" title="Parliamo del tuo progetto." description="Raccontaci la tua idea: ascoltiamo obiettivi e desideri per trovare insieme la strada giusta, partendo da ciò che rende speciale la tua attività." />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           
           <div className="lg:col-span-5">
@@ -61,7 +61,7 @@ export default function Contatti() {
                 <span className="italic text-muted-foreground">qualcosa di tuo.</span>
               </h1>
               <p className="text-xl text-foreground/70 font-sans font-light leading-relaxed mb-16">
-                Siamo disponibili per ascoltare le tue idee e trasformarle in una presenza online solida, bella e professionale.
+                Siamo disponibili per ascoltare le tue idee e trasformarle in una presenza online solida, bella e professionale. Ogni confronto ci aiuta a capire meglio le tue esigenze e a costruire una proposta davvero adatta a te.
               </p>
 
               <div className="space-y-10">
@@ -113,7 +113,7 @@ export default function Contatti() {
                     </div>
                     <h4 className="text-2xl font-serif font-medium mb-4">La bozza è pronta</h4>
                     <p className="font-sans font-light text-foreground/70 text-lg max-w-md">
-                      Abbiamo aperto il vostro programma di posta con la richiesta precompilata. Controllate e premete invio. Grazie per averci contattato.
+                      Abbiamo aperto il vostro programma di posta con la richiesta precompilata. Controllate i dettagli e premete invio: riceveremo così tutte le informazioni necessarie per ricontattarvi con attenzione.
                     </p>
                   </motion.div>
                 ) : (

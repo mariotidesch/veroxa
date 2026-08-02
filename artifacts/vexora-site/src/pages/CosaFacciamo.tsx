@@ -10,22 +10,22 @@ export default function CosaFacciamo() {
     {
       icon: <MonitorSmartphone className="w-6 h-6" />,
       title: "Siti Web",
-      desc: "Realizziamo siti rapidi ed eleganti, dai più semplici a quelli con più sezioni. Curiamo ogni elemento per garantire una buona esperienza su computer, tablet e smartphone."
+      desc: "Realizziamo siti rapidi ed eleganti, dai più semplici a quelli con più sezioni. Curiamo ogni elemento per garantire una buona esperienza su computer, tablet e smartphone, così il tuo progetto resta accessibile e piacevole da usare in ogni momento."
     },
     {
       icon: <PenTool className="w-6 h-6" />,
       title: "Design e Immagine",
-      desc: "Trasformiamo la tua identità in un linguaggio visivo chiaro. Scegliamo colori, font e impostazione grafica per raccontare chi sei in modo coerente e riconoscibile."
+      desc: "Trasformiamo la tua identità in un linguaggio visivo chiaro. Scegliamo colori, font e impostazione grafica per raccontare chi sei in modo coerente e riconoscibile, mantenendo un'immagine capace di durare nel tempo."
     },
     {
       icon: <Code className="w-6 h-6" />,
       title: "Vendite e Prenotazioni",
-      desc: "Costruiamo sistemi di e-commerce e prenotazione semplici da usare per il cliente e comodi da gestire per te. L'obiettivo è convertire le visite in prenotazioni e acquisti."
+      desc: "Costruiamo sistemi di e-commerce e prenotazione semplici da usare per il cliente e comodi da gestire per te. L'obiettivo è convertire le visite in prenotazioni e acquisti, con un percorso fluido e senza passaggi inutili."
     },
     {
       icon: <Search className="w-6 h-6" />,
       title: "Visibilità (SEO)",
-      desc: "Facciamo in modo che il tuo sito si trovi facilmente su Google. Lavoriamo su codice e contenuti seguendo le pratiche più efficaci per migliorare il posizionamento online."
+      desc: "Facciamo in modo che il tuo sito si trovi facilmente su Google. Lavoriamo su codice e contenuti seguendo le pratiche più efficaci per migliorare il posizionamento online e raggiungere le persone giuste."
     }
   ];
 
@@ -36,7 +36,7 @@ export default function CosaFacciamo() {
           <PageHero
             label="Cosa facciamo"
             title="Soluzioni digitali costruite intorno alla tua attività."
-            description="Dal design allo sviluppo: servizi chiari per portare online la tua identità in modo solido e riconoscibile."
+            description="Dal design allo sviluppo: servizi chiari per portare online la tua identità in modo solido e riconoscibile, con strumenti pensati per accompagnare la tua crescita."
           />
           <header className="mb-24 md:w-3/4">
             <div className="flex items-center gap-4 mb-8">
@@ -48,7 +48,7 @@ export default function CosaFacciamo() {
               <span className="italic text-muted-foreground">curato nei dettagli.</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/70 font-sans font-light leading-relaxed max-w-3xl">
-              Offriamo un servizio completo: progettazione, sviluppo e ottimizzazione per dare alla tua attività una presenza online che funziona davvero.
+              Offriamo un servizio completo: progettazione, sviluppo e ottimizzazione per dare alla tua attività una presenza online che funziona davvero. Ogni parte del lavoro contribuisce a rendere più chiaro il tuo messaggio e più semplice il rapporto con i tuoi clienti.
             </p>
           </header>
         </FadeIn>
@@ -82,7 +82,7 @@ export default function CosaFacciamo() {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent flex flex-col justify-end p-10">
                   <h4 className="text-white text-3xl font-serif mb-2">Boutique & Atelier</h4>
-                  <p className="text-white/80 font-sans font-light">Esposizioni digitali per artigiani e moda.</p>
+                  <p className="text-white/80 font-sans font-light">Esposizioni digitali per artigiani e moda, con uno spazio ordinato per valorizzare ogni prodotto.</p>
                 </div>
               </div>
             </FadeIn>
@@ -93,7 +93,7 @@ export default function CosaFacciamo() {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent flex flex-col justify-end p-10">
                   <h4 className="text-white text-3xl font-serif mb-2">Ristorazione d'Eccellenza</h4>
-                  <p className="text-white/80 font-sans font-light">Menu eleganti e sistemi di prenotazione integrati.</p>
+                  <p className="text-white/80 font-sans font-light">Menu eleganti e sistemi di prenotazione integrati, pensati per rendere più semplice ogni scelta.</p>
                 </div>
               </div>
             </FadeIn>
