@@ -9,23 +9,23 @@ export default function CosaFacciamo() {
   const services = [
     {
       icon: <MonitorSmartphone className="w-6 h-6" />,
-      title: "Architetture Digitali",
-      desc: "Progettiamo siti web eleganti e fulminei. Dai landing page essenziali a strutture complesse multi-pagina, curiamo ogni pixel per un'esperienza visiva senza compromessi su ogni dispositivo."
+      title: "Siti Web",
+      desc: "Realizziamo siti rapidi ed eleganti, dai più semplici a quelli con più sezioni. Curiamo ogni elemento per garantire una buona esperienza su computer, tablet e smartphone."
     },
     {
       icon: <PenTool className="w-6 h-6" />,
-      title: "Direzione Artistica",
-      desc: "Traduciamo la vostra essenza in un linguaggio visivo coerente. Selezioniamo palette cromatiche, font e composizioni grafiche capaci di raccontare la vostra unicità."
+      title: "Design e Immagine",
+      desc: "Trasformiamo la tua identità in un linguaggio visivo chiaro. Scegliamo colori, font e impostazione grafica per raccontare chi sei in modo coerente e riconoscibile."
     },
     {
       icon: <Code className="w-6 h-6" />,
-      title: "E-commerce & Prenotazioni",
-      desc: "Sviluppiamo sistemi di vendita e booking invisibili all'utente ma potenti per chi li gestisce. Trasformiamo le visite in tavoli prenotati o prodotti venduti in modo fluido."
+      title: "Vendite e Prenotazioni",
+      desc: "Costruiamo sistemi di e-commerce e prenotazione semplici da usare per il cliente e comodi da gestire per te. L'obiettivo è convertire le visite in prenotazioni e acquisti."
     },
     {
       icon: <Search className="w-6 h-6" />,
-      title: "Ottimizzazione (SEO)",
-      desc: "Facciamo in modo che la bellezza sia anche trovabile. Strutturiamo il codice e i contenuti seguendo le migliori pratiche per favorire la visibilità sui motori di ricerca."
+      title: "Visibilità (SEO)",
+      desc: "Facciamo in modo che il tuo sito si trovi facilmente su Google. Lavoriamo su codice e contenuti seguendo le pratiche più efficaci per migliorare il posizionamento online."
     }
   ];
 
@@ -33,19 +33,23 @@ export default function CosaFacciamo() {
     <div className="w-full bg-background min-h-screen pt-40 pb-20 relative">
       <main className="max-w-7xl mx-auto px-6 md:px-12">
         <FadeIn direction="up">
+          <PageHero
+            label="Cosa facciamo"
+            title="Soluzioni digitali costruite intorno alla tua attività."
+            description="Dal design allo sviluppo: servizi chiari per portare online la tua identità in modo solido e riconoscibile."
+          />
           <header className="mb-24 md:w-3/4">
-            <PageHero label="Le nostre competenze" title="Soluzioni digitali costruite intorno alla tua attività." description="Dalla direzione artistica allo sviluppo: strumenti chiari per trasformare la tua identità in una presenza online concreta." />
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-[1px] bg-primary" />
               <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Le nostre competenze</span>
+            </div>
             <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-10 leading-[1.1]">
-              Oltre la superficie. <br/>
-              <span className="italic text-muted-foreground">Spazi digitali che respirano.</span>
+              Tutto il necessario, <br/>
+              <span className="italic text-muted-foreground">curato nei dettagli.</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/70 font-sans font-light leading-relaxed max-w-3xl">
-              Offriamo un servizio completo e sartoriale. Sviluppiamo piattaforme agili, luminose e curate in ogni minimo dettaglio per convertire l'estetica in vantaggio competitivo.
+              Offriamo un servizio completo: progettazione, sviluppo e ottimizzazione per dare alla tua attività una presenza online che funziona davvero.
             </p>
-            </div>
           </header>
         </FadeIn>
 

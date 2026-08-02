@@ -38,15 +38,16 @@ export function Footer() {
             <Link href="/contatti"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Contatti</span></Link>
           </div>
           <div className="flex flex-col gap-6">
-            <span className="font-medium text-background/40 tracking-[0.2em] text-xs uppercase font-sans">Connessioni</span>
-            <a href="#" className="text-xl font-serif hover:text-primary transition-colors font-light flex items-center gap-2 group">
-              Instagram
-              <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
-            </a>
-            <a href="#" className="text-xl font-serif hover:text-primary transition-colors font-light flex items-center gap-2 group">
-              LinkedIn
-              <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
-            </a>
+            <span className="font-medium text-background/40 tracking-[0.2em] text-xs uppercase font-sans">Il progetto</span>
+            <p className="text-background/60 font-sans font-light leading-relaxed max-w-xs text-sm">
+              Vexora nasce per dare ai negozi, ai ristoranti e alle botteghe una presenza online che rispecchi davvero chi sono.
+            </p>
+            <Link href="/contatti">
+              <span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer flex items-center gap-2 group">
+                Inizia ora
+                <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+              </span>
+            </Link>
           </div>
         </div>
       </div>

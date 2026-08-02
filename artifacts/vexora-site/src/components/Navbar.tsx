@@ -1,11 +1,32 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo1 } from "./Logos";
 
+// Animated hamburger icon: due linee div che reagiscono all'hover
+function HamburgerIcon({ hovered }: { hovered: boolean }) {
+  return (
+    <span className="flex flex-col gap-[5px] items-start" aria-hidden="true">
+      <motion.span
+        className="block h-[1.5px] bg-current rounded-full origin-left"
+        animate={{ width: hovered ? "14px" : "18px" }}
+        transition={{ duration: 0.22, ease: "easeInOut" as const }}
+        style={{ width: "18px" }}
+      />
+      <motion.span
+        className="block h-[1.5px] bg-current rounded-full origin-right"
+        animate={{ width: hovered ? "14px" : "18px", marginLeft: hovered ? "4px" : "0px" }}
+        transition={{ duration: 0.22, ease: "easeInOut" as const }}
+        style={{ width: "18px" }}
+      />
+    </span>
+  );
+}
+
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [btnHovered, setBtnHovered] = useState(false);
   const [location] = useLocation();
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -49,7 +70,7 @@ export function Navbar() {
 
   const links = [
     { href: "/chi-siamo", label: "Chi Siamo", subtitle: "Le nostre radici" },
-    { href: "/cosa-facciamo", label: "Cosa Facciamo", subtitle: "L'artigianato digitale" },
+    { href: "/cosa-facciamo", label: "Cosa Facciamo", subtitle: "I nostri servizi" },
     { href: "/come-funziona", label: "Come Funziona", subtitle: "Il nostro metodo" },
     { href: "/contatti", label: "Contatti", subtitle: "Iniziamo un progetto" }
   ];
@@ -59,23 +80,48 @@ export function Navbar() {
       <header className="fixed top-0 left-0 w-full z-40 p-4 md:p-7 flex justify-between items-center text-foreground">
         <Link href="/" className="flex items-center gap-3 group" aria-label="Home">
           <Logo1 className="w-10 h-10 opacity-80 group-hover:opacity-100 transition-opacity" animated={false} />
-          <span className="text-sm tracking-[0.2em] uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 font-sans hidden sm:block">
+          <motion.span
+            initial={{ opacity: 0, x: -8 }}
+            whileHover={{ opacity: 1, x: 0 }}
+            className="text-sm tracking-[0.2em] uppercase font-sans hidden sm:block"
+            style={{ opacity: 0 }}
+          >
             Vexora
-          </span>
+          </motion.span>
         </Link>
-        <button 
+
+        {/* Pulsante menu con animazione linee */}
+        <button
           ref={menuButtonRef}
           onClick={() => setIsOpen(true)}
-          className="group flex items-center gap-3"
-          aria-label="Menu"
+          onMouseEnter={() => setBtnHovered(true)}
+          onMouseLeave={() => setBtnHovered(false)}
+          className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full"
+          aria-label="Apri menu"
           aria-expanded={isOpen}
         >
-          <span className="text-sm tracking-[0.1em] uppercase opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 font-sans hidden sm:block">
+          <motion.span
+            animate={{ opacity: btnHovered ? 1 : 0, x: btnHovered ? 0 : 6 }}
+            transition={{ duration: 0.22, ease: "easeOut" as const }}
+            className="text-xs tracking-[0.18em] uppercase font-sans hidden sm:block text-foreground/70"
+          >
             Menu
-          </span>
-          <div className="glass-button w-11 h-11 rounded-full flex items-center justify-center group-hover:border-primary transition-colors shadow-sm">
-            <Menu className="w-4 h-4" />
-          </div>
+          </motion.span>
+
+          <motion.div
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.18, ease: "easeOut" as const }}
+            className="relative w-12 h-12 rounded-full border border-border/60 bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-sm group-hover:border-primary/50 group-hover:bg-white transition-colors duration-300"
+          >
+            {/* Cerchio che si riempie al hover */}
+            <motion.div
+              animate={{ scale: btnHovered ? 1 : 0, opacity: btnHovered ? 1 : 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" as const }}
+              className="absolute inset-0 rounded-full bg-primary/8 pointer-events-none"
+            />
+            <HamburgerIcon hovered={btnHovered} />
+          </motion.div>
         </button>
       </header>
 
@@ -86,53 +132,81 @@ export function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Menu di navigazione"
-            initial={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
-            animate={{ clipPath: "circle(150% at calc(100% - 3rem) 3rem)" }}
-            exit={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
+            initial={{ clipPath: "circle(0% at calc(100% - 3.5rem) 3.5rem)" }}
+            animate={{ clipPath: "circle(150% at calc(100% - 3.5rem) 3.5rem)" }}
+            exit={{ clipPath: "circle(0% at calc(100% - 3.5rem) 3.5rem)" }}
             transition={{ type: "tween", ease: [0.76, 0, 0.24, 1] as const, duration: 0.35 }}
-            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl text-foreground flex flex-col"
+            className="fixed inset-0 z-50 bg-background/97 backdrop-blur-2xl text-foreground flex flex-col"
           >
-            <div className="absolute top-0 right-0 p-8">
-              <button 
+            {/* Logo in alto a sinistra nel menu */}
+            <div className="absolute top-0 left-0 p-6 md:p-8 opacity-30">
+              <Logo1 className="w-8 h-8 text-foreground" animated={false} />
+            </div>
+
+            {/* Pulsante chiudi */}
+            <div className="absolute top-0 right-0 p-6 md:p-8">
+              <motion.button
                 ref={closeButtonRef}
                 onClick={() => setIsOpen(false)}
-                 className="glass-button w-10 h-10 rounded-full flex items-center justify-center hover:border-primary transition-colors"
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.18, ease: "easeOut" as const }}
+                className="w-12 h-12 rounded-full border border-border/60 bg-white/60 backdrop-blur-sm flex items-center justify-center hover:border-primary/50 hover:bg-white transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label="Chiudi menu"
               >
-                <X className="w-4 h-4" />
-              </button>
+                <X className="w-4 h-4 text-foreground" />
+              </motion.button>
             </div>
-            
-            <nav className="flex-1 flex flex-col justify-center px-8 sm:px-12 md:px-24 max-w-7xl mx-auto w-full gap-8">
+
+            {/* Voci di navigazione */}
+            <nav className="flex-1 flex flex-col justify-center px-8 sm:px-12 md:px-24 max-w-7xl mx-auto w-full gap-6">
               {links.map((link, i) => (
-                <div key={link.href} className="overflow-hidden">
+                <div key={link.href} className="overflow-hidden border-b border-border/40 pb-4">
                   <motion.div
                     initial={{ y: "100%", opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: "-100%", opacity: 0 }}
-                     transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] as const, delay: i * 0.035 }}
+                    transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] as const, delay: i * 0.04 }}
                   >
                     <Link href={link.href} onClick={() => setIsOpen(false)}>
-                      <div className="group flex items-end gap-4 sm:gap-6 cursor-pointer">
-                        <span className="text-sm font-sans tracking-widest text-background/40 mb-3 md:mb-5">
+                      <div className="group flex items-end gap-5 sm:gap-8 cursor-pointer py-2">
+                        <span className="text-xs font-sans tracking-[0.2em] text-foreground/30 mb-1 md:mb-2 shrink-0">
                           0{i + 1}
                         </span>
-                         <span className={`text-4xl sm:text-5xl md:text-8xl font-serif font-light tracking-tight group-hover:text-primary transition-colors ${location === link.href ? "text-primary" : "text-foreground"}`}>
+                        <span className={`text-4xl sm:text-5xl md:text-7xl font-serif font-light tracking-tight group-hover:text-primary transition-colors duration-200 ${location === link.href ? "text-primary" : "text-foreground"}`}>
                           {link.label}
                         </span>
-                        <span className="text-sm font-serif italic text-background/40 mb-3 md:mb-5 hidden md:block opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                        <motion.span
+                          animate={{ opacity: 0, x: -8 }}
+                          whileHover={{ opacity: 1, x: 0 }}
+                          className="text-sm font-serif italic text-foreground/40 mb-1 md:mb-2 hidden md:block"
+                        >
                           {link.subtitle}
-                        </span>
+                        </motion.span>
                       </div>
                     </Link>
                   </motion.div>
                 </div>
               ))}
             </nav>
-            
-             <div className="p-8 sm:p-12 md:px-24 flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm font-sans text-muted-foreground border-t border-border gap-4">
-              <p>m.mariotedeschi@gmail.com</p>
-               <Link href="/contatti" onClick={() => setIsOpen(false)} className="text-primary hover:text-foreground transition-colors">Inizia un progetto</Link>
+
+            {/* Piede del menu */}
+            <div className="p-8 sm:p-12 md:px-24 flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm font-sans text-muted-foreground border-t border-border/40 gap-4">
+              <div className="flex flex-col gap-1">
+                <span className="text-xs tracking-[0.15em] uppercase text-foreground/30 mb-1">Contatti</span>
+                <a href="mailto:m.mariotedeschi@gmail.com" className="hover:text-foreground transition-colors">m.mariotedeschi@gmail.com</a>
+                <a href="tel:+393313830350" className="hover:text-foreground transition-colors">+39 331 383 0350</a>
+              </div>
+              <Link href="/contatti" onClick={() => setIsOpen(false)}>
+                <motion.div
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2, ease: "easeOut" as const }}
+                  className="flex items-center gap-3 text-primary hover:text-foreground transition-colors font-medium text-sm tracking-[0.1em] uppercase"
+                >
+                  <span>Inizia un progetto</span>
+                  <span className="text-lg leading-none">→</span>
+                </motion.div>
+              </Link>
             </div>
           </motion.div>
         )}

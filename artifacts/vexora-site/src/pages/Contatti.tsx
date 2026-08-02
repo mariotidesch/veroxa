@@ -46,7 +46,7 @@ export default function Contatti() {
       <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent/30 rounded-full blur-[100px] opacity-50 pointer-events-none" />
       
       <main className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <PageHero label="Contatti" title="Il prossimo incrocio può essere il tuo progetto." description="Raccontaci la tua idea: ascoltiamo intuizioni, obiettivi e ambizioni per costruire insieme la direzione giusta." />
+        <PageHero label="Contatti" title="Parliamo del tuo progetto." description="Raccontaci la tua idea: ascoltiamo obiettivi e desideri per trovare insieme la strada giusta." />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           
           <div className="lg:col-span-5">
@@ -56,12 +56,12 @@ export default function Contatti() {
                 <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Contatti</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-serif font-light tracking-tight mb-8 leading-[1.1]">
-                Diamo inizio <br/>
-                a una nuova <br/>
-                <span className="italic text-muted-foreground">narrazione digitale.</span>
+                Iniziamo a<br/>
+                costruire<br/>
+                <span className="italic text-muted-foreground">qualcosa di tuo.</span>
               </h1>
               <p className="text-xl text-foreground/70 font-sans font-light leading-relaxed mb-16">
-                Siamo a vostra completa disposizione per ascoltare le vostre intuizioni e trasformarle in una presenza online solida, elegante e professionale. 
+                Siamo disponibili per ascoltare le tue idee e trasformarle in una presenza online solida, bella e professionale.
               </p>
 
               <div className="space-y-10">

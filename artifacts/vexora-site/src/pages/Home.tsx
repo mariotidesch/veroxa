@@ -62,12 +62,12 @@ export default function Home() {
               
               <h2 className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-light tracking-tight text-foreground leading-[1.05]">
                 Diamo forma <br />
-                all'<span className="italic text-primary/90">anima digitale</span><br />
-                della tua impresa.
+                all'<span className="italic text-primary/90">identità digitale</span><br />
+                della tua attività.
               </h2>
               
               <p className="mt-10 text-xl md:text-2xl text-muted-foreground max-w-2xl font-sans font-light leading-relaxed">
-                Progettiamo architetture web per botteghe, ristoranti e realtà artigianali. Un'unione perfetta tra eleganza visiva e precisione tecnica, per riflettere online la cura che metti nel tuo lavoro.
+                Creiamo siti web per negozi, ristoranti e botteghe. Uniamo estetica e tecnica per mostrare online la stessa cura che metti ogni giorno nel tuo lavoro.
               </p>
               
               <div className="mt-16 flex flex-col sm:flex-row gap-6">
@@ -88,16 +88,28 @@ export default function Home() {
               <div>
                 <span className="eyebrow">Dove nasce Vexora</span>
                 <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">Ogni progetto nasce da un <span className="italic text-primary">incontro.</span></h2>
+                {/* Logo mark decorativo */}
+                <div className="mt-10 opacity-20">
+                  <Logo1 className="w-16 h-16 text-primary" animated={false} />
+                </div>
               </div>
               <div className="relative">
                 <div className="absolute -top-20 right-0 text-[18rem] leading-none font-serif text-primary/10 select-none">X</div>
-                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">La X di Vexora rappresenta il punto in cui due strade si incrociano. Da una parte ci sono le idee, la creatività e la volontà di raccontare ciò che rende unica ogni attività. Dall’altra ci sono la tecnologia, lo sviluppo e gli strumenti che permettono a quelle idee di diventare qualcosa di concreto.</p>
+                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">La X di Vexora è il punto in cui due strade si incontrano. Da un lato ci sono le idee, la creatività e il desiderio di raccontare ciò che rende speciale ogni attività. Dall'altro ci sono la tecnologia, lo sviluppo e gli strumenti che trasformano quelle idee in qualcosa di concreto e visibile.</p>
                 <div className="relative grid sm:grid-cols-2 gap-4 mt-12">
-                  <div className="rounded-2xl border border-primary/20 bg-background/70 p-6"><span className="eyebrow">01</span><h3 className="mt-3 text-2xl font-serif">Idee e creatività</h3></div>
-                  <div className="rounded-2xl border border-primary/20 bg-background/70 p-6"><span className="eyebrow">02</span><h3 className="mt-3 text-2xl font-serif">Tecnologia e sviluppo</h3></div>
+                  <div className="rounded-2xl border border-primary/20 bg-background/70 p-6">
+                    <span className="eyebrow">01</span>
+                    <h3 className="mt-3 text-2xl font-serif">Idee e creatività</h3>
+                    <p className="mt-2 text-sm text-muted-foreground font-light">La storia, lo stile e l'anima della tua attività.</p>
+                  </div>
+                  <div className="rounded-2xl border border-primary/20 bg-background/70 p-6">
+                    <span className="eyebrow">02</span>
+                    <h3 className="mt-3 text-2xl font-serif">Tecnologia e sviluppo</h3>
+                    <p className="mt-2 text-sm text-muted-foreground font-light">Gli strumenti tecnici che danno forma e vita al sito.</p>
+                  </div>
                 </div>
-                <p className="mt-12 text-2xl md:text-3xl font-serif leading-snug">Vexora nasce esattamente lì: nel punto in cui creatività e tecnologia si incontrano per costruire esperienze digitali semplici, veloci ed efficaci.</p>
-                <p className="mt-8 text-muted-foreground leading-relaxed">La X è il simbolo del nostro modo di lavorare: mettere in relazione identità e innovazione, estetica e funzionalità, obiettivi commerciali ed esperienza dell’utente.</p>
+                <p className="mt-12 text-2xl md:text-3xl font-serif leading-snug">Vexora nasce proprio lì: dove creatività e tecnologia si uniscono per costruire siti semplici, veloci e riconoscibili.</p>
+                <p className="mt-8 text-muted-foreground leading-relaxed">La X è il simbolo del nostro modo di lavorare: mettere insieme identità e tecnica, estetica e funzionalità, per ottenere un risultato che funzioni davvero.</p>
               </div>
             </FadeIn>
           </div>
