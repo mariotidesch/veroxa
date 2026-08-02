@@ -4,11 +4,11 @@ import { ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background py-24 px-6 md:px-12 relative overflow-hidden">
+    <footer className="bg-foreground text-background py-20 px-6 md:px-12 relative overflow-hidden">
       {/* Decorative background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-t-full blur-[120px] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 relative z-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 relative z-10">
         <div className="md:col-span-5 flex flex-col gap-10">
           <Link href="/">
             <div className="cursor-pointer w-fit">
@@ -51,7 +51,7 @@ export function Footer() {
         </div>
       </div>
       
-      <div className="max-w-7xl mx-auto mt-32 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-background/40 tracking-wider">
+      <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-background/15 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-background/40 tracking-wider">
         <p>&copy; {new Date().getFullYear()} Vexora Studio. Tutti i diritti riservati.</p>
         <p>Progettato con dedizione in Italia.</p>
       </div>

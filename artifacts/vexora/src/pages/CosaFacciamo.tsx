@@ -3,6 +3,7 @@ import { ArrowRight, Code, MonitorSmartphone, PenTool, Search } from "lucide-rea
 import boutiqueImg from "@assets/generated_images/artisan-boutique.jpg";
 import restaurantImg from "@assets/generated_images/elegant-restaurant.jpg";
 import { Link } from "wouter";
+import { PageHero } from "@/components/PageHero";
 
 export default function CosaFacciamo() {
   const services = [
@@ -33,10 +34,10 @@ export default function CosaFacciamo() {
       <main className="max-w-7xl mx-auto px-6 md:px-12">
         <FadeIn direction="up">
           <header className="mb-24 md:w-3/4">
+            <PageHero label="Le nostre competenze" title="Soluzioni digitali costruite intorno alla tua attività." description="Dalla direzione artistica allo sviluppo: strumenti chiari per trasformare la tua identità in una presenza online concreta." />
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-[1px] bg-primary" />
               <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Le nostre competenze</span>
-            </div>
             <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-10 leading-[1.1]">
               Oltre la superficie. <br/>
               <span className="italic text-muted-foreground">Spazi digitali che respirano.</span>
@@ -44,6 +45,7 @@ export default function CosaFacciamo() {
             <p className="text-xl md:text-2xl text-foreground/70 font-sans font-light leading-relaxed max-w-3xl">
               Offriamo un servizio completo e sartoriale. Sviluppiamo piattaforme agili, luminose e curate in ogni minimo dettaglio per convertire l'estetica in vantaggio competitivo.
             </p>
+            </div>
           </header>
         </FadeIn>
 

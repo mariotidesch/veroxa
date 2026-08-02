@@ -75,6 +75,7 @@
   --ring: 205 65% 45%;
 
   --radius: 1rem;
+  --shadow-soft: 0 18px 55px hsl(210 28% 30% / 0.08);
 }
 
 /* Force light mode styling for consistency across system themes */
@@ -107,9 +108,53 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-foreground;
+    overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight;
   }
+}
+
+@layer utilities {
+  .focus-ring:focus-visible,
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 4px;
+  }
+}
+
+.x-visual {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: .9;
+}
+.x-visual::before,
+.x-visual::after {
+  content: "";
+  position: absolute;
+  width: 78%;
+  height: 1px;
+  left: 11%;
+  top: 50%;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / .45), hsl(var(--primary) / .12), transparent);
+  box-shadow: 0 0 24px hsl(var(--primary) / .22);
+  transform: rotate(24deg);
+}
+.x-visual::after { transform: rotate(-24deg); background: linear-gradient(90deg, transparent, hsl(168 42% 55% / .3), hsl(var(--primary) / .1), transparent); }
+.x-grid {
+  background-image: linear-gradient(hsl(var(--primary) / .06) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / .06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 72%);
+}
+.glass-button { background: hsl(var(--background) / .72); backdrop-filter: blur(14px); border: 1px solid hsl(var(--foreground) / .12); }
+.eyebrow { color: hsl(var(--primary)); font: 600 .7rem/1 var(--font-sans); letter-spacing: .2em; text-transform: uppercase; }
+.section-rule { height: 1px; background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }

@@ -56,7 +56,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-40 p-8 flex justify-between items-center mix-blend-difference text-white">
+      <header className="fixed top-0 left-0 w-full z-40 p-4 md:p-7 flex justify-between items-center text-foreground">
         <Link href="/" className="flex items-center gap-3 group" aria-label="Home">
           <Logo1 className="w-10 h-10 opacity-80 group-hover:opacity-100 transition-opacity" animated={false} />
           <span className="text-sm tracking-[0.2em] uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 font-sans hidden sm:block">
@@ -73,7 +73,7 @@ export function Navbar() {
           <span className="text-sm tracking-[0.1em] uppercase opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 font-sans hidden sm:block">
             Menu
           </span>
-          <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white/50 transition-colors">
+          <div className="glass-button w-11 h-11 rounded-full flex items-center justify-center group-hover:border-primary transition-colors shadow-sm">
             <Menu className="w-4 h-4" />
           </div>
         </button>
@@ -89,14 +89,14 @@ export function Navbar() {
             initial={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
             animate={{ clipPath: "circle(150% at calc(100% - 3rem) 3rem)" }}
             exit={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
-            transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.42 }}
-            className="fixed inset-0 z-50 bg-foreground text-background flex flex-col"
+            transition={{ type: "tween", ease: [0.76, 0, 0.24, 1] as const, duration: 0.35 }}
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl text-foreground flex flex-col"
           >
             <div className="absolute top-0 right-0 p-8">
               <button 
                 ref={closeButtonRef}
                 onClick={() => setIsOpen(false)}
-                className="w-10 h-10 rounded-full border border-background/20 flex items-center justify-center hover:border-background/50 hover:bg-background/10 transition-colors"
+                 className="glass-button w-10 h-10 rounded-full flex items-center justify-center hover:border-primary transition-colors"
                 aria-label="Chiudi menu"
               >
                 <X className="w-4 h-4" />
@@ -110,14 +110,14 @@ export function Navbar() {
                     initial={{ y: "100%", opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: "-100%", opacity: 0 }}
-                    transition={{ duration: 0.38, ease: [0.76, 0, 0.24, 1], delay: i * 0.045 }}
+                     transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] as const, delay: i * 0.035 }}
                   >
                     <Link href={link.href} onClick={() => setIsOpen(false)}>
                       <div className="group flex items-end gap-4 sm:gap-6 cursor-pointer">
                         <span className="text-sm font-sans tracking-widest text-background/40 mb-3 md:mb-5">
                           0{i + 1}
                         </span>
-                        <span className={`text-4xl sm:text-5xl md:text-8xl font-serif font-light tracking-tight group-hover:text-primary transition-colors ${location === link.href ? "text-primary" : "text-background"}`}>
+                         <span className={`text-4xl sm:text-5xl md:text-8xl font-serif font-light tracking-tight group-hover:text-primary transition-colors ${location === link.href ? "text-primary" : "text-foreground"}`}>
                           {link.label}
                         </span>
                         <span className="text-sm font-serif italic text-background/40 mb-3 md:mb-5 hidden md:block opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
@@ -130,9 +130,9 @@ export function Navbar() {
               ))}
             </nav>
             
-            <div className="p-8 sm:p-12 md:px-24 flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm font-sans text-background/40 border-t border-background/10 gap-4">
+             <div className="p-8 sm:p-12 md:px-24 flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm font-sans text-muted-foreground border-t border-border gap-4">
               <p>m.mariotedeschi@gmail.com</p>
-              <p>+39 331 383 0350</p>
+               <Link href="/contatti" onClick={() => setIsOpen(false)} className="text-primary hover:text-foreground transition-colors">Inizia un progetto</Link>
             </div>
           </motion.div>
         )}

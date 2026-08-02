@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Mail, Phone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Logo2 } from "@/components/Logos";
 import { motion } from "framer-motion";
+import { PageHero } from "@/components/PageHero";
 
 export default function Contatti() {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -45,6 +46,7 @@ export default function Contatti() {
       <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent/30 rounded-full blur-[100px] opacity-50 pointer-events-none" />
       
       <main className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        <PageHero label="Contatti" title="Il prossimo incrocio può essere il tuo progetto." description="Raccontaci la tua idea: ascoltiamo intuizioni, obiettivi e ambizioni per costruire insieme la direzione giusta." />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           
           <div className="lg:col-span-5">

@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, ReactNode } from "react";
+import { useReducedMotion } from "framer-motion";
 
 export function FadeIn({ 
   children, 
@@ -16,6 +17,7 @@ export function FadeIn({
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
+  const reducedMotion = useReducedMotion();
 
   const directions = {
     up: { y: 60, x: 0, opacity: 0, scale: 1 },
@@ -33,7 +35,7 @@ export function FadeIn({
       <motion.div
         ref={ref}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={reducedMotion || isInView ? "visible" : "hidden"}
         variants={{
           hidden: { opacity: 0 },
           visible: {
@@ -55,8 +57,8 @@ export function FadeIn({
     <motion.div
       ref={ref}
       initial={initial}
-      animate={isInView ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+      animate={reducedMotion || isInView ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] as const }}
       className={className}
     >
       {children}
@@ -83,9 +85,11 @@ export function FadeInItem({
 
   return (
     <motion.div
+      initial="hidden"
+      animate="visible"
       variants={{
           hidden: directions[direction],
-          visible: { opacity: 1, x: 0, y: 0, scale: 1, transition: { duration: 0.52, ease: [0.16, 1, 0.3, 1] } }
+          visible: { opacity: 1, x: 0, y: 0, scale: 1, transition: { duration: 0.52, ease: [0.16, 1, 0.3, 1] as const } }
       }}
       className={className}
     >

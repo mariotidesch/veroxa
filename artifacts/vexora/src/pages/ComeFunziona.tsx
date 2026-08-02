@@ -1,6 +1,7 @@
 import { FadeIn, FadeInItem } from "@/components/FadeIn";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { PageHero } from "@/components/PageHero";
 
 export default function ComeFunziona() {
   const steps = [
@@ -29,9 +30,9 @@ export default function ComeFunziona() {
       <main className="max-w-7xl mx-auto px-6 md:px-12">
         <FadeIn direction="up">
           <header className="mb-32 text-center flex flex-col items-center">
+            <PageHero align="center" label="Il Metodo Vexora" title="Dall’idea al sito, un passaggio alla volta." description="Un flusso di lavoro trasparente e collaborativo, dall’intuizione iniziale alla pubblicazione." />
             <div className="flex items-center gap-4 mb-8">
               <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Il Metodo Vexora</span>
-            </div>
             <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-10 leading-[1.1] max-w-4xl">
               Una procedura sartoriale, <br/>
               <span className="italic text-muted-foreground">passo dopo passo.</span>
@@ -39,6 +40,7 @@ export default function ComeFunziona() {
             <p className="text-xl text-foreground/70 font-sans font-light leading-relaxed max-w-2xl">
               Crediamo in un flusso di lavoro trasparente e collaborativo. Senza complicazioni tecniche, vi accompagniamo dall'idea iniziale fino alla pubblicazione.
             </p>
+            </div>
           </header>
         </FadeIn>
 

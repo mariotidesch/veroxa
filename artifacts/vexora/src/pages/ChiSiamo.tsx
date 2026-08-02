@@ -1,6 +1,7 @@
 import { FadeIn, FadeInItem } from "@/components/FadeIn";
 import { Logo2 } from "@/components/Logos";
 import cafeImg from "@assets/generated_images/modern-cafe.jpg";
+import { PageHero } from "@/components/PageHero";
 
 export default function ChiSiamo() {
   return (
@@ -10,10 +11,10 @@ export default function ChiSiamo() {
       <main className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <FadeIn direction="up">
           <header className="mb-24 md:w-3/4">
+            <PageHero label="Chi siamo" title="Dietro ogni sito c’è una storia da far crescere." description="Creatività, sviluppo e attenzione per dare forma digitale alle attività che hanno qualcosa di unico da raccontare." />
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-[1px] bg-primary" />
               <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Chi Siamo</span>
-            </div>
             <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-10 leading-[1.1]">
               L'arte dell'ospitalità, <br/>
               <span className="italic text-muted-foreground">estesa al digitale.</span>
@@ -21,6 +22,7 @@ export default function ChiSiamo() {
             <p className="text-xl md:text-2xl text-foreground/70 font-sans font-light leading-relaxed max-w-3xl">
               Siamo nati con un mandato preciso: elevare la presenza online delle eccellenze artigianali italiane, restituendo al web la grazia e l'eleganza che meritano.
             </p>
+            </div>
           </header>
         </FadeIn>
 
