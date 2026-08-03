@@ -15,28 +15,43 @@ export default function Contatti() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
+    if (isSubmitting) return;
+    const form = e.currentTarget;
+    const data = new FormData(form);
     const name = String(data.get("name") ?? "");
     const company = String(data.get("company") ?? "");
     const email = String(data.get("email") ?? "");
     const message = String(data.get("message") ?? "");
 
-    const subject = `Richiesta di contatto Veroxa — ${name}`;
-    const bodyLines = [
-      `Nome: ${name}`,
-      company ? `Attività: ${company}` : null,
-      `Email: ${email}`,
-      "",
-      "Messaggio:",
-      message,
-    ].filter((line): line is string => line !== null);
+    setIsSubmitting(true);
+    setSubmitError("");
 
-    window.location.href = `mailto:info.veroxa@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-    setIsSuccess(true);
-    if (successTimer.current) clearTimeout(successTimer.current);
-    successTimer.current = setTimeout(() => setIsSuccess(false), 8000);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, company, email, message }),
+      });
+
+      const result = (await response.json()) as { message?: string };
+      if (!response.ok) {
+        throw new Error(result.message ?? "Non è stato possibile inviare la richiesta.");
+      }
+
+      setIsSuccess(true);
+      form.reset();
+      if (successTimer.current) clearTimeout(successTimer.current);
+      successTimer.current = setTimeout(() => setIsSuccess(false), 8000);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Non è stato possibile inviare la richiesta.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -84,9 +99,9 @@ export default function Contatti() {
                     <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-primary">
                       <CheckCircle2 className="w-10 h-10" />
                     </div>
-                    <h4 className="text-2xl font-serif font-medium mb-4">La bozza è pronta</h4>
+                    <h4 className="text-2xl font-serif font-medium mb-4">Richiesta inviata</h4>
                     <p className="font-sans font-light text-foreground/70 text-lg max-w-md">
-                      Abbiamo preparato la richiesta con i dati inseriti. Controllate i dettagli e confermate l'invio per completare il contatto.
+                      Abbiamo ricevuto la tua richiesta e ti ricontatteremo appena possibile.
                     </p>
                   </motion.div>
                 ) : (
@@ -141,14 +156,20 @@ export default function Contatti() {
 
                     <button 
                       type="submit" 
-                      className="w-full group relative px-8 py-5 bg-foreground text-background rounded-full overflow-hidden flex items-center justify-center gap-3 mt-10"
+                      disabled={isSubmitting}
+                      className="w-full group relative px-8 py-5 bg-foreground text-background rounded-full overflow-hidden flex items-center justify-center gap-3 mt-10 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <div className="absolute inset-0 bg-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
-                      <span className="relative z-10 text-sm tracking-[0.1em] uppercase font-sans font-medium">Invia richiesta</span>
+                      <span className="relative z-10 text-sm tracking-[0.1em] uppercase font-sans font-medium">{isSubmitting ? "Invio in corso..." : "Invia richiesta"}</span>
                       <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                     </button>
+                    {submitError && (
+                      <p role="alert" className="text-sm text-red-600 text-center font-sans mt-4">
+                        {submitError}
+                      </p>
+                    )}
                     <p className="text-xs text-muted-foreground text-center font-sans mt-6">
-                      Inserite un indirizzo email valido per poter ricevere una risposta.
+                      La richiesta verrà inviata direttamente a info.veroxa@gmail.com.
                     </p>
                   </form>
                 )}
