@@ -33,7 +33,7 @@ export default function Contatti() {
       message,
     ].filter((line): line is string => line !== null);
 
-    window.location.href = `mailto:m.mariotedeschi@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+    window.location.href = `mailto:info.veroxa@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
     setIsSuccess(true);
     if (successTimer.current) clearTimeout(successTimer.current);
     successTimer.current = setTimeout(() => setIsSuccess(false), 8000);

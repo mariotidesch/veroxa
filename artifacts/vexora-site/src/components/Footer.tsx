@@ -18,6 +18,12 @@ export function Footer() {
           <p className="text-background/70 max-w-sm font-sans font-light text-lg leading-relaxed">
             Siamo l'atelier digitale che affianca negozi, ristoranti e botteghe nel costruire una presenza online solida, elegante e inconfondibile. Diamo alle idee una forma capace di parlare alle persone giuste.
           </p>
+          <a
+            href="mailto:info.veroxa@gmail.com"
+            className="text-background/80 font-sans font-light text-lg hover:text-primary transition-colors w-fit"
+          >
+            info.veroxa@gmail.com
+          </a>
         </div>
         
         <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-16 md:justify-items-end">
