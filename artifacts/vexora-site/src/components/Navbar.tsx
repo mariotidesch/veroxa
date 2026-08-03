@@ -69,6 +69,7 @@ export function Navbar() {
   }, [isOpen]);
 
   const links = [
+    { href: "/", label: "Torna alla home", subtitle: "Pagina principale" },
     { href: "/chi-siamo", label: "Chi Siamo", subtitle: "Le nostre radici" },
     { href: "/cosa-facciamo", label: "Cosa Facciamo", subtitle: "I nostri servizi" },
     { href: "/come-funziona", label: "Come Funziona", subtitle: "Il nostro metodo" },
@@ -77,19 +78,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-40 p-4 md:p-7 flex justify-between items-center text-foreground">
-        <Link href="/" className="flex items-center gap-3 group" aria-label="Home">
-          <Logo1 className="w-10 h-10 opacity-80 group-hover:opacity-100 transition-opacity" animated={false} />
-          <motion.span
-            initial={{ opacity: 0, x: -8 }}
-            whileHover={{ opacity: 1, x: 0 }}
-            className="text-sm tracking-[0.2em] uppercase font-sans hidden sm:block"
-            style={{ opacity: 0 }}
-          >
-            Veroxa
-          </motion.span>
-        </Link>
-
+      <header className="fixed top-0 left-0 w-full z-40 p-4 md:p-7 flex justify-end items-center text-foreground">
         {/* Pulsante menu con animazione linee */}
         <button
           ref={menuButtonRef}

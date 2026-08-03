@@ -16,7 +16,7 @@ export function Footer() {
             </div>
           </Link>
           <p className="text-background/70 max-w-sm font-sans font-light text-lg leading-relaxed">
-            Siamo l'atelier digitale che affianca negozi, ristoranti e botteghe nel costruire una presenza online solida, elegante e inconfondibile. Mettiamo ordine nelle idee e diamo loro una forma capace di parlare alle persone giuste.
+            Siamo l'atelier digitale che affianca negozi, ristoranti e botteghe nel costruire una presenza online solida, elegante e inconfondibile. Diamo alle idee una forma capace di parlare alle persone giuste.
           </p>
         </div>
         
@@ -31,7 +31,7 @@ export function Footer() {
           <div className="flex flex-col gap-6">
             <span className="font-medium text-background/40 tracking-[0.2em] text-xs uppercase font-sans">Il progetto</span>
             <p className="text-background/60 font-sans font-light leading-relaxed max-w-xs text-sm">
-              Veroxa nasce per dare ai negozi, ai ristoranti e alle botteghe una presenza online che rispecchi davvero chi sono. Un progetto chiaro, curato e pensato per essere utile ogni giorno.
+              Veroxa nasce per dare a negozi, ristoranti e botteghe una presenza online che rispecchi chi sono. Un progetto chiaro e pensato per essere utile ogni giorno.
             </p>
             <Link href="/contatti">
               <span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer flex items-center gap-2 group">

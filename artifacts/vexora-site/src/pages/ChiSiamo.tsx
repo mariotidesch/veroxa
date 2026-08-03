@@ -13,7 +13,7 @@ export default function ChiSiamo() {
         <PageHero
           label="Chi siamo"
           title="Dietro ogni sito c'è una storia da raccontare."
-            description="Creatività, tecnica e cura per dare una presenza online alle attività che hanno qualcosa di speciale da comunicare, senza perdere il carattere che le distingue."
+            description="Creatività, tecnica e cura per dare una presenza online alle attività che hanno qualcosa di speciale da comunicare, mantenendo il loro carattere."
         />
 
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start mb-32">
@@ -27,13 +27,13 @@ export default function ChiSiamo() {
               <span className="italic text-muted-foreground">portata online.</span>
             </h1>
             <p>
-              Veroxa nasce da un'osservazione semplice: molte attività straordinarie — ristoranti, botteghe storiche, boutique — faticavano a trasmettere la propria qualità sul web. Il loro valore era evidente dal vivo, ma spesso non riusciva a emergere nella prima esperienza online.
+              Veroxa nasce da un'osservazione semplice: molte attività straordinarie — ristoranti, botteghe storiche, boutique — faticavano a trasmettere la propria qualità sul web. Il loro valore, evidente dal vivo, spesso non emergeva online.
             </p>
             <p>
-              Costretti a usare modelli standard o template generici, questi luoghi perdevano online tutta la loro identità, appiattendo il calore e l'atmosfera che li rendono unici nella vita reale. Per questo crediamo che ogni sito debba partire dall'ascolto, prima ancora che dalla progettazione.
+              Costretti a usare modelli standard o template generici, questi luoghi perdevano la propria identità e il calore che li rende unici. Per questo crediamo che ogni sito debba partire dall'ascolto.
             </p>
             <p>
-              Abbiamo fondato questo studio per colmare questa distanza. Il sito di un'attività non deve essere un semplice biglietto da visita, ma una vera estensione dello spazio fisico: un luogo luminoso, accogliente e fatto su misura, capace di trasmettere la stessa sensazione che si prova entrando dal vivo. L'obiettivo è far sentire la qualità del tuo lavoro anche prima del primo contatto.
+              Abbiamo fondato questo studio per colmare questa distanza. Il sito non deve essere un semplice biglietto da visita, ma un'estensione dello spazio fisico, capace di trasmettere la qualità del tuo lavoro prima del primo contatto.
             </p>
             {/* Piccolo logo decorativo */}
             <div className="pt-6 flex items-center gap-4 opacity-40">
@@ -74,10 +74,10 @@ export default function ChiSiamo() {
               <span className="italic text-primary">Costruiamo spazi digitali.</span>
             </h2>
             <p className="text-lg font-sans font-light text-foreground/70 leading-relaxed">
-              Ogni progetto parte da un'attenzione ai dettagli: dal carattere tipografico scelto per comunicare il tuo tono, agli spazi tra gli elementi, fino al codice che rende il sito veloce e solido. Sono decisioni discrete, ma insieme definiscono il modo in cui una persona percepisce il tuo brand.
+              Ogni progetto parte dall'attenzione ai dettagli: dal carattere tipografico agli spazi tra gli elementi, fino al codice che rende il sito veloce e solido. Sono scelte che definiscono il modo in cui viene percepito il tuo brand.
             </p>
             <p className="text-lg font-sans font-light text-foreground/70 leading-relaxed">
-              Il risultato è un'impostazione invisibile che lascia emergere la vera protagonista: la tua identità. Noi costruiamo la struttura, così il tuo lavoro può parlare con chiarezza.
+              Il risultato è una struttura discreta che lascia emergere la vera protagonista: la tua identità. Così il tuo lavoro può parlare con chiarezza.
             </p>
           </FadeIn>
         </section>
@@ -95,10 +95,10 @@ export default function ChiSiamo() {
                 <span className="italic text-primary">Sempre.</span>
               </h2>
               <p className="text-lg md:text-xl font-sans font-light text-background/80 leading-relaxed mb-8">
-                Ci occupiamo di ogni aspetto del progetto: dal primo appuntamento fino alla pubblicazione online. Nessuna parte viene lasciata al caso, perché anche i dettagli più piccoli contribuiscono alla qualità dell'insieme.
+                Ci occupiamo di ogni aspetto del progetto, dal primo appuntamento alla pubblicazione online. Anche i dettagli più piccoli contribuiscono alla qualità dell'insieme.
               </p>
               <p className="text-lg md:text-xl font-sans font-light text-background/80 leading-relaxed">
-                Il tuo sito deve funzionare bene, essere bello da guardare e comunicare chi sei con chiarezza. Questo è quello che facciamo: trasformiamo una visione in uno spazio digitale ordinato, personale e facile da vivere.
+                Il tuo sito deve funzionare bene, essere bello da guardare e comunicare chi sei con chiarezza. Trasformiamo la tua visione in uno spazio digitale ordinato e personale.
               </p>
             </div>
           </section>
