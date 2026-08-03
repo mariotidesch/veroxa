@@ -86,7 +86,7 @@ export function Navbar() {
             className="text-sm tracking-[0.2em] uppercase font-sans hidden sm:block"
             style={{ opacity: 0 }}
           >
-            Vexora
+            Veroxa
           </motion.span>
         </Link>
 
@@ -191,12 +191,7 @@ export function Navbar() {
             </nav>
 
             {/* Piede del menu */}
-            <div className="p-8 sm:p-12 md:px-24 flex flex-col sm:flex-row justify-between items-start sm:items-center text-sm font-sans text-muted-foreground border-t border-border/40 gap-4">
-              <div className="flex flex-col gap-1">
-                <span className="text-xs tracking-[0.15em] uppercase text-foreground/30 mb-1">Contatti</span>
-                <a href="mailto:m.mariotedeschi@gmail.com" className="hover:text-foreground transition-colors">m.mariotedeschi@gmail.com</a>
-                <a href="tel:+393313830350" className="hover:text-foreground transition-colors">+39 331 383 0350</a>
-              </div>
+            <div className="p-8 sm:p-12 md:px-24 flex justify-end items-center text-sm font-sans text-muted-foreground border-t border-border/40">
               <Link href="/contatti" onClick={() => setIsOpen(false)}>
                 <motion.div
                   whileHover={{ x: 4 }}

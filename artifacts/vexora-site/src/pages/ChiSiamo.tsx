@@ -27,7 +27,7 @@ export default function ChiSiamo() {
               <span className="italic text-muted-foreground">portata online.</span>
             </h1>
             <p>
-              Vexora nasce da un'osservazione semplice: molte attività straordinarie — ristoranti, botteghe storiche, boutique — faticavano a trasmettere la propria qualità sul web. Il loro valore era evidente dal vivo, ma spesso non riusciva a emergere nella prima esperienza online.
+              Veroxa nasce da un'osservazione semplice: molte attività straordinarie — ristoranti, botteghe storiche, boutique — faticavano a trasmettere la propria qualità sul web. Il loro valore era evidente dal vivo, ma spesso non riusciva a emergere nella prima esperienza online.
             </p>
             <p>
               Costretti a usare modelli standard o template generici, questi luoghi perdevano online tutta la loro identità, appiattendo il calore e l'atmosfera che li rendono unici nella vita reale. Per questo crediamo che ogni sito debba partire dall'ascolto, prima ancora che dalla progettazione.
@@ -38,7 +38,7 @@ export default function ChiSiamo() {
             {/* Piccolo logo decorativo */}
             <div className="pt-6 flex items-center gap-4 opacity-40">
               <Logo1 className="w-10 h-10 text-primary" animated={false} />
-              <span className="text-xs tracking-[0.2em] uppercase font-sans text-muted-foreground">Vexora Studio</span>
+              <span className="text-xs tracking-[0.2em] uppercase font-sans text-muted-foreground">Veroxa Studio</span>
             </div>
           </FadeIn>
           

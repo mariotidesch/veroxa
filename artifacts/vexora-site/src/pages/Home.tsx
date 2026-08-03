@@ -37,7 +37,7 @@ export default function Home() {
                 transition={{ duration: 0.45, delay: 0.35, ease: "easeOut" as const }}
                 className="text-3xl md:text-4xl tracking-[0.3em] font-serif font-light text-foreground ml-3"
               >
-                VEXORA
+                VEROXA
               </motion.h1>
             </div>
           </motion.div>
@@ -86,7 +86,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <FadeIn className="grid lg:grid-cols-[.7fr_1.3fr] gap-14 items-start">
               <div>
-                <span className="eyebrow">Dove nasce Vexora</span>
+                <span className="eyebrow">Dove nasce Veroxa</span>
                 <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">Ogni progetto nasce da un <span className="italic text-primary">incontro.</span></h2>
                 {/* Logo mark decorativo */}
                 <div className="mt-10 opacity-20">
@@ -95,7 +95,7 @@ export default function Home() {
               </div>
               <div className="relative">
                 <div className="absolute -top-20 right-0 text-[18rem] leading-none font-serif text-primary/10 select-none">X</div>
-                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">La X di Vexora è il punto in cui due strade si incontrano. Da un lato ci sono le idee, la creatività e il desiderio di raccontare ciò che rende speciale ogni attività. Dall'altro ci sono la tecnologia, lo sviluppo e gli strumenti che trasformano quelle idee in qualcosa di concreto e visibile, con un risultato pensato per essere utile oltre che bello.</p>
+                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">La X di Veroxa è il punto in cui due strade si incontrano. Da un lato ci sono le idee, la creatività e il desiderio di raccontare ciò che rende speciale ogni attività. Dall'altro ci sono la tecnologia, lo sviluppo e gli strumenti che trasformano quelle idee in qualcosa di concreto e visibile, con un risultato pensato per essere utile oltre che bello.</p>
                 <div className="relative grid sm:grid-cols-2 gap-4 mt-12">
                   <div className="rounded-2xl border border-primary/20 bg-background/70 p-6">
                     <span className="eyebrow">01</span>
@@ -108,7 +108,7 @@ export default function Home() {
                     <p className="mt-2 text-sm text-muted-foreground font-light">Gli strumenti tecnici che danno forma e vita al sito, rendendolo semplice da usare.</p>
                   </div>
                 </div>
-                <p className="mt-12 text-2xl md:text-3xl font-serif leading-snug">Vexora nasce proprio lì: dove creatività e tecnologia si uniscono per costruire siti semplici, veloci e riconoscibili. Ogni scelta viene fatta per dare valore alla tua attività e rendere più naturale il rapporto con i tuoi clienti.</p>
+                <p className="mt-12 text-2xl md:text-3xl font-serif leading-snug">Veroxa nasce proprio lì: dove creatività e tecnologia si uniscono per costruire siti semplici, veloci e riconoscibili. Ogni scelta viene fatta per dare valore alla tua attività e rendere più naturale il rapporto con i tuoi clienti.</p>
                 <p className="mt-8 text-muted-foreground leading-relaxed">La X è il simbolo del nostro modo di lavorare: mettere insieme identità e tecnica, estetica e funzionalità, per ottenere un risultato che funzioni davvero e che possa crescere insieme al progetto.</p>
               </div>
             </FadeIn>

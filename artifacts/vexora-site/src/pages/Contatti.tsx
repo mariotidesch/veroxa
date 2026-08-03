@@ -1,6 +1,6 @@
 import { FadeIn } from "@/components/FadeIn";
 import { useEffect, useRef, useState } from "react";
-import { Mail, Phone, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Logo2 } from "@/components/Logos";
 import { motion } from "framer-motion";
 import { PageHero } from "@/components/PageHero";
@@ -23,7 +23,7 @@ export default function Contatti() {
     const email = String(data.get("email") ?? "");
     const message = String(data.get("message") ?? "");
 
-    const subject = `Richiesta di contatto Vexora — ${name}`;
+    const subject = `Richiesta di contatto Veroxa — ${name}`;
     const bodyLines = [
       `Nome: ${name}`,
       company ? `Attività: ${company}` : null,
@@ -64,33 +64,6 @@ export default function Contatti() {
                 Siamo disponibili per ascoltare le tue idee e trasformarle in una presenza online solida, bella e professionale. Ogni confronto ci aiuta a capire meglio le tue esigenze e a costruire una proposta davvero adatta a te.
               </p>
 
-              <div className="space-y-10">
-                <div className="group flex items-start gap-6 cursor-pointer">
-                  <div className="w-14 h-14 rounded-full bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-primary transition-colors shadow-sm">
-                    <Mail className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
-                  </div>
-                  <div className="pt-1">
-                    <h4 className="font-sans font-medium text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2">Posta Elettronica</h4>
-                    <a href="mailto:m.mariotedeschi@gmail.com" className="text-xl font-serif text-foreground hover:text-primary transition-colors">
-                      m.mariotedeschi@gmail.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="group flex items-start gap-6 cursor-pointer">
-                  <div className="w-14 h-14 rounded-full bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-primary transition-colors shadow-sm">
-                    <Phone className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
-                  </div>
-                  <div className="pt-1">
-                    <h4 className="font-sans font-medium text-xs tracking-[0.2em] uppercase text-muted-foreground mb-2">Recapito Telefonico</h4>
-                    <a href="tel:+393313830350" className="text-xl font-serif text-foreground hover:text-primary transition-colors block">
-                      +39 331 383 0350
-                    </a>
-                    <p className="text-sm font-sans font-light text-muted-foreground mt-2">Lun - Ven, 9:00 - 18:00</p>
-                  </div>
-                </div>
-              </div>
-              
               <div className="mt-24 opacity-20 hidden lg:block">
                 <Logo2 className="w-32 h-32" />
               </div>
@@ -113,7 +86,7 @@ export default function Contatti() {
                     </div>
                     <h4 className="text-2xl font-serif font-medium mb-4">La bozza è pronta</h4>
                     <p className="font-sans font-light text-foreground/70 text-lg max-w-md">
-                      Abbiamo aperto il vostro programma di posta con la richiesta precompilata. Controllate i dettagli e premete invio: riceveremo così tutte le informazioni necessarie per ricontattarvi con attenzione.
+                      Abbiamo preparato la richiesta con i dati inseriti. Controllate i dettagli e confermate l'invio per completare il contatto.
                     </p>
                   </motion.div>
                 ) : (
@@ -175,7 +148,7 @@ export default function Contatti() {
                       <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                     </button>
                     <p className="text-xs text-muted-foreground text-center font-sans mt-6">
-                      L'invio di questo modulo è gestito tramite il vostro client di posta predefinito.
+                      Inserite un indirizzo email valido per poter ricevere una risposta.
                     </p>
                   </form>
                 )}

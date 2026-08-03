@@ -61,18 +61,18 @@ export const Logo2 = ({ className = "h-12" }: { className?: string }) => {
         <path d="M 32 35 L 50 65 L 68 35" stroke="currentColor" strokeWidth="7" strokeLinecap="square" strokeLinejoin="miter" />
       </g>
       
-      {/* Pure SVG path letters for VEXORA */}
+      {/* Pure SVG path letters for VEROXA */}
       <g stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
         {/* V */}
         <path d="M 70 25 L 85 55 L 100 25" />
         {/* E */}
         <path d="M 135 25 L 115 25 L 115 55 L 135 55 M 115 40 L 130 40" />
-        {/* X */}
-        <path d="M 150 25 L 175 55 M 175 25 L 150 55" />
+        {/* R */}
+        <path d="M 150 55 L 150 25 L 165 25 C 180 25 180 40 165 40 L 150 40 M 160 40 L 175 55" />
         {/* O */}
         <path d="M 190 40 A 15 15 0 1 0 220 40 A 15 15 0 1 0 190 40" />
-        {/* R */}
-        <path d="M 235 55 L 235 25 L 250 25 C 265 25 265 40 250 40 L 235 40 M 245 40 L 260 55" />
+        {/* X */}
+        <path d="M 235 25 L 260 55 M 260 25 L 235 55" />
         {/* A */}
         <path d="M 280 55 L 295 25 L 310 55 M 285 45 L 305 45" />
       </g>
