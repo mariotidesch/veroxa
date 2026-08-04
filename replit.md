@@ -1,6 +1,6 @@
-# Progetto: Vexora
+# Progetto: Veroxa
 
-Sito vetrina **Vexora** per un'attività che crea e modifica siti web per negozi, ristoranti e attività locali, in italiano, su `/vexora/`.
+Sito vetrina **Veroxa** per un'attività che crea e modifica siti web per negozi, ristoranti e attività locali, in italiano, su `/vexora-site/`.
 
 ## Run & Operate
 
@@ -22,7 +22,7 @@ Sito vetrina **Vexora** per un'attività che crea e modifica siti web per negozi
 
 ## Where things live
 
-- `artifacts/vexora/` — sito Vexora (React+Vite, su `/vexora/`), frontend-only, pagine Home, Chi Siamo, Cosa Facciamo, Come Funziona e Contatti
+- `artifacts/vexora-site/` — sito Veroxa (React+Vite, su `/vexora-site/`), frontend con API per il modulo Contatti, pagine Home, Chi Siamo, Cosa Facciamo, Come Funziona e Contatti
 - `artifacts/api-server/` — Express condiviso (attualmente solo healthcheck)
 
 ## Architecture decisions
@@ -31,7 +31,7 @@ _Populate as you build — non-obvious choices a reader couldn't infer from the 
 
 ## Product
 
-- **Vexora** (`/vexora/`): sito vetrina in italiano — home con schermata di benvenuto, pagine Chi Siamo, Cosa Facciamo, Come Funziona e Contatti. Le recensioni dimostrative sono state rimosse. 3 versioni del logo distribuite nel sito. Mai menzionare "AI". Palette chiara (bianco, azzurro, verde chiaro, celeste).
+- **Veroxa** (`/vexora-site/`): sito vetrina in italiano — home con schermata di benvenuto, pagine Chi Siamo, Cosa Facciamo, Come Funziona e Contatti. Il modulo Contatti invia le richieste tramite il server API. Palette chiara con tipografia Playfair Display e Plus Jakarta Sans.
 
 ## User preferences
 
