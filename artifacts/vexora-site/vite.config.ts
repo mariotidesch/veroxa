@@ -14,11 +14,13 @@ if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);
 }
 
-// Keep the artifact routable both in Replit's preview and in a local build.
+// Keep the artifact routable in Replit's path-based preview while serving the
+// published app from the root of a custom domain.
 const basePath = process.env.BASE_PATH ?? '/vexora-site/';
+const base = process.env.NODE_ENV === 'production' ? '/' : basePath;
 
 export default defineConfig({
-  base: basePath,
+  base,
   plugins: [
     react(),
     tailwindcss(),
