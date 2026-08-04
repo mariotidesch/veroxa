@@ -1,5 +1,5 @@
 kind = "web"
-previewPath = "/vexora-site/"
+previewPath = "/"
 title = "Vexora"
 description = "Sito vetrina moderno e professionale per Vexora, con presentazione del brand, servizi, metodo di lavoro e contatti."
 version = "1.0.0"
@@ -8,7 +8,7 @@ router = "path"
 
 [[services]]
 name = "web"
-paths = [ "/vexora-site/" ]
+paths = [ "/" ]
 localPort = 26191
 
 [services.development]
@@ -25,4 +25,4 @@ to = "/index.html"
 
 [services.env]
 PORT = "26191"
-BASE_PATH = "/vexora-site/"
+BASE_PATH = "/"
