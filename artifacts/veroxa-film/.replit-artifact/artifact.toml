@@ -1,0 +1,28 @@
+kind = "video"
+previewPath = "/veroxa-film/"
+title = "Veroxa — Film di presentazione"
+description = "Video promozionale animato di 25 secondi per il brand Veroxa."
+version = "1.0.0"
+id = "artifacts/veroxa-film"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/veroxa-film/" ]
+localPort = 18685
+
+[services.development]
+run = "pnpm --filter @workspace/veroxa-film run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/veroxa-film", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/veroxa-film/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18685"
+BASE_PATH = "/veroxa-film/"

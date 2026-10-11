@@ -7,6 +7,7 @@ uri = "file://attached_assets/vexora-profilo-navy.png"
 type = "image"
 title = "Foto profilo — sfondo navy"
 description = "Logo Vexora su sfondo blu scuro. Ideale per Instagram, LinkedIn, Facebook."
+logical_id = "b46bb4b9-60f2-4ec0-a900-a017c76dcf36"
 
 [[outputs]]
 id = "d_bcBbEnuTI8cA5J3trQn"
@@ -14,6 +15,7 @@ uri = "file://attached_assets/vexora-profilo-azzurro.png"
 type = "image"
 title = "Foto profilo — sfondo azzurro"
 description = "Logo Vexora su sfondo azzurro chiaro. Tono più luminoso e leggero."
+logical_id = "57d757f0-2a38-4a03-8b87-cdd95ff07f92"
 
 [[outputs]]
 id = "4hm8ac5GkYc39THy7jgzi"
@@ -21,3 +23,4 @@ uri = "file://attached_assets/vexora-profilo-sigillo.png"
 type = "image"
 title = "Foto profilo — sigillo bianco"
 description = "Sigillo circolare Vexora su sfondo bianco. Stile artigianale/premium."
+logical_id = "52186e6b-9d45-4574-b599-887c63ff1334"
