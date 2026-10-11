@@ -24,3 +24,10 @@ type = "image"
 title = "Foto profilo — sigillo bianco"
 description = "Sigillo circolare Vexora su sfondo bianco. Stile artigianale/premium."
 logical_id = "52186e6b-9d45-4574-b599-887c63ff1334"
+
+[[outputs]]
+id = "Y6FksFK9T0Aa50U2AOVc7"
+uri = "file://artifacts/veroxa-film/public/audio/bg_music_2.mp3"
+type = "audio"
+title = "30-second explosive electro-rock score for the Veroxa digital-services launch film"
+description = "Generated music: Explosive polished cinematic electro-rock instrumental score for a 30-second Italian digital-agency launch film. 126 BPM, driving tight kick and live-feeling snare, muscular warm dis…"

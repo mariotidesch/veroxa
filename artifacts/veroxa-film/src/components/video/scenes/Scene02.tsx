@@ -1,48 +1,61 @@
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useSceneTimer } from '@/lib/video';
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-const WINDOW = `${import.meta.env.BASE_URL}images/atelier-window.jpg`;
+const EASE = [0.2, 0.78, 0.2, 1] as const;
+const ROOT = import.meta.env.BASE_URL;
+const FRAME_LABELS = ['DESKTOP', 'TABLET', 'SMARTPHONE'];
 
 export function Scene02() {
+  const [view, setView] = useState(0);
+  const events = useMemo(() => [
+    { time: 1050, callback: () => setView(1) },
+    { time: 1970, callback: () => setView(2) },
+  ], []);
+  useSceneTimer(events);
+
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0.9, scale: 1.025 }} animate={{ opacity: 1, scale: 1 }} exit={{ scale: 1.12, rotate: -1.2, opacity: 0 }} transition={{ duration: 0.42, ease: EASE }} style={{ background: '#f8fbfc' }}>
-      <div className="absolute inset-0 film-grid" />
-      <motion.div className="absolute inset-0" style={{ background: 'linear-gradient(112deg,#e2f1f4 0 21%,#f9fbfb 21% 62%,#c8e7ee 62% 100%)', clipPath: 'polygon(0 0,100% 0,100% 100%,0 100%)' }}
-        initial={{ clipPath: 'polygon(0 0,17% 0,0 100%,0 100%)' }} animate={{ clipPath: 'polygon(0 0,100% 0,81% 100%,0 100%)' }} transition={{ duration: 0.85, ease: EASE }} />
-
-      <motion.div className="absolute overflow-hidden" style={{ left: '59%', top: '15%', height: '71%', width: '32%', transformOrigin: 'left center', boxShadow: '0 3vmin 7vmin rgba(7,22,47,.20)' }}
-        initial={{ scaleX: 0.14, rotate: -4, opacity: 0.6 }} animate={{ scaleX: 1, rotate: -2, opacity: 1 }} transition={{ duration: 0.78, delay: 0.12, ease: EASE }}>
-        <motion.img src={WINDOW} alt="" className="film-photo" style={{ objectPosition: '56% center' }} initial={{ scale: 1.2 }} animate={{ scale: [1.2, 1.08, 1.03] }} transition={{ duration: 4.3, ease: EASE }} />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg,rgba(7,22,47,.04),rgba(7,22,47,.4))' }} />
+    <motion.section className="film-stage" initial={{ opacity: 0, x: '8%' }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, rotateY: -12, x: '-3%' }}
+      transition={{ duration: 0.42, ease: EASE }} style={{ background: '#f5f8f9', color: '#10213a' }}>
+      <motion.img src={`${ROOT}images/digital-interface.jpg`} alt="" className="film-photo absolute inset-0"
+        initial={{ scale: 1.15 }} animate={{ scale: 1.02 }} transition={{ duration: 2.75, ease: EASE }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,#eff4f5 0%,rgba(244,248,249,.98) 28%,rgba(240,246,248,.82) 52%,rgba(8,24,46,.2) 100%)' }} />
+      <motion.div className="absolute" style={{ left: '7%', top: '17%', width: '33%' }}
+        initial={{ opacity: 0, x: -22 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.42, delay: 0.1, ease: EASE }}>
+        <div className="film-kicker" style={{ color: '#287da6' }}>01 / PROGETTAZIONE WEB</div>
+        <h2 className="film-copy m-0" style={{ fontSize: '9.6vmin', marginTop: '3.2vmin' }}>SITI<br /><i style={{ color: '#287da6' }}>WEB.</i></h2>
+        <div className="film-support" style={{ marginTop: '2.5vmin', maxWidth: '9ch', color: '#38556e' }}>Rapidi.<br />Chiari. Responsive.</div>
+        <div className="film-hairline" style={{ width: '15vmin', color: '#287da6', marginTop: '3.7vmin' }} />
       </motion.div>
 
-      <motion.svg className="absolute" style={{ left: '48%', top: '12%', width: '28%', height: '76%', overflow: 'visible' }} viewBox="0 0 360 660" fill="none">
-        <motion.path d="M35 62L181 586L326 62M80 62L181 422L280 62" stroke="#174e74" strokeWidth="2.3" strokeOpacity=".54"
-          initial={{ pathLength: 0, opacity: .4 }} animate={{ pathLength: [0, 1], opacity: [.2, .78] }} transition={{ duration: 1.18, delay: .36, ease: EASE }} />
-      </motion.svg>
-
-      <motion.div className="absolute" style={{ left: '7%', top: '8%', color: '#287da6' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .1 }}>
-        <span className="film-kicker">02 / DALL’IDEA AL PROGETTO</span>
-      </motion.div>
-
-      <div className="absolute" style={{ left: '7%', top: '27%', width: '51%', color: '#0b2341' }}>
-        <div className="film-copy" style={{ fontSize: '9.2vmin', lineHeight: 1.08 }}>
-          <motion.div initial={{ opacity: 0, x: -35, skewX: -3 }} animate={{ opacity: 1, x: 0, skewX: 0 }} transition={{ duration: .65, delay: .22, ease: EASE }}>IL DIGITALE</motion.div>
-          <motion.div style={{ color: '#287da6', fontStyle: 'italic' }} initial={{ opacity: 0, x: -25, skewX: 3 }} animate={{ opacity: 1, x: 0, skewX: 0 }} transition={{ duration: .65, delay: 1.06, ease: EASE }}>PRENDE FORMA.</motion.div>
+      <motion.div
+        className="absolute overflow-hidden"
+        style={{ left: '28%', top: '17%', width: '66%', height: '67%', borderRadius: '1.1vmin', background: '#f5f8f9', boxShadow: '0 2.6vmin 7vmin rgba(8,24,46,.29)', border: '1px solid rgba(238,250,252,.78)', transformOrigin: 'center' }}
+        initial={{ opacity: 0, scale: 0.94, x: '4%' }}
+        animate={{ opacity: 1, scale: 1, x: 0 }}
+        transition={{ duration: 0.5, ease: EASE }}
+      >
+        <motion.img src={`${ROOT}images/digital-responsive.jpg`} alt="" className="film-photo absolute inset-0"
+          initial={{ scale: 1.23 }} animate={{ scale: [1.23, 1.07, 1.02] }} transition={{ duration: 2.8, times: [0, 0.52, 1], ease: EASE }}
+          style={{ objectPosition: 'center' }} />
+        <div className="absolute inset-x-0 top-0 flex items-center justify-between px-[1.5vmin]" style={{ height: '5.2vmin', background: 'rgba(249,252,252,.93)', borderBottom: '1px solid rgba(16,33,58,.12)' }}>
+          <div className="flex gap-[.65vmin]"><i className="h-[.65vmin] w-[.65vmin] rounded-full bg-[#c8dce4]" /><i className="h-[.65vmin] w-[.65vmin] rounded-full bg-[#c8dce4]" /><i className="h-[.65vmin] w-[.65vmin] rounded-full bg-[#c8dce4]" /></div>
+          <span className="film-micro" style={{ color: '#537184', fontSize: '1.4vmin', whiteSpace: 'nowrap' }}>IL TUO PROGETTO, ONLINE</span>
+          <span style={{ width: '3vmin', height: 1, background: '#83b9c9' }} />
         </div>
-        <motion.p className="film-small m-0" style={{ marginTop: '2.8vmin', color: '#4b667b' }}
-          initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .54, delay: 2.26, ease: EASE }}>
-          Identità. Design. Sviluppo.
-        </motion.p>
-      </div>
-
-      <motion.div className="absolute" style={{ left: '7%', bottom: '11%', width: '43%', height: 1, background: '#287da6', transformOrigin: 'left' }}
-        initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: .65, delay: 1.75, ease: EASE }} />
-      <motion.div className="absolute rounded-full" style={{ left: '48.5%', bottom: '10.45%', width: '1.1vmin', height: '1.1vmin', background: '#80ae92', boxShadow: '0 0 22px rgba(80,145,119,.55)' }}
-        initial={{ scale: 0 }} animate={{ scale: [0, 1.5, 1] }} transition={{ duration: .48, delay: 4.18, ease: EASE }} />
-      <motion.div className="absolute" style={{ right: '7%', bottom: '8%', color: '#287da6', fontSize: '1.9vmin', letterSpacing: '.18em', fontWeight: 700 }}
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .62 }}>
-        VEROXA <span style={{ opacity: .45 }}>/</span> IDENTITÀ DIGITALE
+        <motion.div className="absolute" style={{ left: '4%', bottom: '5%', color: '#f5f8f9', background: 'rgba(8,24,46,.72)', padding: '.75vmin 1.1vmin', borderRadius: '.3vmin' }}
+          key={view} initial={{ opacity: 0, y: 7, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.24 }}>
+          <span className="film-micro" style={{ fontSize: '1.45vmin' }}>{FRAME_LABELS[view]}</span>
+        </motion.div>
+      </motion.div>
+      <motion.div className="absolute" style={{ top: '82%', left: '7%', display: 'flex', alignItems: 'center', gap: '1.1vmin' }}
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55 }}>
+        {FRAME_LABELS.map((label, index) => (
+          <motion.span key={label} className="film-micro" animate={{ opacity: view === index ? 1 : 0.47, scale: view === index ? 1.05 : 1 }}
+            style={{ color: view === index ? '#287da6' : 'rgba(36,66,88,.62)', fontSize: '1.55vmin' }}>
+            {label}{index < FRAME_LABELS.length - 1 && <span style={{ paddingLeft: '1.1vmin', color: '#a2bdc7' }}>/</span>}
+          </motion.span>
+        ))}
       </motion.div>
     </motion.section>
   );

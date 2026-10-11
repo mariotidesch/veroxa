@@ -2,12 +2,13 @@
 @import 'tailwindcss';
 
 :root {
-  --ink: #07162f;
-  --ink-soft: #142c4b;
+  --ink: #08182e;
+  --ink-soft: #122b48;
   --blue: #287da6;
   --sky: #cce8f2;
-  --paper: #fbfcfd;
+  --paper: #f5f8f9;
   --mint: #d6ece2;
+  --mint-bright: #a9deca;
   --text: #10213a;
   --muted: #688094;
   --font-display: 'Playfair Display', Georgia, serif;
@@ -30,7 +31,7 @@
 
 * { box-sizing: border-box; }
 html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; }
-body { font-family: var(--font-body); background: var(--paper); color: var(--text); }
+body { font-family: var(--font-body); background: var(--ink); color: var(--text); }
 
 .film-stage {
   position: absolute;
@@ -39,35 +40,59 @@ body { font-family: var(--font-body); background: var(--paper); color: var(--tex
   width: 100%;
   height: 100%;
   isolation: isolate;
+  transform-style: preserve-3d;
 }
 .film-photo { display: block; width: 100%; height: 100%; object-fit: cover; }
+.film-image { display: block; width: 100%; height: 100%; object-fit: cover; }
+.film-camera { position: absolute; inset: 0; overflow: hidden; transform-origin: 50% 48%; }
+.film-carrier { position: absolute; inset: 0; z-index: 20; overflow: hidden; pointer-events: none; }
+.film-carrier-line {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(204,232,242,.18) 12%, rgba(204,232,242,.42) 50%, rgba(204,232,242,.18) 88%, transparent);
+}
+.film-carrier-travel {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.film-carrier-point {
+  position: absolute;
+  top: calc(12.5% - .34vmin);
+  left: 0;
+  width: .68vmin;
+  height: .68vmin;
+  border-radius: 50%;
+  background: var(--sky);
+  box-shadow: 0 0 .8vmin rgba(204,232,242,.45);
+  transform: translateX(-50%);
+}
 .film-kicker {
   font: 700 1.95vmin/1.2 var(--font-body);
-  letter-spacing: .2em;
+  letter-spacing: .16em;
   text-transform: uppercase;
 }
 .film-copy {
   font-family: var(--font-display);
   font-weight: 500;
   letter-spacing: -.045em;
-  line-height: .98;
+  line-height: .97;
 }
-.film-small {
-  font: 500 3vmin/1.35 var(--font-body);
+.film-support {
+  font: 500 3.05vmin/1.3 var(--font-body);
   letter-spacing: -.02em;
 }
 .film-micro {
   font: 700 1.9vmin/1.3 var(--font-body);
-  letter-spacing: .16em;
+  letter-spacing: .13em;
   text-transform: uppercase;
 }
-.film-grid {
-  background-image:
-    linear-gradient(to right, rgba(40,125,166,.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(40,125,166,.08) 1px, transparent 1px);
-  background-size: 5vmin 5vmin;
-  mask-image: radial-gradient(ellipse, black 20%, transparent 78%);
-}
+.film-hairline { height: 1px; background: currentColor; transform-origin: left center; }
+.film-glass { border: 1px solid rgba(226,244,247,.34); background: rgba(17,42,66,.28); backdrop-filter: blur(7px); }
 .no-select { user-select: none; }
 
 @media (prefers-reduced-motion: reduce) {

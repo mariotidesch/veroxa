@@ -5,11 +5,16 @@ import VideoTemplate, { SCENE_DURATIONS } from './VideoTemplate';
 import { useSceneControls } from './useSceneControls';
 
 const SCENE_DETAILS: Record<string, { title: string; filePath: string }> = {
-  story: { title: 'Una storia da scoprire', filePath: 'src/components/video/scenes/Scene01.tsx' },
-  build: { title: 'Il digitale prende forma', filePath: 'src/components/video/scenes/Scene02.tsx' },
-  reveal: { title: 'La vetrina digitale', filePath: 'src/components/video/scenes/Scene03.tsx' },
-  process: { title: 'Ascolto, progetto, lancio', filePath: 'src/components/video/scenes/Scene04.tsx' },
-  signature: { title: 'Veroxa', filePath: 'src/components/video/scenes/Scene05.tsx' },
+  story: { title: 'Il tuo mondo online', filePath: 'src/components/video/scenes/Scene01.tsx' },
+  build: { title: 'Siti web', filePath: 'src/components/video/scenes/Scene02.tsx' },
+  design: { title: 'Design e immagine', filePath: 'src/components/video/scenes/Scene03.tsx' },
+  commerce: { title: 'E-commerce', filePath: 'src/components/video/scenes/Scene04.tsx' },
+  booking: { title: 'Prenotazioni', filePath: 'src/components/video/scenes/Scene05.tsx' },
+  seo: { title: 'SEO', filePath: 'src/components/video/scenes/Scene06.tsx' },
+  responsive: { title: 'Responsive', filePath: 'src/components/video/scenes/Scene07.tsx' },
+  workflow: { title: 'Servizio completo', filePath: 'src/components/video/scenes/Scene08.tsx' },
+  ownership: { title: 'Per chi visita e gestisce', filePath: 'src/components/video/scenes/Scene09.tsx' },
+  signature: { title: 'Veroxa', filePath: 'src/components/video/scenes/Scene10.tsx' },
 };
 const PROGRESS_TICK_MS = 60;
 

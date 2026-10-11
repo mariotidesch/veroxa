@@ -1,40 +1,62 @@
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import blueMark from '@assets/vexora-profilo-azzurro.png';
+import { useSceneTimer } from '@/lib/video';
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+const EASE = [0.18, 0.82, 0.2, 1] as const;
+const ROOT = import.meta.env.BASE_URL;
+const DAYS = ['L', 'M', 'M', 'G', 'V', 'S', 'D'];
+const CELLS = Array.from({ length: 28 }, (_, index) => index);
 
 export function Scene05() {
+  const [selection, setSelection] = useState(10);
+  const events = useMemo(() => [
+    { time: 780, callback: () => setSelection(16) },
+    { time: 1500, callback: () => setSelection(21) },
+  ], []);
+  useSceneTimer(events);
+
   return (
-    <motion.section className="film-stage" initial={{ opacity: .96 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .34 }} style={{ background: '#07162f', color: '#f5f8f8' }}>
-      <motion.div className="absolute" style={{ left: '50%', top: '42%', width: '42vmin', height: '42vmin', borderRadius: '50%', background: '#cce8f2', boxShadow: '0 0 0 1px rgba(202,237,242,.9), 0 0 6vmin rgba(116,186,211,.24)', x: '-50%', y: '-50%' }}
-        initial={{ scale: .12 }} animate={{ scale: [ .12, .9, 1, 1.04, .96, .24 ], opacity: [1,1,1,1,1,.84] }}
-        transition={{ duration: 4.65, times: [0,.22,.39,.65,.82,1], ease: EASE }} />
-      <motion.div className="absolute rounded-full" style={{ left: '50%', top: '42%', width: '51vmin', height: '51vmin', border: '1px solid rgba(178,224,239,.34)', x: '-50%', y: '-50%' }}
-        initial={{ scale: .3, opacity: 0 }} animate={{ scale: [ .3, 1, 1.08, .2 ], opacity: [0,.75,.5,0] }} transition={{ duration: 4.65, times: [0,.3,.78,1], ease: EASE }} />
-      <motion.div className="absolute overflow-hidden" style={{ left: '50%', top: '42%', width: '34vmin', height: '34vmin', borderRadius: '50%', x: '-50%', y: '-50%', boxShadow: '0 1vmin 3vmin rgba(0,0,0,.2)' }}
-        initial={{ scale: .68, opacity: 0, rotate: -5 }} animate={{ scale: [ .68, 1, 1, .24 ], opacity: [0,1,1,.72], rotate: 0 }}
-        transition={{ duration: 4.65, times: [0,.22,.83,1], ease: EASE }}>
-        <img src={blueMark} alt="" className="film-photo" style={{ objectFit: 'cover' }} />
-      </motion.div>
-      <motion.div className="absolute" style={{ left: '50%', top: '42%', width: '39vmin', height: 1, background: 'rgba(236,249,248,.9)', x: '-50%', rotate: '-35deg', transformOrigin: 'center' }}
-        initial={{ scaleX: 0, opacity: 1 }} animate={{ scaleX: [0,1,1,0], opacity: [1,.8,.3,0] }} transition={{ duration: 4.65, times: [0,.2,.82,1], ease: EASE }} />
+    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.04, rotateY: 9 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+      exit={{ opacity: 0, scale: 1.1, rotateX: 7 }} transition={{ duration: 0.42, ease: EASE }}
+      style={{ background: '#08182e', color: '#f5f8f9' }}>
+      <motion.img src={`${ROOT}images/digital-booking.jpg`} alt="" className="film-photo absolute inset-0"
+        initial={{ scale: 1.13, x: '3%' }} animate={{ scale: [1.13, 1.06, 1.01], x: ['3%', '1%', 0] }} transition={{ duration: 2.8, times: [0, 0.55, 1], ease: EASE }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,#08182e 0%,rgba(8,24,46,.93) 34%,rgba(8,24,46,.36) 71%,rgba(8,24,46,.1))' }} />
+      <div className="absolute" style={{ top: '19%', left: '7.5%', width: '37%' }}>
+        <motion.div className="film-micro" style={{ color: '#a9deca' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.08 }}>IL TEMPO, IN ORDINE</motion.div>
+        <motion.h2 className="film-copy m-0" style={{ fontSize: '6.4vmin', marginTop: '3vmin', whiteSpace: 'nowrap' }}
+          initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.42, delay: 0.12, ease: EASE }}>
+          PRENOTAZIONI.
+        </motion.h2>
+        <motion.p className="film-support m-0" style={{ maxWidth: '15ch', color: 'rgba(245,248,249,.82)', marginTop: '2.3vmin' }}
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.32, delay: 0.62 }}>
+          Semplici da usare.<br />Comode da gestire.
+        </motion.p>
+        <motion.div style={{ width: '14vmin', height: 1, background: '#a9deca', marginTop: '3.2vmin', transformOrigin: 'left' }}
+          initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.33, delay: 0.72 }} />
+      </div>
 
-      <motion.div className="absolute" style={{ left: '50%', top: '70%', x: '-50%', color: '#e9f2f5', textAlign: 'center' }}
-        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .62, delay: 1.58, ease: EASE }}>
-        <div className="film-copy" style={{ fontSize: '3.8vmin', letterSpacing: '.22em' }}>VEROXA</div>
+      <motion.div className="absolute film-glass" style={{ right: '9%', top: '15%', width: '36%', height: '70%', padding: '3vmin', borderColor: 'rgba(212,240,242,.5)', background: 'rgba(8,24,46,.67)', backdropFilter: 'blur(8px)' }}
+        initial={{ opacity: 0, y: '9%', rotate: 1.4 }} animate={{ opacity: 1, y: 0, rotate: 0 }} transition={{ duration: 0.55, delay: 0.18, ease: EASE }}>
+        <div className="flex items-center justify-between">
+          <span className="film-micro" style={{ color: '#eff7f5' }}>SCEGLI UN MOMENTO</span>
+          <span style={{ color: '#a9deca', fontSize: '2.7vmin' }}>⌄</span>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: '1vmin', marginTop: '3.1vmin' }}>
+          {DAYS.map((day, index) => <span key={`${day}${index}`} className="film-micro" style={{ textAlign: 'center', color: 'rgba(231,243,244,.57)', fontSize: '1.75vmin' }}>{day}</span>)}
+        </div>
+        <motion.div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: '1vmin', marginTop: '1.35vmin' }}>
+          {CELLS.map((cell) => (
+            <motion.span key={cell} animate={{ opacity: selection === cell ? 1 : 0.64, scale: selection === cell ? 1.08 : 1 }}
+              transition={{ duration: 0.22 }}
+              style={{ height: '4.4vmin', display: 'grid', placeItems: 'center', borderRadius: '.35vmin', font: '600 1.65vmin var(--font-body)', color: selection === cell ? '#08182e' : 'rgba(236,246,247,.8)', background: selection === cell ? '#a9deca' : 'rgba(255,255,255,.04)', border: '1px solid rgba(204,232,242,.11)' }}>
+              {cell + 1}
+            </motion.span>
+          ))}
+        </motion.div>
+        <motion.div className="absolute" style={{ bottom: '9%', left: '8%', right: '8%', height: '1px', background: '#a9deca', transformOrigin: 'left' }}
+          initial={{ scaleX: 0 }} animate={{ scaleX: [0, 0.32, 0.72] }} transition={{ duration: 1.65, times: [0, 0.35, 1], ease: EASE }} />
       </motion.div>
-      <motion.div className="absolute" style={{ left: '50%', top: '76%', x: '-50%', color: '#e9f2f5', textAlign: 'center' }}
-        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .62, delay: 1.58, ease: EASE }}>
-        <div className="film-small" style={{ fontSize: '3.15vmin' }}>Ogni attività merita<br />di farsi trovare.</div>
-        <div className="film-micro" style={{ color: '#a6cee0', marginTop: '1.7vmin', fontSize: '1.9vmin' }}>VEROXA.IT</div>
-      </motion.div>
-
-      <motion.div className="absolute film-kicker" style={{ top: '8%', left: '50%', x: '-50%', color: 'rgba(210,236,244,.63)' }}
-        initial={{ opacity: 0, letterSpacing: '.42em' }} animate={{ opacity: .85, letterSpacing: '.24em' }} transition={{ duration: .7, delay: .42, ease: EASE }}>
-        L’ATELIER DIGITALE
-      </motion.div>
-      <motion.div className="absolute" style={{ left: '70%', top: '8%', height: '84%', width: '.34vmin', borderRadius: '1vmin', x: '-50%', background: 'linear-gradient(180deg,transparent,rgba(207,238,248,.98) 24%,rgba(250,252,247,.95) 52%,rgba(160,208,222,.7) 80%,transparent)', transformOrigin: 'center' }}
-        initial={{ scaleY: 0, opacity: 0 }} animate={{ scaleY: [0, 0, 1], opacity: [0, 0, .68] }} transition={{ duration: .78, delay: 3.87, times: [0,.34,1], ease: EASE }} />
     </motion.section>
   );
 }

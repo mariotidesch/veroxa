@@ -4,3 +4,4 @@
 - [Artifact slug alignment](artifact-slug-alignment.md) — copied Vite artifacts need package name and base path aligned with the registered slug before pnpm workflows can resolve them.
 - [Gmail contact delivery](gmail-contact-delivery.md) — contact submissions use the server-side Gmail connector; keep the connector dependency in the API package, not workspace root.
 - [Artifact cleanup](artifact-cleanup.md) — managed artifact workflows cannot be removed directly; stop the workflow, remove the artifact, and let workspace state prune it.
+- [Veroxa advertising imagery](veroxa-advertising.md) — promotional films should show computing and digital work, not physical shops.

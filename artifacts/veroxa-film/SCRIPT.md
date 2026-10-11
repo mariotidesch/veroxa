@@ -1,77 +1,127 @@
-# VEROXA — “Il tuo mondo, in una nuova luce”
+# VEROXA — “Il tuo mondo, online”
 
-## Director's treatment
-- **Promise:** the place people love in real life can feel unmistakably itself online.
-- **Identity:** Veroxa's near-white, ink navy, airy azure and mint; Playfair Display for expressive editorial statements, Plus Jakarta Sans for crisp contemporary labels.
-- **Hero:** a real Italian neighbourhood atelier and its emerging digital twin; the V is a meeting point that turns into a way through.
-- **Motion:** a stiff-spring triple impact, macro-to-wide camera pulls, and a multi-plane X-shaped split/unfold carrying an image fragment between shots.
-- **Arc:** immediate vivid human detail → exploding digital construction → elegant proof of craft → three-part method → inverse-navy brand resolution.
-- **Payoff:** the opening crop of a real shop becomes the final opening aperture; its light returns as the V in Veroxa's actual logo.
-- **Format/runtime:** 16:9 landscape, 25.00 seconds.
+## Director’s treatment
+- **Promise:** Veroxa designs and builds a coherent online presence around each business: website, visual identity, e-commerce or booking systems, and SEO.
+- **Identity:** The original VEROXA V monogram and wordmark direction; ink navy, pale azure, cool mint, and clean editorial paper. Playfair Display for expressive punches, Plus Jakarta Sans for lucid interface copy.
+- **Hero:** The digital product itself—browser compositions, adaptable page structures, identity systems, commerce and booking flows, authored content, and search.
+- **Motion:** A photo/interface change every few beats in the opener, then continuous purposeful reframing; hard beat cuts; matched scale-and-angle handoffs; kinetic typography; precise animated UI, without generic particle clutter.
+- **Arc:** Instant digital hook → website → its visual and functional capabilities → joined-up workflow → emphatic brand signature.
+- **Payoff:** Separate digital capabilities align into Veroxa’s circular V monogram; the correct VEROXA name and value proposition remain readable to the final frame.
+- **Format/runtime:** Existing 16:9 landscape, exactly 30.00 seconds; ten distinct scenes.
 
 ## Timeline
-| Time | Focus | Motion event | Composition | Handoff |
+| # / Time | Focus | Motion event | Composition | Handoff |
 |---|---|---|---|---|
-| 0.00–4.80 | Local atelier in its own light | Three crisp snap cuts: craft macro, intimate interior, full storefront; hard push toward a lit window | Full-bleed photographic plate, warm accents against cool shadow | Window becomes a wide white canvas |
-| 4.80–10.15 | A digital identity taking shape | Photo fractures into editorial modules; image tile and giant V geometry rotate/unfold into place | Asymmetric navy/azure split, interface as designed artwork | One image panel scales through lens |
-| 10.15–15.50 | The finished website | Screen/frame reveals the atelier's world; macro pullback across large designed web pages, responsive screen fragments | Bright editorial spread with large photographs, mobile/desktop planes | The page's lower rule pulls into the next X-junction |
-| 15.50–20.35 | A process built around the owner | Three words fire in sequence; three image windows are drawn from a single stroke, then collapse into one | Full-frame azure/mint graphic choreography, no template repetition | Final point travels into a dark iris |
-| 20.35–25.00 | Veroxa identity and thesis | Field inverts; actual brand seal settles, final line resolves; the iris contracts into a lit window slit | Centered navy end-card, real mark and generous negative space | The V narrows to the first shot's window aperture |
+| 01 / 0.00–3.35 | Digital world | Screen pulse; three tactile digital textures; hook resolves | Full-screen navy, dramatic asymmetric luminous interface | Cursor light becomes browser rail |
+| 02 / 3.35–6.20 | Websites | Large editorial browser view pushes forward as screen-format labels take turns | Website mockup over the generated multi-device image | Top browser rail rotates into a design-grid rule |
+| 03 / 6.20–9.55 | Design & image | Font, palette and typographic decisions snap into one identity | Off-centre visual system, sharp ivory/azure contrast | Mint swatch hands its accent to the catalogue cut |
+| 04 / 9.55–11.95 | E-commerce | Digital catalog reads as a complete online-sales flow | Photographic, unbranded digital catalogue UI with clear service copy | Commerce image cuts to the illustrated booking calendar |
+| 05 / 11.95–14.90 | Bookings | Calendar → time selection → confirmation | Native mint calendar on deep blue, no fabricated availability metric | Confirmation focus ring turns into search cursor |
+| 06 / 14.90–17.65 | SEO | Search field, semantic structure, representative result | Extreme close to interface planes, then legible search composition | Search-rule scales into responsive breakpoint |
+| 07 / 17.65–20.50 | Responsive / device views | One coherent page spans desktop, tablet, and phone; labels spotlight each format in turn | A generated multi-device interface, active labels, continuous camera push | A cyan device edge gives way to the workflow timeline |
+| 08 / 20.50–23.35 | Complete workflow | Progettazione → sviluppo → ottimizzazione | Animated path and UI stack merge into one finished site | Three stages fold into visitor/admin interfaces |
+| 09 / 23.35–26.20 | Site ownership + service recap | Visitor and management view turn, four capabilities appear in fast montage | Paired interface planes, then four cuts with distinct image logic | Mint service marker carries through to the end-card scale-in |
+| 10 / 26.20–30.00 | VEROXA signature | Circular brand monogram resolves with a scale-in; promise settles for the final beat | Spacious navy end-card, exact circular V monogram | Short azure rule recalls the first-frame locator point |
 
 ## Full shot script
 
-### Shot 01 / 0.00–4.80s / 4.80s — “QUI, C’È UNA STORIA.”
-**Purpose:** Hook with the real character of a neighbourhood business before suggesting a website.
-**Exact copy:** `QUI, C’È UNA STORIA.` appears 0.62–2.55s, oversized Playfair Display in pale ivory at lower-left; `Una presenza digitale che le somiglia.` appears 2.82–4.48s in Plus Jakarta Sans, 3.2vmin, lower-left over a darkened safe strip. Small top-left `VEROXA / ATELIER DIGITALE` at 0.3–4.8s.
-**Composition/artistic idea:** Full-bleed cinematic photo of a distinct independent Italian atelier: inky blue hour outside, amber-lit window, intimate material detail. A bright rectangular window is the hero aperture, in the right third. Open on hands working tactile fabric, snap to a close shopfront, then a warm workshop glimpse and back to storefront. Copy uses a subdued navy shadow-field at lower-left, ample 6% safe inset.
-**Choreography:** 0.00–0.30s fabric macro snaps to focus; at 0.30s cut to the bright exterior window; from 0.58–1.30s the storefront crops push toward the amber-lit pane as the headline masks upward; 1.35s a hard photographic cut reveals the atelier interior; 1.48s the headline finishes its clamp-to-baseline; 2.53s a clean return to the storefront, now a wide picture window; 2.82s supporting line resolves. From 3.75s camera pushes into the bright pane and its mullion starts to split into two glass planes, carrying movement through cut.
-**Transition contract:** Last window mullion expands to a near-full-height white panel as a slight camera push continues; shot 2 begins at 4.80s with matching bright panel coordinates, adds a second angled panel, and reveals its hero typography within first 0.2s. No empty flash.
-**Assets/technique:** Generated stills `public/images/atelier-hands.jpg` (macro), `atelier-window.jpg` (storefront crop) and `atelier-interior.jpg` (workshop), used as three successive photographic views; no invented business logo/text. Image-cut timing, crop/pan, typography masking and CSS dark strip; panel geometry in HTML/SVG.
-**Sound:** Instrumental begins immediately with tight, dry percussive snap on 0.0, 0.5, 1.0; rising plucked motif. The cut exits on the verified 4.80s beat onset.
+### Shot 01 / 0.00–3.35s / 3.35s — “IL TUO MONDO. ONLINE.”
+**Purpose:** Tell the viewer in the first second that Veroxa builds digital solutions—not a physical shop or a new consumer product.
+**Exact copy:** `IL TUO MONDO.` at 0.22s, `ONLINE.` at 0.72s; `VEROXA / SOLUZIONI DIGITALI` appears at 0.10s and holds into the next cut.
+**Composition and artistic idea:** The interface becomes an illuminated stage rather than a hardware hero. A glass-like browser outline stands in depth against a navy field; an authentic, abstract macro of circuitry or pixels provides photographic texture without depicting a retail environment.
+**Timed choreography:** At 0.00s the first bass impact ignites a single cyan node. At 0.18s a glass interface plane snaps forward. 0.35s the first phrase slices into focus; 0.50s the image changes to layered data paths; 0.85s `ONLINE.` lands; 1.3s one responsive-page still cuts into the centre plane; 2.1s large page blocks resolve behind the hook. At 2.80s the screen rail expands toward the camera and carries forward.
+**Transition contract:** A bright circuit node and screen top rail carry into shot 2; the technical photo plates punch outward on the next downbeat.
+**Assets and technique:** New original digital concept images, locally authored typography, 3D browser polygons, hard photo cuts. No physical shops, invented logo, or generated gibberish text.
+**Sound:** Aggressive first drum hit, bright electronic pulse, short repeating image changes. Cut on the measured 3.35s impact.
 
-### Shot 02 / 4.80–10.15s / 5.35s — “IL DIGITALE PRENDE FORMA.”
-**Purpose:** Make Veroxa's design/development role visible as a transformation, not claim abstract expertise.
-**Exact copy:** small `02 / DALL’IDEA AL PROGETTO` from 4.90–10.15s; `IL DIGITALE` at 5.02s, `PRENDE FORMA.` at 5.86s, both held to 9.30s in 9.2vmin Playfair Display, upper-left; `Identità. Design. Sviluppo.` at 7.06–9.70s, 3vmin sans; `VEROXA / IDENTITÀ DIGITALE` at 5.42s through the outgoing cut.
-**Composition/artistic idea:** Bright ivory/azure field split by a crisp 22-degree diagonal. The previous window-image is a single crop on an ivory rectangle at centre-right. It fractures into three carefully aligned, raised image panes, while a giant outline V—faithful geometric echo of Veroxa's mark, not a substitute logo—acts as the fold hinge.
-**Choreography:** At 0.00s the bright window panel remains visible from previous shot. 0.1–0.65s pane unfolds around its shared diagonal; 0.35s image divides into three aligned slices, not random shards; 0.22s first headline line shears into view, 1.06s second clamps into baseline; 1.9s thin rules trace web grid across negative space; 2.4s one tile scales outward and becomes a clean image plane; 3.06s supporting phrase arrives; 4.35s final diagonal folds inward and image scales through lens, carrying one mint point across the 10.15s cut.
-**Transition contract:** The diagonal split and mint point cross the 10.15s boundary; next shot opens with the identical point on a page-frame corner and the white field resolving into a page.
-**Assets/technique:** Generated atelier photograph from shot 1 recycled only as a short carried crop; CSS perspective panes, outlined V, line-trace SVG; no fake text inside imagery.
-**Sound:** Confident rising rhythm with two percussive lifts; intended cut near 10.0s beat (verify onset).
+### Shot 02 / 3.35–6.20s / 2.85s — “SITI WEB”
+**Purpose:** Explain the core deliverable and its speed/clarity, using the source site's accurate description.
+**Exact copy:** `SITI WEB`; `Rapidi. Chiari. Responsive.`; label `01 / PROGETTAZIONE WEB`.
+**Composition and artistic idea:** The moving, generated multi-device website still anchors the right of frame. A large, dimensional web mockup and highly legible headline carry the service message.
+**Timed choreography:** The browser-plane scales into place, while its editorial image pushes forward. Desktop/tablet/smartphone labels advance over the same coherent page. The service copy and top rail remain clear, then the next cut reshapes that rail into the design-grid underline.
+**Transition contract:** Retained top rule, same position; it unfolds into a large typographic underline as an overlapping color-panel flip begins shot 3.
+**Assets and technique:** Custom responsive web-page artwork layered with locally generated interface still, screen geometry and editorial photo, CSS perspective.
+**Sound:** Snare-and-synth punctuation on the measured 6.20s boundary.
 
-### Shot 03 / 10.15–15.50s / 5.35s — “IL TUO LAVORO, VISTO COME MERITA.”
-**Purpose:** Reveal what the craft produces: a carefully art-directed digital shop window with real work, legible on desktop and mobile.
-**Exact copy:** eyebrow `LA TUA VETRINA, OVUNQUE` arrives at 10.33s. `Il tuo lavoro,` at 10.65s / `visto come merita.` at 11.45s, 7.5vmin Playfair; `Siti veloci. Chiari. Riconoscibili.` at 12.43–14.95s, 3vmin Plus Jakarta Sans; `IDEATO PER TE / NON PER TUTTI` resolves around 13.11s. The illustrative desktop page carries `ATELIER / MODA`, `FATTO CON CURA · UNICO, COME TE`, `ABITI CHE RESTANO`, and `La bellezza dei gesti.`; the mobile example reads `CUCINA / MENU` and `Una tavola di casa.` The `DESKTOP / 01` and `MOBILE / 02` identifiers denote visual examples, not real clients.
-**Composition/artistic idea:** Not a generic device mockup: an editorial webpage is a luminous museum frame built from two huge artisan photographs. Desktop website first owns 78% of the canvas, off-centre and angled only 2°; its image crop feels tangible. At 12.15s a tall mobile window is carved out of the desktop page itself, sharing the same photograph/margin as responsive design; both settle in distinct depth planes.
-**Choreography:** A mint point travels up from the outgoing split during 0.00–0.72s as the desktop frame pulls back from a tight still crop to its wide image and margins. Headline lines reveal at 0.50s and 1.30s. At 2.00s the crop punches in on craft; at 2.35s the mobile frame unfolds inside the page, scale .8→1 with less than 5° rotation. Supporting copy arrives at 2.28s; the responsive rule appears at 3.45s; from 4.55s it glides up toward the centre and extends into the connector that matches shot 4's incoming X-junction at 15.50s.
-**Transition contract:** Thin rule turns into a single connector line ending in a point, pulled into an X-shaped junction; next shot begins at 15.50s with that exact junction as the centre of an abstract path.
-**Assets/technique:** Generated stills: `atelier-window.jpg` and `trattoria-table.jpg`, an Italian atelier and elegant trattoria, not screenshots of a fake brand; HTML page objects (purely visual, non-interactive), curated editorial image crops, masked text; locally loaded Playfair Display and Plus Jakarta Sans.
-**Sound:** The warm synthetic chord brightens on the measured 12.30s pulse. No vocals.
+### Shot 03 / 6.20–9.55s / 3.35s — “DESIGN & IMMAGINE”
+**Purpose:** Identify visual-identity services clearly: coherent color, type, and graphical direction.
+**Exact copy:** `DESIGN & IMMAGINE` followed sequentially by `COLORI.`, `FONT.`, `LINGUAGGIO.`.
+**Composition and artistic idea:** An asymmetrical identity specimen: characters are enormous graphic objects while restrained azure/mint swatches move in secondary planes. It is a designed image, not a storefront shot.
+**Timed choreography:** 0.00s a browser rule hard-cuts into the first blue type specimen. .30s three swatches punch in, spaced on 450ms accents; .72s Playfair headline settles; 1.12s Plus Jakarta Sans accompanies the second sample; 1.60s swatches reflow to a balanced palette. The complete style specimen holds clearly to the 9.55s boundary.
+**Transition contract:** The mint/azure palette carries through a decisive scale push into a distinctly photographed digital-commerce screen.
+**Assets and technique:** Original style-guide visual, authentic logo omitted from all mockups; authored typography, color fields, moving swatch planes.
+**Sound:** Three staccato hits match color, font, and language; the 9.55s cut lands on the measured drum accent.
 
-### Shot 04 / 15.50–20.35s / 4.85s — “ASCOLTO. / PROGETTO. / LANCIO.”
-**Purpose:** Make the collaborative process easy to remember and credible for small-business owners.
-**Exact copy:** eyebrow `UN PERCORSO, INSIEME` from 15.65s. Word burst on a fixed baseline: `ASCOLTO.` from 15.65s, `PROGETTO.` from 16.73s, `LANCIO.` from 17.82s, each 12.9vmin Playfair. Captions: `01 / La tua storia` at 16.40s, `02 / Il sito prende vita` at 16.73s, `03 / Online, insieme` at 17.82s. Footer `VEROXA / DAL PRIMO INCONTRO AL LANCIO` from 18.10s. `Un percorso semplice. Sempre al tuo fianco.` appears from 18.95s onward in 3vmin lower-centre.
-**Composition/artistic idea:** Inverse of product showcase: paper-white type occupies centre, while three photo windows (artisan window, atelier, restaurant) fold up around it like three leaflets meeting at their corners. One azure vector-line traces all three in one stroke. No three equal cards: first image is a tight vertical crop at left, second a wide strip low-centre, third a small high-right window; each owns a distinct scale.
-**Choreography:** 0.00s the prior page rule lands on an X-junction; 0.18s ASCOLTO punches to 1.08 and settles as the left photo-window opens; 1.23s PROGETTO replaces it with a quick vertical mask and the second image unfolds; 2.32s LANCIO ignites the high-right window; 2.90s a fine stroke links the three and flashes at each contact; 3.45s the photo windows fold inward to form an X-shaped aperture and the closing sentence resolves; 4.19s a bright point breaks from the junction and travels to the logo's centre.
-**Transition contract:** End frames remain in motion as all three lines converge at centre and navy seam expands; finale's opening circle grows from that convergent point at 20.35s without pausing on empty colour.
-**Assets/technique:** `atelier-window.jpg`, `atelier-interior.jpg` and `trattoria-table.jpg` from the generated still library; vector path/clip masks, split-fold transforms; accurate copy only.
-**Sound:** Three clean accents punctuate ASCOLTO/PROGETTO/LANCIO; a warm lift meets the measured 20.35s brand inversion.
+### Shot 04 / 9.55–11.95s / 2.40s — “E-COMMERCE”
+**Purpose:** Present online sales as a real VEROXA service, without promising transactions or conversion.
+**Exact copy:** `E-COMMERCE`; `Vendi online, in modo semplice.` The chip `AGGIUNGI` is a static UI illustration, not an interactive control.
+**Composition and artistic idea:** An exquisitely cropped, unbranded digital catalog fills the frame: products are visibly presented in a web interface, with VEROXA’s service promise made explicit in the foreground copy.
+**Timed choreography:** The generated commerce image scales from catalogue detail to a full device-composite. `E-COMMERCE`, `Vendi online, in modo semplice`, and the small illustrated `AGGIUNGI` control explain what the service does without inventing product facts, prices, success data, or metrics. The calendar begins on the 11.95s downbeat.
+**Transition contract:** A clean image cut trades the commerce mockup for the illustrated booking calendar; the brighter mint selection carries forward as the interface accent.
+**Assets and technique:** Bespoke digital-commerce still, unbranded product photography and handmade web UI; no generated text in images.
+**Sound:** Strong measured kick at 11.95s punctuates catalog → booking.
 
-### Shot 05 / 20.35–25.00s / 4.65s — “VEROXA”
-**Purpose:** Land the real brand and the one takeaway with contrast and composure.
-**Exact copy:** the supplied seal resolves by 21.37s; separate type spells the brand name `VEROXA` by 22.34s and remains through final cut. `Ogni attività merita di farsi trovare.` and `VEROXA.IT` arrive at 22.55s and remain through the cut (3.15vmin Plus Jakarta Sans; 1.9vmin tracking .14em).
-**Composition/artistic idea:** Entire background becomes ink navy—an inversion from the luminous website spreads. The provided navy Veroxa mark is used on its native matching dark field as designed; use the pale-blue seal asset in this finale instead (navy ink on its native airy-blue field): selected image asset `vexora-profilo-azzurro.png` already carries its distinct local-light ground, so the lockup is staged on an airy blue disc nested in navy. Preserve its real colors, no recoloring. The circle becomes a luminous window and sign-off, rather than another feature layout.
-**Choreography:** 0.00–0.35s the navy seam opens around the shared point into an azure disc. 0.35–1.02s the official seal scales from .68→1.0 and settles. At 1.42s plain text spells `VEROXA`; at 1.58s takeaway and site resolve below. From 3.81s the disc contracts around the legible lockup; during the final .78s it becomes the vertical window slit that returns to the first frame.
-**Transition contract:** Final slit is spatially matched to the opening shop window's bright vertical mullion, allowing a seamless loop into shot 1's tactile macro.
-**Assets/technique:** Official logo image `attached_assets/vexora-profilo-azzurro.png` imported as a module asset; native background colors retained; navy/azure framing; controlled scale and iris, no fabricated logo.
-**Sound:** Instrumental resolves with a warm, clear final chord at 24.7s then resets to opening downbeat. No VO/SFX.
+### Shot 05 / 11.95–14.90s / 2.95s — “PRENOTAZIONI”
+**Purpose:** Distinguish useful reservation systems from online sales.
+**Exact copy:** `PRENOTAZIONI`; `Semplici da usare. Comode da gestire.` Calendar dates and slot selections are decorative illustrative UI; they do not claim real availability.
+**Composition and artistic idea:** The checkout's angled edge reshapes into a tall booking calendar. One clean cyan focus ring leads from the calendar to a set of reservation slots.
+**Timed choreography:** 0.00s date cell blooms around the carried point. .36s weekday blocks lock; .82s a single illustrative day picks up a halo; 1.27s booking slots reveal in a vertical stack; 1.76s a compact management summary turns to the viewer; 2.35s the focus ring expands until its top underline turns into a search field.
+**Transition contract:** The calendar selection hands its mint accent to a new search field, while a technical macro replaces the schedule with a brisk camera push.
+**Assets and technique:** Scene-built vector calendar and reservation panel; no storefront or restaurant/table imagery.
+**Sound:** Three light digital ticks ride above the driving track; downbeat at 14.90s carries the next transition.
+
+### Shot 06 / 14.90–17.65s / 2.75s — “SEO”
+**Purpose:** Name search-engine optimization carefully, without guaranteeing a ranking outcome.
+**Exact copy:** `SEO`; `Codice e contenuti per farsi trovare.` Labels `STRUTTURA`, `TITOLI`, `CONTENUTI`. The generic search phrase `la tua attività online` is expressly illustrative.
+**Composition and artistic idea:** Extreme macro on cursor and search underline; pulling back reveals how content structure sits inside a page. This is the hero transition, not abstract data-wall wallpaper.
+**Timed choreography:** 0.00s ring becomes the input focus. .3s generic query types in; .78s the search underline turns into a structural guide; 1.2s headings and content tags organize behind it; 1.75s representative result page resolves, while title stays in independent screen-space. 2.15s the underline widens to a responsive breakpoint track.
+**Transition contract:** The search underline becomes a screen-edge track in shot 7; a brisk image push and matched edge carry across the cut.
+**Assets and technique:** Search/page UI, line-authored content tags, digital imagery only.
+**Sound:** Fast percussive rise; measured 17.65s downbeat lines up with desktop → tablet.
+
+### Shot 07 / 17.65–20.50s / 2.85s — “UN SOLO SITO.”
+**Purpose:** Show a single site working across desktop, tablet, and smartphone.
+**Exact copy:** `UN SOLO SITO.`; sublabels `DESKTOP`, `TABLET`, `SMARTPHONE`; supporting copy `Adattato a ogni schermo.`.
+**Composition and artistic idea:** One responsive-page image reads across desktop, tablet, and phone in a shared composition. Labels spotlight each format as the camera keeps moving.
+**Timed choreography:** The wide, coherent page pushes forward; a DESKTOP label calls out the primary view, then TABLET and SMARTPHONE take focus while the image continues its controlled zoom. The final device edge motivates the project-process path in scene 8.
+**Transition contract:** The responsive multi-device crop gives way to the project workflow via a matched device-edge cue, camera tilt, and scale.
+**Assets and technique:** Bespoke multi-device digital-interface art, changing format labels, responsive type, modest perspective.
+**Sound:** Three real percussive cuts for the three formats, last on 20.50s.
+
+### Shot 08 / 20.50–23.35s / 2.85s — “DAL PROGETTO ALL’ONLINE”
+**Purpose:** Explain that VEROXA provides a complete service across design, development, and optimization.
+**Exact copy:** `PROGETTAZIONE` → `SVILUPPO` → `OTTIMIZZAZIONE`; subline `Un progetto digitale, completo.`.
+**Composition and artistic idea:** A dynamic process path operates behind a tangible digital stack: style specimen → authored code → finished page. Three words are separate beats, not equal boxes in a list.
+**Timed choreography:** 0.00s mobile outline extends into the horizontal path. .3s `PROGETTAZIONE` connects to a color/type composition; .95s `SVILUPPO` pulses as that design gains a browser; 1.58s `OTTIMIZZAZIONE` sharpens the page's content order; 2.1s all three stages align under a completed page, then split to visitor/admin views.
+**Transition contract:** The project line reaches its third marker and releases into scene 9's paired visitor/management interface planes.
+**Assets and technique:** Shared bespoke web panels, SVG route, real typography and screen geometry.
+**Sound:** Three escalating synth impacts, rising through the 23.35s cut.
+
+### Shot 09 / 23.35–26.20s / 2.85s — “PER CHI VISITA. PER CHI GESTISCE.”
+**Purpose:** Explain ease of use for a customer's online experience and the owner's management workflow—both in the supplied brief.
+**Exact copy:** `PER CHI VISITA.` followed by `PER CHI GESTISCE.`; recap labels `SITI WEB`, `DESIGN`, `E-COMMERCE`, `SEO` on the four final beats.
+**Composition and artistic idea:** A tall visitor-facing page and a broad management interface turn around a shared pivot, then four UI fragments flash with a new crop and composition every 350–450ms. No invented user data or performance figures.
+**Timed choreography:** 0.00s the visitor and management planes open apart. .55s the management plane swings into view. 1.12s the shared perspective settles to reveal both. From 1.59s, four distinct digital service stills are highlighted in sequence. At the finish, the mint marker remains the visual bridge into the brand end-card.
+**Transition contract:** The four fast service crops scale down to create space for the exact brand medallion; the mint rule remains the visual through-line.
+**Assets and technique:** Software imagery only; scene-authored UI shapes and type; four unique cuts selected from matching brand-adjacent digital stills.
+**Sound:** Tight drum sequence overlays a confident build; main accent arrives at 26.20s.
+
+### Shot 10 / 26.20–30.00s / 3.80s — “VEROXA”
+**Purpose:** Deliver the official identity, exact service promise, and a confident finish.
+**Exact copy:** The established circular V monogram; plain `VEROXA`; `Soluzioni digitali costruite intorno alla tua attività.`—faithful to the official description.
+**Composition and artistic idea:** All software planes resolve into generous midnight-blue space. VEROXA’s established circular V mark scales into a cool-blue medallion; the correct VEROXA name and promise resolve beside it with readable clear space.
+**Timed choreography:** 0.00s the circular V medallion scales in with the carried point. By .95s its outline and V settle beside the brand name; the official promise follows and holds. The single thin cyan light-trace recedes while the logo lockup remains legible on the final frame.
+**Transition contract:** Ring returns to the first-frame locator's size and position; pulse gives a continuous film loop instead of a blank end-frame.
+**Assets and technique:** The website’s authentic circular V monogram, Plus Jakarta Sans and Playfair Display; no altered VEXORA asset and no physical subject matter.
+**Sound:** Resolved final impact is nearest the real final onset at 29.55s; concise release at 30.00s.
 
 ## Audio spec
-- Runtime: 25 seconds (scene durations total).
-- Music: original locally synthesized instrumental score (the required music-generation callback was blocked because paid-mode confirmation was unavailable); 112 BPM, confident / bright / elegantly explosive, warm chord bed, plucked arpeggio, crisp percussive pulse. 25-second WAV synthesized locally and encoded to `bg_music.mp3`; no vocals, no harsh highs.
-- Voiceover: none (not explicitly requested).
-- SFX: none (not explicitly requested).
-- Playback file: `bg_music.mp3`.
-- Beat alignment: cuts at 4.80, 10.15, 15.50, 20.35 seconds. Verified RMS onsets from the local score occur at 4.80, 10.15, 15.50 and 20.35 seconds (50ms analysis windows); total remains exactly 25.00s.
+- Runtime: 30.00 seconds; ten scenes sum to 30,000ms.
+- Music: A self-generated, loud, propulsive cinematic electro-rock / synth instrumental, 126 BPM target, powerful kick and sharp snare, warm distorted bass, bright ascending digital arp and staccato synth/guitar energy, no soft introductory pad. Dense final lift; resolved final hit. No vocals and no harsh clipping.
+- Measured cut accents (50 ms RMS windows, adjacent jump ≥5 dB): 3.35, 6.20, 9.55, 11.95, 14.90, 17.65, 20.50, 23.35, 26.20 seconds. The final music accent at 29.55s resolves into the 30.00s picture end. The generated source bed was longer than the requested runtime; it was trimmed to 30 seconds before cuts were measured and used.
+- Voiceover: none requested; key content is visible in text, understandable without sound.
+- SFX: none requested; the high-energy score alone provides the punctuation.
+- Playback file: `public/audio/bg_music.mp3`, trimmed from the generated master to the requested 30-second picture runtime.
 
 ## Variety review
-Five distinct frames: full-bleed human photography with quick montage → split geometric construction → luminous responsive editorial webpage and macro pullback → asymmetric three-window process fold → quiet centered navy/azure logo iris. Adjacent shots change at least two of framing, medium, hero scale, action mechanic and pacing. At least one visible change every second, including each late handoff. Key image area exceeds half the short edge in the web reveal. Final is intentionally resolved as brand lockup but the iris contracts through the actual last frame, with no static dead tail.
+Ten distinct scenes, each using a fresh action and layout: illuminated interface → browser page → design system → commerce → bookings → search/SEO → responsive reflow → project path → two-sided interface plus four-picture service montage → logo finale. The visual subject stays digital, never physical storefronts. Typography explains each service in plain Italian, without invented clients, metrics, dates, prices, or guaranteed results. Every scene changes image/structure at least once per second; the music-backed hard cuts differ in method and maintain a readable hierarchy.
