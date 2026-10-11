@@ -1,87 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 
-/* REPLACE THESE -- define your own palette and fonts for each video */
 :root {
-  --color-primary: #000000;
-  --color-secondary: #6b7280;
-  --color-accent: #3b82f6;
-
-  --color-bg-light: #ffffff;
-  --color-bg-dark: #0f172a;
-  --color-bg-muted: #f8fafc;
-
-  --color-text-primary: #111827;
-  --color-text-secondary: #6b7280;
-  --color-text-muted: #9ca3af;
-  --color-text-inverse: #ffffff;
-
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-@theme inline {
-  --color-primary: var(--color-primary);
-  --color-secondary: var(--color-secondary);
-  --color-accent: var(--color-accent);
-  --color-bg-light: var(--color-bg-light);
-  --color-bg-dark: var(--color-bg-dark);
-  --color-bg-muted: var(--color-bg-muted);
-  --color-text-primary: var(--color-text-primary);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-text-muted: var(--color-text-muted);
-  --color-text-inverse: var(--color-text-inverse);
-  --color-success: var(--color-success);
-  --color-warning: var(--color-warning);
-  --color-error: var(--color-error);
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-mono: var(--font-mono);
-}
-
-body {
-  font-family: var(--font-body);
+  --ink: #07162f;
+  --ink-soft: #142c4b;
+  --blue: #287da6;
+  --sky: #cce8f2;
+  --paper: #fbfcfd;
+  --mint: #d6ece2;
+  --text: #10213a;
+  --muted: #688094;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.video-media-frame {
-  box-sizing: border-box;
-  height: 100%;
-  min-height: 0;
-  min-width: 0;
+@theme inline {
+  --color-primary: var(--blue);
+  --color-secondary: var(--sky);
+  --color-accent: var(--mint);
+  --color-bg-light: var(--paper);
+  --color-bg-dark: var(--ink);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { font-family: var(--font-body); background: var(--paper); color: var(--text); }
+
+.film-stage {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   width: 100%;
-}
-
-.video-media-frame > :is(img, video) {
-  display: block;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
+  isolation: isolate;
 }
-
-.video-media-frame[data-media-fit='contain'] > :is(img, video) {
-  object-fit: contain;
+.film-photo { display: block; width: 100%; height: 100%; object-fit: cover; }
+.film-kicker {
+  font: 700 1.95vmin/1.2 var(--font-body);
+  letter-spacing: .2em;
+  text-transform: uppercase;
 }
-
-.video-media-frame[data-media-position='top'] > :is(img, video) {
-  object-position: top;
+.film-copy {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -.045em;
+  line-height: .98;
 }
-
-.video-media-frame[data-media-position='right'] > :is(img, video) {
-  object-position: right;
+.film-small {
+  font: 500 3vmin/1.35 var(--font-body);
+  letter-spacing: -.02em;
 }
-
-.video-media-frame[data-media-position='bottom'] > :is(img, video) {
-  object-position: bottom;
+.film-micro {
+  font: 700 1.9vmin/1.3 var(--font-body);
+  letter-spacing: .16em;
+  text-transform: uppercase;
 }
+.film-grid {
+  background-image:
+    linear-gradient(to right, rgba(40,125,166,.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(40,125,166,.08) 1px, transparent 1px);
+  background-size: 5vmin 5vmin;
+  mask-image: radial-gradient(ellipse, black 20%, transparent 78%);
+}
+.no-select { user-select: none; }
 
-.video-media-frame[data-media-position='left'] > :is(img, video) {
-  object-position: left;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }

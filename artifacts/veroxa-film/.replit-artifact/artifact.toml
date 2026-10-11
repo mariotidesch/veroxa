@@ -1,4 +1,5 @@
 kind = "video"
+videoAspectRatio = "16:9"
 previewPath = "/veroxa-film/"
 title = "Veroxa — Film di presentazione"
 description = "Video promozionale animato di 25 secondi per il brand Veroxa."
