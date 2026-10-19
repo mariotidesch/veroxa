@@ -16,11 +16,11 @@ export function Scene07() {
   useSceneTimer(events);
 
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0, y: '6%' }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.94, y: '-2%' }}
+    <motion.section className="film-stage" initial={{ opacity: 0, y: '3%', scale: 1.08, rotateX: 5, clipPath: 'inset(10% 0 0 0)' }} animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, clipPath: 'inset(0 0 0 0)' }} exit={{ opacity: 0, scale: 1.1, y: '-2%', rotateY: 7, clipPath: 'inset(0 0 100% 0)' }}
       transition={{ duration: 0.42, ease: EASE }} style={{ background: '#08182e', color: '#10213a' }}>
       <motion.img src={`${ROOT}images/digital-responsive.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.17 }} animate={{ scale: [1.17, 1.07, 1.01] }}
-        transition={{ duration: 2.75, times: [0, 0.56, 1], ease: EASE }} />
+        initial={{ scale: 1.2 }} animate={{ scale: [1.2, 1.08, 1.02, 1.15], x: ['1%', '-1%', 0, '1%'] }}
+        transition={{ duration: 2.75, times: [0, 0.43, 0.74, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,rgba(8,24,46,.91) 0%,rgba(8,24,46,.78) 38%,rgba(8,24,46,.15) 71%,rgba(8,24,46,.06)),linear-gradient(0deg,rgba(8,24,46,.6),transparent 40%)' }} />
       <motion.div className="absolute" style={{ left: '8%', top: '20%', width: '43%' }}
         initial={{ opacity: 0, x: -22 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.38, delay: 0.08 }}>
@@ -44,7 +44,8 @@ export function Scene07() {
         ))}
       </motion.div>
       <motion.div className="absolute" style={{ left: '8%', bottom: '12%', height: 1, background: 'rgba(204,232,242,.72)', transformOrigin: 'left', width: '24%' }}
-        animate={{ scaleX: [0.34, 0.68, 1, 0.34] }} transition={{ duration: 2.55, times: [0, 0.24, 0.51, 1], ease: EASE }} />
+        animate={{ scaleX: [0.34, 0.68, 1, 0.34], x: active === 1 ? '7%' : active === 2 ? '14%' : 0 }}
+        transition={{ duration: 2.55, times: [0, 0.24, 0.51, 1], ease: EASE }} />
     </motion.section>
   );
 }

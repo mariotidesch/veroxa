@@ -25,11 +25,11 @@ export function Scene09() {
   useSceneTimer(events);
 
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.82 }} transition={{ duration: 0.4, ease: EASE }}
+    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.14, rotateY: -6, clipPath: 'inset(0 0 0 12%)' }} animate={{ opacity: 1, scale: 1, rotateY: 0, clipPath: 'inset(0 0 0 0)' }}
+      exit={{ opacity: 0, scale: 0.84, rotateY: 7, clipPath: 'inset(8% 8% 8% 8%)' }} transition={{ duration: 0.4, ease: EASE }}
       style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.img src={`${ROOT}images/digital-interface.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.14 }} animate={{ scale: [1.14, 1.07, 1.02] }} transition={{ duration: 2.8, times: [0, 0.64, 1], ease: EASE }} />
+        initial={{ scale: 1.18 }} animate={{ scale: [1.18, 1.08, 1.02, 1.13], x: ['1%', '0%', '-1%', '1%'] }} transition={{ duration: 2.8, times: [0, 0.5, 0.77, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg,rgba(8,24,46,.9),rgba(8,24,46,.78) 52%,rgba(8,24,46,.46))' }} />
       <motion.div className="absolute film-micro" style={{ left: '8%', top: '10%', color: '#a9deca' }}
         initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28, delay: 0.08 }}>
@@ -66,7 +66,7 @@ export function Scene09() {
       <div className="absolute" style={{ right: '8%', bottom: '9.3%', display: 'flex', width: '26%', height: '19%', gap: '.7vmin' }}>
         {SERVICE_FRAMES.map((service, index) => (
           <motion.div key={service.label} className="relative overflow-hidden"
-            animate={{ scaleX: frame === index ? 1.12 : 0.82, opacity: frame < 0 || frame === index ? 1 : 0.48 }}
+            animate={{ scale: frame === index ? 1.1 : 0.9, y: frame === index ? '-7%' : 0, opacity: frame < 0 || frame === index ? 1 : 0.42, rotateY: frame === index ? 0 : -3 }}
             transition={{ duration: 0.2, ease: EASE }}
             style={{ flex: '1 1 0', minWidth: 0, border: `1px solid ${frame === index ? '#cce8f2' : 'rgba(204,232,242,.28)'}`, transformOrigin: 'center' }}>
             <img src={service.image} alt="" className="film-photo" style={{ objectPosition: service.position }} />

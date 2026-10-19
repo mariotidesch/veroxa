@@ -5,14 +5,14 @@ const ROOT = import.meta.env.BASE_URL;
 
 export function Scene04() {
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0, scale: 0.9, rotateY: -8 }}
-      animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-      exit={{ opacity: 0, scale: 1.11, x: '5%' }}
+    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.1, rotateY: -12, clipPath: 'inset(0 0 0 18%)' }}
+      animate={{ opacity: 1, scale: 1, rotateY: 0, clipPath: 'inset(0 0 0 0%)' }}
+      exit={{ opacity: 0, scale: 1.14, x: '4%', rotateY: 6, clipPath: 'inset(0 100% 0 0)' }}
       transition={{ duration: 0.42, ease: EASE }} style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.img src={`${ROOT}images/digital-commerce.jpg`} alt="" className="film-photo absolute"
         style={{ left: '30%', top: '12%', width: '66%', height: '76%', objectPosition: 'center', boxShadow: '-2vmin 2vmin 8vmin rgba(0,0,0,.3)' }}
-        initial={{ scale: 1.18, x: '6%' }} animate={{ scale: [1.18, 1.08, 1.02], x: ['6%', '1%', 0] }}
-        transition={{ duration: 2.34, times: [0, 0.56, 1], ease: EASE }} />
+        initial={{ scale: 1.22, x: '6%', rotateZ: 1.5 }} animate={{ scale: [1.22, 1.08, 1.02, 1.12], x: ['6%', '1%', 0, '2%'], rotateZ: [1.5, 0, 0, -1.2] }}
+        transition={{ duration: 2.4, times: [0, 0.48, 0.77, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,#08182e 0%,rgba(8,24,46,.96) 24%,rgba(8,24,46,.74) 43%,rgba(8,24,46,0) 72%)' }} />
       <div className="absolute" style={{ left: '7.5%', top: '23%', width: '37%', zIndex: 2 }}>
         <motion.div className="film-micro" style={{ color: '#a9deca' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.08 }}>

@@ -15,7 +15,7 @@ export function Scene02() {
   useSceneTimer(events);
 
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0, x: '8%' }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, rotateY: -12, x: '-3%' }}
+    <motion.section className="film-stage" initial={{ opacity: 0, x: '4%', scale: 1.08, rotateY: -5, clipPath: 'inset(0 0 0 12%)' }} animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0, clipPath: 'inset(0 0 0 0%)' }} exit={{ opacity: 0, rotateY: -14, x: '-3%', scale: 1.08, clipPath: 'inset(0 100% 0 0)' }}
       transition={{ duration: 0.42, ease: EASE }} style={{ background: '#f5f8f9', color: '#10213a' }}>
       <motion.img src={`${ROOT}images/digital-interface.jpg`} alt="" className="film-photo absolute inset-0"
         initial={{ scale: 1.15 }} animate={{ scale: 1.02 }} transition={{ duration: 2.75, ease: EASE }} />
@@ -32,11 +32,11 @@ export function Scene02() {
         className="absolute overflow-hidden"
         style={{ left: '28%', top: '17%', width: '66%', height: '67%', borderRadius: '1.1vmin', background: '#f5f8f9', boxShadow: '0 2.6vmin 7vmin rgba(8,24,46,.29)', border: '1px solid rgba(238,250,252,.78)', transformOrigin: 'center' }}
         initial={{ opacity: 0, scale: 0.94, x: '4%' }}
-        animate={{ opacity: 1, scale: 1, x: 0 }}
+        animate={{ opacity: 1, scale: [0.94, 1.035, 1], x: 0, rotateY: view === 1 ? -3 : view === 2 ? 4 : 0, rotateX: view === 2 ? 2 : 0 }}
         transition={{ duration: 0.5, ease: EASE }}
       >
         <motion.img src={`${ROOT}images/digital-responsive.jpg`} alt="" className="film-photo absolute inset-0"
-          initial={{ scale: 1.23 }} animate={{ scale: [1.23, 1.07, 1.02] }} transition={{ duration: 2.8, times: [0, 0.52, 1], ease: EASE }}
+          initial={{ scale: 1.23 }} animate={{ scale: view === 2 ? [1.23, 1.12, 1.2] : [1.23, 1.07, 1.02] }} transition={{ duration: 2.8, times: [0, 0.52, 1], ease: EASE }}
           style={{ objectPosition: 'center' }} />
         <div className="absolute inset-x-0 top-0 flex items-center justify-between px-[1.5vmin]" style={{ height: '5.2vmin', background: 'rgba(249,252,252,.93)', borderBottom: '1px solid rgba(16,33,58,.12)' }}>
           <div className="flex gap-[.65vmin]"><i className="h-[.65vmin] w-[.65vmin] rounded-full bg-[#c8dce4]" /><i className="h-[.65vmin] w-[.65vmin] rounded-full bg-[#c8dce4]" /><i className="h-[.65vmin] w-[.65vmin] rounded-full bg-[#c8dce4]" /></div>

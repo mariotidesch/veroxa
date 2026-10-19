@@ -16,11 +16,11 @@ export function Scene05() {
   useSceneTimer(events);
 
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.04, rotateY: 9 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-      exit={{ opacity: 0, scale: 1.1, rotateX: 7 }} transition={{ duration: 0.42, ease: EASE }}
+    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.12, rotateY: 12, clipPath: 'circle(120% at 82% 48%)' }} animate={{ opacity: 1, scale: 1, rotateY: 0, clipPath: 'circle(120% at 82% 48%)' }}
+      exit={{ opacity: 0, scale: 1.08, rotateX: 8, clipPath: 'circle(0% at 82% 48%)' }} transition={{ duration: 0.42, ease: EASE }}
       style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.img src={`${ROOT}images/digital-booking.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.13, x: '3%' }} animate={{ scale: [1.13, 1.06, 1.01], x: ['3%', '1%', 0] }} transition={{ duration: 2.8, times: [0, 0.55, 1], ease: EASE }} />
+        initial={{ scale: 1.16, x: '3%' }} animate={{ scale: [1.16, 1.07, 1.02, 1.1], x: ['3%', '1%', 0, '-1%'] }} transition={{ duration: 2.8, times: [0, 0.48, 0.78, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,#08182e 0%,rgba(8,24,46,.93) 34%,rgba(8,24,46,.36) 71%,rgba(8,24,46,.1))' }} />
       <div className="absolute" style={{ top: '19%', left: '7.5%', width: '37%' }}>
         <motion.div className="film-micro" style={{ color: '#a9deca' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.08 }}>IL TEMPO, IN ORDINE</motion.div>
@@ -37,7 +37,7 @@ export function Scene05() {
       </div>
 
       <motion.div className="absolute film-glass" style={{ right: '9%', top: '15%', width: '36%', height: '70%', padding: '3vmin', borderColor: 'rgba(212,240,242,.5)', background: 'rgba(8,24,46,.67)', backdropFilter: 'blur(8px)' }}
-        initial={{ opacity: 0, y: '9%', rotate: 1.4 }} animate={{ opacity: 1, y: 0, rotate: 0 }} transition={{ duration: 0.55, delay: 0.18, ease: EASE }}>
+        initial={{ opacity: 0, y: '9%', rotate: 2.4, scale: 0.96 }} animate={{ opacity: 1, y: 0, rotate: selection === 10 ? 0 : selection === 16 ? -0.8 : 0.7, scale: selection === 21 ? 1.025 : 1 }} transition={{ duration: 0.55, delay: 0.18, ease: EASE }}>
         <div className="flex items-center justify-between">
           <span className="film-micro" style={{ color: '#eff7f5' }}>SCEGLI UN MOMENTO</span>
           <span style={{ color: '#a9deca', fontSize: '2.7vmin' }}>⌄</span>

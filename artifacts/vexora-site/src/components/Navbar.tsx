@@ -73,6 +73,7 @@ export function Navbar() {
     { href: "/chi-siamo", label: "Chi Siamo", subtitle: "Le nostre radici" },
     { href: "/cosa-facciamo", label: "Cosa Facciamo", subtitle: "I nostri servizi" },
     { href: "/come-funziona", label: "Come Funziona", subtitle: "Il nostro metodo" },
+    { href: "/progetti", label: "Galleria", subtitle: "Concept e progetti" },
     { href: "/contatti", label: "Contatti", subtitle: "Iniziamo un progetto" }
   ];
 

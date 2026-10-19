@@ -32,6 +32,7 @@ export function Footer() {
             <Link href="/chi-siamo"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Chi Siamo</span></Link>
             <Link href="/cosa-facciamo"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Cosa Facciamo</span></Link>
             <Link href="/come-funziona"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Come Funziona</span></Link>
+            <Link href="/progetti"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Galleria</span></Link>
             <Link href="/contatti"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Contatti</span></Link>
           </div>
           <div className="flex flex-col gap-6">

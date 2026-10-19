@@ -12,19 +12,21 @@ const STEPS = [
 
 export function Scene08() {
   const [active, setActive] = useState(0);
+  const [handoff, setHandoff] = useState(false);
   const events = useMemo(() => [
     { time: 820, callback: () => setActive(1) },
     { time: 1680, callback: () => setActive(2) },
+    { time: 2440, callback: () => setHandoff(true) },
   ], []);
   useSceneTimer(events);
 
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0, rotateX: 8, scale: 1.08 }} animate={{ opacity: 1, rotateX: 0, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.97, rotateY: 9 }} transition={{ duration: 0.44, ease: EASE }}
+    <motion.section className="film-stage" initial={{ opacity: 0, rotateX: 8, scale: 1.08, clipPath: 'inset(0 0 12% 0)' }} animate={{ opacity: 1, rotateX: 0, scale: handoff ? 1.045 : 1, rotateY: handoff ? -2 : 0, clipPath: 'inset(0 0 0 0)' }}
+      exit={{ opacity: 0, scale: 1.12, rotateY: 8, clipPath: 'inset(0 100% 0 0)' }} transition={{ duration: 0.44, ease: EASE }}
       style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.img src={`${ROOT}images/digital-code.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.23 }} animate={{ scale: [1.23, 1.1, 1.03] }}
-        transition={{ duration: 2.8, times: [0, 0.65, 1], ease: EASE }} />
+        initial={{ scale: 1.23 }} animate={{ scale: handoff ? 1.17 : [1.23, 1.1, 1.03], x: handoff ? '-1%' : 0 }}
+        transition={{ duration: handoff ? 0.34 : 2.55, times: [0, 0.65, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,rgba(8,24,46,.93) 0%,rgba(8,24,46,.74) 50%,rgba(8,24,46,.24) 100%)' }} />
       <div className="absolute" style={{ left: '8%', top: '14%', right: '8%' }}>
         <motion.div className="film-kicker" style={{ color: '#a9deca' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.09 }}>
@@ -44,7 +46,7 @@ export function Scene08() {
           <motion.div key={step.marker} className="relative" style={{ minWidth: index === 1 ? '37%' : '25%' }}>
             <div style={{ height: 1, position: 'absolute', top: '-1.55vmin', left: 0, width: index === 2 ? '54%' : '90%', transformOrigin: 'left', background: index <= active ? '#a9deca' : 'rgba(204,232,242,.36)' }}>
               <motion.span style={{ display: 'block', width: '1.15vmin', height: '1.15vmin', borderRadius: '50%', background: index <= active ? '#a9deca' : '#cce8f2', marginTop: '-.5vmin', marginLeft: '90%' }}
-                animate={{ scale: index === active ? [1, 1.45, 1] : 0.75, opacity: index <= active ? 1 : 0.46 }}
+                animate={{ x: index < active ? '0.7vmin' : 0, scale: index === active ? [1, 1.55, 1] : 0.75, opacity: index <= active ? 1 : 0.46 }}
                 transition={{ duration: 0.42 }} />
             </div>
             <motion.span className="film-micro" animate={{ opacity: index === active ? 1 : 0.58, scale: index === active ? 1.04 : 1 }}

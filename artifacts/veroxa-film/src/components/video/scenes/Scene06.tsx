@@ -5,12 +5,12 @@ const ROOT = import.meta.env.BASE_URL;
 
 export function Scene06() {
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0, scale: 0.9, x: '-4%' }} animate={{ opacity: 1, scale: 1, x: 0 }}
-      exit={{ opacity: 0, x: '-6%' }} transition={{ duration: 0.42, ease: EASE }}
+    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.16, x: '-2%', rotateY: 7, clipPath: 'inset(0 10% 0 0)' }} animate={{ opacity: 1, scale: 1, x: 0, rotateY: 0, clipPath: 'inset(0 0% 0 0)' }}
+      exit={{ opacity: 0, scale: 1.12, x: '-4%', rotateY: -6, clipPath: 'inset(0 100% 0 0)' }} transition={{ duration: 0.42, ease: EASE }}
       style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.img src={`${ROOT}images/digital-search.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.22, x: '4%' }} animate={{ scale: [1.22, 1.08, 1.02], x: ['4%', '1%', 0] }}
-        transition={{ duration: 2.65, times: [0, 0.57, 1], ease: EASE }} />
+        initial={{ scale: 1.25, x: '4%' }} animate={{ scale: [1.25, 1.1, 1.02, 1.15], x: ['4%', '1%', 0, '-2%'] }}
+        transition={{ duration: 2.65, times: [0, 0.44, 0.76, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,rgba(8,24,46,.95) 0%,rgba(8,24,46,.8) 41%,rgba(8,24,46,.27) 77%,rgba(8,24,46,.18) 100%)' }} />
       <div className="absolute" style={{ left: '8%', top: '22%', width: '43%' }}>
         <motion.div className="film-kicker" style={{ color: '#a9deca' }}
@@ -26,7 +26,7 @@ export function Scene06() {
         </motion.p>
       </div>
       <motion.div className="absolute film-glass" style={{ right: '9%', top: '29%', width: '30%', padding: '2vmin 2.5vmin', display: 'flex', alignItems: 'center', gap: '1.6vmin', borderRadius: '999px' }}
-        initial={{ opacity: 0, scale: 0.93, x: '6%' }} animate={{ opacity: 1, scale: 1, x: 0 }}
+        initial={{ opacity: 0, scale: 0.82, x: '6%' }} animate={{ opacity: 1, scale: [1.08, 1, 1.045], x: [0, 0, '-1%'] }}
         transition={{ duration: 0.47, delay: 0.3, ease: EASE }}>
         <span style={{ width: '1.45vmin', height: '1.45vmin', borderRadius: '50%', background: '#a9deca' }} />
         <span style={{ color: 'rgba(245,248,249,.82)', fontSize: '2.2vmin', letterSpacing: '-.01em' }}>la tua attività online</span>

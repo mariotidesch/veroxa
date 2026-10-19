@@ -4,15 +4,15 @@ const EASE = [0.18, 0.82, 0.2, 1] as const;
 
 export function Scene10() {
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.08, rotateX: -5 }}
-      animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-      exit={{ opacity: 0, scale: 1.025 }} transition={{ duration: 0.5, ease: EASE }}
+    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.12, rotateX: -7, clipPath: 'circle(8% at 24% 49%)' }}
+      animate={{ opacity: 1, scale: 1, rotateX: 0, clipPath: 'circle(120% at 24% 49%)' }}
+      exit={{ opacity: 0, scale: 1.04, rotateY: -2, clipPath: 'circle(8% at 24% 49%)' }} transition={{ duration: 0.5, ease: EASE }}
       style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.div className="absolute" style={{ inset: 0, background: 'radial-gradient(ellipse at 24% 50%,rgba(40,125,166,.2),transparent 42%),linear-gradient(90deg,#08182e 0%,#0d213b 100%)' }}
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} />
       <motion.div className="absolute rounded-full overflow-hidden" style={{ left: '24%', top: '49%', width: '37vmin', height: '37vmin', x: '-50%', y: '-50%', background: '#cce8f2', boxShadow: '0 0 0 1px rgba(204,232,242,.82),0 2.5vmin 7vmin rgba(0,0,0,.26)', display: 'grid', placeItems: 'center' }}
-        initial={{ scale: 0.2, rotate: -14, opacity: 0 }} animate={{ scale: [0.2, 1.06, 1], rotate: [ -14, 1.2, 0 ], opacity: 1 }}
-        transition={{ duration: 0.78, delay: 0.12, ease: EASE }}>
+        initial={{ scale: 0.16, rotate: -18, opacity: 0 }} animate={{ scale: [0.16, 1.08, 1, 1.018, 1], rotate: [-18, 1.8, 0, 0, 0], opacity: 1 }}
+        transition={{ duration: 1.28, delay: 0.12, times: [0, 0.62, 0.82, 0.94, 1], ease: EASE }}>
         <motion.svg viewBox="0 0 100 100" fill="none" aria-label="Monogramma V circolare VEROXA" role="img"
           style={{ width: '68%', height: '68%', overflow: 'visible', transformOrigin: 'center' }}
           initial={{ opacity: 0, scale: 0.68, rotate: -12 }} animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -22,8 +22,8 @@ export function Scene10() {
         </motion.svg>
       </motion.div>
       <motion.div className="absolute rounded-full" style={{ left: '24%', top: '49%', width: '44vmin', height: '44vmin', x: '-50%', y: '-50%', border: '1px solid rgba(204,232,242,.54)', transformOrigin: 'center' }}
-        initial={{ scale: 0.42, opacity: 0 }} animate={{ scale: [0.42, 1.02, 1.09], opacity: [0, 0.68, 0.31] }}
-        transition={{ duration: 1.08, delay: 0.08, times: [0, 0.58, 1], ease: EASE }} />
+        initial={{ scale: 0.42, opacity: 0 }} animate={{ scale: [0.42, 1.02, 1.09, 1.13], rotate: [0, 10, -6, 0], opacity: [0, 0.68, 0.31, 0.13] }}
+        transition={{ duration: 3.4, delay: 0.08, times: [0, 0.2, 0.56, 1], ease: EASE }} />
 
       <motion.div className="absolute" style={{ left: '47%', top: '22%', width: 1, height: '52%', background: 'linear-gradient(transparent,rgba(204,232,242,.56),transparent)', transformOrigin: 'center' }}
         initial={{ scaleY: 0, opacity: 0 }} animate={{ scaleY: 1, opacity: 1 }} transition={{ duration: 0.54, delay: 0.34, ease: EASE }} />

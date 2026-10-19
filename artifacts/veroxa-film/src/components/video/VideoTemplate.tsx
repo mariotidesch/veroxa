@@ -114,10 +114,12 @@ export default function VideoTemplate({
           className="film-camera"
           initial={false}
           animate={{
-            scale: sceneIndex % 2 === 0 ? 1.022 : 1.038,
-            rotateZ: sceneIndex % 2 === 0 ? -0.12 : 0.12,
+            scale: sceneIndex % 2 === 0 ? 1.032 : 1.052,
+            rotateZ: sceneIndex % 2 === 0 ? -0.42 : 0.42,
+            x: sceneIndex % 3 === 0 ? '-0.55%' : sceneIndex % 3 === 1 ? '0.4%' : 0,
+            y: sceneIndex % 2 === 0 ? '0.25%' : '-0.35%',
           }}
-          transition={{ duration: 0.38, ease: [0.2, 0.7, 0.2, 1] }}
+          transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
           style={{ transformPerspective: 1500 }}
         >
           <AnimatePresence mode="sync">

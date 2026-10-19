@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/FadeIn";
 import { Logo1 } from "@/components/Logos";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Play, MoveUpRight } from "lucide-react";
 
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -110,6 +110,69 @@ export default function Home() {
                 </div>
                 <p className="mt-12 text-2xl md:text-3xl font-serif leading-snug">Veroxa nasce proprio lì: dove creatività e tecnologia si uniscono per costruire siti semplici, veloci e riconoscibili. Ogni scelta dà valore alla tua attività e rende più naturale il rapporto con i tuoi clienti.</p>
                 <p className="mt-8 text-muted-foreground leading-relaxed">La X è il simbolo del nostro modo di lavorare: unire identità, tecnica, estetica e funzionalità per ottenere un risultato che funzioni davvero.</p>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+        <section className="px-6 md:px-12 py-24 md:py-32">
+          <div className="max-w-7xl mx-auto">
+            <FadeIn className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+              <div className="max-w-2xl">
+                <span className="eyebrow">Una prima idea</span>
+                <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">
+                  Prima una buona storia. <span className="italic text-primary">Poi il suo sito.</span>
+                </h2>
+                <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-xl">
+                  Una piccola anteprima di come cambia la percezione di un’attività quando la sua identità trova il posto giusto online.
+                </p>
+              </div>
+              <Link href="/progetti" data-testid="link-gallery-home" className="group flex items-center gap-3 text-sm tracking-[.12em] uppercase font-medium text-primary hover:text-foreground transition-colors shrink-0">
+                Esplora la galleria <MoveUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </Link>
+            </FadeIn>
+            <FadeIn delay={0.12} className="mt-12 relative rounded-[2rem] overflow-hidden bg-[#e8eee9]">
+              <div className="grid md:grid-cols-[.9fr_1.1fr] min-h-[340px] md:min-h-[470px]">
+                <div className="p-8 md:p-14 flex flex-col justify-between">
+                  <div className="flex items-center gap-3 text-xs tracking-[.18em] uppercase text-foreground/50">
+                    <span className="w-2 h-2 rounded-full bg-primary" /> Concept dimostrativo
+                  </div>
+                  <div className="py-12">
+                    <span className="text-xs uppercase tracking-[.2em] text-primary">Fioreria di quartiere</span>
+                    <h3 className="mt-4 text-4xl md:text-5xl font-light leading-tight">Ogni giorno,<br/><span className="italic">un fiore diverso.</span></h3>
+                    <p className="mt-5 text-foreground/65 leading-relaxed max-w-sm">Un piccolo concept per mostrare come una presenza digitale può raccontare una bottega con la stessa cura della vetrina.</p>
+                  </div>
+                  <Link href="/progetti" className="inline-flex items-center gap-3 text-sm font-medium text-primary" data-testid="link-demo-gallery">
+                    Guarda il prima e dopo <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+                <div className="relative min-h-[270px] md:min-h-0 overflow-hidden">
+                  <img src="/veroxa-film/images/digital-identity.jpg" alt="Concept visivo dimostrativo per un’identità digitale" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                  <div className="absolute bottom-5 right-5 rounded-full bg-background/90 backdrop-blur px-4 py-2 text-[10px] tracking-[.14em] uppercase text-foreground/70">Progetto demo, non un lavoro cliente</div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+        <section className="px-6 md:px-12 py-20 md:py-28 bg-[#e9f0ef]">
+          <div className="max-w-7xl mx-auto grid lg:grid-cols-[.7fr_1.3fr] gap-10 lg:gap-16 items-center">
+            <FadeIn>
+              <span className="eyebrow">Veroxa, in movimento</span>
+              <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">Un’idea prende forma, <span className="italic text-primary">in 30 secondi.</span></h2>
+              <p className="mt-6 text-lg text-foreground/70 leading-relaxed">Un breve film sul nostro modo di unire identità, design e tecnologia. Premi play e guarda il mondo Veroxa da vicino.</p>
+              <div className="mt-7 inline-flex items-center gap-3 text-xs tracking-[.16em] uppercase text-foreground/55">
+                <Play className="w-4 h-4 text-primary" aria-hidden="true" /> Film di presentazione · 00:30
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <div className="vexora-film-frame aspect-video rounded-[1.5rem] md:rounded-[2rem] shadow-[0_28px_80px_rgba(21,39,58,.16)]">
+                <iframe
+                  src="/veroxa-film/"
+                  title="Film di presentazione di Veroxa, studio digitale"
+                  className="absolute inset-0 w-full h-full border-0"
+                  loading="lazy"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  data-testid="iframe-veroxa-film"
+                />
               </div>
             </FadeIn>
           </div>
