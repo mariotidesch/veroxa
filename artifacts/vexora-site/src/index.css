@@ -169,7 +169,7 @@
   z-index: 1;
   border: 1px solid hsl(var(--foreground) / .12);
 }
-html[data-color-mode="mono"] #page-content,
+html[data-color-mode="mono"] #page-content main,
 html[data-color-mode="mono"] #site-header,
 html[data-color-mode="mono"] #site-nav-overlay,
 html[data-color-mode="mono"] #site-footer {
@@ -186,6 +186,9 @@ html[data-color-mode="mono"] #site-footer {
   color: #9bb4b2;
   font-size: 9px;
   letter-spacing: 3px;
+}
+details[open] .faq-chevron {
+  transform: rotate(180deg);
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }

@@ -142,7 +142,7 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
-        <section className="relative overflow-hidden bg-secondary/20 px-6 py-24 md:px-12 md:py-32">
+        <section id="service-selector" className="relative overflow-hidden bg-secondary/20 px-6 py-24 md:px-12 md:py-32">
           <div className="absolute -right-32 top-12 h-80 w-80 rounded-full bg-primary/10 blur-[100px]" aria-hidden="true" />
           <div className="relative mx-auto max-w-7xl">
             <FadeIn className="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
