@@ -12,7 +12,6 @@ import ChiSiamo from '@/pages/ChiSiamo';
 import CosaFacciamo from '@/pages/CosaFacciamo';
 import ComeFunziona from '@/pages/ComeFunziona';
 import Contatti from '@/pages/Contatti';
-import Progetti from '@/pages/Progetti';
 
 const queryClient = new QueryClient();
 
@@ -32,13 +31,12 @@ function Router() {
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
       <Navbar />
-      <div className="flex-1">
+        <div id="page-content" className="flex-1">
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/chi-siamo" component={ChiSiamo} />
           <Route path="/cosa-facciamo" component={CosaFacciamo} />
           <Route path="/come-funziona" component={ComeFunziona} />
-          <Route path="/progetti" component={Progetti} />
           <Route path="/contatti" component={Contatti} />
           <Route>
             <div className="min-h-screen flex items-center justify-center">

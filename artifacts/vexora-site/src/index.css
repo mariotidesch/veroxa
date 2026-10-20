@@ -169,6 +169,13 @@
   z-index: 1;
   border: 1px solid hsl(var(--foreground) / .12);
 }
+html[data-color-mode="mono"] #page-content,
+html[data-color-mode="mono"] #site-header,
+html[data-color-mode="mono"] #site-nav-overlay,
+html[data-color-mode="mono"] #site-footer {
+  filter: grayscale(1);
+  transition: filter 450ms ease;
+}
 .demo-window {
   background: #f5f3ed;
   color: #18253a;

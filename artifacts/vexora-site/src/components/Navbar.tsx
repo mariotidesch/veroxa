@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { X } from "lucide-react";
+import { Contrast, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo1 } from "./Logos";
@@ -27,10 +27,26 @@ function HamburgerIcon({ hovered }: { hovered: boolean }) {
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [btnHovered, setBtnHovered] = useState(false);
+  const [isMonochrome, setIsMonochrome] = useState(() => {
+    try {
+      return window.localStorage.getItem("veroxa-color-mode") === "mono";
+    } catch {
+      return false;
+    }
+  });
   const [location] = useLocation();
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    document.documentElement.dataset.colorMode = isMonochrome ? "mono" : "color";
+    try {
+      window.localStorage.setItem("veroxa-color-mode", isMonochrome ? "mono" : "color");
+    } catch {
+      // The current choice still works for this session when storage is unavailable.
+    }
+  }, [isMonochrome]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -73,13 +89,25 @@ export function Navbar() {
     { href: "/chi-siamo", label: "Chi Siamo", subtitle: "Le nostre radici" },
     { href: "/cosa-facciamo", label: "Cosa Facciamo", subtitle: "I nostri servizi" },
     { href: "/come-funziona", label: "Come Funziona", subtitle: "Il nostro metodo" },
-    { href: "/progetti", label: "Galleria", subtitle: "Concept e progetti" },
     { href: "/contatti", label: "Contatti", subtitle: "Iniziamo un progetto" }
   ];
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-40 p-4 md:p-7 flex justify-end items-center text-foreground">
+      <header id="site-header" className="fixed top-0 left-0 w-full z-40 p-4 md:p-7 flex justify-end items-center gap-3 text-foreground">
+        <button
+          type="button"
+          onClick={() => setIsMonochrome((current) => !current)}
+          aria-label={isMonochrome ? "Torna alla visualizzazione a colori" : "Attiva la visualizzazione in bianco e nero"}
+          aria-pressed={isMonochrome}
+          title={isMonochrome ? "Torna ai colori" : "Passa al bianco e nero"}
+          data-testid="button-toggle-color-mode"
+          className="flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-4 py-3 text-xs font-medium tracking-wide text-foreground shadow-sm backdrop-blur-sm transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        >
+          <Contrast className="h-4 w-4" aria-hidden="true" />
+          <span>{isMonochrome ? "B/N attivo" : "A colori"}</span>
+        </button>
+
         {/* Pulsante menu con animazione linee */}
         <button
           ref={menuButtonRef}
@@ -119,6 +147,7 @@ export function Navbar() {
         {isOpen && (
           <motion.div
             ref={overlayRef}
+            id="site-nav-overlay"
             role="dialog"
             aria-modal="true"
             aria-label="Menu di navigazione"

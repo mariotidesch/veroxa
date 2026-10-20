@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { PageHero } from "@/components/PageHero";
 
 export default function Contatti() {
+  const initialMessage = new URLSearchParams(window.location.search).get("interesse") ?? "";
   const [isSuccess, setIsSuccess] = useState(false);
   const successTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -149,6 +150,8 @@ export default function Contatti() {
                         name="message"
                         required
                         rows={4}
+                        defaultValue={initialMessage}
+                        data-testid="input-project-message"
                         className="w-full bg-background/50 border-b-2 border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors font-serif text-lg bg-transparent resize-none"
                         placeholder="Descrivete brevemente le vostre esigenze..."
                       ></textarea>

@@ -3,11 +3,39 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/FadeIn";
 import { Logo1 } from "@/components/Logos";
 import { Link } from "wouter";
-import { ArrowRight, Play, MoveUpRight } from "lucide-react";
+import { ArrowRight, ChevronDown, MonitorSmartphone, Play, RefreshCw, Search } from "lucide-react";
 
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(true);
+  const [selectedGoal, setSelectedGoal] = useState("new-site");
   const reducedMotion = useReducedMotion();
+  const goals = [
+    {
+      id: "new-site",
+      label: "Creare un sito",
+      icon: <MonitorSmartphone className="h-5 w-5" aria-hidden="true" />,
+      title: "Una presenza digitale chiara, da zero.",
+      description: "Progettiamo un sito su misura per raccontare la tua attività e renderla semplice da scoprire da qualsiasi dispositivo.",
+      contactMessage: "Vorrei creare un nuovo sito per la mia attività.",
+    },
+    {
+      id: "restyling",
+      label: "Rinnovare il sito",
+      icon: <RefreshCw className="h-5 w-5" aria-hidden="true" />,
+      title: "Facciamo evolvere quello che hai già.",
+      description: "Rivediamo struttura, grafica e contenuti per rendere il sito più attuale e più semplice da usare.",
+      contactMessage: "Vorrei rinnovare il sito che ho già.",
+    },
+    {
+      id: "visibility",
+      label: "Aumentare la visibilità",
+      icon: <Search className="h-5 w-5" aria-hidden="true" />,
+      title: "Fatti trovare dalle persone giuste.",
+      description: "Miglioriamo contenuti e basi SEO per aiutare le persone a capire cosa offri e come contattarti.",
+      contactMessage: "Vorrei migliorare la visibilità online della mia attività.",
+    },
+  ];
+  const activeGoal = goals.find((goal) => goal.id === selectedGoal) ?? goals[0];
 
   useEffect(() => {
     // Apertura breve, con animazione ancora leggibile
@@ -114,41 +142,96 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
-        <section className="px-6 md:px-12 py-24 md:py-32">
-          <div className="max-w-7xl mx-auto">
-            <FadeIn className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-              <div className="max-w-2xl">
-                <span className="eyebrow">Una prima idea</span>
-                <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">
-                  Prima una buona storia. <span className="italic text-primary">Poi il suo sito.</span>
+        <section className="relative overflow-hidden bg-secondary/20 px-6 py-24 md:px-12 md:py-32">
+          <div className="absolute -right-32 top-12 h-80 w-80 rounded-full bg-primary/10 blur-[100px]" aria-hidden="true" />
+          <div className="relative mx-auto max-w-7xl">
+            <FadeIn className="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+              <div>
+                <span className="eyebrow">Un primo passo, insieme</span>
+                <h2 className="mt-5 text-4xl font-light leading-tight md:text-6xl">
+                  Che cosa vuoi <span className="italic text-primary">migliorare?</span>
                 </h2>
-                <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-xl">
-                  Una piccola anteprima di come cambia la percezione di un’attività quando la sua identità trova il posto giusto online.
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                  Scegli il tuo obiettivo: ti mostriamo da dove partire e puoi mandarci la tua idea già pronta nel messaggio.
                 </p>
               </div>
-              <Link href="/progetti" data-testid="link-gallery-home" className="group flex items-center gap-3 text-sm tracking-[.12em] uppercase font-medium text-primary hover:text-foreground transition-colors shrink-0">
-                Esplora la galleria <MoveUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </Link>
-            </FadeIn>
-            <FadeIn delay={0.12} className="mt-12 relative rounded-[2rem] overflow-hidden bg-[#e8eee9]">
-              <div className="grid md:grid-cols-[.9fr_1.1fr] min-h-[340px] md:min-h-[470px]">
-                <div className="p-8 md:p-14 flex flex-col justify-between">
-                  <div className="flex items-center gap-3 text-xs tracking-[.18em] uppercase text-foreground/50">
-                    <span className="w-2 h-2 rounded-full bg-primary" /> Concept dimostrativo
-                  </div>
-                  <div className="py-12">
-                    <span className="text-xs uppercase tracking-[.2em] text-primary">Fioreria di quartiere</span>
-                    <h3 className="mt-4 text-4xl md:text-5xl font-light leading-tight">Ogni giorno,<br/><span className="italic">un fiore diverso.</span></h3>
-                    <p className="mt-5 text-foreground/65 leading-relaxed max-w-sm">Un piccolo concept per mostrare come una presenza digitale può raccontare una bottega con la stessa cura della vetrina.</p>
-                  </div>
-                  <Link href="/progetti" className="inline-flex items-center gap-3 text-sm font-medium text-primary" data-testid="link-demo-gallery">
-                    Guarda il prima e dopo <ArrowRight className="w-4 h-4" />
+
+              <div className="rounded-[2rem] border border-border/70 bg-background/90 p-6 shadow-[0_24px_70px_rgba(21,39,58,.08)] md:p-9">
+                <p className="mb-5 text-xs font-medium uppercase tracking-[.16em] text-muted-foreground">Seleziona un obiettivo</p>
+                <div className="grid gap-3 sm:grid-cols-3" role="group" aria-label="Scegli il tuo obiettivo digitale">
+                  {goals.map((goal) => (
+                    <button
+                      key={goal.id}
+                      type="button"
+                      onClick={() => setSelectedGoal(goal.id)}
+                      aria-pressed={selectedGoal === goal.id}
+                      data-testid={`button-goal-${goal.id}`}
+                      className={`flex min-h-28 flex-col items-start justify-between gap-4 rounded-2xl border p-4 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                        selectedGoal === goal.id
+                          ? "border-primary bg-primary/10 text-foreground shadow-sm"
+                          : "border-border bg-background text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                      }`}
+                    >
+                      <span className="text-primary">{goal.icon}</span>
+                      <span className="text-sm font-medium leading-snug">{goal.label}</span>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-7 border-t border-border pt-7" aria-live="polite" data-testid="text-goal-recommendation">
+                  <span className="text-xs uppercase tracking-[.16em] text-primary">Da dove partire</span>
+                  <h3 className="mt-3 text-2xl font-serif font-light md:text-3xl">{activeGoal.title}</h3>
+                  <p className="mt-3 max-w-xl leading-relaxed text-muted-foreground">{activeGoal.description}</p>
+                  <Link
+                    href={`/contatti?interesse=${encodeURIComponent(activeGoal.contactMessage)}`}
+                    data-testid="link-goal-contact"
+                    className="mt-6 inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-4 text-sm font-medium uppercase tracking-[.1em] text-background transition-colors hover:bg-primary"
+                  >
+                    Raccontaci la tua idea <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
-                <div className="relative min-h-[270px] md:min-h-0 overflow-hidden">
-                  <img src="/veroxa-film/images/digital-identity.jpg" alt="Concept visivo dimostrativo per un’identità digitale" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute bottom-5 right-5 rounded-full bg-background/90 backdrop-blur px-4 py-2 text-[10px] tracking-[.14em] uppercase text-foreground/70">Progetto demo, non un lavoro cliente</div>
-                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.12} className="mt-24 grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
+              <div>
+                <span className="eyebrow">Domande rapide</span>
+                <h2 className="mt-5 text-3xl font-light leading-tight md:text-5xl">
+                  Le cose importanti, <span className="italic text-primary">senza giri.</span>
+                </h2>
+                <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
+                  Apri una domanda per trovare subito le informazioni che ti servono.
+                </p>
+              </div>
+              <div className="divide-y divide-border border-y border-border">
+                {[
+                  {
+                    id: "mobile",
+                    question: "Il sito sarà facile da usare anche da smartphone?",
+                    answer: "Sì. Progettiamo e verifichiamo ogni pagina anche su schermi piccoli, così contenuti e navigazione restano chiari da telefono.",
+                  },
+                  {
+                    id: "existing-site",
+                    question: "Posso rinnovare un sito che esiste già?",
+                    answer: "Certo. Possiamo partire da ciò che funziona, capire cosa va migliorato e ridisegnare l'esperienza intorno alle esigenze attuali.",
+                  },
+                  {
+                    id: "estimate",
+                    question: "Come si definiscono tempi e costi?",
+                    answer: "Dipendono dalle pagine e dalle funzionalità richieste. Dopo aver ascoltato la tua idea, prepariamo una proposta chiara e personalizzata.",
+                  },
+                ].map((item) => (
+                  <details key={item.id} className="group py-5" data-testid={`faq-item-${item.id}`}>
+                    <summary
+                      className="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-serif font-light marker:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      data-testid={`faq-question-${item.id}`}
+                    >
+                      <span>{item.question}</span>
+                      <ChevronDown className="faq-chevron h-5 w-5 shrink-0 text-primary transition-transform duration-200" aria-hidden="true" />
+                    </summary>
+                    <p className="max-w-2xl pt-4 pr-8 leading-relaxed text-muted-foreground">{item.answer}</p>
+                  </details>
+                ))}
               </div>
             </FadeIn>
           </div>

@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background py-20 px-6 md:px-12 relative overflow-hidden">
+    <footer id="site-footer" className="bg-foreground text-background py-20 px-6 md:px-12 relative overflow-hidden">
       {/* Decorative background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-t-full blur-[120px] pointer-events-none" />
       
@@ -32,7 +32,6 @@ export function Footer() {
             <Link href="/chi-siamo"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Chi Siamo</span></Link>
             <Link href="/cosa-facciamo"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Cosa Facciamo</span></Link>
             <Link href="/come-funziona"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Come Funziona</span></Link>
-            <Link href="/progetti"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Galleria</span></Link>
             <Link href="/contatti"><span className="text-xl font-serif hover:text-primary transition-colors font-light cursor-pointer">Contatti</span></Link>
           </div>
           <div className="flex flex-col gap-6">
