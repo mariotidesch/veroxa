@@ -9,7 +9,7 @@ export function Scene03() {
     <motion.section className="film-stage" initial={{ opacity: 0, x: '3%', scale: 1.1, rotateY: 6, clipPath: 'inset(0 0 0 10%)' }} animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0, clipPath: 'inset(0 0 0 0%)' }}
       exit={{ opacity: 0, scale: 1.12, rotateY: -5, clipPath: 'inset(0 0 0 100%)' }} transition={{ duration: 0.43, ease: EASE }} style={{ background: '#08182e', color: '#f4f7f7' }}>
       <motion.img src={`${ROOT}images/digital-identity.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.14 }} animate={{ scale: [1.14, 1.05, 1.02, 1.12], x: ['1%', '0%', '-1%', '1%'] }} transition={{ duration: 3.2, times: [0, 0.52, 0.78, 1], ease: EASE }} />
+       initial={{ scale: 1.18 }} animate={{ scale: [1.18, 1.05, 1.02, 1.14], x: ['1%', '0%', '-1%', '1%'] }} transition={{ duration: 2.2, times: [0, 0.52, 0.78, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,rgba(8,24,46,.96) 0%,rgba(8,24,46,.84) 35%,rgba(8,24,46,.23) 70%,rgba(8,24,46,.08))' }} />
       <motion.div className="absolute" style={{ left: '8%', top: '22%' }}
         initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.36, delay: 0.08 }}>

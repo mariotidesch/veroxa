@@ -19,16 +19,16 @@ import { Scene09 } from './scenes/Scene09';
 import { Scene10 } from './scenes/Scene10';
 
 export const SCENE_DURATIONS = {
-  story: 3350,
-  build: 2850,
-  design: 3350,
+  story: 2400,
+  build: 2400,
+  design: 2400,
   commerce: 2400,
-  booking: 2950,
-  seo: 2750,
-  responsive: 2850,
-  workflow: 2850,
-  ownership: 2850,
-  signature: 3800,
+  booking: 2400,
+  seo: 2400,
+  responsive: 2400,
+  workflow: 2400,
+  ownership: 2800,
+  signature: 3000,
 };
 
 const VIDEO_ASPECT_RATIO: VideoAspectRatio = '16:9';
@@ -114,12 +114,12 @@ export default function VideoTemplate({
           className="film-camera"
           initial={false}
           animate={{
-            scale: sceneIndex % 2 === 0 ? 1.032 : 1.052,
-            rotateZ: sceneIndex % 2 === 0 ? -0.42 : 0.42,
-            x: sceneIndex % 3 === 0 ? '-0.55%' : sceneIndex % 3 === 1 ? '0.4%' : 0,
-            y: sceneIndex % 2 === 0 ? '0.25%' : '-0.35%',
+            scale: sceneIndex % 2 === 0 ? 1.045 : 1.07,
+            rotateZ: sceneIndex % 2 === 0 ? -0.72 : 0.72,
+            x: sceneIndex % 3 === 0 ? '-0.85%' : sceneIndex % 3 === 1 ? '0.7%' : 0,
+            y: sceneIndex % 2 === 0 ? '0.4%' : '-0.55%',
           }}
-          transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.32, ease: [0.18, 0.9, 0.22, 1] }}
           style={{ transformPerspective: 1500 }}
         >
           <AnimatePresence mode="sync">

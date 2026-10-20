@@ -9,8 +9,8 @@ const FRAME_LABELS = ['DESKTOP', 'TABLET', 'SMARTPHONE'];
 export function Scene02() {
   const [view, setView] = useState(0);
   const events = useMemo(() => [
-    { time: 1050, callback: () => setView(1) },
-    { time: 1970, callback: () => setView(2) },
+     { time: 700, callback: () => setView(1) },
+     { time: 1360, callback: () => setView(2) },
   ], []);
   useSceneTimer(events);
 
@@ -18,7 +18,7 @@ export function Scene02() {
     <motion.section className="film-stage" initial={{ opacity: 0, x: '4%', scale: 1.08, rotateY: -5, clipPath: 'inset(0 0 0 12%)' }} animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0, clipPath: 'inset(0 0 0 0%)' }} exit={{ opacity: 0, rotateY: -14, x: '-3%', scale: 1.08, clipPath: 'inset(0 100% 0 0)' }}
       transition={{ duration: 0.42, ease: EASE }} style={{ background: '#f5f8f9', color: '#10213a' }}>
       <motion.img src={`${ROOT}images/digital-interface.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.15 }} animate={{ scale: 1.02 }} transition={{ duration: 2.75, ease: EASE }} />
+         initial={{ scale: 1.17 }} animate={{ scale: 1.02 }} transition={{ duration: 2.05, ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,#eff4f5 0%,rgba(244,248,249,.98) 28%,rgba(240,246,248,.82) 52%,rgba(8,24,46,.2) 100%)' }} />
       <motion.div className="absolute" style={{ left: '7%', top: '17%', width: '33%' }}
         initial={{ opacity: 0, x: -22 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.42, delay: 0.1, ease: EASE }}>
@@ -36,7 +36,7 @@ export function Scene02() {
         transition={{ duration: 0.5, ease: EASE }}
       >
         <motion.img src={`${ROOT}images/digital-responsive.jpg`} alt="" className="film-photo absolute inset-0"
-          initial={{ scale: 1.23 }} animate={{ scale: view === 2 ? [1.23, 1.12, 1.2] : [1.23, 1.07, 1.02] }} transition={{ duration: 2.8, times: [0, 0.52, 1], ease: EASE }}
+           initial={{ scale: 1.25 }} animate={{ scale: view === 2 ? [1.25, 1.12, 1.18] : [1.25, 1.07, 1.02] }} transition={{ duration: 2.12, times: [0, 0.52, 1], ease: EASE }}
           style={{ objectPosition: 'center' }} />
         <div className="absolute inset-x-0 top-0 flex items-center justify-between px-[1.5vmin]" style={{ height: '5.2vmin', background: 'rgba(249,252,252,.93)', borderBottom: '1px solid rgba(16,33,58,.12)' }}>
           <div className="flex gap-[.65vmin]"><i className="h-[.65vmin] w-[.65vmin] rounded-full bg-[#c8dce4]" /><i className="h-[.65vmin] w-[.65vmin] rounded-full bg-[#c8dce4]" /><i className="h-[.65vmin] w-[.65vmin] rounded-full bg-[#c8dce4]" /></div>

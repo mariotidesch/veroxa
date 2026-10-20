@@ -10,8 +10,8 @@ const CELLS = Array.from({ length: 28 }, (_, index) => index);
 export function Scene05() {
   const [selection, setSelection] = useState(10);
   const events = useMemo(() => [
-    { time: 780, callback: () => setSelection(16) },
-    { time: 1500, callback: () => setSelection(21) },
+     { time: 680, callback: () => setSelection(16) },
+     { time: 1320, callback: () => setSelection(21) },
   ], []);
   useSceneTimer(events);
 
@@ -20,7 +20,7 @@ export function Scene05() {
       exit={{ opacity: 0, scale: 1.08, rotateX: 8, clipPath: 'circle(0% at 82% 48%)' }} transition={{ duration: 0.42, ease: EASE }}
       style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.img src={`${ROOT}images/digital-booking.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.16, x: '3%' }} animate={{ scale: [1.16, 1.07, 1.02, 1.1], x: ['3%', '1%', 0, '-1%'] }} transition={{ duration: 2.8, times: [0, 0.48, 0.78, 1], ease: EASE }} />
+       initial={{ scale: 1.2, x: '3%' }} animate={{ scale: [1.2, 1.07, 1.02, 1.12], x: ['3%', '1%', 0, '-1%'] }} transition={{ duration: 2.22, times: [0, 0.48, 0.78, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,#08182e 0%,rgba(8,24,46,.93) 34%,rgba(8,24,46,.36) 71%,rgba(8,24,46,.1))' }} />
       <div className="absolute" style={{ top: '19%', left: '7.5%', width: '37%' }}>
         <motion.div className="film-micro" style={{ color: '#a9deca' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.08 }}>IL TEMPO, IN ORDINE</motion.div>

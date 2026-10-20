@@ -14,9 +14,9 @@ export function Scene08() {
   const [active, setActive] = useState(0);
   const [handoff, setHandoff] = useState(false);
   const events = useMemo(() => [
-    { time: 820, callback: () => setActive(1) },
-    { time: 1680, callback: () => setActive(2) },
-    { time: 2440, callback: () => setHandoff(true) },
+     { time: 700, callback: () => setActive(1) },
+     { time: 1380, callback: () => setActive(2) },
+     { time: 2150, callback: () => setHandoff(true) },
   ], []);
   useSceneTimer(events);
 
@@ -25,8 +25,8 @@ export function Scene08() {
       exit={{ opacity: 0, scale: 1.12, rotateY: 8, clipPath: 'inset(0 100% 0 0)' }} transition={{ duration: 0.44, ease: EASE }}
       style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.img src={`${ROOT}images/digital-code.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.23 }} animate={{ scale: handoff ? 1.17 : [1.23, 1.1, 1.03], x: handoff ? '-1%' : 0 }}
-        transition={{ duration: handoff ? 0.34 : 2.55, times: [0, 0.65, 1], ease: EASE }} />
+         initial={{ scale: 1.25 }} animate={{ scale: handoff ? 1.17 : [1.25, 1.1, 1.03], x: handoff ? '-1%' : 0 }}
+         transition={{ duration: handoff ? 0.32 : 2.12, times: [0, 0.65, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,rgba(8,24,46,.93) 0%,rgba(8,24,46,.74) 50%,rgba(8,24,46,.24) 100%)' }} />
       <div className="absolute" style={{ left: '8%', top: '14%', right: '8%' }}>
         <motion.div className="film-kicker" style={{ color: '#a9deca' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.09 }}>

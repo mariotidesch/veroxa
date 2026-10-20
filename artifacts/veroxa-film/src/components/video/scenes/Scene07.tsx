@@ -9,9 +9,9 @@ const FORMATS = ['DESKTOP', 'TABLET', 'SMARTPHONE'];
 export function Scene07() {
   const [active, setActive] = useState(0);
   const events = useMemo(() => [
-    { time: 600, callback: () => setActive(1) },
-    { time: 1320, callback: () => setActive(2) },
-    { time: 2060, callback: () => setActive(0) },
+     { time: 560, callback: () => setActive(1) },
+     { time: 1160, callback: () => setActive(2) },
+     { time: 1800, callback: () => setActive(0) },
   ], []);
   useSceneTimer(events);
 
@@ -19,8 +19,8 @@ export function Scene07() {
     <motion.section className="film-stage" initial={{ opacity: 0, y: '3%', scale: 1.08, rotateX: 5, clipPath: 'inset(10% 0 0 0)' }} animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0, clipPath: 'inset(0 0 0 0)' }} exit={{ opacity: 0, scale: 1.1, y: '-2%', rotateY: 7, clipPath: 'inset(0 0 100% 0)' }}
       transition={{ duration: 0.42, ease: EASE }} style={{ background: '#08182e', color: '#10213a' }}>
       <motion.img src={`${ROOT}images/digital-responsive.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.2 }} animate={{ scale: [1.2, 1.08, 1.02, 1.15], x: ['1%', '-1%', 0, '1%'] }}
-        transition={{ duration: 2.75, times: [0, 0.43, 0.74, 1], ease: EASE }} />
+         initial={{ scale: 1.22 }} animate={{ scale: [1.22, 1.08, 1.02, 1.16], x: ['1%', '-1%', 0, '1%'] }}
+         transition={{ duration: 2.15, times: [0, 0.43, 0.74, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,rgba(8,24,46,.91) 0%,rgba(8,24,46,.78) 38%,rgba(8,24,46,.15) 71%,rgba(8,24,46,.06)),linear-gradient(0deg,rgba(8,24,46,.6),transparent 40%)' }} />
       <motion.div className="absolute" style={{ left: '8%', top: '20%', width: '43%' }}
         initial={{ opacity: 0, x: -22 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.38, delay: 0.08 }}>

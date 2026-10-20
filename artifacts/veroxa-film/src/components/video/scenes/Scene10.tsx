@@ -23,7 +23,7 @@ export function Scene10() {
       </motion.div>
       <motion.div className="absolute rounded-full" style={{ left: '24%', top: '49%', width: '44vmin', height: '44vmin', x: '-50%', y: '-50%', border: '1px solid rgba(204,232,242,.54)', transformOrigin: 'center' }}
         initial={{ scale: 0.42, opacity: 0 }} animate={{ scale: [0.42, 1.02, 1.09, 1.13], rotate: [0, 10, -6, 0], opacity: [0, 0.68, 0.31, 0.13] }}
-        transition={{ duration: 3.4, delay: 0.08, times: [0, 0.2, 0.56, 1], ease: EASE }} />
+        transition={{ duration: 2.82, delay: 0.08, times: [0, 0.2, 0.56, 1], ease: EASE }} />
 
       <motion.div className="absolute" style={{ left: '47%', top: '22%', width: 1, height: '52%', background: 'linear-gradient(transparent,rgba(204,232,242,.56),transparent)', transformOrigin: 'center' }}
         initial={{ scaleY: 0, opacity: 0 }} animate={{ scaleY: 1, opacity: 1 }} transition={{ duration: 0.54, delay: 0.34, ease: EASE }} />
@@ -43,7 +43,7 @@ export function Scene10() {
         </motion.div>
       </motion.div>
       <motion.div className="absolute" style={{ left: '8%', bottom: '9%', width: '84%', height: 1, background: 'rgba(204,232,242,.44)', transformOrigin: 'left' }}
-        initial={{ scaleX: 0 }} animate={{ scaleX: [0, 1, 1, 0.12] }} transition={{ duration: 2.1, times: [0, 0.32, 0.78, 1], delay: 0.2, ease: EASE }} />
+        initial={{ scaleX: 0 }} animate={{ scaleX: [0, 1, 1, 0.12] }} transition={{ duration: 2.45, times: [0, 0.32, 0.78, 1], delay: 0.2, ease: EASE }} />
       <motion.div className="absolute film-micro" style={{ right: '8%', bottom: '6%', color: 'rgba(245,248,249,.56)', fontSize: '1.45vmin' }}
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 2.4 }}>
         VEROXA

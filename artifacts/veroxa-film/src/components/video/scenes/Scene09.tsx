@@ -29,7 +29,7 @@ export function Scene09() {
       exit={{ opacity: 0, scale: 0.84, rotateY: 7, clipPath: 'inset(8% 8% 8% 8%)' }} transition={{ duration: 0.4, ease: EASE }}
       style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.img src={`${ROOT}images/digital-interface.jpg`} alt="" className="film-photo absolute inset-0"
-        initial={{ scale: 1.18 }} animate={{ scale: [1.18, 1.08, 1.02, 1.13], x: ['1%', '0%', '-1%', '1%'] }} transition={{ duration: 2.8, times: [0, 0.5, 0.77, 1], ease: EASE }} />
+         initial={{ scale: 1.2 }} animate={{ scale: [1.2, 1.08, 1.02, 1.16], x: ['1%', '0%', '-1%', '1%'] }} transition={{ duration: 2.52, times: [0, 0.5, 0.77, 1], ease: EASE }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg,rgba(8,24,46,.9),rgba(8,24,46,.78) 52%,rgba(8,24,46,.46))' }} />
       <motion.div className="absolute film-micro" style={{ left: '8%', top: '10%', color: '#a9deca' }}
         initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28, delay: 0.08 }}>

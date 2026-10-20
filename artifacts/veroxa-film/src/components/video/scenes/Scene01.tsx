@@ -19,17 +19,17 @@ export function Scene01() {
         alt=""
         initial={{ scale: 1.18, x: '-2%' }}
         animate={{ scale: [1.18, 1.1, 1.04, 1.12], x: ['-2%', '1%', '2%', '-1%'], y: ['1%', 0, '-1%', '0%'] }}
-        transition={{ duration: 3.2, times: [0, 0.24, 0.68, 1], ease: EASE }}
+        transition={{ duration: 2.28, times: [0, 0.24, 0.68, 1], ease: EASE }}
       />
       <motion.img className="film-photo absolute inset-0" src={`${ROOT}images/digital-interface.jpg`} alt=""
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: [0, 0, 0.88, 0, 0, 0.78, 0], scale: [1.1, 1.08, 1.02, 1.03, 1.09, 1.02, 1.16], rotate: [0, 0, -1, 0, 0, 1, 0] }}
-        transition={{ duration: 3.35, times: [0, 0.12, 0.2, 0.33, 0.48, 0.57, 0.67], ease: EASE }}
+         transition={{ duration: 2.36, times: [0, 0.12, 0.2, 0.33, 0.48, 0.57, 0.67], ease: EASE }}
       />
       <motion.img className="film-photo absolute inset-0" src={`${ROOT}images/digital-code.jpg`} alt=""
         initial={{ opacity: 0, scale: 1.12 }}
         animate={{ opacity: [0, 0, 0, 0.88, 0, 0, 0], scale: [1.12, 1.1, 1.08, 1.01, 1.02, 1.08, 1.18], rotate: [0, 0, 0, 1, 0, 0, -1] }}
-        transition={{ duration: 3.35, times: [0, 0.23, 0.35, 0.42, 0.54, 0.68, 0.77], ease: EASE }}
+         transition={{ duration: 2.36, times: [0, 0.23, 0.35, 0.42, 0.54, 0.68, 0.77], ease: EASE }}
       />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg,rgba(4,14,30,.89) 0%,rgba(4,14,30,.65) 38%,rgba(4,14,30,.12) 77%),linear-gradient(0deg,rgba(4,14,30,.67),transparent 74%)' }} />
       <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(198,226,237,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(198,226,237,.09) 1px,transparent 1px)', backgroundSize: '8vmin 8vmin', maskImage: 'linear-gradient(110deg,black,transparent 75%)' }} />
