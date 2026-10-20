@@ -50,7 +50,7 @@ export default function ChiSiamo() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-white rounded-full flex items-center justify-center shadow-xl border border-border">
+            <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-card rounded-full flex items-center justify-center shadow-xl border border-border">
               <Logo2 className="w-24 h-24 text-primary" />
             </div>
           </FadeIn>
@@ -83,21 +83,21 @@ export default function ChiSiamo() {
         </section>
 
         <FadeIn direction="up" delay={0.2}>
-          <section className="bg-foreground text-background rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
+          <section className="bg-footer-background text-footer-foreground rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute bottom-8 right-10 opacity-10">
-              <Logo1 className="w-24 h-24 text-background" animated={false} />
+              <Logo1 className="w-24 h-24 text-footer-foreground" animated={false} />
             </div>
             <div className="relative z-10 max-w-3xl">
-              <span className="text-background/50 tracking-[0.2em] uppercase text-xs font-sans font-medium block mb-6">Il nostro impegno</span>
+              <span className="text-footer-foreground/50 tracking-[0.2em] uppercase text-xs font-sans font-medium block mb-6">Il nostro impegno</span>
               <h2 className="text-3xl md:text-5xl font-serif font-light mb-8 leading-[1.2]">
                 Ogni dettaglio conta.<br />
                 <span className="italic text-primary">Sempre.</span>
               </h2>
-              <p className="text-lg md:text-xl font-sans font-light text-background/80 leading-relaxed mb-8">
+              <p className="text-lg md:text-xl font-sans font-light text-footer-foreground/80 leading-relaxed mb-8">
                 Ci occupiamo di ogni aspetto del progetto, dal primo appuntamento alla pubblicazione online. Anche i dettagli più piccoli contribuiscono alla qualità dell'insieme.
               </p>
-              <p className="text-lg md:text-xl font-sans font-light text-background/80 leading-relaxed">
+              <p className="text-lg md:text-xl font-sans font-light text-footer-foreground/80 leading-relaxed">
                 Il tuo sito deve funzionare bene, essere bello da guardare e comunicare chi sei con chiarezza. Trasformiamo la tua visione in uno spazio digitale ordinato e personale.
               </p>
             </div>

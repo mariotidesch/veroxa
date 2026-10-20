@@ -1,13 +1,36 @@
 import { FadeIn } from "@/components/FadeIn";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  CheckCircle2,
+  CircleHelp,
+  Mail,
+  MonitorSmartphone,
+  Palette,
+  Phone,
+  RefreshCw,
+  Search,
+  ShoppingBag,
+} from "lucide-react";
 import { Logo2 } from "@/components/Logos";
 import { motion } from "framer-motion";
 import { PageHero } from "@/components/PageHero";
 
+const serviceOptions = [
+  { value: "Sito web", icon: <MonitorSmartphone className="h-4 w-4" />, label: "Sito web" },
+  { value: "E-commerce e prenotazioni", icon: <ShoppingBag className="h-4 w-4" />, label: "E-commerce / prenotazioni" },
+  { value: "Restyling", icon: <RefreshCw className="h-4 w-4" />, label: "Restyling" },
+  { value: "Identità visiva", icon: <Palette className="h-4 w-4" />, label: "Identità visiva" },
+  { value: "SEO e visibilità", icon: <Search className="h-4 w-4" />, label: "SEO / visibilità" },
+  { value: "Consulenza", icon: <CircleHelp className="h-4 w-4" />, label: "Vorrei un consiglio" },
+];
+
 export default function Contatti() {
   const initialMessage = new URLSearchParams(window.location.search).get("interesse") ?? "";
   const [isSuccess, setIsSuccess] = useState(false);
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [contactMethod, setContactMethod] = useState<"email" | "phone">("email");
   const successTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -28,6 +51,15 @@ export default function Contatti() {
     const company = String(data.get("company") ?? "");
     const email = String(data.get("email") ?? "");
     const message = String(data.get("message") ?? "");
+    const projectTiming = String(data.get("projectTiming") ?? "");
+    const phone = String(data.get("phone") ?? "").trim();
+    const extraDetails = [
+      selectedServices.length ? `Servizi di interesse: ${selectedServices.join(", ")}` : "",
+      projectTiming ? `Tempistiche: ${projectTiming}` : "",
+      `Preferenza di contatto: ${contactMethod === "phone" ? "Telefono" : "Email"}`,
+      contactMethod === "phone" && phone ? `Telefono: ${phone}` : "",
+    ].filter(Boolean);
+    const completeMessage = [message.trim(), ...extraDetails].filter(Boolean).join("\n\n");
 
     setIsSubmitting(true);
     setSubmitError("");
@@ -36,7 +68,7 @@ export default function Contatti() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, company, email, message }),
+        body: JSON.stringify({ name, company, email, message: completeMessage }),
       });
 
       const result = (await response.json()) as { message?: string };
@@ -46,6 +78,8 @@ export default function Contatti() {
 
       setIsSuccess(true);
       form.reset();
+      setSelectedServices([]);
+      setContactMethod("email");
       if (successTimer.current) clearTimeout(successTimer.current);
       successTimer.current = setTimeout(() => setIsSuccess(false), 8000);
     } catch (error) {
@@ -80,16 +114,39 @@ export default function Contatti() {
                 Siamo disponibili per ascoltare le tue idee e trasformarle in una presenza online solida, bella e professionale. Il confronto ci aiuta a costruire una proposta adatta a te.
               </p>
 
-              <div className="mt-24 opacity-20 hidden lg:block">
-                <Logo2 className="w-32 h-32" />
+              <div className="rounded-[1.75rem] border border-primary/20 bg-card/75 p-6 md:p-8">
+                <span className="eyebrow">Bastano poche informazioni</span>
+                <p className="mt-4 text-xl font-serif font-light leading-snug">
+                  Non devi avere già tutto deciso.
+                </p>
+                <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+                  {["Obiettivo", "Servizi", "Tempistiche"].map((step, index) => (
+                    <div key={step} className="rounded-xl bg-secondary/60 px-2 py-3">
+                      <span className="block text-xs font-medium text-primary">0{index + 1}</span>
+                      <span className="mt-1 block text-[11px] leading-tight text-muted-foreground">{step}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-7 flex items-center gap-3 border-t border-border pt-5 text-sm text-muted-foreground">
+                  <Logo2 className="h-8 w-8 shrink-0 text-primary" />
+                  <span>Se hai dubbi, scegli “Vorrei un consiglio” e partiamo da lì.</span>
+                </div>
               </div>
             </FadeIn>
           </div>
 
           <div className="lg:col-span-7">
             <FadeIn direction="up" delay={0.2}>
-              <div className="bg-white border border-border p-10 md:p-16 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
-                <h3 className="text-3xl font-serif font-light mb-10 text-foreground">Inviateci un messaggio</h3>
+              <div className="relative rounded-[2.5rem] border border-primary/15 bg-card p-7 shadow-[0_18px_55px_hsl(var(--foreground)/.06)] md:p-12">
+                <div className="mb-9 flex items-start justify-between gap-5">
+                  <div>
+                    <span className="eyebrow">Da dove partiamo</span>
+                    <h3 className="mt-3 text-3xl font-serif font-light text-foreground">Raccontaci il tuo progetto</h3>
+                  </div>
+                  <span className="hidden rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-medium text-primary sm:inline-flex">
+                    Proposta su misura
+                  </span>
+                </div>
                 
                 {isSuccess ? (
                   <motion.div 
@@ -97,7 +154,7 @@ export default function Contatti() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="bg-secondary/20 border border-secondary/30 p-10 rounded-[2rem] flex flex-col items-center text-center py-16"
                   >
-                    <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-primary">
+                    <div className="w-20 h-20 bg-background rounded-full flex items-center justify-center mb-6 shadow-sm text-primary">
                       <CheckCircle2 className="w-10 h-10" />
                     </div>
                     <h4 className="text-2xl font-serif font-medium mb-4">Richiesta inviata</h4>
@@ -107,6 +164,52 @@ export default function Contatti() {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-8">
+                    <fieldset className="space-y-4">
+                      <legend className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">
+                        Quali servizi ti interessano? <span className="normal-case tracking-normal">(puoi scegliere più opzioni)</span>
+                      </legend>
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        {serviceOptions.map((service, index) => {
+                          const checked = selectedServices.includes(service.value);
+                          const id = `service-option-${index}`;
+                          return (
+                            <div key={service.value} className="relative">
+                              <input
+                                id={id}
+                                type="checkbox"
+                                name="services"
+                                value={service.value}
+                                checked={checked}
+                                onChange={(event) => {
+                                  setSelectedServices((current) =>
+                                    event.target.checked
+                                      ? [...current, service.value]
+                                      : current.filter((value) => value !== service.value),
+                                  );
+                                }}
+                                className="peer sr-only"
+                                data-testid={`input-service-${index}`}
+                              />
+                              <label
+                                htmlFor={id}
+                                className={`flex min-h-[58px] cursor-pointer items-center gap-3 rounded-2xl border px-4 py-3 text-sm transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-primary ${
+                                  checked
+                                    ? "border-primary bg-primary/10 text-foreground"
+                                    : "border-border bg-background/60 text-muted-foreground hover:border-primary/50 hover:text-foreground"
+                                }`}
+                              >
+                                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${checked ? "bg-primary text-primary-foreground" : "bg-secondary text-primary"}`}>
+                                  {service.icon}
+                                </span>
+                                <span className="flex-1 leading-snug">{service.label}</span>
+                                {checked && <Check className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />}
+                              </label>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </fieldset>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
                         <label htmlFor="name" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Nome e Cognome</label>
@@ -115,6 +218,7 @@ export default function Contatti() {
                           id="name"
                           name="name"
                           required
+                          data-testid="input-contact-name"
                           className="w-full bg-background/50 border-b-2 border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors font-serif text-lg bg-transparent"
                           placeholder="Mario Rossi"
                         />
@@ -125,6 +229,7 @@ export default function Contatti() {
                           type="text" 
                           id="company"
                           name="company"
+                          data-testid="input-contact-company"
                           className="w-full bg-background/50 border-b-2 border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors font-serif text-lg bg-transparent"
                           placeholder="Nome dell'impresa"
                         />
@@ -138,10 +243,72 @@ export default function Contatti() {
                         id="email"
                         name="email"
                         required
+                        data-testid="input-contact-email"
                         className="w-full bg-background/50 border-b-2 border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors font-serif text-lg bg-transparent"
                         placeholder="mario@esempio.it"
                       />
                     </div>
+
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                      <div className="space-y-3">
+                        <label htmlFor="projectTiming" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Quando vorresti iniziare?</label>
+                        <select
+                          id="projectTiming"
+                          name="projectTiming"
+                          defaultValue=""
+                          data-testid="select-project-timing"
+                          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                        >
+                          <option value="" disabled>Seleziona una tempistica</option>
+                          <option value="Appena possibile">Appena possibile</option>
+                          <option value="Entro 1–3 mesi">Entro 1–3 mesi</option>
+                          <option value="Sto valutando">Sto ancora valutando</option>
+                        </select>
+                      </div>
+                      <fieldset className="space-y-3">
+                        <legend className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Come preferisci essere ricontattato?</legend>
+                        <div className="grid grid-cols-2 gap-3">
+                          <button
+                            type="button"
+                            onClick={() => setContactMethod("email")}
+                            aria-pressed={contactMethod === "email"}
+                            data-testid="button-contact-email"
+                            className={`inline-flex items-center justify-center gap-2 rounded-xl border px-3 py-3 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                              contactMethod === "email" ? "border-primary bg-primary/10 text-foreground" : "border-border bg-background text-muted-foreground hover:border-primary/50"
+                            }`}
+                          >
+                            <Mail className="h-4 w-4 text-primary" aria-hidden="true" /> Email
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setContactMethod("phone")}
+                            aria-pressed={contactMethod === "phone"}
+                            data-testid="button-contact-phone"
+                            className={`inline-flex items-center justify-center gap-2 rounded-xl border px-3 py-3 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                              contactMethod === "phone" ? "border-primary bg-primary/10 text-foreground" : "border-border bg-background text-muted-foreground hover:border-primary/50"
+                            }`}
+                          >
+                            <Phone className="h-4 w-4 text-primary" aria-hidden="true" /> Telefono
+                          </button>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    {contactMethod === "phone" && (
+                      <div className="space-y-3">
+                        <label htmlFor="phone" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Numero di telefono</label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          required
+                          autoComplete="tel"
+                          data-testid="input-contact-phone"
+                          className="w-full rounded-xl border border-border bg-background px-4 py-3 font-serif text-lg text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          placeholder="+39 333 123 4567"
+                        />
+                      </div>
+                    )}
 
                     <div className="space-y-3">
                       <label htmlFor="message" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Il vostro progetto</label>
@@ -152,7 +319,7 @@ export default function Contatti() {
                         rows={4}
                         defaultValue={initialMessage}
                         data-testid="input-project-message"
-                        className="w-full bg-background/50 border-b-2 border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors font-serif text-lg bg-transparent resize-none"
+                        className="w-full rounded-2xl border border-border bg-background/60 px-4 py-4 font-serif text-lg text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
                         placeholder="Descrivete brevemente le vostre esigenze..."
                       ></textarea>
                     </div>
@@ -160,6 +327,7 @@ export default function Contatti() {
                     <button 
                       type="submit" 
                       disabled={isSubmitting}
+                      data-testid="button-submit-contact"
                       className="w-full group relative px-8 py-5 bg-foreground text-background rounded-full overflow-hidden flex items-center justify-center gap-3 mt-10 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <div className="absolute inset-0 bg-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />

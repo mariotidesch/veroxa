@@ -110,6 +110,20 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
+        <section aria-label="Ambiti di lavoro" className="overflow-hidden border-y border-border/70 bg-background py-5">
+          <div className="veroxa-marquee flex w-max items-center" aria-hidden="false">
+            {[0, 1].map((group) => (
+              <div key={group} aria-hidden={group === 1} className="flex shrink-0 items-center gap-8 pr-8 md:gap-12 md:pr-12">
+                {["Strategia", "Identità", "Design", "Sviluppo", "Visibilità"].map((item) => (
+                  <span key={item} className="flex items-center gap-8 whitespace-nowrap font-serif text-xl italic text-foreground/75 md:gap-12 md:text-2xl">
+                    {item}
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
         <section className="relative px-6 md:px-12 py-28 md:py-40 bg-secondary/20 overflow-hidden">
           <div className="max-w-7xl mx-auto">
             <FadeIn className="grid lg:grid-cols-[.7fr_1.3fr] gap-14 items-start">
@@ -236,7 +250,7 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
-        <section className="px-6 md:px-12 py-20 md:py-28 bg-[#e9f0ef]">
+        <section className="px-6 md:px-12 py-20 md:py-28 bg-secondary/35">
           <div className="max-w-7xl mx-auto grid lg:grid-cols-[.7fr_1.3fr] gap-10 lg:gap-16 items-center">
             <FadeIn>
               <span className="eyebrow">Veroxa, in movimento</span>

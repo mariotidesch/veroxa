@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Contrast, X } from "lucide-react";
+import { Moon, Sun, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo1 } from "./Logos";
@@ -27,11 +27,11 @@ function HamburgerIcon({ hovered }: { hovered: boolean }) {
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [btnHovered, setBtnHovered] = useState(false);
-  const [isMonochrome, setIsMonochrome] = useState(() => {
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
     try {
-      return window.localStorage.getItem("veroxa-color-mode") === "mono";
+      return window.localStorage.getItem("veroxa-theme") === "dark" ? "dark" : "light";
     } catch {
-      return false;
+      return "light";
     }
   });
   const [location] = useLocation();
@@ -40,13 +40,14 @@ export function Navbar() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    document.documentElement.dataset.colorMode = isMonochrome ? "mono" : "color";
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.classList.toggle("dark", theme === "dark");
     try {
-      window.localStorage.setItem("veroxa-color-mode", isMonochrome ? "mono" : "color");
+      window.localStorage.setItem("veroxa-theme", theme);
     } catch {
       // The current choice still works for this session when storage is unavailable.
     }
-  }, [isMonochrome]);
+  }, [theme]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -97,15 +98,15 @@ export function Navbar() {
       <header id="site-header" className="fixed top-0 left-0 w-full z-40 p-4 md:p-7 flex justify-end items-center gap-3 text-foreground">
         <button
           type="button"
-          onClick={() => setIsMonochrome((current) => !current)}
-          aria-label={isMonochrome ? "Torna alla visualizzazione a colori" : "Attiva la visualizzazione in bianco e nero"}
-          aria-pressed={isMonochrome}
-          title={isMonochrome ? "Torna ai colori" : "Passa al bianco e nero"}
-          data-testid="button-toggle-color-mode"
+          onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")}
+          aria-label={theme === "dark" ? "Attiva il tema chiaro" : "Attiva il tema scuro"}
+          aria-pressed={theme === "dark"}
+          title={theme === "dark" ? "Passa al tema chiaro" : "Passa al tema scuro"}
+          data-testid="button-toggle-theme"
           className="flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-4 py-3 text-xs font-medium tracking-wide text-foreground shadow-sm backdrop-blur-sm transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
-          <Contrast className="h-4 w-4" aria-hidden="true" />
-          <span>{isMonochrome ? "B/N attivo" : "A colori"}</span>
+          {theme === "dark" ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
+          <span>{theme === "dark" ? "Tema chiaro" : "Tema scuro"}</span>
         </button>
 
         {/* Pulsante menu con animazione linee */}
@@ -130,7 +131,7 @@ export function Navbar() {
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.18, ease: "easeOut" as const }}
-            className="relative w-12 h-12 rounded-full border border-border/60 bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-sm group-hover:border-primary/50 group-hover:bg-white transition-colors duration-300"
+            className="relative w-12 h-12 rounded-full border border-border/60 bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-sm group-hover:border-primary/50 group-hover:bg-card transition-colors duration-300"
           >
             {/* Cerchio che si riempie al hover */}
             <motion.div
@@ -170,7 +171,7 @@ export function Navbar() {
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.18, ease: "easeOut" as const }}
-                className="w-12 h-12 rounded-full border border-border/60 bg-white/60 backdrop-blur-sm flex items-center justify-center hover:border-primary/50 hover:bg-white transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="w-12 h-12 rounded-full border border-border/60 bg-card/80 backdrop-blur-sm flex items-center justify-center hover:border-primary/50 hover:bg-card transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label="Chiudi menu"
               >
                 <X className="w-4 h-4 text-foreground" />

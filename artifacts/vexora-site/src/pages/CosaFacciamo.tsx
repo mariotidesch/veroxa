@@ -55,7 +55,7 @@ export default function CosaFacciamo() {
 
         <FadeIn staggerChildren={true} direction="none" className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-32">
           {services.map((srv, i) => (
-            <FadeInItem key={i} className="bg-white border border-border p-12 rounded-[2rem] hover:shadow-lg transition-all duration-500 group">
+            <FadeInItem key={i} className="bg-card border border-border p-12 rounded-[2rem] hover:shadow-lg transition-all duration-500 group">
               <div className="w-14 h-14 rounded-full bg-secondary/30 flex items-center justify-center mb-8 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
                 {srv.icon}
               </div>

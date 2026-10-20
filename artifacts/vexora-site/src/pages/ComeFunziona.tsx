@@ -67,7 +67,7 @@ export default function ComeFunziona() {
                 </div>
                 
                 <div className="flex-none relative z-10 shrink-0">
-                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white border border-border flex items-center justify-center shadow-lg group hover:border-primary transition-colors duration-500">
+                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-card border border-border flex items-center justify-center shadow-lg group hover:border-primary transition-colors duration-500">
                     <span className="text-3xl md:text-4xl font-serif text-foreground group-hover:text-primary transition-colors duration-500">
                       {step.num}
                     </span>
@@ -82,7 +82,7 @@ export default function ComeFunziona() {
 
         <FadeIn direction="up" delay={0.2} className="relative">
           <div className="absolute inset-0 bg-gradient-to-r from-secondary/30 via-accent/20 to-primary/10 rounded-[3rem] blur-xl opacity-50" />
-          <div className="relative bg-white border border-border p-12 md:p-20 rounded-[3rem] text-center max-w-4xl mx-auto shadow-sm">
+          <div className="relative bg-card border border-border p-12 md:p-20 rounded-[3rem] text-center max-w-4xl mx-auto shadow-sm">
             <h3 className="text-3xl md:text-5xl font-serif font-light mb-6">Iniziamo insieme</h3>
             <p className="text-muted-foreground font-sans font-light text-lg md:text-xl mb-12 max-w-2xl mx-auto">
               Scrivici per una prima consulenza. Vedremo insieme come valorizzare la tua attività e trasformare le tue idee in una direzione concreta.
