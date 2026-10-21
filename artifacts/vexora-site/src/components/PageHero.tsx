@@ -1,9 +1,12 @@
 import { FadeIn } from "@/components/FadeIn";
+import { Logo1 } from "@/components/Logos";
 
 export function PageHero({ label, title, description, align = "left" }: { label: string; title: string; description: string; align?: "left" | "center" }) {
   return (
     <FadeIn direction={align === "center" ? "up" : "right"} className={`relative mb-24 md:mb-32 overflow-hidden rounded-[2rem] border border-border bg-secondary/20 px-7 py-16 md:px-16 md:py-20 ${align === "center" ? "text-center" : ""}`}>
-      <div className="absolute right-10 top-1/2 -translate-y-1/2 text-[11rem] md:text-[16rem] leading-none font-serif text-primary/10 select-none">X</div>
+      <div className="absolute right-10 top-1/2 h-40 w-40 -translate-y-1/2 text-foreground/[.06] select-none md:right-16 md:h-64 md:w-64" aria-hidden="true">
+        <Logo1 className="h-full w-full" animated={false} />
+      </div>
       <div className={`relative max-w-3xl ${align === "center" ? "mx-auto" : ""}`}>
         <span className="eyebrow">{label}</span>
         <h1 className="mt-6 text-5xl md:text-7xl font-serif font-light leading-[1.05]">{title}</h1>

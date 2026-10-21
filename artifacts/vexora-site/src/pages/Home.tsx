@@ -65,7 +65,7 @@ export default function Home() {
                 transition={{ duration: 0.45, delay: 0.35, ease: "easeOut" as const }}
                 className="text-3xl md:text-4xl tracking-[0.3em] font-serif font-light text-foreground ml-3"
               >
-                  VERO<span className="theme-accent-outline text-primary">X</span>A
+                  VEROXA
               </motion.h1>
             </div>
           </motion.div>
@@ -122,8 +122,10 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative">
-                <div className="absolute -top-20 right-0 text-[18rem] leading-none font-serif text-primary/10 select-none">X</div>
-                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">La X di Veroxa è il punto in cui due strade si incontrano. Da un lato ci sono le idee e il desiderio di raccontare ciò che rende speciale ogni attività. Dall'altro ci sono tecnologia e sviluppo, che trasformano quelle idee in qualcosa di concreto e visibile.</p>
+                <div className="absolute -top-10 right-4 h-36 w-36 text-foreground/[.06] select-none md:h-48 md:w-48" aria-hidden="true">
+                  <Logo1 className="h-full w-full" animated={false} />
+                </div>
+                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">Il segno di Veroxa è un'apertura geometrica: una forma essenziale che accoglie prospettive diverse e le orienta verso un punto comune. Da un lato ci sono le idee e il desiderio di raccontare ciò che rende speciale ogni attività. Dall'altro ci sono tecnologia e sviluppo, che trasformano quelle idee in qualcosa di concreto e visibile.</p>
                 <div className="relative grid sm:grid-cols-2 gap-4 mt-12">
                   <div className="rounded-2xl border border-primary/20 bg-background/70 p-6">
                     <span className="eyebrow">01</span>
@@ -137,7 +139,7 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="mt-12 text-2xl md:text-3xl font-serif leading-snug">Veroxa nasce proprio lì: dove creatività e tecnologia si uniscono per costruire siti semplici, veloci e riconoscibili. Ogni scelta dà valore alla tua attività e rende più naturale il rapporto con i tuoi clienti.</p>
-                <p className="mt-8 text-muted-foreground leading-relaxed">La X è il simbolo del nostro modo di lavorare: unire identità, tecnica, estetica e funzionalità per ottenere un risultato che funzioni davvero.</p>
+                <p className="mt-8 text-muted-foreground leading-relaxed">Il nostro segno racconta un metodo: dare spazio all'identità, poi unire tecnica, estetica e funzionalità in un risultato che funzioni davvero.</p>
               </div>
             </FadeIn>
           </div>
