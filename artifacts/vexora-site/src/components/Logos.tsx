@@ -2,9 +2,8 @@ import { motion } from 'framer-motion';
 
 type LogoProps = { className?: string; animated?: boolean };
 
-// Circular stamp: the crossed ribbons make the X the primary brand symbol.
+// Interlocking diagonal ribbons form a compact, immediately legible X mark.
 export const Logo1 = ({ className = "w-16 h-16", animated = true }: LogoProps) => {
-  const lineInitial = animated ? 0 : 1;
   return (
     <motion.svg
       viewBox="0 0 100 100"
@@ -14,39 +13,24 @@ export const Logo1 = ({ className = "w-16 h-16", animated = true }: LogoProps) =
       role="img"
       aria-label="Simbolo X di Veroxa"
       initial={false}
-      whileHover={animated ? { scale: 1.06, rotate: 2 } : undefined}
+      whileHover={animated ? { scale: 1.045, rotate: -2 } : undefined}
       transition={{ duration: 0.24, ease: "easeOut" as const }}
     >
-      <motion.circle
-        cx="50"
-        cy="50"
-        r="45"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        initial={{ pathLength: lineInitial, opacity: 1 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" as const }}
+      <motion.path
+        d="M20 17H39L80 83H61L20 17Z"
+        fill="currentColor"
+        initial={animated ? { opacity: 0, x: -4 } : false}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.52, ease: "easeOut" as const }}
       />
       <motion.path
-        d="M29 27L47 45L70 73"
-        stroke="currentColor"
-        strokeWidth="5.5"
-        strokeLinecap="square"
-        initial={{ pathLength: lineInitial, opacity: 1 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.12, ease: "easeOut" as const }}
+        d="M80 17H61L20 83H39L80 17Z"
+        fill="hsl(var(--primary))"
+        initial={animated ? { opacity: 0, x: 4 } : false}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.52, delay: 0.1, ease: "easeOut" as const }}
       />
-      <motion.path
-        d="M71 27L53 45L30 73"
-        stroke="hsl(var(--primary))"
-        strokeWidth="5.5"
-        strokeLinecap="square"
-        initial={{ pathLength: lineInitial, opacity: 1 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.22, ease: "easeOut" as const }}
-      />
-      <circle cx="50" cy="50" r="3.2" fill="currentColor" />
-      <path d="M50 11V18M89 50H82M50 89V82M11 50H18" stroke="currentColor" strokeWidth="1.2" opacity=".55" />
+      <path d="M12 17V12H25M75 12H88V25M88 75V88H75M25 88H12V75" stroke="currentColor" strokeWidth="1.4" opacity=".48" />
     </motion.svg>
   );
 };

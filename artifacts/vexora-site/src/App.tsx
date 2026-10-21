@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import { CookieConsent } from '@/components/CookieConsent';
 
 import Home from '@/pages/Home';
 import ChiSiamo from '@/pages/ChiSiamo';
@@ -46,6 +47,7 @@ function Router() {
         </Switch>
       </div>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }

@@ -1,23 +1,23 @@
 type StyleDirectionArtworkProps = {
-  variant: "replit" | "lovable";
+  variant: "technical" | "visual";
 };
 
 export function StyleDirectionArtwork({ variant }: StyleDirectionArtworkProps) {
-  if (variant === "replit") {
+  if (variant === "technical") {
     return (
-      <div className="style-art style-art--replit" aria-hidden="true">
+      <div className="style-art style-art--technical" aria-hidden="true">
         <svg viewBox="0 0 720 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="replit-panel" x1="66" y1="47" x2="590" y2="355" gradientUnits="userSpaceOnUse">
+            <linearGradient id="technical-panel" x1="66" y1="47" x2="590" y2="355" gradientUnits="userSpaceOnUse">
               <stop stopColor="var(--art-panel-a)" />
               <stop offset="1" stopColor="var(--art-panel-b)" />
             </linearGradient>
-            <pattern id="replit-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+            <pattern id="technical-grid" width="24" height="24" patternUnits="userSpaceOnUse">
               <path d="M24 0H0V24" stroke="var(--art-grid)" strokeWidth="1" />
             </pattern>
           </defs>
-          <rect x="25" y="24" width="670" height="352" rx="30" fill="url(#replit-panel)" />
-          <rect x="25" y="24" width="670" height="352" rx="30" fill="url(#replit-grid)" />
+          <rect x="25" y="24" width="670" height="352" rx="30" fill="url(#technical-panel)" />
+          <rect x="25" y="24" width="670" height="352" rx="30" fill="url(#technical-grid)" />
           <path d="M25 85H695" stroke="var(--art-line)" />
           <circle cx="58" cy="55" r="5" fill="var(--art-accent)" />
           <circle cx="77" cy="55" r="5" fill="var(--art-line)" />
@@ -38,20 +38,20 @@ export function StyleDirectionArtwork({ variant }: StyleDirectionArtworkProps) {
   }
 
   return (
-    <div className="style-art style-art--lovable" aria-hidden="true">
+    <div className="style-art style-art--visual" aria-hidden="true">
       <svg viewBox="0 0 720 400" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="lovable-wash" x1="91" y1="54" x2="628" y2="355" gradientUnits="userSpaceOnUse">
+            <linearGradient id="visual-wash" x1="91" y1="54" x2="628" y2="355" gradientUnits="userSpaceOnUse">
             <stop stopColor="var(--art-panel-a)" />
             <stop offset="1" stopColor="var(--art-panel-b)" />
           </linearGradient>
-          <linearGradient id="lovable-orbit" x1="419" y1="83" x2="588" y2="294" gradientUnits="userSpaceOnUse">
+            <linearGradient id="visual-orbit" x1="419" y1="83" x2="588" y2="294" gradientUnits="userSpaceOnUse">
             <stop stopColor="var(--art-accent)" />
             <stop offset="1" stopColor="var(--art-accent-soft)" />
           </linearGradient>
         </defs>
-        <rect x="25" y="24" width="670" height="352" rx="30" fill="url(#lovable-wash)" />
-        <circle cx="548" cy="154" r="112" fill="url(#lovable-orbit)" opacity=".88" />
+        <rect x="25" y="24" width="670" height="352" rx="30" fill="url(#visual-wash)" />
+        <circle cx="548" cy="154" r="112" fill="url(#visual-orbit)" opacity=".88" />
         <circle cx="548" cy="154" r="81" stroke="var(--art-line)" strokeWidth="1.5" />
         <circle cx="548" cy="154" r="49" stroke="var(--art-line)" strokeWidth="1.5" />
         <path d="M423 262C470 196 521 318 650 220" stroke="var(--art-ink)" strokeWidth="3" strokeLinecap="round" />

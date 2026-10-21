@@ -1,32 +1,20 @@
-import { Link, useLocation } from "wouter";
-import { Moon, Sun, X } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Logo1, Logo3 } from "./Logos";
+import { Link, useLocation } from "wouter";
+import { AnimatePresence, motion } from "framer-motion";
+import { Moon, Sun, X } from "lucide-react";
+import { Logo3 } from "./Logos";
+import { openCookiePreferences } from "./CookieConsent";
 
-// Animated hamburger icon: due linee div che reagiscono all'hover
-function HamburgerIcon({ hovered }: { hovered: boolean }) {
-  return (
-    <span className="flex flex-col gap-[5px] items-start" aria-hidden="true">
-      <motion.span
-        className="block h-[1.5px] bg-current rounded-full origin-left"
-        animate={{ width: hovered ? "14px" : "18px" }}
-        transition={{ duration: 0.22, ease: "easeInOut" as const }}
-        style={{ width: "18px" }}
-      />
-      <motion.span
-        className="block h-[1.5px] bg-current rounded-full origin-right"
-        animate={{ width: hovered ? "14px" : "18px", marginLeft: hovered ? "4px" : "0px" }}
-        transition={{ duration: 0.22, ease: "easeInOut" as const }}
-        style={{ width: "18px" }}
-      />
-    </span>
-  );
-}
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/chi-siamo", label: "Chi siamo" },
+  { href: "/cosa-facciamo", label: "Cosa facciamo" },
+  { href: "/come-funziona", label: "Come funziona" },
+  { href: "/contatti", label: "Contatti" },
+];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [btnHovered, setBtnHovered] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try {
       return window.localStorage.getItem("veroxa-theme") === "dark" ? "dark" : "light";
@@ -35,9 +23,9 @@ export function Navbar() {
     }
   });
   const [location] = useLocation();
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -45,39 +33,32 @@ export function Navbar() {
     try {
       window.localStorage.setItem("veroxa-theme", theme);
     } catch {
-      // The current choice still works for this session when storage is unavailable.
+      // Mantiene la scelta per la sessione corrente.
     }
   }, [theme]);
 
   useEffect(() => {
     if (!isOpen) return;
     closeButtonRef.current?.focus();
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
         setIsOpen(false);
         return;
       }
-      if (e.key === "Tab") {
-        const root = overlayRef.current;
-        if (!root) return;
-        const focusables = root.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
-        if (focusables.length === 0) return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
-        const active = document.activeElement as HTMLElement | null;
-        if (e.shiftKey) {
-          if (active === first || !root.contains(active)) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else if (active === last || !root.contains(active)) {
-          e.preventDefault();
-          first.focus();
-        }
+      if (event.key !== "Tab" || !menuRef.current) return;
+      const items = menuRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !menuRef.current.contains(document.activeElement))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !menuRef.current.contains(document.activeElement))) {
+        event.preventDefault();
+        first.focus();
       }
     };
-
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
@@ -85,148 +66,92 @@ export function Navbar() {
     };
   }, [isOpen]);
 
-  const links = [
-    { href: "/", label: "Torna alla home", subtitle: "Pagina principale" },
-    { href: "/chi-siamo", label: "Chi Siamo", subtitle: "Le nostre radici" },
-    { href: "/cosa-facciamo", label: "Cosa Facciamo", subtitle: "I nostri servizi" },
-    { href: "/come-funziona", label: "Come Funziona", subtitle: "Il nostro metodo" },
-    { href: "/contatti", label: "Contatti", subtitle: "Iniziamo un progetto" }
-  ];
-
   return (
     <>
-      <header id="site-header" className="fixed top-0 left-0 w-full z-40 p-4 md:p-7 flex justify-end items-center gap-3 text-foreground">
-        <Link href="/" aria-label="Veroxa, torna alla home" className="absolute left-4 top-4 flex items-center md:left-7 md:top-7">
+      <header id="site-header" className="fixed left-0 top-0 z-40 flex w-full items-center justify-between p-4 text-foreground md:p-7">
+        <Link href="/" aria-label="Veroxa, torna alla home" className="flex items-center">
           <Logo3 className="h-9 text-foreground sm:h-10" />
         </Link>
         <button
-          type="button"
-          onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")}
-          aria-label={theme === "dark" ? "Attiva il tema chiaro" : "Attiva il tema scuro"}
-          aria-pressed={theme === "dark"}
-          title={theme === "dark" ? "Passa al tema chiaro" : "Passa al tema scuro"}
-          data-testid="button-toggle-theme"
-          className="flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-4 py-3 text-xs font-medium tracking-wide text-foreground shadow-sm backdrop-blur-sm transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-        >
-          {theme === "dark" ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
-          <span>{theme === "dark" ? "Tema chiaro" : "Tema scuro"}</span>
-        </button>
-
-        {/* Pulsante menu con animazione linee */}
-        <button
           ref={menuButtonRef}
-          onClick={() => setIsOpen(true)}
-          onMouseEnter={() => setBtnHovered(true)}
-          onMouseLeave={() => setBtnHovered(false)}
-          className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full"
-          aria-label="Apri menu"
+          type="button"
+          onClick={() => setIsOpen((open) => !open)}
+          aria-label={isOpen ? "Chiudi menu" : "Apri menu"}
           aria-expanded={isOpen}
+          aria-controls="site-nav-menu"
+          className="flex h-12 items-center gap-3 rounded-full border border-border/70 bg-background/85 px-5 text-xs font-medium uppercase tracking-[0.16em] shadow-sm backdrop-blur-md transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          data-testid="button-menu"
         >
-          <motion.span
-            animate={{ opacity: btnHovered ? 1 : 0, x: btnHovered ? 0 : 6 }}
-            transition={{ duration: 0.22, ease: "easeOut" as const }}
-            className="text-xs tracking-[0.18em] uppercase font-sans hidden sm:block text-foreground/70"
-          >
-            Menu
-          </motion.span>
-
-          <motion.div
-            whileHover={{ scale: 1.06 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.18, ease: "easeOut" as const }}
-            className="relative w-12 h-12 rounded-full border border-border/60 bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-sm group-hover:border-primary/50 group-hover:bg-card transition-colors duration-300"
-          >
-            {/* Cerchio che si riempie al hover */}
-            <motion.div
-              animate={{ scale: btnHovered ? 1 : 0, opacity: btnHovered ? 1 : 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" as const }}
-              className="absolute inset-0 rounded-full bg-primary/8 pointer-events-none"
-            />
-            <HamburgerIcon hovered={btnHovered} />
-          </motion.div>
+          <span>{isOpen ? "Chiudi" : "Menu"}</span>
+          {isOpen ? <X className="h-4 w-4" aria-hidden="true" /> : <span className="flex w-4 flex-col gap-[5px]" aria-hidden="true"><i className="h-px w-4 bg-current" /><i className="h-px w-3 bg-current" /></span>}
         </button>
       </header>
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            ref={overlayRef}
-            id="site-nav-overlay"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu di navigazione"
-            initial={{ clipPath: "circle(0% at calc(100% - 3.5rem) 3.5rem)" }}
-            animate={{ clipPath: "circle(150% at calc(100% - 3.5rem) 3.5rem)" }}
-            exit={{ clipPath: "circle(0% at calc(100% - 3.5rem) 3.5rem)" }}
-            transition={{ type: "tween", ease: [0.76, 0, 0.24, 1] as const, duration: 0.35 }}
-            className="fixed inset-0 z-50 bg-background/97 backdrop-blur-2xl text-foreground flex flex-col"
-          >
-            {/* Logo in alto a sinistra nel menu */}
-            <div className="absolute top-0 left-0 p-6 md:p-8 opacity-30">
-              <Logo1 className="w-8 h-8 text-foreground" animated={false} />
-            </div>
-
-            {/* Pulsante chiudi */}
-            <div className="absolute top-0 right-0 p-6 md:p-8">
-              <motion.button
-                ref={closeButtonRef}
-                onClick={() => setIsOpen(false)}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.18, ease: "easeOut" as const }}
-                className="w-12 h-12 rounded-full border border-border/60 bg-card/80 backdrop-blur-sm flex items-center justify-center hover:border-primary/50 hover:bg-card transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                aria-label="Chiudi menu"
-              >
-                <X className="w-4 h-4 text-foreground" />
-              </motion.button>
-            </div>
-
-            {/* Voci di navigazione */}
-            <nav className="flex-1 flex flex-col justify-center px-8 sm:px-12 md:px-24 max-w-7xl mx-auto w-full gap-6">
-              {links.map((link, i) => (
-                <div key={link.href} className="overflow-hidden border-b border-border/40 pb-4">
-                  <motion.div
-                    initial={{ y: "100%", opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: "-100%", opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] as const, delay: i * 0.04 }}
-                  >
-                    <Link href={link.href} onClick={() => setIsOpen(false)}>
-                      <div className="group flex items-end gap-5 sm:gap-8 cursor-pointer py-2">
-                        <span className="text-xs font-sans tracking-[0.2em] text-foreground/30 mb-1 md:mb-2 shrink-0">
-                          0{i + 1}
-                        </span>
-                        <span className={`text-4xl sm:text-5xl md:text-7xl font-serif font-light tracking-tight group-hover:text-primary transition-colors duration-200 ${location === link.href ? "text-primary" : "text-foreground"}`}>
-                          {link.label}
-                        </span>
-                        <motion.span
-                          animate={{ opacity: 0, x: -8 }}
-                          whileHover={{ opacity: 1, x: 0 }}
-                          className="text-sm font-serif italic text-foreground/40 mb-1 md:mb-2 hidden md:block"
-                        >
-                          {link.subtitle}
-                        </motion.span>
-                      </div>
+          <>
+            <button
+              type="button"
+              aria-label="Chiudi menu"
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 z-40 cursor-default bg-foreground/10 backdrop-blur-[2px]"
+              data-testid="button-dismiss-menu"
+            />
+            <motion.div
+              ref={menuRef}
+              id="site-nav-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu di navigazione"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="fixed left-3 right-3 top-[5.25rem] z-50 mx-auto max-w-5xl rounded-2xl border border-border/80 bg-background/98 p-5 text-foreground shadow-[0_24px_70px_hsl(var(--foreground)/.15)] backdrop-blur-xl sm:left-6 sm:right-6 sm:p-7 md:top-24"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 border-b border-border/70 pb-5">
+                <nav aria-label="Navigazione principale" className="flex min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-2 sm:gap-x-3">
+                  {links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      aria-current={location === link.href ? "page" : undefined}
+                      className={`rounded-full px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:px-4 ${location === link.href ? "bg-primary/10 text-primary" : "text-foreground/75 hover:bg-secondary hover:text-foreground"}`}
+                      data-testid={`link-menu-${link.href === "/" ? "home" : link.href.slice(1)}`}
+                    >
+                      {link.label}
                     </Link>
-                  </motion.div>
-                </div>
-              ))}
-            </nav>
-
-            {/* Piede del menu */}
-            <div className="p-8 sm:p-12 md:px-24 flex justify-end items-center text-sm font-sans text-muted-foreground border-t border-border/40">
-              <Link href="/contatti" onClick={() => setIsOpen(false)}>
-                <motion.div
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.2, ease: "easeOut" as const }}
-                  className="flex items-center gap-3 text-primary hover:text-foreground transition-colors font-medium text-sm tracking-[0.1em] uppercase"
+                  ))}
+                </nav>
+                <button
+                  type="button"
+                  onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")}
+                  aria-label={theme === "dark" ? "Attiva il tema chiaro" : "Attiva il tema scuro"}
+                  aria-pressed={theme === "dark"}
+                  className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border px-4 py-2.5 text-sm text-foreground transition-colors hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  data-testid="button-toggle-theme"
                 >
-                  <span>Inizia un progetto</span>
-                  <span className="text-lg leading-none">→</span>
-                </motion.div>
-              </Link>
-            </div>
-          </motion.div>
+                  {theme === "dark" ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
+                  <span>{theme === "dark" ? "Tema chiaro" : "Tema scuro"}</span>
+                </button>
+                <button ref={closeButtonRef} type="button" onClick={() => setIsOpen(false)} className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label="Chiudi menu" data-testid="button-close-menu">
+                  <X className="h-4 w-4" aria-hidden="true" />
+                </button>
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-4">
+                <p className="text-xs tracking-wide text-muted-foreground">Un progetto digitale, fatto intorno a te.</p>
+                <button
+                  type="button"
+                  onClick={openCookiePreferences}
+                  className="rounded-full px-3 py-2 text-xs text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  data-testid="button-menu-cookie-preferences"
+                >
+                  Preferenze cookie
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

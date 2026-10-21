@@ -29,8 +29,8 @@ const serviceOptions = [
 ];
 
 const styleOptions = [
-  { value: "Direzione tecnica e modulare (ispirazione Replit)", label: "Tecnica e modulare · ispirazione Replit" },
-  { value: "Direzione visuale e narrativa (ispirazione Lovable)", label: "Visuale e narrativa · ispirazione Lovable" },
+  { value: "Direzione tecnica e modulare", label: "Tecnico e modulare" },
+  { value: "Direzione visuale e narrativa", label: "Visuale e narrativo" },
   { value: "Preferisco una direzione diversa", label: "Ho già un'altra idea" },
   { value: "Vorrei un consiglio sullo stile", label: "Vorrei un consiglio" },
 ];

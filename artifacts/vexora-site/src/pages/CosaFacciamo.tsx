@@ -82,9 +82,9 @@ export default function CosaFacciamo() {
           <div className="grid grid-cols-1 gap-7 lg:grid-cols-2">
             <FadeIn direction="right" delay={0.12}>
               <article className="h-full overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_20px_60px_hsl(var(--foreground)/.05)]">
-                <StyleDirectionArtwork variant="replit" />
+                <StyleDirectionArtwork variant="technical" />
                 <div className="p-7 md:p-9">
-                  <span className="eyebrow">Tecnico · ispirazione Replit</span>
+                  <span className="eyebrow">Tecnico e modulare</span>
                   <h3 className="mt-3 text-3xl font-serif font-light">Ordine, funzione, chiarezza.</h3>
                   <p className="mt-4 leading-relaxed text-muted-foreground">
                     Griglie precise, contrasti netti e componenti modulari: una direzione che mette in primo piano ciò che il sito fa e come si usa.
@@ -94,9 +94,9 @@ export default function CosaFacciamo() {
             </FadeIn>
             <FadeIn direction="left" delay={0.24}>
               <article className="h-full overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_20px_60px_hsl(var(--foreground)/.05)]">
-                <StyleDirectionArtwork variant="lovable" />
+                <StyleDirectionArtwork variant="visual" />
                 <div className="p-7 md:p-9">
-                  <span className="eyebrow">Visuale · ispirazione Lovable</span>
+                  <span className="eyebrow">Visuale e narrativo</span>
                   <h3 className="mt-3 text-3xl font-serif font-light">Atmosfera, racconto, identità.</h3>
                   <p className="mt-4 leading-relaxed text-muted-foreground">
                     Tipografia protagonista, spazi più ampi e forme morbide: una direzione che valorizza il carattere e la storia del brand.

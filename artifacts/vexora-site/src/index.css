@@ -184,7 +184,7 @@
 }
 html[data-theme] #page-content,
 html[data-theme] #site-header,
-html[data-theme] #site-nav-overlay,
+html[data-theme] #site-nav-menu,
 html[data-theme] #site-footer {
   transition: background-color 100ms ease, color 100ms ease, border-color 100ms ease;
 }
@@ -209,7 +209,7 @@ html[data-theme] #site-footer {
   width: 100%;
   height: 100%;
 }
-.style-art--replit {
+.style-art--technical {
   --art-panel-a: hsl(var(--background));
   --art-panel-b: hsl(var(--secondary));
   --art-grid: hsl(var(--primary) / .1);
@@ -218,7 +218,7 @@ html[data-theme] #site-footer {
   --art-accent-soft: hsl(var(--primary) / .11);
   --art-code: hsl(var(--foreground) / .54);
 }
-.style-art--lovable {
+.style-art--visual {
   --art-panel-a: hsl(var(--accent));
   --art-panel-b: hsl(var(--secondary));
   --art-line: hsl(var(--foreground) / .16);
@@ -240,16 +240,6 @@ html[data-theme] #site-footer {
 details[open] .faq-chevron {
   transform: rotate(180deg);
 }
-.veroxa-marquee {
-  animation: veroxa-marquee 32s linear infinite;
-}
-.veroxa-marquee:hover {
-  animation-play-state: paused;
-}
-@keyframes veroxa-marquee {
-  to { transform: translateX(-50%); }
-}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
-  .veroxa-marquee { animation: none; }
 }

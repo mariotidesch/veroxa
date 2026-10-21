@@ -1,6 +1,7 @@
 import { Logo3 } from "@/components/Logos";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
+import { openCookiePreferences } from "@/components/CookieConsent";
 
 export function Footer() {
   return (
@@ -45,6 +46,14 @@ export function Footer() {
                 <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
               </span>
             </Link>
+            <button
+              type="button"
+              onClick={openCookiePreferences}
+              className="w-fit text-left text-sm text-footer-foreground/60 underline decoration-footer-foreground/20 underline-offset-4 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              data-testid="button-footer-cookie-preferences"
+            >
+              Preferenze cookie
+            </button>
           </div>
         </div>
       </div>
