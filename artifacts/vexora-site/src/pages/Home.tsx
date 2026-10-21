@@ -6,7 +6,7 @@ import { Link } from "wouter";
 import { ArrowRight, ChevronDown, MonitorSmartphone, Play, RefreshCw, Search } from "lucide-react";
 
 export default function Home() {
-  const [showWelcome, setShowWelcome] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(() => typeof window !== "undefined" && !window.matchMedia("(max-width: 767px)").matches);
   const [selectedGoal, setSelectedGoal] = useState("new-site");
   const reducedMotion = useReducedMotion();
   const goals = [
@@ -39,11 +39,12 @@ export default function Home() {
 
   useEffect(() => {
     // Apertura breve, con animazione ancora leggibile
+    if (!showWelcome) return;
     const timer = setTimeout(() => {
       setShowWelcome(false);
     }, reducedMotion ? 0 : 1450);
     return () => clearTimeout(timer);
-  }, []);
+  }, [showWelcome, reducedMotion]);
 
   return (
     <div className="w-full bg-background min-h-screen flex flex-col">
@@ -74,33 +75,33 @@ export default function Home() {
 
       <main className="w-full relative flex-1 flex flex-col">
         {/* HERO */}
-        <section className="flex-1 flex flex-col justify-center px-6 md:px-12 pt-20 relative overflow-hidden">
+        <section className="flex-1 flex flex-col justify-center px-5 sm:px-6 md:px-12 pt-16 md:pt-20 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none -z-10">
             <div className="x-visual x-grid" />
             <div className="absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-accent/30 rounded-full blur-[120px] opacity-60" />
             <div className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-secondary/40 rounded-full blur-[100px] opacity-60" />
           </div>
 
-          <div className="max-w-7xl mx-auto w-full relative z-10 py-20">
+          <div className="max-w-7xl mx-auto w-full relative z-10 py-12 sm:py-16 md:py-20">
             <FadeIn delay={0.5} className="flex flex-col md:w-3/4">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-[1px] bg-primary" />
                 <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">L'Atelier Digitale</span>
               </div>
               
-              <h2 className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-light tracking-tight text-foreground leading-[1.05]">
+              <h2 className="text-[clamp(2.5rem,11vw,4.5rem)] md:text-7xl lg:text-[6rem] font-serif font-light tracking-tight text-foreground leading-[1.02] break-words">
                 Diamo forma <br />
                 all'<span className="italic text-primary/90 theme-accent-outline">identità digitale</span><br />
                 della tua attività.
               </h2>
               
-              <p className="mt-10 text-xl md:text-2xl text-muted-foreground max-w-2xl font-sans font-light leading-relaxed">
+              <p className="mt-7 text-lg sm:text-xl md:mt-10 md:text-2xl text-muted-foreground max-w-2xl font-sans font-light leading-relaxed">
                 Creiamo siti web e strumenti digitali su misura. Uniamo estetica e tecnica per raccontare la tua attività con un'esperienza chiara, riconoscibile e semplice da usare.
               </p>
               
-              <div className="mt-16 flex flex-col sm:flex-row gap-6">
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <Link href="/contatti">
-                  <div className="group relative px-8 py-5 bg-foreground text-background rounded-full cursor-pointer overflow-hidden flex items-center justify-center gap-3 w-fit">
+                  <div className="group relative min-h-14 w-full sm:w-fit px-7 py-4 bg-foreground text-background rounded-full cursor-pointer overflow-hidden flex items-center justify-center gap-3">
                     <div className="absolute inset-0 bg-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
                     <span className="relative z-10 text-sm tracking-[0.1em] uppercase font-sans font-medium">Inizia il progetto</span>
                     <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
@@ -110,7 +111,7 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
-        <section className="relative px-6 md:px-12 py-28 md:py-40 bg-secondary/20 overflow-hidden">
+        <section className="relative px-5 sm:px-6 md:px-12 py-16 sm:py-20 md:py-40 bg-secondary/20 overflow-hidden">
           <div className="max-w-7xl mx-auto">
             <FadeIn className="grid lg:grid-cols-[.7fr_1.3fr] gap-14 items-start">
               <div>
@@ -144,7 +145,7 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
-        <section id="service-selector" className="relative overflow-hidden bg-secondary/20 px-6 py-24 md:px-12 md:py-32">
+        <section id="service-selector" className="relative overflow-hidden bg-secondary/20 px-5 sm:px-6 py-16 md:px-12 md:py-32">
           <div className="absolute -right-32 top-12 h-80 w-80 rounded-full bg-primary/10 blur-[100px]" aria-hidden="true" />
           <div className="relative mx-auto max-w-7xl">
             <FadeIn className="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
@@ -158,9 +159,9 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="rounded-[2rem] border border-border/70 bg-background/90 p-6 shadow-[0_24px_70px_rgba(21,39,58,.08)] md:p-9">
+                <div className="rounded-[1.5rem] border border-border/70 bg-background/90 p-4 sm:rounded-[2rem] sm:p-6 shadow-[0_24px_70px_rgba(21,39,58,.08)] md:p-9">
                 <p className="mb-5 text-xs font-medium uppercase tracking-[.16em] text-muted-foreground">Seleziona un obiettivo</p>
-                <div className="grid gap-3 sm:grid-cols-3" role="group" aria-label="Scegli il tuo obiettivo digitale">
+                <div className="grid gap-2 sm:grid-cols-3 sm:gap-3" role="group" aria-label="Scegli il tuo obiettivo digitale">
                   {goals.map((goal) => (
                     <button
                       key={goal.id}
@@ -168,7 +169,7 @@ export default function Home() {
                       onClick={() => setSelectedGoal(goal.id)}
                       aria-pressed={selectedGoal === goal.id}
                       data-testid={`button-goal-${goal.id}`}
-                      className={`flex min-h-28 flex-col items-start justify-between gap-4 rounded-2xl border p-4 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                      className={`flex min-h-20 flex-row items-center justify-start gap-3 rounded-2xl border p-4 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:min-h-28 sm:flex-col sm:items-start sm:justify-between sm:gap-4 ${
                         selectedGoal === goal.id
                           ? "border-primary bg-primary/10 text-foreground shadow-sm"
                           : "border-border bg-background text-muted-foreground hover:border-primary/40 hover:text-foreground"
@@ -187,7 +188,7 @@ export default function Home() {
                   <Link
                     href={`/contatti?interesse=${encodeURIComponent(activeGoal.contactMessage)}`}
                     data-testid="link-goal-contact"
-                    className="mt-6 inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-4 text-sm font-medium uppercase tracking-[.1em] text-background transition-colors hover:bg-primary"
+                    className="mt-6 inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-foreground px-5 py-3 text-center text-xs font-medium uppercase tracking-[.08em] text-background transition-colors hover:bg-primary sm:px-6 sm:text-sm sm:tracking-[.1em]"
                   >
                     Raccontaci la tua idea <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
@@ -238,7 +239,7 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
-        <section className="px-6 md:px-12 py-20 md:py-28 bg-secondary/35">
+        <section className="px-5 sm:px-6 md:px-12 py-16 md:py-28 bg-secondary/35">
           <div className="max-w-7xl mx-auto grid lg:grid-cols-[.7fr_1.3fr] gap-10 lg:gap-16 items-center">
             <FadeIn>
               <span className="eyebrow">Veroxa, in movimento</span>
@@ -249,12 +250,12 @@ export default function Home() {
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <div className="vexora-film-frame aspect-video rounded-[1.5rem] md:rounded-[2rem] shadow-[0_28px_80px_rgba(21,39,58,.16)]">
+              <div className="vexora-film-frame aspect-video w-full rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem] shadow-[0_28px_80px_rgba(21,39,58,.16)]">
                 <video
                   src="/veroxa-film/videos/veroxa-presentazione-25s.mp4"
                   poster="/veroxa-film/videos/veroxa-poster.jpg"
                   title="Film di presentazione di Veroxa, studio digitale"
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-contain"
                   controls
                   playsInline
                   preload="metadata"

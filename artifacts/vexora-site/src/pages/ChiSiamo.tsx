@@ -6,7 +6,7 @@ import { PageHero } from "@/components/PageHero";
 
 export default function ChiSiamo() {
   return (
-    <div className="w-full bg-background min-h-screen pt-40 pb-20 relative overflow-hidden">
+    <div className="w-full bg-background min-h-screen pt-28 pb-14 md:pt-40 md:pb-20 relative overflow-hidden">
       <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary/30 rounded-full blur-[120px] opacity-60 pointer-events-none" />
       
       <main className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -16,8 +16,8 @@ export default function ChiSiamo() {
             description="Creatività, tecnica e cura per dare una presenza online alle attività che hanno qualcosa di speciale da comunicare, mantenendo il loro carattere."
         />
 
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start mb-32">
-          <FadeIn delay={0.2} direction="right" className="space-y-8 text-lg md:text-xl text-foreground/80 font-sans font-light leading-relaxed">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-16 md:mb-32">
+          <FadeIn delay={0.2} direction="right" className="space-y-6 md:space-y-8 text-lg md:text-xl text-foreground/80 font-sans font-light leading-relaxed">
             <div className="flex items-center gap-4 mb-2">
               <div className="w-10 h-[1px] bg-primary" />
               <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Chi Siamo</span>
@@ -50,14 +50,14 @@ export default function ChiSiamo() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-card rounded-full flex items-center justify-center shadow-xl border border-border">
-              <Logo1 className="w-24 h-24 text-primary" animated={false} />
+              <div className="absolute -bottom-8 -left-5 sm:-left-8 md:-bottom-12 md:-left-12 w-28 h-28 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-card rounded-full flex items-center justify-center shadow-xl border border-border">
+              <Logo1 className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-primary" animated={false} />
             </div>
           </FadeIn>
         </section>
 
         {/* Seconda immagine + citazione */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center mb-16 md:mb-32">
           <FadeIn direction="right" delay={0.1}>
             <div className="w-full aspect-[16/9] rounded-[2rem] overflow-hidden shadow-lg">
               <img
@@ -83,7 +83,7 @@ export default function ChiSiamo() {
         </section>
 
         <FadeIn direction="up" delay={0.2}>
-          <section className="bg-footer-background text-footer-foreground rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
+          <section className="bg-footer-background text-footer-foreground rounded-[1.75rem] md:rounded-[3rem] p-6 sm:p-9 md:p-20 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute bottom-8 right-10 opacity-10">
               <Logo1 className="w-24 h-24 text-footer-foreground" animated={false} />

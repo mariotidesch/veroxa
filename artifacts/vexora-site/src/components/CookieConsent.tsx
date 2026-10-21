@@ -85,19 +85,19 @@ export function CookieConsent() {
       {!choice && (
         <aside
           aria-label="Preferenze cookie"
-          className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-5xl rounded-2xl border border-border bg-card p-5 text-card-foreground shadow-[0_20px_70px_hsl(var(--foreground)/.18)] sm:inset-x-6 sm:bottom-6 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-6"
+          className="fixed inset-x-2 bottom-[max(.5rem,env(safe-area-inset-bottom))] z-[60] mx-auto max-w-5xl rounded-2xl border border-border bg-card p-3 text-card-foreground shadow-[0_20px_70px_hsl(var(--foreground)/.18)] sm:inset-x-6 sm:bottom-6 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-6"
           data-testid="banner-cookie"
         >
           <div className="max-w-2xl">
-            <p className="font-serif text-xl">La tua privacy, prima di tutto.</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+            <p className="font-serif text-base sm:text-xl">La tua privacy, prima di tutto.</p>
+            <p className="mt-1 text-xs leading-snug text-muted-foreground sm:text-sm sm:leading-relaxed">
               Usiamo solo i dati tecnici necessari al funzionamento del sito. Al momento non sono collegati cookie statistici o di marketing.
             </p>
           </div>
-          <div className="mt-4 flex flex-wrap gap-2 sm:mt-0 sm:shrink-0">
-            <button type="button" onClick={() => saveChoice({ statistics: true, marketing: true })} className="rounded-full bg-foreground px-4 py-2.5 text-sm text-background transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" data-testid="button-cookie-accept-all">Accetta tutti</button>
-            <button type="button" onClick={() => saveChoice({ statistics: false, marketing: false })} className="rounded-full border border-border px-4 py-2.5 text-sm transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" data-testid="button-cookie-necessary">Solo necessari</button>
-            <button type="button" onClick={openPreferences} className="rounded-full px-3 py-2.5 text-sm text-muted-foreground underline decoration-border underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" data-testid="button-cookie-preferences">Preferenze</button>
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-0 sm:flex sm:shrink-0">
+            <button type="button" onClick={() => saveChoice({ statistics: true, marketing: true })} className="min-h-11 rounded-full bg-foreground px-3 py-2 text-xs text-background transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:px-4 sm:py-2.5 sm:text-sm" data-testid="button-cookie-accept-all">Accetta tutti</button>
+            <button type="button" onClick={() => saveChoice({ statistics: false, marketing: false })} className="min-h-11 rounded-full border border-border px-3 py-2 text-xs transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:px-4 sm:py-2.5 sm:text-sm" data-testid="button-cookie-necessary">Solo necessari</button>
+            <button type="button" onClick={openPreferences} className="col-span-2 min-h-10 rounded-full px-3 py-2 text-xs text-muted-foreground underline decoration-border underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:col-span-1 sm:min-h-0 sm:py-2.5 sm:text-sm" data-testid="button-cookie-preferences">Preferenze</button>
           </div>
         </aside>
       )}

@@ -123,6 +123,18 @@
     overflow-x: hidden;
     transition: background-color 100ms ease, color 100ms ease;
   }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    min-width: 320px;
+  }
+
+  video {
+    display: block;
+    max-width: 100%;
+  }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight;
@@ -238,6 +250,62 @@ html[data-theme] #site-footer {
 }
 details[open] .faq-chevron {
   transform: rotate(180deg);
+}
+@media (max-width: 639px) {
+  html { scroll-padding-top: 5rem; }
+
+  #site-header {
+    padding-top: max(.75rem, env(safe-area-inset-top));
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  #site-header > a svg {
+    max-width: 9rem;
+  }
+
+  #site-nav-menu {
+    max-height: calc(100dvh - 6.5rem);
+    overflow-y: auto;
+  }
+
+  #page-content {
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  #page-content h1,
+  #page-content h2,
+  #page-content h3,
+  #page-content p,
+  #page-content label {
+    overflow-wrap: anywhere;
+  }
+
+  #page-content input:not([type="checkbox"]),
+  #page-content select,
+  #page-content textarea {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  #page-content textarea {
+    min-height: 120px;
+  }
+
+  .vexora-film-frame {
+    border-radius: 1rem;
+  }
+
+  .vexora-film-frame video {
+    object-fit: contain;
+    touch-action: manipulation;
+  }
+
+  [data-testid="dialog-cookie-preferences"] {
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }

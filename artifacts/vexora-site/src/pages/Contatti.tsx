@@ -105,14 +105,14 @@ export default function Contatti() {
   };
 
   return (
-    <div className="w-full bg-background min-h-screen pt-40 pb-20 relative overflow-hidden">
+    <div className="w-full bg-background min-h-screen pt-28 pb-14 md:pt-40 md:pb-20 relative overflow-hidden">
       {/* Soft abstract background blobs */}
       <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary/30 rounded-full blur-[120px] opacity-60 pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent/30 rounded-full blur-[100px] opacity-50 pointer-events-none" />
       
-      <main className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <main className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 relative z-10">
         <PageHero label="Contatti" title="Parliamo del tuo progetto." description="Raccontaci la tua idea: ascoltiamo obiettivi e desideri per trovare insieme la strada giusta." />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-24">
           
           <div className="lg:col-span-5">
             <FadeIn direction="right">
@@ -120,16 +120,16 @@ export default function Contatti() {
                 <div className="w-12 h-[1px] bg-primary" />
                 <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Contatti</span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-serif font-light tracking-tight mb-8 leading-[1.1]">
+              <h1 className="text-[clamp(2.25rem,10vw,3.5rem)] md:text-6xl font-serif font-light tracking-tight mb-6 md:mb-8 leading-[1.06] break-words">
                 Iniziamo a<br/>
                 costruire<br/>
                 <span className="italic text-muted-foreground">qualcosa di tuo.</span>
               </h1>
-              <p className="text-xl text-foreground/70 font-sans font-light leading-relaxed mb-16">
+              <p className="text-lg md:text-xl text-foreground/70 font-sans font-light leading-relaxed mb-10 md:mb-16">
                 Siamo disponibili per ascoltare le tue idee e trasformarle in una presenza online solida, bella e professionale. Il confronto ci aiuta a costruire una proposta adatta a te.
               </p>
 
-              <div className="rounded-[1.75rem] border border-primary/20 bg-card/75 p-6 md:p-8">
+              <div className="rounded-[1.5rem] border border-primary/20 bg-card/75 p-5 sm:p-6 md:rounded-[1.75rem] md:p-8">
                 <span className="eyebrow">Bastano poche informazioni</span>
                 <p className="mt-4 text-xl font-serif font-light leading-snug">
                   Non devi avere già tutto deciso.
@@ -152,11 +152,11 @@ export default function Contatti() {
 
           <div className="lg:col-span-7">
             <FadeIn direction="up" delay={0.2}>
-              <div className="relative rounded-[2.5rem] border border-primary/15 bg-card p-7 shadow-[0_18px_55px_hsl(var(--foreground)/.06)] md:p-12">
-                <div className="mb-9 flex items-start justify-between gap-5">
+              <div className="relative rounded-[1.5rem] border border-primary/15 bg-card p-4 sm:p-6 md:rounded-[2.5rem] md:p-12 shadow-[0_18px_55px_hsl(var(--foreground)/.06)]">
+                <div className="mb-7 flex items-start justify-between gap-3 sm:mb-9 sm:gap-5">
                   <div>
                     <span className="eyebrow">Da dove partiamo</span>
-                    <h3 className="mt-3 text-3xl font-serif font-light text-foreground">Raccontaci il tuo progetto</h3>
+                    <h3 className="mt-3 text-2xl sm:text-3xl font-serif font-light text-foreground">Raccontaci il tuo progetto</h3>
                   </div>
                   <span className="hidden rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-medium text-primary sm:inline-flex">
                     Proposta su misura
@@ -183,7 +183,7 @@ export default function Contatti() {
                       <legend className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">
                         Quali servizi ti interessano? <span className="normal-case tracking-normal">(Facoltativo · puoi scegliere più opzioni)</span>
                       </legend>
-                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
                         {serviceOptions.map((service, index) => {
                           const checked = selectedServices.includes(service.value);
                           const id = `service-option-${index}`;
@@ -225,7 +225,7 @@ export default function Contatti() {
                       </div>
                     </fieldset>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                       <div className="space-y-3">
                         <label htmlFor="name" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Nome e Cognome</label>
                         <input 
@@ -251,7 +251,7 @@ export default function Contatti() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
                       <div className="space-y-3">
                         <label htmlFor="industry" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Settore <span className="normal-case tracking-normal">(Facoltativo)</span></label>
                         <select
@@ -315,7 +315,7 @@ export default function Contatti() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
                       <div className="space-y-3">
                         <label htmlFor="projectTiming" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Quando vorresti iniziare? <span className="normal-case tracking-normal">(Facoltativo)</span></label>
                         <select
