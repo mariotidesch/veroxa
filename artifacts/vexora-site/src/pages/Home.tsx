@@ -59,13 +59,13 @@ export default function Home() {
             
             <div className="flex flex-col items-center gap-10 relative z-10">
               <Logo1 className="w-24 h-24 text-foreground" animated={!reducedMotion} />
-              <motion.h1 
+                <motion.h1
                 initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.45, delay: 0.35, ease: "easeOut" as const }}
                 className="text-3xl md:text-4xl tracking-[0.3em] font-serif font-light text-foreground ml-3"
               >
-                VEROXA
+                  VERO<span className="theme-accent-outline text-primary">X</span>A
               </motion.h1>
             </div>
           </motion.div>
@@ -90,12 +90,12 @@ export default function Home() {
               
               <h2 className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-light tracking-tight text-foreground leading-[1.05]">
                 Diamo forma <br />
-                all'<span className="italic text-primary/90">identità digitale</span><br />
+                all'<span className="italic text-primary/90 theme-accent-outline">identità digitale</span><br />
                 della tua attività.
               </h2>
               
               <p className="mt-10 text-xl md:text-2xl text-muted-foreground max-w-2xl font-sans font-light leading-relaxed">
-                Creiamo siti web per negozi, ristoranti e botteghe. Uniamo estetica e tecnica per mostrare online la stessa cura che metti ogni giorno nel tuo lavoro, con un'esperienza chiara per chi ti scopre.
+                Creiamo siti web e strumenti digitali su misura. Uniamo estetica e tecnica per raccontare la tua attività con un'esperienza chiara, riconoscibile e semplice da usare.
               </p>
               
               <div className="mt-16 flex flex-col sm:flex-row gap-6">
@@ -129,7 +129,7 @@ export default function Home() {
             <FadeIn className="grid lg:grid-cols-[.7fr_1.3fr] gap-14 items-start">
               <div>
                 <span className="eyebrow">Dove nasce Veroxa</span>
-                <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">Ogni progetto nasce da un <span className="italic text-primary">incontro.</span></h2>
+                <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">Ogni progetto nasce da un <span className="italic text-primary theme-accent-outline">incontro.</span></h2>
                 {/* Logo mark decorativo */}
                 <div className="mt-10 opacity-20">
                   <Logo1 className="w-16 h-16 text-primary" animated={false} />
@@ -163,7 +163,7 @@ export default function Home() {
               <div>
                 <span className="eyebrow">Un primo passo, insieme</span>
                 <h2 className="mt-5 text-4xl font-light leading-tight md:text-6xl">
-                  Che cosa vuoi <span className="italic text-primary">migliorare?</span>
+                  Che cosa vuoi <span className="italic text-primary theme-accent-outline">migliorare?</span>
                 </h2>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
                   Scegli il tuo obiettivo: ti mostriamo da dove partire e puoi mandarci la tua idea già pronta nel messaggio.
@@ -211,7 +211,7 @@ export default function Home() {
               <div>
                 <span className="eyebrow">Domande rapide</span>
                 <h2 className="mt-5 text-3xl font-light leading-tight md:text-5xl">
-                  Le cose importanti, <span className="italic text-primary">senza giri.</span>
+                  Le cose importanti, <span className="italic text-primary theme-accent-outline">senza giri.</span>
                 </h2>
                 <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
                   Apri una domanda per trovare subito le informazioni che ti servono.
@@ -254,10 +254,10 @@ export default function Home() {
           <div className="max-w-7xl mx-auto grid lg:grid-cols-[.7fr_1.3fr] gap-10 lg:gap-16 items-center">
             <FadeIn>
               <span className="eyebrow">Veroxa, in movimento</span>
-              <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">Un’idea prende forma, <span className="italic text-primary">in 30 secondi.</span></h2>
+              <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">Un’idea prende forma, <span className="italic text-primary theme-accent-outline">in 25 secondi.</span></h2>
               <p className="mt-6 text-lg text-foreground/70 leading-relaxed">Un breve film sul nostro modo di unire identità, design e tecnologia. Premi play e guarda il mondo Veroxa da vicino.</p>
               <div className="mt-7 inline-flex items-center gap-3 text-xs tracking-[.16em] uppercase text-foreground/55">
-                <Play className="w-4 h-4 text-primary" aria-hidden="true" /> Film di presentazione · 00:30
+                <Play className="w-4 h-4 text-primary" aria-hidden="true" /> Film di presentazione · 00:25
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>

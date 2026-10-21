@@ -13,24 +13,33 @@ import {
   Search,
   ShoppingBag,
 } from "lucide-react";
-import { Logo2 } from "@/components/Logos";
+import { Logo1 } from "@/components/Logos";
 import { motion } from "framer-motion";
 import { PageHero } from "@/components/PageHero";
 
 const serviceOptions = [
   { value: "Sito web", icon: <MonitorSmartphone className="h-4 w-4" />, label: "Sito web" },
+  { value: "Landing page", icon: <MonitorSmartphone className="h-4 w-4" />, label: "Landing page / pagina singola" },
   { value: "E-commerce e prenotazioni", icon: <ShoppingBag className="h-4 w-4" />, label: "E-commerce / prenotazioni" },
   { value: "Restyling", icon: <RefreshCw className="h-4 w-4" />, label: "Restyling" },
   { value: "Identità visiva", icon: <Palette className="h-4 w-4" />, label: "Identità visiva" },
   { value: "SEO e visibilità", icon: <Search className="h-4 w-4" />, label: "SEO / visibilità" },
   { value: "Consulenza", icon: <CircleHelp className="h-4 w-4" />, label: "Vorrei un consiglio" },
+  { value: "Altro", icon: <CircleHelp className="h-4 w-4" />, label: "Altro / da definire" },
+];
+
+const styleOptions = [
+  { value: "Direzione tecnica e modulare (ispirazione Replit)", label: "Tecnica e modulare · ispirazione Replit" },
+  { value: "Direzione visuale e narrativa (ispirazione Lovable)", label: "Visuale e narrativa · ispirazione Lovable" },
+  { value: "Preferisco una direzione diversa", label: "Ho già un'altra idea" },
+  { value: "Vorrei un consiglio sullo stile", label: "Vorrei un consiglio" },
 ];
 
 export default function Contatti() {
   const initialMessage = new URLSearchParams(window.location.search).get("interesse") ?? "";
   const [isSuccess, setIsSuccess] = useState(false);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [contactMethod, setContactMethod] = useState<"email" | "phone">("email");
+  const [contactMethod, setContactMethod] = useState<"" | "email" | "phone" | "any">("");
   const successTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -52,11 +61,17 @@ export default function Contatti() {
     const email = String(data.get("email") ?? "");
     const message = String(data.get("message") ?? "");
     const projectTiming = String(data.get("projectTiming") ?? "");
+    const projectStyle = String(data.get("projectStyle") ?? "");
+    const industry = String(data.get("industry") ?? "");
+    const currentWebsite = String(data.get("currentWebsite") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
     const extraDetails = [
       selectedServices.length ? `Servizi di interesse: ${selectedServices.join(", ")}` : "",
+      projectStyle ? `Direzione visiva: ${projectStyle}` : "",
+      industry ? `Settore: ${industry}` : "",
+      currentWebsite ? `Sito attuale: ${currentWebsite}` : "",
       projectTiming ? `Tempistiche: ${projectTiming}` : "",
-      `Preferenza di contatto: ${contactMethod === "phone" ? "Telefono" : "Email"}`,
+      contactMethod ? `Preferenza di contatto: ${contactMethod === "phone" ? "Telefono" : contactMethod === "email" ? "Email" : "Indifferente"}` : "",
       contactMethod === "phone" && phone ? `Telefono: ${phone}` : "",
     ].filter(Boolean);
     const completeMessage = [message.trim(), ...extraDetails].filter(Boolean).join("\n\n");
@@ -79,7 +94,7 @@ export default function Contatti() {
       setIsSuccess(true);
       form.reset();
       setSelectedServices([]);
-      setContactMethod("email");
+      setContactMethod("");
       if (successTimer.current) clearTimeout(successTimer.current);
       successTimer.current = setTimeout(() => setIsSuccess(false), 8000);
     } catch (error) {
@@ -128,7 +143,7 @@ export default function Contatti() {
                   ))}
                 </div>
                 <div className="mt-7 flex items-center gap-3 border-t border-border pt-5 text-sm text-muted-foreground">
-                  <Logo2 className="h-8 w-8 shrink-0 text-primary" />
+                  <Logo1 className="h-8 w-8 shrink-0 text-primary" animated={false} />
                   <span>Se hai dubbi, scegli “Vorrei un consiglio” e partiamo da lì.</span>
                 </div>
               </div>
@@ -166,7 +181,7 @@ export default function Contatti() {
                   <form onSubmit={handleSubmit} className="space-y-8">
                     <fieldset className="space-y-4">
                       <legend className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">
-                        Quali servizi ti interessano? <span className="normal-case tracking-normal">(puoi scegliere più opzioni)</span>
+                        Quali servizi ti interessano? <span className="normal-case tracking-normal">(Facoltativo · puoi scegliere più opzioni)</span>
                       </legend>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                         {serviceOptions.map((service, index) => {
@@ -224,7 +239,7 @@ export default function Contatti() {
                         />
                       </div>
                       <div className="space-y-3">
-                        <label htmlFor="company" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">La vostra Attività</label>
+                         <label htmlFor="company" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">La vostra attività <span className="normal-case tracking-normal">(Facoltativo)</span></label>
                         <input 
                           type="text" 
                           id="company"
@@ -234,6 +249,57 @@ export default function Contatti() {
                           placeholder="Nome dell'impresa"
                         />
                       </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                      <div className="space-y-3">
+                        <label htmlFor="industry" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Settore <span className="normal-case tracking-normal">(Facoltativo)</span></label>
+                        <select
+                          id="industry"
+                          name="industry"
+                          defaultValue=""
+                          data-testid="select-project-industry"
+                          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                        >
+                          <option value="">Scegli se vuoi</option>
+                          <option value="Commercio">Commercio</option>
+                          <option value="Ristorazione e ospitalità">Ristorazione e ospitalità</option>
+                          <option value="Professionisti e servizi">Professionisti e servizi</option>
+                          <option value="Artigianato e produzione">Artigianato e produzione</option>
+                          <option value="Altro">Altro</option>
+                        </select>
+                      </div>
+                      <div className="space-y-3">
+                        <label htmlFor="currentWebsite" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Sito attuale <span className="normal-case tracking-normal">(Facoltativo)</span></label>
+                        <input
+                          type="text"
+                          id="currentWebsite"
+                          name="currentWebsite"
+                          autoComplete="url"
+                          data-testid="input-current-website"
+                          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+                          placeholder="https://..."
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <label htmlFor="projectStyle" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Direzione visiva <span className="normal-case tracking-normal">(Facoltativo)</span></label>
+                      <select
+                        id="projectStyle"
+                        name="projectStyle"
+                        defaultValue=""
+                        data-testid="select-project-style"
+                        className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                      >
+                        <option value="">Non ho ancora una preferenza</option>
+                        {styleOptions.map((option) => (
+                          <option key={option.value} value={option.value}>{option.label}</option>
+                        ))}
+                      </select>
+                      <p className="text-xs leading-relaxed text-muted-foreground">
+                        Sono solo punti di partenza: possiamo adattarli o cambiare direzione in base alle tue esigenze.
+                      </p>
                     </div>
 
                     <div className="space-y-3">
@@ -251,7 +317,7 @@ export default function Contatti() {
 
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                       <div className="space-y-3">
-                        <label htmlFor="projectTiming" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Quando vorresti iniziare?</label>
+                        <label htmlFor="projectTiming" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Quando vorresti iniziare? <span className="normal-case tracking-normal">(Facoltativo)</span></label>
                         <select
                           id="projectTiming"
                           name="projectTiming"
@@ -266,42 +332,37 @@ export default function Contatti() {
                         </select>
                       </div>
                       <fieldset className="space-y-3">
-                        <legend className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Come preferisci essere ricontattato?</legend>
-                        <div className="grid grid-cols-2 gap-3">
-                          <button
-                            type="button"
-                            onClick={() => setContactMethod("email")}
-                            aria-pressed={contactMethod === "email"}
-                            data-testid="button-contact-email"
-                            className={`inline-flex items-center justify-center gap-2 rounded-xl border px-3 py-3 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                              contactMethod === "email" ? "border-primary bg-primary/10 text-foreground" : "border-border bg-background text-muted-foreground hover:border-primary/50"
-                            }`}
-                          >
-                            <Mail className="h-4 w-4 text-primary" aria-hidden="true" /> Email
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setContactMethod("phone")}
-                            aria-pressed={contactMethod === "phone"}
-                            data-testid="button-contact-phone"
-                            className={`inline-flex items-center justify-center gap-2 rounded-xl border px-3 py-3 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                              contactMethod === "phone" ? "border-primary bg-primary/10 text-foreground" : "border-border bg-background text-muted-foreground hover:border-primary/50"
-                            }`}
-                          >
-                            <Phone className="h-4 w-4 text-primary" aria-hidden="true" /> Telefono
-                          </button>
+                        <legend className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Come preferisci essere ricontattato? <span className="normal-case tracking-normal">(Facoltativo)</span></legend>
+                        <div className="grid grid-cols-3 gap-2">
+                          {[
+                            { value: "email", label: "Email", icon: <Mail className="h-4 w-4 text-primary" aria-hidden="true" /> },
+                            { value: "phone", label: "Telefono", icon: <Phone className="h-4 w-4 text-primary" aria-hidden="true" /> },
+                            { value: "any", label: "Indifferente", icon: null },
+                          ].map((method) => (
+                            <button
+                              key={method.value}
+                              type="button"
+                              onClick={() => setContactMethod(method.value as "email" | "phone" | "any")}
+                              aria-pressed={contactMethod === method.value}
+                              data-testid={`button-contact-${method.value}`}
+                              className={`inline-flex min-h-12 items-center justify-center gap-1.5 rounded-xl border px-2 py-3 text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-sm ${
+                                contactMethod === method.value ? "border-primary bg-primary/10 text-foreground" : "border-border bg-background text-muted-foreground hover:border-primary/50"
+                              }`}
+                            >
+                              {method.icon}{method.label}
+                            </button>
+                          ))}
                         </div>
                       </fieldset>
                     </div>
 
                     {contactMethod === "phone" && (
                       <div className="space-y-3">
-                        <label htmlFor="phone" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Numero di telefono</label>
+                        <label htmlFor="phone" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Numero di telefono <span className="normal-case tracking-normal">(Facoltativo)</span></label>
                         <input
                           type="tel"
                           id="phone"
                           name="phone"
-                          required
                           autoComplete="tel"
                           data-testid="input-contact-phone"
                           className="w-full rounded-xl border border-border bg-background px-4 py-3 font-serif text-lg text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
@@ -311,7 +372,7 @@ export default function Contatti() {
                     )}
 
                     <div className="space-y-3">
-                      <label htmlFor="message" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Il vostro progetto</label>
+                        <label htmlFor="message" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Il tuo progetto</label>
                       <textarea 
                         id="message"
                         name="message"

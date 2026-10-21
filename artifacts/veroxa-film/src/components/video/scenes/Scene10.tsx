@@ -4,24 +4,26 @@ const EASE = [0.18, 0.82, 0.2, 1] as const;
 
 export function Scene10() {
   return (
-    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.12, rotateX: -7, clipPath: 'circle(8% at 24% 49%)' }}
+    <motion.section className="film-stage" initial={{ opacity: 0, scale: 1.08, rotateX: -4, clipPath: 'circle(8% at 24% 49%)' }}
       animate={{ opacity: 1, scale: 1, rotateX: 0, clipPath: 'circle(120% at 24% 49%)' }}
       exit={{ opacity: 0, scale: 1.04, rotateY: -2, clipPath: 'circle(8% at 24% 49%)' }} transition={{ duration: 0.5, ease: EASE }}
       style={{ background: '#08182e', color: '#f5f8f9' }}>
       <motion.div className="absolute" style={{ inset: 0, background: 'radial-gradient(ellipse at 24% 50%,rgba(40,125,166,.2),transparent 42%),linear-gradient(90deg,#08182e 0%,#0d213b 100%)' }}
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} />
-      <motion.div className="absolute rounded-full overflow-hidden" style={{ left: '24%', top: '49%', width: '37vmin', height: '37vmin', x: '-50%', y: '-50%', background: '#cce8f2', boxShadow: '0 0 0 1px rgba(204,232,242,.82),0 2.5vmin 7vmin rgba(0,0,0,.26)', display: 'grid', placeItems: 'center' }}
-        initial={{ scale: 0.16, rotate: -18, opacity: 0 }} animate={{ scale: [0.16, 1.08, 1, 1.018, 1], rotate: [-18, 1.8, 0, 0, 0], opacity: 1 }}
+      <motion.svg className="absolute" viewBox="0 0 100 100" fill="none" role="img" aria-label="Simbolo X intrecciato VEROXA"
+        style={{ left: '24%', top: '49%', width: '38vmin', height: '38vmin', x: '-50%', y: '-50%', overflow: 'visible' }}
+        initial={{ scale: 0.5, rotate: -18, opacity: 0 }} animate={{ scale: [0.5, 1.08, 1, 1.018, 1], rotate: [-18, 1.8, 0, 0, 0], opacity: 1 }}
         transition={{ duration: 1.28, delay: 0.12, times: [0, 0.62, 0.82, 0.94, 1], ease: EASE }}>
-        <motion.svg viewBox="0 0 100 100" fill="none" aria-label="Monogramma V circolare VEROXA" role="img"
-          style={{ width: '68%', height: '68%', overflow: 'visible', transformOrigin: 'center' }}
-          initial={{ opacity: 0, scale: 0.68, rotate: -12 }} animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.56, delay: 0.4, ease: EASE }}>
-          <circle cx="50" cy="50" r="45" stroke="#163452" strokeWidth="2.2" />
-          <path d="M32 35L50 65L68 35" stroke="#163452" strokeWidth="4.6" strokeLinecap="square" strokeLinejoin="miter" />
-        </motion.svg>
-      </motion.div>
-      <motion.div className="absolute rounded-full" style={{ left: '24%', top: '49%', width: '44vmin', height: '44vmin', x: '-50%', y: '-50%', border: '1px solid rgba(204,232,242,.54)', transformOrigin: 'center' }}
+        <motion.circle cx="50" cy="50" r="45" stroke="#cce8f2" strokeWidth="1.2" opacity=".72"
+          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.44, delay: 0.08, ease: EASE }} />
+        <motion.path d="M29 27L47 45L70 73" stroke="#f5f8f9" strokeWidth="5.5" strokeLinecap="square"
+          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.16, delay: 0, ease: EASE }} />
+        <motion.path d="M71 27L53 45L30 73" stroke="#cce8f2" strokeWidth="5.5" strokeLinecap="square"
+          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.16, delay: 0.04, ease: EASE }} />
+        <circle cx="50" cy="50" r="3.2" fill="#a9deca" />
+        <path d="M50 11V18M89 50H82M50 89V82M11 50H18" stroke="#cce8f2" strokeWidth="1.2" opacity=".55" />
+      </motion.svg>
+      <motion.div className="absolute rounded-full" style={{ left: '24%', top: '49%', width: '44vmin', height: '44vmin', x: '-50%', y: '-50%', border: '1px solid rgba(204,232,242,.44)', transformOrigin: 'center' }}
         initial={{ scale: 0.42, opacity: 0 }} animate={{ scale: [0.42, 1.02, 1.09, 1.13], rotate: [0, 10, -6, 0], opacity: [0, 0.68, 0.31, 0.13] }}
         transition={{ duration: 2.82, delay: 0.08, times: [0, 0.2, 0.56, 1], ease: EASE }} />
 
@@ -30,7 +32,13 @@ export function Scene10() {
       <motion.div className="absolute" style={{ left: '54%', top: '32%', width: '38%' }}
         initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.52, delay: 0.34, ease: EASE }}>
         <div className="film-kicker" style={{ color: '#a9deca' }}>SOLUZIONI DIGITALI</div>
-        <h1 className="film-copy m-0" style={{ fontSize: '9.6vmin', marginTop: '2vmin', letterSpacing: '.015em' }}>VEROXA</h1>
+        <h1 className="m-0" aria-label="VEROXA" style={{ display: 'flex', alignItems: 'baseline', gap: '.015em', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '10.5vmin', marginTop: '2vmin', letterSpacing: '.105em', lineHeight: 1 }}>
+          <span>VERO</span>
+          <motion.span style={{ color: '#75c5e1', display: 'inline-block', fontWeight: 800, fontSize: '1.1em', textShadow: '0 0 1px rgba(204,232,242,.5)' }}
+            initial={{ scale: 0.45, opacity: 0, rotate: -24 }} animate={{ scale: [0.45, 1.16, 1], opacity: 1, rotate: 0 }}
+            transition={{ duration: 0.54, delay: 0.62, ease: EASE }}>X</motion.span>
+          <span style={{ marginLeft: '-.105em' }}>A</span>
+        </h1>
         <motion.div style={{ height: 1, width: '18vmin', background: '#cce8f2', transformOrigin: 'left', marginTop: '2.3vmin' }}
           initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.38, delay: 0.78 }} />
         <motion.p className="film-support m-0" style={{ color: 'rgba(245,248,249,.88)', maxWidth: '18ch', marginTop: '2.2vmin' }}
@@ -46,7 +54,7 @@ export function Scene10() {
         initial={{ scaleX: 0 }} animate={{ scaleX: [0, 1, 1, 0.12] }} transition={{ duration: 2.45, times: [0, 0.32, 0.78, 1], delay: 0.2, ease: EASE }} />
       <motion.div className="absolute film-micro" style={{ right: '8%', bottom: '6%', color: 'rgba(245,248,249,.56)', fontSize: '1.45vmin' }}
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 2.4 }}>
-        VEROXA
+        VEROXA / SOLUZIONI DIGITALI
       </motion.div>
     </motion.section>
   );

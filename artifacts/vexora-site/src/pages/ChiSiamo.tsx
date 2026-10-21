@@ -1,5 +1,5 @@
 import { FadeIn } from "@/components/FadeIn";
-import { Logo1, Logo2 } from "@/components/Logos";
+import { Logo1 } from "@/components/Logos";
 import cafeImg from "@assets/generated_images/modern-cafe.jpg";
 import boutiqueImg from "@assets/generated_images/artisan-boutique.jpg";
 import { PageHero } from "@/components/PageHero";
@@ -51,7 +51,7 @@ export default function ChiSiamo() {
               />
             </div>
             <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-card rounded-full flex items-center justify-center shadow-xl border border-border">
-              <Logo2 className="w-24 h-24 text-primary" />
+              <Logo1 className="w-24 h-24 text-primary" animated={false} />
             </div>
           </FadeIn>
         </section>

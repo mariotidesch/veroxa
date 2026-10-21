@@ -1,141 +1,93 @@
 import { motion } from 'framer-motion';
 
-// Logo 1: Primary mark (Welcome screen / identity)
-export const Logo1 = ({ className = "w-16 h-16", animated = true }: { className?: string, animated?: boolean }) => {
-  const drawAnimation = {
-    initial: { pathLength: 0, opacity: 0 },
-    animate: { pathLength: 1, opacity: 1 }
-  };
-  
-  const staticAnimation = {
-    initial: { pathLength: 1, opacity: 1 },
-    animate: { pathLength: 1, opacity: 1 }
-  };
-  
-  const animationProps = animated ? drawAnimation : staticAnimation;
-  const baseTransition = { duration: 1.5, ease: "easeInOut" as const };
+type LogoProps = { className?: string; animated?: boolean };
 
+// Circular stamp: the crossed ribbons make the X the primary brand symbol.
+export const Logo1 = ({ className = "w-16 h-16", animated = true }: LogoProps) => {
+  const lineInitial = animated ? 0 : 1;
   return (
-    <motion.svg 
-      viewBox="0 0 100 100" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg" 
+    <motion.svg
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       className={className}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.4, ease: "easeOut" as const }}
+      role="img"
+      aria-label="Simbolo X di Veroxa"
+      initial={false}
+      whileHover={animated ? { scale: 1.06, rotate: 2 } : undefined}
+      transition={{ duration: 0.24, ease: "easeOut" as const }}
     >
-      <motion.circle 
-        cx="50" cy="50" r="45" 
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        {...animationProps}
-        transition={baseTransition}
-      />
-      <motion.path 
-        d="M 32 35 L 50 65 L 68 35" 
-        stroke="currentColor" 
-        strokeWidth="3.5" 
-        strokeLinecap="square"
-        strokeLinejoin="miter"
-        {...animationProps}
-        transition={{ ...baseTransition, delay: 0.2 }}
-      />
-    </motion.svg>
-  );
-};
-
-// Logo 2: Elaborate Wordmark (Inside pages / How it Works / Contacts)
-export const Logo2 = ({ className = "h-12" }: { className?: string }) => {
-  return (
-    <motion.svg 
-      viewBox="0 0 320 80" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg" 
-      className={className}
-      initial="rest"
-      whileHover="hover"
-    >
-      {/* Mark on the left (Scaled down Logo 1) */}
-      <g transform="translate(15, 20) scale(0.4)">
-        <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="3" />
-        <path d="M 32 35 L 50 65 L 68 35" stroke="currentColor" strokeWidth="7" strokeLinecap="square" strokeLinejoin="miter" />
-      </g>
-      
-      {/* Pure SVG path letters for VEROXA */}
-      <g stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
-        {/* V */}
-        <path d="M 70 25 L 85 55 L 100 25" />
-        {/* E */}
-        <path d="M 135 25 L 115 25 L 115 55 L 135 55 M 115 40 L 130 40" />
-        {/* R */}
-        <path d="M 150 55 L 150 25 L 165 25 C 180 25 180 40 165 40 L 150 40 M 160 40 L 175 55" />
-        {/* O */}
-        <path d="M 190 40 A 15 15 0 1 0 220 40 A 15 15 0 1 0 190 40" />
-        {/* X */}
-        <path d="M 235 25 L 260 55 M 260 25 L 235 55" />
-        {/* A */}
-        <path d="M 280 55 L 295 25 L 310 55 M 285 45 L 305 45" />
-      </g>
-
-      {/* Decorative Line on Hover */}
-      <motion.path 
-        d="M 70 65 L 310 65"
+      <motion.circle
+        cx="50"
+        cy="50"
+        r="45"
         stroke="currentColor"
         strokeWidth="1.5"
-        variants={{
-          rest: { pathLength: 0, opacity: 0 },
-          hover: { pathLength: 1, opacity: 1 }
-        }}
-        transition={{ duration: 0.6, ease: "easeInOut" as const }}
+        initial={{ pathLength: lineInitial, opacity: 1 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" as const }}
       />
+      <motion.path
+        d="M29 27L47 45L70 73"
+        stroke="currentColor"
+        strokeWidth="5.5"
+        strokeLinecap="square"
+        initial={{ pathLength: lineInitial, opacity: 1 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.12, ease: "easeOut" as const }}
+      />
+      <motion.path
+        d="M71 27L53 45L30 73"
+        stroke="hsl(var(--primary))"
+        strokeWidth="5.5"
+        strokeLinecap="square"
+        initial={{ pathLength: lineInitial, opacity: 1 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.22, ease: "easeOut" as const }}
+      />
+      <circle cx="50" cy="50" r="3.2" fill="currentColor" />
+      <path d="M50 11V18M89 50H82M50 89V82M11 50H18" stroke="currentColor" strokeWidth="1.2" opacity=".55" />
     </motion.svg>
   );
 };
 
-// Logo 3: Complex Seal/Emblem (Footer)
-export const Logo3 = ({ className = "w-16 h-16" }: { className?: string }) => {
-  return (
-    <motion.svg 
-      viewBox="0 0 120 120" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg" 
-      className={className}
-      initial="rest"
-      whileHover="hover"
+// Wordmark: a typographic lockup with a distinct cyan X.
+export const Logo2 = ({ className = "" }: { className?: string }) => (
+  <motion.span
+    className={`relative inline-flex items-baseline whitespace-nowrap font-sans font-semibold tracking-[0.16em] leading-none ${className}`}
+    role="img"
+    aria-label="Veroxa"
+    initial="rest"
+    whileHover="hover"
+  >
+    <span>VERO</span>
+    <motion.span
+      className="relative mx-[0.015em] text-primary"
+      variants={{ rest: { scale: 1 }, hover: { scale: 1.1 } }}
+      transition={{ duration: 0.18, ease: "easeOut" as const }}
     >
-      {/* Outer rotating dashed ring */}
-      <motion.circle 
-        cx="60" cy="60" r="55" 
-        stroke="currentColor" 
-        strokeWidth="1" 
-        strokeDasharray="2 4" 
-        variants={{
-          rest: { rotate: 0 },
-          hover: { rotate: 360 }
-        }}
-        transition={{ duration: 4, ease: "linear" as const, repeat: Infinity }}
-        style={{ originX: "50%", originY: "50%" }}
-      />
+      X
+    </motion.span>
+    <span>A</span>
+    <motion.span
+      aria-hidden="true"
+      className="absolute -bottom-1 left-0 h-px bg-primary"
+      variants={{ rest: { width: "0%", opacity: 0 }, hover: { width: "100%", opacity: 1 } }}
+      transition={{ duration: 0.24, ease: "easeOut" as const }}
+    />
+  </motion.span>
+);
 
-      {/* Intermediate static ring */}
-      <circle cx="60" cy="60" r="48" stroke="currentColor" strokeWidth="0.5" />
-      
-      {/* Decorative Diamonds at cardinal points */}
-      <path d="M 60 8 L 64 12 L 60 16 L 56 12 Z" fill="currentColor" />
-      <path d="M 112 60 L 108 56 L 104 60 L 108 64 Z" fill="currentColor" />
-      <path d="M 60 112 L 64 108 L 60 104 L 56 108 Z" fill="currentColor" />
-      <path d="M 8 60 L 12 56 L 16 60 L 12 64 Z" fill="currentColor" />
-
-      {/* Simulated Text Arches (decorative dashes forming curves) */}
-      <path d="M 33.2 33.2 A 38 38 0 0 1 86.8 33.2" stroke="currentColor" strokeWidth="3" strokeDasharray="1 5" strokeLinecap="round" opacity="0.5" />
-      <path d="M 33.2 86.8 A 38 38 0 0 0 86.8 86.8" stroke="currentColor" strokeWidth="3" strokeDasharray="1 5" strokeLinecap="round" opacity="0.5" />
-      
-      {/* Inner ring */}
-      <circle cx="60" cy="60" r="28" stroke="currentColor" strokeWidth="0.5" />
-
-      {/* Core stylized V monogram */}
-      <path d="M 48 48 L 60 72 L 72 48" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" />
-      <path d="M 54 48 L 60 60 L 66 48" stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter" opacity="0.6" />
-    </motion.svg>
-  );
-};
+// Horizontal lockup: the circular symbol and written name can be used together.
+export const Logo3 = ({ className = "h-10" }: { className?: string }) => (
+  <motion.div
+    className={`inline-flex h-10 items-center gap-2.5 text-lg leading-none ${className}`}
+    role="img"
+    aria-label="Veroxa"
+    initial="rest"
+    whileHover="hover"
+  >
+    <Logo1 className="h-full w-auto shrink-0" animated={false} />
+    <Logo2 className="text-[0.88em]" />
+  </motion.div>
+);

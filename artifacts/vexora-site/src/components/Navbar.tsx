@@ -1,8 +1,8 @@
 import { Link, useLocation } from "wouter";
 import { Moon, Sun, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Logo1 } from "./Logos";
+import { Logo1, Logo3 } from "./Logos";
 
 // Animated hamburger icon: due linee div che reagiscono all'hover
 function HamburgerIcon({ hovered }: { hovered: boolean }) {
@@ -39,7 +39,7 @@ export function Navbar() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.classList.toggle("dark", theme === "dark");
     try {
@@ -96,6 +96,9 @@ export function Navbar() {
   return (
     <>
       <header id="site-header" className="fixed top-0 left-0 w-full z-40 p-4 md:p-7 flex justify-end items-center gap-3 text-foreground">
+        <Link href="/" aria-label="Veroxa, torna alla home" className="absolute left-4 top-4 flex items-center md:left-7 md:top-7">
+          <Logo3 className="h-9 text-foreground sm:h-10" />
+        </Link>
         <button
           type="button"
           onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")}

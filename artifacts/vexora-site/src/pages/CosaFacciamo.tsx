@@ -1,7 +1,6 @@
 import { FadeIn, FadeInItem } from "@/components/FadeIn";
 import { ArrowRight, Code, MonitorSmartphone, PenTool, Search } from "lucide-react";
-import boutiqueImg from "@assets/generated_images/artisan-boutique.jpg";
-import restaurantImg from "@assets/generated_images/elegant-restaurant.jpg";
+import { StyleDirectionArtwork } from "@/components/StyleDirectionArtwork";
 import { Link } from "wouter";
 import { PageHero } from "@/components/PageHero";
 
@@ -69,35 +68,46 @@ export default function CosaFacciamo() {
 
         <section className="mb-32">
           <FadeIn direction="up">
-            <h2 className="text-4xl md:text-5xl font-serif font-light tracking-tight mb-16 text-center">
-              Diamo spazio alla <span className="italic text-primary">bellezza</span>.
-            </h2>
+            <div className="mx-auto mb-14 max-w-3xl text-center">
+              <span className="eyebrow">Direzioni di partenza</span>
+              <h2 className="mt-5 text-4xl font-serif font-light tracking-tight md:text-5xl">
+                Due ispirazioni, <span className="italic text-primary theme-accent-outline">il tuo stile.</span>
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+                Per iniziare, possiamo orientarci su due linguaggi visivi diversi. Sono riferimenti generici, non stili ufficiali né pacchetti rigidi.
+              </p>
+            </div>
           </FadeIn>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <FadeIn direction="right" delay={0.2}>
-              <div className="relative group overflow-hidden rounded-[2rem]">
-                <div className="aspect-[4/3] w-full">
-                  <img src={boutiqueImg} alt="Boutique" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+
+          <div className="grid grid-cols-1 gap-7 lg:grid-cols-2">
+            <FadeIn direction="right" delay={0.12}>
+              <article className="h-full overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_20px_60px_hsl(var(--foreground)/.05)]">
+                <StyleDirectionArtwork variant="replit" />
+                <div className="p-7 md:p-9">
+                  <span className="eyebrow">Tecnico · ispirazione Replit</span>
+                  <h3 className="mt-3 text-3xl font-serif font-light">Ordine, funzione, chiarezza.</h3>
+                  <p className="mt-4 leading-relaxed text-muted-foreground">
+                    Griglie precise, contrasti netti e componenti modulari: una direzione che mette in primo piano ciò che il sito fa e come si usa.
+                  </p>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent flex flex-col justify-end p-10">
-                  <h4 className="text-white text-3xl font-serif mb-2">Boutique & Atelier</h4>
-                  <p className="text-white/80 font-sans font-light">Esposizioni digitali per artigiani e moda, con uno spazio ordinato per valorizzare i prodotti.</p>
-                </div>
-              </div>
+              </article>
             </FadeIn>
-            <FadeIn direction="left" delay={0.4}>
-              <div className="relative group overflow-hidden rounded-[2rem] lg:translate-y-12">
-                <div className="aspect-[4/3] w-full">
-                  <img src={restaurantImg} alt="Ristorazione" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+            <FadeIn direction="left" delay={0.24}>
+              <article className="h-full overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_20px_60px_hsl(var(--foreground)/.05)]">
+                <StyleDirectionArtwork variant="lovable" />
+                <div className="p-7 md:p-9">
+                  <span className="eyebrow">Visuale · ispirazione Lovable</span>
+                  <h3 className="mt-3 text-3xl font-serif font-light">Atmosfera, racconto, identità.</h3>
+                  <p className="mt-4 leading-relaxed text-muted-foreground">
+                    Tipografia protagonista, spazi più ampi e forme morbide: una direzione che valorizza il carattere e la storia del brand.
+                  </p>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent flex flex-col justify-end p-10">
-                  <h4 className="text-white text-3xl font-serif mb-2">Ristorazione d'Eccellenza</h4>
-                  <p className="text-white/80 font-sans font-light">Menu eleganti e sistemi di prenotazione integrati, per rendere più semplice ogni scelta.</p>
-                </div>
-              </div>
+              </article>
             </FadeIn>
           </div>
+          <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-muted-foreground">
+            Sono basi predefinite per chi non ha ancora preferenze. Possiamo cambiarle o combinarle liberamente in base alla tua attività, al pubblico e alle tue esigenze.
+          </p>
         </section>
 
         <FadeIn direction="up" delay={0.4} className="mt-40 mb-20 flex justify-center">

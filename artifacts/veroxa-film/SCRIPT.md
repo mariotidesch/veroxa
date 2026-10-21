@@ -2,11 +2,11 @@
 
 ## Director’s treatment
 - **Promise:** Veroxa builds a coherent digital presence around each business: websites, visual identity, e-commerce, bookings, SEO and responsive site work.
-- **Identity:** Original VEROXA V monogram/wordmark direction; ink navy, pale azure, cool mint and editorial paper. Playfair Display carries expressive punches; Plus Jakarta Sans keeps interface copy lucid.
+- **Identity:** VEROXA's crossed-ribbon X is the lead symbol, paired with a fully written wordmark whose X takes a distinct pale-azure accent. Ink navy, pale azure, cool mint and editorial paper; Playfair Display carries expressive punches, Plus Jakarta Sans keeps interface copy lucid.
 - **Hero:** The digital product itself: website structures, identity systems, commerce and booking flows, authored content and search.
 - **Motion:** Fast, subject-led editing: 150–300 ms impacts, camera punches, layered perspective turns, masked type and matched-geometry handoffs. One clear action per beat; no particle clutter.
 - **Arc:** Digital signal → website → identity → commerce → bookings → SEO → responsive layouts → complete workflow → visitor/admin experiences → brand signature.
-- **Payoff:** Capability planes converge into the established circular V monogram. VEROXA and its accurate service promise remain legible.
+- **Payoff:** Minimal vector identity studies resolve into the circular crossed-ribbon X and a written VEROXA lockup with the X unmistakably emphasized. The accurate service promise remains legible.
 - **Format/runtime:** Existing 16:9 landscape, exactly 25.00 seconds; ten distinct scenes.
 
 ## Timeline
@@ -14,14 +14,14 @@
 |---|---|---|---|---|
 | 01 / 0.00–2.40 | Digital world | Three fast screen/circuit punches; hook lands immediately | Immersive navy circuit macro, giant masked type | Luminous node jumps into browser rail |
 | 02 / 2.40–4.80 | Websites | Browser punches wide, then page reflows desktop → tablet → phone | Ivory editorial type column against dimensional digital page | Browser rail turns into design-grid rule |
-| 03 / 4.80–7.20 | Design & identity | Type, palette, and visual language snap into a complete system | Asymmetric ivory/azure specimen, oversized typography | Mint swatch fills frame into commerce marker |
+| 03 / 4.80–7.20 | Design & identity | Minimal X geometry, type, palette, and visual language snap into a complete system | Asymmetric paper/azure vector specimen, oversized typography | Mint swatch fills frame into commerce marker |
 | 04 / 7.20–9.60 | E-commerce | Catalog detail opens to a complete digital purchase flow | High-contrast commerce UI, image plane, concise copy | Product tile folds into calendar selection |
 | 05 / 9.60–12.00 | Bookings | Calendar flips, date selection hops, schedule becomes management view | Midnight booking interface, cyan focus ring | Ring punches into search cursor |
 | 06 / 12.00–14.40 | SEO | Query types, underline becomes page structure, example result resolves | Tight search macro opening to a clean layered result | Search line stretches into responsive edge |
 | 07 / 14.40–16.80 | Responsive sites | One page folds across desktop, tablet and smartphone in three cuts | Bright multi-device montage against ink field | Phone edge unrolls into workflow path |
 | 08 / 16.80–19.20 | Full-service process | Design → development → optimization each hit, then merge | Three planes, camera dives through finished page | Finished page splits into two interface planes |
-| 09 / 19.20–22.00 | Visitor + owner | Paired interfaces turn; four services flash as a 250ms montage | Opposed visitor/admin planes, then full-frame service crops | Four crops collapse into V medallion |
-| 10 / 22.00–25.00 | VEROXA signature | Monogram locks, name and promise resolve, closing pulse returns to start | Spacious ink end-card; circular mark and clear lockup | Locator pulse returns to first-frame position |
+| 09 / 19.20–22.00 | Visitor + owner | Paired interfaces turn; four services flash as a 250ms montage; image tiles collapse into the X | Opposed visitor/admin planes, then service crops over a precise mark handoff | Crossed ribbons lock at 24% / 49% into the signature shot |
+| 10 / 22.00–25.00 | VEROXA signature | Crossed-ribbon X traces on, then the written name and promise resolve | Spacious ink end-card; X-led circular symbol and prominent VEROXA wordmark with a pale-azure X | Closing pulse contracts to the established opening locator |
 
 ## Full shot script
 
@@ -46,10 +46,10 @@
 ### Shot 03 / 4.80–7.20s / 2.40s — “DESIGN & IMMAGINE”
 **Purpose:** Show the visual identity service as a coherent system.
 **Exact copy:** `DESIGN & IMMAGINE` 4.96–7.20s; `COLORI.` 5.42–5.96s; `FONT.` 5.96–6.48s; `LINGUAGGIO.` 6.48–7.04s.
-**Composition and artistic idea:** Editorial style-guide specimen, asymmetrical ivory and blue blocks; monumental cropped type, four real palette swatches, slim grid rules.
-**Timed choreography:** 0.00 rail slices through the grid into a tight letterform crop; 0.25 three swatches spring into separate positions; 0.55 headline resolves. 0.92 serif turns into sans sample; 1.25 three descriptor words punch sequentially while palette reflows. At 1.92 mint swatch expands to full lens, then contracts as the commerce screen's marker at 2.33s.
+**Composition and artistic idea:** Minimal, entirely authored vector style-guide specimen: an asymmetrical paper/azure field, monumental type, four restrained palette chips, and a large crossed-ribbon X inside an airy construction circle. No photography or realistic imagery.
+**Timed choreography:** 0.00 rail slices through the grid into a tight vector-letterform crop; 0.25 three palette chips spring into separate positions; 0.55 headline resolves. 0.92 serif display shifts against compact sans-serif labels; 1.25 the three descriptor words punch sequentially while the right-hand X specimen settles into its brand geometry. At 1.92 mint swatch expands to full lens, then contracts as the commerce screen's marker at 2.33s.
 **Transition contract:** Swatch scale-through with type shear and perspective panel flip; mint point stays matched across the cut.
-**Assets and technique:** Existing `digital-identity.jpg`, authored typography, swatch planes, grid.
+**Assets and technique:** Authored SVG X emblem, geometric planes, typography, swatch blocks and grid; no photographic or generated imagery.
 **Sound intent:** Three short accents for color, font and language; planned cut at 7.20s, verify after generation.
 
 ### Shot 04 / 7.20–9.60s / 2.40s — “E-COMMERCE”
@@ -101,18 +101,18 @@
 **Purpose:** Show the visitor-facing experience and owner-side management, then recap key capabilities.
 **Exact copy:** `PER CHI VISITA.` 19.28–20.05s; `PER CHI GESTISCE.` 20.05–20.80s; montage labels `SITI WEB` 20.80–21.05s, `DESIGN` 21.05–21.30s, `E-COMMERCE` 21.30–21.55s, `SEO` 21.55–21.80s.
 **Composition and artistic idea:** Visitor page and management interface open on opposing axes around a central pivot; then four radically distinct crops fill the frame in quick-fire montage.
-**Timed choreography:** 0.00 two planes spring apart, 0.35 management side swings forward; 0.78 both flatten for readable paired view. At 1.45 four 250ms crops punch with independent scale/origin and a tracked mint marker. 2.50 montage folds to central point, leaving clear dark negative space for the final medallion at 2.80s.
-**Transition contract:** Four image tiles collapse to the mark's exact centre; scale-through plus circular aperture opens the signature scene.
+**Timed choreography:** 0.00 two planes spring apart, 0.35 management side swings forward; 0.78 both flatten for readable paired view. At 1.45 four 250ms service crops punch with independent scale/origin and a tracked mint marker. At 2.49 the crop tiles fold diagonally into the mark centre as they dim; a crossed-ribbon X resolves at 24% / 49% with its locator point by 2.76s, then holds through 2.80s.
+**Transition contract:** The precise crossed-ribbon X and locator point match the signature's position and symbol; its circle aperture opens from the same centre as the interface field deepens to ink.
 **Assets and technique:** Existing `digital-responsive.jpg`, `digital-identity.jpg`, `digital-commerce.jpg`, `digital-search.jpg`; software imagery only.
 **Sound intent:** Drum sequence builds toward the brand reveal; planned cut at 22.00s, verify.
 
 ### Shot 10 / 22.00–25.00s / 3.00s — “VEROXA”
-**Purpose:** Resolve the established brand, service promise and film loop.
-**Exact copy:** Established circular V monogram; `VEROXA` 22.50–25.00s; `SOLUZIONI DIGITALI` 22.45–25.00s; `Soluzioni digitali costruite intorno alla tua attività.` 23.12–25.00s; recap `SITI WEB · DESIGN · E-COMMERCE · SEO` 23.76–25.00s.
-**Composition and artistic idea:** Capability planes resolve into a restrained circular V medallion, on an ink field with a large left-side mark and clean right-side wordmark/promise.
-**Timed choreography:** At 0.00 mint point expands into the circular V mark with a stiff scale/rotation snap; ring follows 180ms later. 0.46 wordmark resolves beside it, divider draws outward; 0.82 service label arrives; 1.12 promise resolves across two short lines. At 1.82 camera pushes gently to settle the lockup; 2.28 a single cyan trace sweeps once. From 2.52, ring contracts precisely toward the opening locator position while brand and promise remain readable through the last frame.
-**Transition contract:** End pulse returns to first-frame locator size/position, creating a clean loop; no blank tail.
-**Assets and technique:** Established circular V monogram and plain VEROXA wordmark; Playfair Display and Plus Jakarta Sans. No borrowed brand marks or physical subject.
+**Purpose:** Resolve the crossed-ribbon X identity, a fully written VEROXA lockup, the service promise and the film loop.
+**Exact copy:** Circular crossed-ribbon X symbol; written `VEROXA` 22.50–25.00s with its X in pale azure; `SOLUZIONI DIGITALI` 22.45–25.00s; `Soluzioni digitali costruite intorno alla tua attività.` 23.12–25.00s; recap `SITI WEB · DESIGN · E-COMMERCE · SEO` 23.76–25.00s.
+**Composition and artistic idea:** A large, open crossed-ribbon X inside a fine circular construction ring owns the left side of the ink end-card; a fully spelled wordmark occupies the right, with the X enlarged in color as the single signature accent. The symbol is the focal identity, not a substitute for the readable name.
+**Timed choreography:** At 0.00 the outgoing scene's X locks at the same left-side centre and the crossed ribbons trace on together. At 0.08 its circular outline begins tracing around them; 0.34 wordmark resolves beside it and the X in `VEROXA` punches forward in pale azure. 0.46 the divider draws outward; 0.82 service label arrives; 1.12 promise resolves across two short lines. At 1.82 camera pushes gently to settle the lockup; 2.28 a single cyan trace sweeps once. From 2.52 the outer ring contracts toward the established opening locator while symbol, wordmark and promise remain legible through the last frame.
+**Transition contract:** The closing locator contracts to the established opening pulse position, preserving the existing loop; no blank tail.
+**Assets and technique:** Authored SVG crossed-ribbon X seal, plus a typographic VEROXA wordmark with a distinct pale-azure X; Playfair Display and Plus Jakarta Sans. No borrowed brand marks or physical subject.
 **Sound intent:** Final resolved hit nearest measured real accent before 25.00s; concise tail into seamless loop.
 
 ## Audio spec

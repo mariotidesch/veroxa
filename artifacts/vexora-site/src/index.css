@@ -82,35 +82,35 @@
 :root[data-theme="dark"],
 :root.dark {
   color-scheme: dark;
-  --background: 222 30% 7%;
-  --foreground: 210 24% 96%;
+  --background: 0 0% 0%;
+  --foreground: 0 0% 98%;
 
-  --card: 222 25% 10%;
-  --card-foreground: 210 24% 96%;
-  --card-border: 220 20% 19%;
+  --card: 0 0% 5%;
+  --card-foreground: 0 0% 98%;
+  --card-border: 0 0% 19%;
 
-  --popover: 222 25% 10%;
-  --popover-foreground: 210 24% 96%;
-  --popover-border: 220 20% 19%;
+  --popover: 0 0% 5%;
+  --popover-foreground: 0 0% 98%;
+  --popover-border: 0 0% 19%;
 
-  --primary: 195 95% 58%;
-  --primary-foreground: 222 36% 8%;
+  --primary: 195 100% 62%;
+  --primary-foreground: 0 0% 0%;
 
-  --secondary: 220 26% 14%;
-  --secondary-foreground: 200 28% 90%;
+  --secondary: 0 0% 7%;
+  --secondary-foreground: 0 0% 94%;
 
-  --muted: 220 22% 13%;
-  --muted-foreground: 215 15% 71%;
+  --muted: 0 0% 8%;
+  --muted-foreground: 0 0% 72%;
 
-  --accent: 196 48% 17%;
-  --accent-foreground: 195 85% 86%;
+  --accent: 0 0% 8%;
+  --accent-foreground: 195 100% 72%;
 
-  --border: 220 19% 22%;
-  --input: 220 19% 26%;
-  --ring: 195 95% 58%;
+  --border: 0 0% 20%;
+  --input: 0 0% 23%;
+  --ring: 195 100% 62%;
 
-  --footer-background: 225 32% 4%;
-  --footer-foreground: 210 24% 96%;
+  --footer-background: 0 0% 0%;
+  --footer-foreground: 0 0% 98%;
 }
 
 @layer base {
@@ -121,7 +121,7 @@
   body {
     @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-foreground;
     overflow-x: hidden;
-    transition: background-color 350ms ease, color 350ms ease;
+    transition: background-color 100ms ease, color 100ms ease;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -186,7 +186,45 @@ html[data-theme] #page-content,
 html[data-theme] #site-header,
 html[data-theme] #site-nav-overlay,
 html[data-theme] #site-footer {
-  transition: background-color 350ms ease, color 350ms ease, border-color 350ms ease;
+  transition: background-color 100ms ease, color 100ms ease, border-color 100ms ease;
+}
+.theme-accent-outline {
+  color: hsl(var(--primary));
+  transition: color 100ms ease, -webkit-text-stroke-color 100ms ease;
+}
+:root[data-theme="dark"] .theme-accent-outline,
+:root.dark .theme-accent-outline {
+  color: transparent !important;
+  -webkit-text-stroke: 0.028em hsl(var(--primary));
+  paint-order: stroke fill;
+  text-shadow: none;
+}
+.style-art {
+  overflow: hidden;
+  aspect-ratio: 1.8 / 1;
+  background: hsl(var(--card));
+}
+.style-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.style-art--replit {
+  --art-panel-a: hsl(var(--background));
+  --art-panel-b: hsl(var(--secondary));
+  --art-grid: hsl(var(--primary) / .1);
+  --art-line: hsl(var(--foreground) / .14);
+  --art-accent: hsl(var(--primary));
+  --art-accent-soft: hsl(var(--primary) / .11);
+  --art-code: hsl(var(--foreground) / .54);
+}
+.style-art--lovable {
+  --art-panel-a: hsl(var(--accent));
+  --art-panel-b: hsl(var(--secondary));
+  --art-line: hsl(var(--foreground) / .16);
+  --art-accent: hsl(var(--primary));
+  --art-accent-soft: hsl(var(--primary) / .18);
+  --art-ink: hsl(var(--foreground) / .8);
 }
 .demo-window {
   background: hsl(var(--card));

@@ -14,6 +14,7 @@ const SERVICE_FRAMES = [
 export function Scene09() {
   const [view, setView] = useState(0);
   const [frame, setFrame] = useState(-1);
+  const [markHandoff, setMarkHandoff] = useState(false);
   const events = useMemo(() => [
     { time: 680, callback: () => setView(1) },
     { time: 1190, callback: () => setView(2) },
@@ -21,6 +22,7 @@ export function Scene09() {
     { time: 1890, callback: () => setFrame(1) },
     { time: 2190, callback: () => setFrame(2) },
     { time: 2490, callback: () => setFrame(3) },
+    { time: 2490, callback: () => setMarkHandoff(true) },
   ], []);
   useSceneTimer(events);
 
@@ -66,13 +68,34 @@ export function Scene09() {
       <div className="absolute" style={{ right: '8%', bottom: '9.3%', display: 'flex', width: '26%', height: '19%', gap: '.7vmin' }}>
         {SERVICE_FRAMES.map((service, index) => (
           <motion.div key={service.label} className="relative overflow-hidden"
-            animate={{ scale: frame === index ? 1.1 : 0.9, y: frame === index ? '-7%' : 0, opacity: frame < 0 || frame === index ? 1 : 0.42, rotateY: frame === index ? 0 : -3 }}
-            transition={{ duration: 0.2, ease: EASE }}
+            animate={{
+              scale: markHandoff ? 0.06 : frame === index ? 1.1 : 0.9,
+              x: markHandoff ? ['-720%', '-820%', '-920%', '-1020%'][index] : 0,
+              y: markHandoff ? '-195%' : frame === index ? '-7%' : 0,
+              opacity: markHandoff ? 0 : frame < 0 || frame === index ? 1 : 0.42,
+              rotateY: frame === index ? 0 : -3,
+            }}
+            transition={{ duration: 0.3, ease: EASE }}
             style={{ flex: '1 1 0', minWidth: 0, border: `1px solid ${frame === index ? '#cce8f2' : 'rgba(204,232,242,.28)'}`, transformOrigin: 'center' }}>
             <img src={service.image} alt="" className="film-photo" style={{ objectPosition: service.position }} />
           </motion.div>
         ))}
       </div>
+      <motion.div className="absolute" aria-hidden="true" style={{ left: '24%', top: '49%', x: '-50%', y: '-50%', width: '32vmin', height: '32vmin', display: 'grid', placeItems: 'center', zIndex: 2 }}
+        initial={{ opacity: 0, scale: 0.35, rotate: -24 }} animate={{ opacity: markHandoff ? 1 : 0, scale: markHandoff ? [0.35, 1.08, 1] : 0.35, rotate: markHandoff ? 0 : -24 }}
+        transition={{ duration: 0.27, ease: EASE }}>
+        <svg viewBox="0 0 100 100" fill="none" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+          <circle cx="50" cy="50" r="44" stroke="#cce8f2" strokeWidth="1.5" opacity=".72" />
+          <path d="M29 27L47 45L70 73" stroke="#f5f8f9" strokeWidth="5.5" strokeLinecap="square" />
+          <path d="M71 27L53 45L30 73" stroke="#cce8f2" strokeWidth="5.5" strokeLinecap="square" />
+          <circle cx="50" cy="50" r="3.2" fill="#a9deca" />
+        </svg>
+      </motion.div>
+      <motion.div className="absolute inset-0" aria-hidden="true" style={{ background: '#08182e', pointerEvents: 'none', zIndex: 1 }}
+        initial={{ opacity: 0 }} animate={{ opacity: markHandoff ? 1 : 0 }} transition={{ duration: 0.24, ease: EASE }} />
+      <motion.div className="absolute" aria-hidden="true" style={{ left: '24%', top: '49%', x: '-50%', y: '-50%', width: '2vmin', height: '2vmin', borderRadius: '50%', background: '#cce8f2', zIndex: 3 }}
+        initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: markHandoff ? 1 : 0.6, opacity: markHandoff ? 1 : 0 }}
+        transition={{ duration: 0.15, delay: 0.1 }} />
     </motion.section>
   );
 }
