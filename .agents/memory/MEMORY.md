@@ -5,3 +5,4 @@
 - [Gmail contact delivery](gmail-contact-delivery.md) — contact submissions use the server-side Gmail connector; keep the connector dependency in the API package, not workspace root.
 - [Artifact cleanup](artifact-cleanup.md) — managed artifact workflows cannot be removed directly; stop the workflow, remove the artifact, and let workspace state prune it.
 - [Veroxa advertising imagery](veroxa-advertising.md) — promotional films should show computing and digital work, not physical shops.
+- [Published asset compression](published-asset-compression.md) — verify live response headers; Vite's gzip size did not match the uncompressed assets served from veroxa.it.
