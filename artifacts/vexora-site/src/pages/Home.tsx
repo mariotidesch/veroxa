@@ -250,14 +250,19 @@ export default function Home() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <div className="vexora-film-frame aspect-video rounded-[1.5rem] md:rounded-[2rem] shadow-[0_28px_80px_rgba(21,39,58,.16)]">
-                <iframe
-                  src="/veroxa-film/"
+                <video
+                  src="/veroxa-film/videos/veroxa-presentazione-25s.mp4"
+                  poster="/veroxa-film/videos/veroxa-poster.jpg"
                   title="Film di presentazione di Veroxa, studio digitale"
-                  className="absolute inset-0 w-full h-full border-0"
-                  loading="lazy"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  data-testid="iframe-veroxa-film"
-                />
+                  className="absolute inset-0 h-full w-full object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  aria-label="Film di presentazione di Veroxa, studio digitale"
+                  data-testid="video-veroxa-film"
+                >
+                  Il browser non supporta la riproduzione video.
+                </video>
               </div>
             </FadeIn>
           </div>
