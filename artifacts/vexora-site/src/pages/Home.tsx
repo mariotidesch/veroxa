@@ -258,7 +258,7 @@ export default function Home() {
                   className="absolute inset-0 h-full w-full object-contain"
                   controls
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   aria-label="Film di presentazione di Veroxa, studio digitale"
                   data-testid="video-veroxa-film"
                 >
