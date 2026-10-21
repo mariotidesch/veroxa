@@ -93,8 +93,8 @@
   --popover-foreground: 0 0% 98%;
   --popover-border: 0 0% 19%;
 
-  --primary: 195 100% 62%;
-  --primary-foreground: 0 0% 0%;
+  --primary: 346 58% 58%;
+  --primary-foreground: 0 0% 98%;
 
   --secondary: 0 0% 7%;
   --secondary-foreground: 0 0% 94%;
@@ -103,11 +103,11 @@
   --muted-foreground: 0 0% 72%;
 
   --accent: 0 0% 8%;
-  --accent-foreground: 195 100% 72%;
+  --accent-foreground: 346 58% 68%;
 
   --border: 0 0% 20%;
   --input: 0 0% 23%;
-  --ring: 195 100% 62%;
+  --ring: 346 58% 64%;
 
   --footer-background: 0 0% 0%;
   --footer-foreground: 0 0% 98%;
@@ -159,7 +159,7 @@
   box-shadow: 0 0 24px hsl(var(--primary) / .22);
   transform: rotate(24deg);
 }
-.x-visual::after { transform: rotate(-24deg); background: linear-gradient(90deg, transparent, hsl(168 42% 55% / .3), hsl(var(--primary) / .1), transparent); }
+.x-visual::after { transform: rotate(-24deg); background: linear-gradient(90deg, transparent, hsl(var(--primary) / .3), hsl(var(--primary) / .1), transparent); }
 .x-grid {
   background-image: linear-gradient(hsl(var(--primary) / .06) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / .06) 1px, transparent 1px);
   background-size: 44px 44px;
