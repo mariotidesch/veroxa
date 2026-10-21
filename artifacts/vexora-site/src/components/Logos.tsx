@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 type LogoProps = { className?: string; animated?: boolean };
 
-// A faceted aperture mark: three precise planes meeting around a quiet center.
+// A precise, interlocking X: one continuous stroke and a deliberate over-under break.
 export const Logo1 = ({ className = "w-16 h-16", animated = true }: LogoProps) => {
   return (
     <motion.svg
@@ -16,30 +16,16 @@ export const Logo1 = ({ className = "w-16 h-16", animated = true }: LogoProps) =
       whileHover={animated ? { scale: 1.045, rotate: -2 } : undefined}
       transition={{ duration: 0.24, ease: "easeOut" as const }}
     >
-      <motion.path
-        d="M50 8 84 28v36L50 84 16 64V28L50 8Z"
-        stroke="currentColor"
-        strokeWidth="2"
+      <motion.g
+        fill="currentColor"
         initial={animated ? { opacity: 0, scale: .94 } : false}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: .52, ease: "easeOut" as const }}
-      />
-      <motion.path
-        d="m50 8 18 30-18 14-18-14L50 8Z"
-        fill="currentColor"
-        initial={animated ? { opacity: 0, y: -3 } : false}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: .48, delay: .08, ease: "easeOut" as const }}
-      />
-      <motion.path
-        d="m16 28 18 10v24L16 64V28Z"
-        fill="hsl(var(--primary))"
-        initial={animated ? { opacity: 0 } : false}
-        animate={{ opacity: 1 }}
-        transition={{ duration: .42, delay: .12, ease: "easeOut" as const }}
-      />
-      <path d="m34 62 16-10 16 10-16 22-16-22Z" fill="currentColor" opacity=".72" />
-      <path d="m68 38 16-10v36L68 62V38Z" fill="currentColor" opacity=".48" />
+        transition={{ duration: .48, ease: "easeOut" as const }}
+      >
+        <path d="M24 20h13l39 60H63L24 20Z" />
+        <path d="M63 20h13L54 48l-8-8 17-20Z" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2.5" strokeLinejoin="miter" />
+        <path d="M37 80H24l22-28 8 8-17 20Z" fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth="2.5" strokeLinejoin="miter" />
+      </motion.g>
     </motion.svg>
   );
 };
@@ -63,7 +49,7 @@ export const Logo2 = ({ className = "" }: { className?: string }) => (
   </motion.span>
 );
 
-// Horizontal lockup: the circular symbol and written name can be used together.
+// Horizontal lockup: the X mark and its name share a single typographic voice.
 export const Logo3 = ({ className = "h-10" }: { className?: string }) => (
   <motion.div
     className={`inline-flex h-10 items-center gap-2.5 text-lg leading-none ${className}`}

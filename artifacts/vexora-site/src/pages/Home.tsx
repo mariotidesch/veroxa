@@ -125,7 +125,7 @@ export default function Home() {
                 <div className="absolute -top-10 right-4 h-36 w-36 text-foreground/[.06] select-none md:h-48 md:w-48" aria-hidden="true">
                   <Logo1 className="h-full w-full" animated={false} />
                 </div>
-                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">Il segno di Veroxa è un'apertura geometrica: una forma essenziale che accoglie prospettive diverse e le orienta verso un punto comune. Da un lato ci sono le idee e il desiderio di raccontare ciò che rende speciale ogni attività. Dall'altro ci sono tecnologia e sviluppo, che trasformano quelle idee in qualcosa di concreto e visibile.</p>
+                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">Il segno di Veroxa è una X essenziale, costruita da due direzioni che si incontrano e si sostengono. Racconta il dialogo tra le idee e il desiderio di esprimere ciò che rende speciale ogni attività, e la tecnologia che trasforma quelle idee in qualcosa di concreto e visibile.</p>
                 <div className="relative grid sm:grid-cols-2 gap-4 mt-12">
                   <div className="rounded-2xl border border-primary/20 bg-background/70 p-6">
                     <span className="eyebrow">01</span>

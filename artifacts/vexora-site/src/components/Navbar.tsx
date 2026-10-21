@@ -15,13 +15,7 @@ const links = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">(() => {
-    try {
-      return window.localStorage.getItem("veroxa-theme") === "dark" ? "dark" : "light";
-    } catch {
-      return "light";
-    }
-  });
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [location] = useLocation();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -30,12 +24,15 @@ export function Navbar() {
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.classList.toggle("dark", theme === "dark");
-    try {
-      window.localStorage.setItem("veroxa-theme", theme);
-    } catch {
-      // Mantiene la scelta per la sessione corrente.
-    }
   }, [theme]);
+
+  useEffect(() => {
+    try {
+      window.localStorage.removeItem("veroxa-theme");
+    } catch {
+      // Il tema predefinito resta chiaro anche senza accesso allo storage.
+    }
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
