@@ -91,7 +91,7 @@ export function CookieConsent() {
           <div className="max-w-2xl">
             <p className="font-serif text-base sm:text-xl">La tua privacy, prima di tutto.</p>
             <p className="mt-1 text-xs leading-snug text-muted-foreground sm:text-sm sm:leading-relaxed">
-              Usiamo solo i dati tecnici necessari al funzionamento del sito. Al momento non sono collegati cookie statistici o di marketing.
+              Usiamo solo i cookie tecnici necessari; non sono attivi cookie statistici o di marketing. Se usi l’assistente AI, i messaggi vengono elaborati da un servizio AI per generare la risposta: evita dati sensibili.
             </p>
           </div>
           <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-0 sm:flex sm:shrink-0">
@@ -118,7 +118,7 @@ export function CookieConsent() {
             <p className="eyebrow">Trasparenza</p>
             <h2 id="cookie-dialog-title" className="mt-3 pr-10 font-serif text-3xl font-light">Preferenze cookie</h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              I cookie necessari sono sempre attivi per le funzioni essenziali. In questa versione del sito non vengono caricati cookie statistici o di marketing e non sono collegati servizi di tracciamento.
+              I cookie necessari sono sempre attivi per le funzioni essenziali. In questa versione non vengono caricati cookie statistici o di marketing né servizi di tracciamento. Se usi l’assistente AI, i messaggi inviati vengono elaborati dal servizio AI per generare la risposta; il sito non salva la cronologia oltre la sessione del browser. Evita di inserire dati personali o sensibili.
             </p>
             <div className="mt-6 divide-y divide-border border-y border-border">
               <label className="flex items-start justify-between gap-5 py-4">

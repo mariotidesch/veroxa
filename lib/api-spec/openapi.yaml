@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: assistant
+    description: Public AI assistant
 paths:
   /healthz:
     get:
@@ -24,6 +26,42 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /assistant/messages:
+    post:
+      operationId: sendAssistantMessage
+      tags: [assistant]
+      summary: Send a message to the AI assistant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssistantMessageInput"
+      responses:
+        "200":
+          description: Assistant reply
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssistantMessageResponse"
+        "400":
+          description: Invalid message history
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssistantError"
+        "429":
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssistantError"
+        "502":
+          description: AI service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssistantError"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +71,42 @@ components:
           type: string
       required:
         - status
+    AssistantMessage:
+      type: object
+      properties:
+        role:
+          type: string
+          enum: [user, assistant]
+        content:
+          type: string
+          minLength: 1
+          maxLength: 3000
+      required:
+        - role
+        - content
+    AssistantMessageInput:
+      type: object
+      properties:
+        messages:
+          type: array
+          minItems: 1
+          maxItems: 16
+          items:
+            $ref: "#/components/schemas/AssistantMessage"
+      required:
+        - messages
+    AssistantMessageResponse:
+      type: object
+      properties:
+        reply:
+          type: string
+      required:
+        - reply
+    AssistantError:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
 
