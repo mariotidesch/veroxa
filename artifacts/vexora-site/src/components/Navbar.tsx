@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
-import { Moon, Sun, X } from "lucide-react";
+import { Bot, Moon, Sun, X } from "lucide-react";
 import { Logo3 } from "./Logos";
 import { openCookiePreferences } from "./CookieConsent";
 
@@ -13,7 +13,11 @@ const links = [
   { href: "/contatti", label: "Contatti" },
 ];
 
-export function Navbar() {
+type NavbarProps = {
+  onOpenAssistant: () => void;
+};
+
+export function Navbar({ onOpenAssistant }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [location] = useLocation();
@@ -115,7 +119,7 @@ export function Navbar() {
                    <X className="h-4 w-4" aria-hidden="true" />
                  </button>
                </div>
-               <nav aria-label="Navigazione principale" className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-2 sm:p-5 lg:grid-cols-5">
+                <nav aria-label="Navigazione principale" className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-2 sm:p-5 lg:grid-cols-3">
                  {links.map((link, index) => (
                    <Link
                      key={link.href}
@@ -129,6 +133,21 @@ export function Navbar() {
                      <span className={`font-mono text-[10px] tracking-wider ${location === link.href ? "text-primary/80" : "text-muted-foreground/60 group-hover:text-primary"}`}>0{index + 1}</span>
                    </Link>
                  ))}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsOpen(false);
+                      onOpenAssistant();
+                    }}
+                    className="group flex min-h-14 items-center justify-between rounded-xl border border-transparent px-4 py-3 text-left text-foreground/75 transition-[background-color,border-color,color,transform] duration-200 hover:translate-y-[-1px] hover:border-border hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    data-testid="button-menu-ai-assistant"
+                  >
+                    <span className="flex items-center gap-2 text-sm font-medium">
+                      <Bot className="h-4 w-4 text-primary" aria-hidden="true" />
+                      Assistente AI
+                    </span>
+                    <span className="font-mono text-[10px] tracking-wider text-muted-foreground/60 group-hover:text-primary">06</span>
+                  </button>
                </nav>
                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/70 bg-secondary/35 px-5 py-4 sm:px-7">
                  <button
