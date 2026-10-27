@@ -3,28 +3,30 @@ import { ArrowRight, Code, MonitorSmartphone, PenTool, Search } from "lucide-rea
 import { StyleDirectionArtwork } from "@/components/StyleDirectionArtwork";
 import { Link } from "wouter";
 import { PageHero } from "@/components/PageHero";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function CosaFacciamo() {
+  const { text } = useLanguage();
   const services = [
     {
       icon: <MonitorSmartphone className="w-6 h-6" />,
-      title: "Siti Web",
-      desc: "Realizziamo siti rapidi ed eleganti, dai più semplici a quelli con più sezioni. Curiamo ogni elemento per garantire una buona esperienza su computer, tablet e smartphone."
+      title: text("Siti web", "Websites"),
+      desc: text("Realizziamo siti rapidi ed eleganti, dai più semplici a quelli con più sezioni. Curiamo ogni elemento per garantire una buona esperienza su computer, tablet e smartphone.", "We create fast, elegant websites, from simple pages to multi-section experiences. Every detail is considered for a seamless experience on desktop, tablet and mobile.")
     },
     {
       icon: <PenTool className="w-6 h-6" />,
-      title: "Design e Immagine",
-      desc: "Trasformiamo la tua identità in un linguaggio visivo chiaro. Scegliamo colori, font e impostazione grafica per raccontare chi sei in modo coerente e riconoscibile."
+      title: text("Design e immagine", "Design and identity"),
+      desc: text("Trasformiamo la tua identità in un linguaggio visivo chiaro. Scegliamo colori, font e impostazione grafica per raccontare chi sei in modo coerente e riconoscibile.", "We translate your identity into a clear visual language. Carefully chosen colors, typography and layouts tell your story with consistency and character.")
     },
     {
       icon: <Code className="w-6 h-6" />,
-      title: "Vendite e Prenotazioni",
-      desc: "Costruiamo sistemi di e-commerce e prenotazione semplici da usare per il cliente e comodi da gestire per te. L'obiettivo è trasformare le visite in prenotazioni e acquisti."
+      title: text("Vendite e prenotazioni", "Sales and bookings"),
+      desc: text("Costruiamo sistemi di e-commerce e prenotazione semplici da usare per il cliente e comodi da gestire per te. L'obiettivo è trasformare le visite in prenotazioni e acquisti.", "We build easy-to-use e-commerce and booking tools that are simple for customers and practical for you to manage, turning visits into bookings and purchases.")
     },
     {
       icon: <Search className="w-6 h-6" />,
-      title: "Visibilità (SEO)",
-      desc: "Facciamo in modo che il tuo sito si trovi facilmente su Google. Lavoriamo su codice e contenuti per migliorare il posizionamento online e raggiungere le persone giuste."
+      title: text("Visibilità (SEO)", "Visibility (SEO)"),
+      desc: text("Facciamo in modo che il tuo sito si trovi facilmente su Google. Lavoriamo su codice e contenuti per migliorare il posizionamento online e raggiungere le persone giuste.", "We help people find your website on Google by improving its content and technical foundations, so you can reach the right audience.")
     }
   ];
 
@@ -33,21 +35,21 @@ export default function CosaFacciamo() {
       <main className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
         <FadeIn direction="up">
           <PageHero
-            label="Cosa facciamo"
-            title="Soluzioni digitali costruite intorno alla tua attività."
-            description="Dal design allo sviluppo: servizi chiari per portare online la tua identità in modo solido e riconoscibile, con strumenti pensati per accompagnare la tua crescita."
+            label={text("Cosa facciamo", "What we do")}
+            title={text("Soluzioni digitali costruite intorno alla tua attività.", "Digital solutions shaped around your business.")}
+            description={text("Dal design allo sviluppo: servizi chiari per portare online la tua identità in modo solido e riconoscibile, con strumenti pensati per accompagnare la tua crescita.", "From design to development, we bring your identity online with clarity and purpose, using tools built to support your growth.")}
           />
           <header className="mb-16 md:mb-24 md:w-3/4">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-[1px] bg-primary" />
-              <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Le nostre competenze</span>
+              <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">{text("Le nostre competenze", "What we do best")}</span>
             </div>
             <h1 className="text-[clamp(2.25rem,10vw,3.5rem)] md:text-7xl font-serif font-light tracking-tight mb-7 md:mb-10 leading-[1.06] break-words">
-              Tutto il necessario, <br/>
-              <span className="italic text-muted-foreground">curato nei dettagli.</span>
+              {text("Tutto il necessario,", "Everything you need,")} <br/>
+              <span className="italic text-muted-foreground">{text("curato nei dettagli.", "considered in every detail.")}</span>
             </h1>
             <p className="text-lg md:text-2xl text-foreground/70 font-sans font-light leading-relaxed max-w-3xl">
-              Offriamo un servizio completo: progettazione, sviluppo e ottimizzazione per dare alla tua attività una presenza online che funziona davvero e rende più chiaro il tuo messaggio.
+              {text("Offriamo un servizio completo: progettazione, sviluppo e ottimizzazione per dare alla tua attività una presenza online che funziona davvero e rende più chiaro il tuo messaggio.", "We offer a complete service — design, development and optimisation — to build an online presence that works and communicates your message clearly.")}
             </p>
           </header>
         </FadeIn>
@@ -69,12 +71,12 @@ export default function CosaFacciamo() {
         <section className="mb-16 md:mb-32">
           <FadeIn direction="up">
             <div className="mx-auto mb-14 max-w-3xl text-center">
-              <span className="eyebrow">Direzioni di partenza</span>
+              <span className="eyebrow">{text("Direzioni di partenza", "Starting points")}</span>
               <h2 className="mt-5 text-4xl font-serif font-light tracking-tight md:text-5xl">
-                Due ispirazioni, <span className="italic text-primary theme-accent-outline">il tuo stile.</span>
+                {text("Due ispirazioni,", "Two directions,")} <span className="italic text-primary theme-accent-outline">{text("il tuo stile.", "your style.")}</span>
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-                Per iniziare, possiamo orientarci su due linguaggi visivi diversi. Sono riferimenti generici, non stili ufficiali né pacchetti rigidi.
+                {text("Per iniziare, possiamo orientarci su due linguaggi visivi diversi. Sono riferimenti generici, non stili ufficiali né pacchetti rigidi.", "To get started, we can explore two different visual languages. They are flexible references, not official styles or fixed packages.")}
               </p>
             </div>
           </FadeIn>
@@ -84,10 +86,10 @@ export default function CosaFacciamo() {
               <article className="h-full overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_20px_60px_hsl(var(--foreground)/.05)]">
                 <StyleDirectionArtwork variant="technical" />
                 <div className="p-7 md:p-9">
-                  <span className="eyebrow">Tecnico e modulare</span>
-                  <h3 className="mt-3 text-3xl font-serif font-light">Ordine, funzione, chiarezza.</h3>
+                  <span className="eyebrow">{text("Tecnico e modulare", "Technical and modular")}</span>
+                  <h3 className="mt-3 text-3xl font-serif font-light">{text("Ordine, funzione, chiarezza.", "Order, function, clarity.")}</h3>
                   <p className="mt-4 leading-relaxed text-muted-foreground">
-                    Griglie precise, contrasti netti e componenti modulari: una direzione che mette in primo piano ciò che il sito fa e come si usa.
+                    {text("Griglie precise, contrasti netti e componenti modulari: una direzione che mette in primo piano ciò che il sito fa e come si usa.", "Precise grids, clear contrast and modular components put the focus on what the website does and how to use it.")}
                   </p>
                 </div>
               </article>
@@ -96,17 +98,17 @@ export default function CosaFacciamo() {
               <article className="h-full overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_20px_60px_hsl(var(--foreground)/.05)]">
                 <StyleDirectionArtwork variant="visual" />
                 <div className="p-7 md:p-9">
-                  <span className="eyebrow">Visuale e narrativo</span>
-                  <h3 className="mt-3 text-3xl font-serif font-light">Atmosfera, racconto, identità.</h3>
+                  <span className="eyebrow">{text("Visuale e narrativo", "Visual and expressive")}</span>
+                  <h3 className="mt-3 text-3xl font-serif font-light">{text("Atmosfera, racconto, identità.", "Atmosphere, story, identity.")}</h3>
                   <p className="mt-4 leading-relaxed text-muted-foreground">
-                    Tipografia protagonista, spazi più ampi e forme morbide: una direzione che valorizza il carattere e la storia del brand.
+                    {text("Tipografia protagonista, spazi più ampi e forme morbide: una direzione che valorizza il carattere e la storia del brand.", "Expressive typography, generous space and soft forms bring out your brand's character and story.")}
                   </p>
                 </div>
               </article>
             </FadeIn>
           </div>
           <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-muted-foreground">
-            Sono basi predefinite per chi non ha ancora preferenze. Possiamo cambiarle o combinarle liberamente in base alla tua attività, al pubblico e alle tue esigenze.
+            {text("Sono basi predefinite per chi non ha ancora preferenze. Possiamo cambiarle o combinarle liberamente in base alla tua attività, al pubblico e alle tue esigenze.", "These are starting points for anyone without a set preference. We can adapt or combine them to suit your business, audience and needs.")}
           </p>
         </section>
 
@@ -114,7 +116,7 @@ export default function CosaFacciamo() {
           <Link href="/contatti">
             <div className="group cursor-pointer flex flex-col items-center">
               <span className="text-lg font-serif font-light text-foreground group-hover:text-primary transition-colors mb-2">
-                Parlaci del tuo progetto
+                {text("Parlaci del tuo progetto", "Tell us about your project")}
               </span>
               <div className="w-12 h-[1px] bg-foreground group-hover:w-24 group-hover:bg-primary transition-all duration-500" />
             </div>

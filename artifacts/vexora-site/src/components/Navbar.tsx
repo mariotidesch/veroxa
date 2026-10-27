@@ -1,17 +1,10 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
-import { Bot, Moon, Sun, X } from "lucide-react";
+import { Bot, Languages, Moon, Sun, X } from "lucide-react";
 import { Logo3 } from "./Logos";
 import { openCookiePreferences } from "./CookieConsent";
-
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/chi-siamo", label: "Chi siamo" },
-  { href: "/cosa-facciamo", label: "Cosa facciamo" },
-  { href: "/come-funziona", label: "Come funziona" },
-  { href: "/contatti", label: "Contatti" },
-];
+import { useLanguage } from "./LanguageContext";
 
 type NavbarProps = {
   onOpenAssistant: () => void;
@@ -21,6 +14,14 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [location] = useLocation();
+  const { language, toggleLanguage, text } = useLanguage();
+  const links = [
+    { href: "/", label: text("Home", "Home") },
+    { href: "/chi-siamo", label: text("Chi siamo", "About us") },
+    { href: "/cosa-facciamo", label: text("Cosa facciamo", "What we do") },
+    { href: "/come-funziona", label: text("Come funziona", "How it works") },
+    { href: "/contatti", label: text("Contatti", "Contact") },
+  ];
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -70,20 +71,20 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
   return (
     <>
       <header id="site-header" className="fixed left-0 top-0 z-40 flex w-full items-center justify-between p-4 text-foreground md:p-7">
-        <Link href="/" aria-label="Veroxa, torna alla home" className="flex items-center">
+        <Link href="/" aria-label={text("Veroxa, torna alla home", "Veroxa, return to home")} className="flex items-center">
           <Logo3 className="h-9 text-foreground sm:h-10" />
         </Link>
         <button
           ref={menuButtonRef}
           type="button"
           onClick={() => setIsOpen((open) => !open)}
-          aria-label={isOpen ? "Chiudi menu" : "Apri menu"}
+          aria-label={isOpen ? text("Chiudi menu", "Close menu") : text("Apri menu", "Open menu")}
           aria-expanded={isOpen}
           aria-controls="site-nav-menu"
           className="flex h-12 items-center gap-3 rounded-full border border-border/70 bg-background/85 px-5 text-xs font-medium uppercase tracking-[0.16em] shadow-sm backdrop-blur-md transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           data-testid="button-menu"
         >
-          <span>{isOpen ? "Chiudi" : "Menu"}</span>
+          <span>{isOpen ? text("Chiudi", "Close") : "Menu"}</span>
           {isOpen ? <X className="h-4 w-4" aria-hidden="true" /> : <span className="flex w-4 flex-col gap-[5px]" aria-hidden="true"><i className="h-px w-4 bg-current" /><i className="h-px w-3 bg-current" /></span>}
         </button>
       </header>
@@ -93,7 +94,7 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
           <>
             <button
               type="button"
-              aria-label="Chiudi menu"
+              aria-label={text("Chiudi menu", "Close menu")}
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 z-40 cursor-default bg-foreground/10 backdrop-blur-[2px]"
               data-testid="button-dismiss-menu"
@@ -103,7 +104,7 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
               id="site-nav-menu"
               role="dialog"
               aria-modal="true"
-              aria-label="Menu di navigazione"
+              aria-label={text("Menu di navigazione", "Navigation menu")}
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
@@ -112,14 +113,14 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
             >
                <div className="flex items-center justify-between border-b border-border/70 px-5 py-4 sm:px-7">
                  <div>
-                   <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">Esplora Veroxa</p>
-                   <p className="mt-1 text-xs text-muted-foreground">Un progetto digitale, fatto intorno a te.</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">{text("Esplora Veroxa", "Explore Veroxa")}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{text("Un progetto digitale, fatto intorno a te.", "A digital experience shaped around you.")}</p>
                  </div>
-                 <button ref={closeButtonRef} type="button" onClick={() => setIsOpen(false)} className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/60 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label="Chiudi menu" data-testid="button-close-menu">
+                  <button ref={closeButtonRef} type="button" onClick={() => setIsOpen(false)} className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/60 hover:bg-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label={text("Chiudi menu", "Close menu")} data-testid="button-close-menu">
                    <X className="h-4 w-4" aria-hidden="true" />
                  </button>
                </div>
-                <nav aria-label="Navigazione principale" className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-2 sm:p-5 lg:grid-cols-3">
+                 <nav aria-label={text("Navigazione principale", "Main navigation")} className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-2 sm:p-5 lg:grid-cols-3">
                  {links.map((link, index) => (
                    <Link
                      key={link.href}
@@ -144,7 +145,7 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
                   >
                     <span className="flex items-center gap-2 text-sm font-medium">
                       <Bot className="h-4 w-4 text-primary" aria-hidden="true" />
-                      Assistente AI
+                      {text("Assistente AI", "AI assistant")}
                     </span>
                     <span className="font-mono text-[10px] tracking-wider text-muted-foreground/60 group-hover:text-primary">06</span>
                   </button>
@@ -153,21 +154,31 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
                  <button
                    type="button"
                    onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")}
-                   aria-label={theme === "dark" ? "Attiva il tema chiaro" : "Attiva il tema scuro"}
+                   aria-label={theme === "dark" ? text("Attiva il tema chiaro", "Enable light theme") : text("Attiva il tema scuro", "Enable dark theme")}
                    aria-pressed={theme === "dark"}
                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2.5 text-sm text-foreground transition-colors hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                    data-testid="button-toggle-theme"
                  >
                    {theme === "dark" ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
-                   <span>{theme === "dark" ? "Tema chiaro" : "Tema scuro"}</span>
+                    <span>{theme === "dark" ? text("Tema chiaro", "Light theme") : text("Tema scuro", "Dark theme")}</span>
                  </button>
+                  <button
+                    type="button"
+                    onClick={toggleLanguage}
+                    aria-label={language === "it" ? "Passa alla lingua inglese" : "Switch to Italian"}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2.5 text-sm text-foreground transition-colors hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    data-testid="button-toggle-language"
+                  >
+                    <Languages className="h-4 w-4" aria-hidden="true" />
+                    <span>{language === "it" ? "English" : "Italiano"}</span>
+                  </button>
                  <button
                    type="button"
                    onClick={openCookiePreferences}
                    className="rounded-full px-3 py-2 text-xs text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                    data-testid="button-menu-cookie-preferences"
                  >
-                   Preferenze cookie
+                    {text("Preferenze cookie", "Cookie preferences")}
                  </button>
                </div>
             </motion.div>

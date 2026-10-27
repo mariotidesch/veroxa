@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSendAssistantMessage } from "@workspace/api-client-react";
 import { ArrowUp, Bot, RotateCcw, Sparkles, X } from "lucide-react";
+import { useLanguage } from "./LanguageContext";
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -12,15 +13,23 @@ type AIChatPanelProps = {
   onClose: () => void;
 };
 
-const STARTER_PROMPTS = [
-  "Mi aiuti a organizzare meglio la mia settimana?",
-  "Puoi spiegarmi un argomento in modo semplice?",
-  "Aiutami a scrivere meglio questo messaggio.",
-];
+const STARTER_PROMPTS = {
+  it: [
+    "Mi aiuti a organizzare meglio la mia settimana?",
+    "Puoi spiegarmi un argomento in modo semplice?",
+    "Aiutami a scrivere meglio questo messaggio.",
+  ],
+  en: [
+    "Can you help me plan my week?",
+    "Can you explain a topic in simple terms?",
+    "Help me write this message more clearly.",
+  ],
+};
 
 const keepLastMessages = (messages: ChatMessage[]) => messages.slice(-16);
 
 export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
+  const { language, text } = useLanguage();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [draft, setDraft] = useState("");
   const mutation = useSendAssistantMessage();
@@ -130,12 +139,12 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
               <Bot className="h-[18px] w-[18px]" aria-hidden="true" />
             </span>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">Vexora · assistente AI</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">{text("Vexora · assistente AI", "Vexora · AI assistant")}</p>
               <h2 id="vexora-assistant-title" className="mt-1 font-serif text-[1.35rem] font-normal leading-tight tracking-tight">
-                Chiedimi quello che vuoi.
+                {text("Chiedimi quello che vuoi.", "Ask me anything.")}
               </h2>
               <p id="vexora-assistant-intro" className="mt-1 text-xs text-background/65">
-                Dalle idee pratiche alle domande quotidiane.
+                {text("Dalle idee pratiche alle domande quotidiane.", "From practical ideas to everyday questions.")}
               </p>
             </div>
           </div>
@@ -144,8 +153,8 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
               <button
                 type="button"
                 onClick={clearConversation}
-                aria-label="Cancella la conversazione"
-                title="Cancella la conversazione"
+                aria-label={text("Cancella la conversazione", "Clear conversation")}
+                title={text("Cancella la conversazione", "Clear conversation")}
               disabled={mutation.isPending}
               className="flex h-10 w-10 items-center justify-center rounded-full text-background/70 transition-colors hover:bg-background/10 hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-45"
                 data-testid="button-clear-conversation"
@@ -156,7 +165,7 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
             <button
               type="button"
               onClick={onClose}
-              aria-label="Chiudi assistente"
+              aria-label={text("Chiudi assistente", "Close assistant")}
               className="flex h-10 w-10 items-center justify-center rounded-full text-background/70 transition-colors hover:bg-background/10 hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               data-testid="button-close-assistant"
             >
@@ -166,7 +175,7 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
         </div>
         <div className="relative mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-background/55">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
-          <span>Disponibile per orientarti</span>
+          <span>{text("Disponibile per orientarti", "Here to help you find your way")}</span>
         </div>
       </header>
 
@@ -175,16 +184,16 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
           <div className="flex min-h-full flex-col justify-center">
             <div className="mb-5 flex items-center gap-2 text-primary">
               <Sparkles className="h-4 w-4" aria-hidden="true" />
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">Da dove cominciamo</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">{text("Da dove cominciamo", "Where shall we start?")}</p>
             </div>
             <h3 className="max-w-[18rem] font-serif text-[1.75rem] font-normal leading-[1.12] tracking-tight">
-              Ogni buon progetto parte da una domanda.
+              {text("Ogni buon progetto parte da una domanda.", "Every good project starts with a question.")}
             </h3>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Chiedimi di spiegare un argomento, scrivere un testo o ragionare su una nuova idea.
+              {text("Chiedimi di spiegare un argomento, scrivere un testo o ragionare su una nuova idea.", "Ask me to explain a topic, write something or explore a new idea.")}
             </p>
             <div className="mt-7 space-y-2.5">
-              {STARTER_PROMPTS.map((prompt, index) => (
+              {STARTER_PROMPTS[language].map((prompt, index) => (
                 <button
                   key={prompt}
                   type="button"
@@ -222,22 +231,22 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
               </article>
             ))}
             {mutation.isPending && (
-              <div className="flex justify-start" role="status" aria-label="L'assistente sta preparando una risposta" data-testid="status-assistant-loading">
+              <div className="flex justify-start" role="status" aria-label={text("L'assistente sta preparando una risposta", "The assistant is preparing a response")} data-testid="status-assistant-loading">
                 <div className="flex items-center gap-2.5 rounded-2xl rounded-bl-md border border-border/80 bg-card px-4 py-3.5">
                   <span className="flex gap-1" aria-hidden="true">
                     <i className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
                     <i className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary [animation-delay:120ms]" />
                     <i className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary [animation-delay:240ms]" />
                   </span>
-                  <span className="text-xs text-muted-foreground">Sto preparando una risposta</span>
+                  <span className="text-xs text-muted-foreground">{text("Sto preparando una risposta", "Preparing a response")}</span>
                 </div>
               </div>
             )}
             {mutation.isError && (
               <div className="rounded-xl border border-primary/30 bg-primary/[0.045] p-4" data-testid="status-assistant-error">
-                <p className="text-sm font-medium">Non sono riuscito a inviare il messaggio.</p>
+                <p className="text-sm font-medium">{text("Non sono riuscito a inviare il messaggio.", "I couldn't send your message.")}</p>
                 <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                  Controlla la connessione e riprova tra poco. Il tuo messaggio è ancora qui.
+                  {text("Controlla la connessione e riprova tra poco. Il tuo messaggio è ancora qui.", "Check your connection and try again. Your message is still here.")}
                 </p>
                 <button
                   type="button"
@@ -247,7 +256,7 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
                   data-testid="button-retry-message"
                 >
                   <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
-                  Riprova
+                  {text("Riprova", "Try again")}
                 </button>
               </div>
             )}
@@ -255,8 +264,8 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
           </div>
         )}
         <div className="sr-only" aria-live="polite" aria-atomic="true" data-testid="status-assistant-announcement">
-          {mutation.isPending ? "L'assistente sta preparando una risposta." : ""}
-          {mutation.isError ? "Invio non riuscito. Puoi riprovare." : ""}
+          {mutation.isPending ? text("L'assistente sta preparando una risposta.", "The assistant is preparing a response.") : ""}
+          {mutation.isError ? text("Invio non riuscito. Puoi riprovare.", "Message not sent. You can try again.") : ""}
         </div>
       </div>
 
@@ -270,7 +279,7 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
           data-testid="form-assistant-message"
         >
           <label htmlFor="vexora-assistant-composer" className="sr-only">
-            Scrivi un messaggio
+            {text("Scrivi un messaggio", "Write a message")}
           </label>
           <textarea
             id="vexora-assistant-composer"
@@ -283,7 +292,7 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
                 submitMessage(draft);
               }
             }}
-            placeholder="Scrivi la tua domanda…"
+            placeholder={text("Scrivi la tua domanda…", "Type your question…")}
             rows={2}
             maxLength={3000}
             disabled={mutation.isPending}
@@ -292,12 +301,12 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
           />
           <div className="flex items-center justify-between gap-3 px-1 pb-0.5">
             <p className="text-[10px] leading-snug text-muted-foreground" data-testid="text-ai-disclaimer">
-              AI: le risposte possono essere imprecise. I messaggi vengono elaborati per rispondere; evita dati sensibili.
+              {text("AI: le risposte possono essere imprecise. I messaggi vengono elaborati per rispondere; evita dati sensibili.", "AI responses may be inaccurate. Messages are processed to generate replies; don't share sensitive information.")}
             </p>
             <button
               type="submit"
               disabled={!draft.trim() || mutation.isPending}
-              aria-label="Invia messaggio"
+              aria-label={text("Invia messaggio", "Send message")}
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-[background-color,transform] hover:translate-y-[-1px] hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
               data-testid="button-send-message"
             >
@@ -306,7 +315,7 @@ export default function AIChatPanel({ open, onClose }: AIChatPanelProps) {
           </div>
         </form>
         <p className="mt-2.5 text-center font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground/70">
-          Invio per inviare · Maiusc + Invio per andare a capo
+          {text("Invio per inviare · Maiusc + Invio per andare a capo", "Press Enter to send · Shift + Enter for a new line")}
         </p>
       </footer>
     </section>

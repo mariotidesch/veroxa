@@ -4,35 +4,37 @@ import { FadeIn } from "@/components/FadeIn";
 import { Logo1 } from "@/components/Logos";
 import { Link } from "wouter";
 import { ArrowRight, ChevronDown, MonitorSmartphone, Play, RefreshCw, Search } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function Home() {
+  const { text } = useLanguage();
   const [showWelcome, setShowWelcome] = useState(() => typeof window !== "undefined" && !window.matchMedia("(max-width: 767px)").matches);
   const [selectedGoal, setSelectedGoal] = useState("new-site");
   const reducedMotion = useReducedMotion();
   const goals = [
     {
       id: "new-site",
-      label: "Creare un sito",
+      label: text("Creare un sito", "Build a website"),
       icon: <MonitorSmartphone className="h-5 w-5" aria-hidden="true" />,
-      title: "Una presenza digitale chiara, da zero.",
-      description: "Progettiamo un sito su misura per raccontare la tua attività e renderla semplice da scoprire da qualsiasi dispositivo.",
-      contactMessage: "Vorrei creare un nuovo sito per la mia attività.",
+      title: text("Una presenza digitale chiara, da zero.", "A clear digital presence, built from the ground up."),
+      description: text("Progettiamo un sito su misura per raccontare la tua attività e renderla semplice da scoprire da qualsiasi dispositivo.", "We design a custom website that tells your story and makes your business easy to discover on any device."),
+      contactMessage: text("Vorrei creare un nuovo sito per la mia attività.", "I'd like to create a new website for my business."),
     },
     {
       id: "restyling",
-      label: "Rinnovare il sito",
+      label: text("Rinnovare il sito", "Refresh my website"),
       icon: <RefreshCw className="h-5 w-5" aria-hidden="true" />,
-      title: "Facciamo evolvere quello che hai già.",
-      description: "Rivediamo struttura, grafica e contenuti per rendere il sito più attuale e più semplice da usare.",
-      contactMessage: "Vorrei rinnovare il sito che ho già.",
+      title: text("Facciamo evolvere quello che hai già.", "Let's make what you have even better."),
+      description: text("Rivediamo struttura, grafica e contenuti per rendere il sito più attuale e più semplice da usare.", "We refine your structure, visuals and content to make your website feel current and easier to use."),
+      contactMessage: text("Vorrei rinnovare il sito che ho già.", "I'd like to refresh my existing website."),
     },
     {
       id: "visibility",
-      label: "Aumentare la visibilità",
+      label: text("Aumentare la visibilità", "Grow my visibility"),
       icon: <Search className="h-5 w-5" aria-hidden="true" />,
-      title: "Fatti trovare dalle persone giuste.",
-      description: "Miglioriamo contenuti e basi SEO per aiutare le persone a capire cosa offri e come contattarti.",
-      contactMessage: "Vorrei migliorare la visibilità online della mia attività.",
+      title: text("Fatti trovare dalle persone giuste.", "Reach the people who are looking for you."),
+      description: text("Miglioriamo contenuti e basi SEO per aiutare le persone a capire cosa offri e come contattarti.", "We improve your content and SEO foundations so people can understand what you offer and how to reach you."),
+      contactMessage: text("Vorrei migliorare la visibilità online della mia attività.", "I'd like to improve my business's online visibility."),
     },
   ];
   const activeGoal = goals.find((goal) => goal.id === selectedGoal) ?? goals[0];
@@ -86,24 +88,24 @@ export default function Home() {
             <FadeIn delay={0.5} className="flex flex-col md:w-3/4">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-[1px] bg-primary" />
-                <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">L'Atelier Digitale</span>
+                <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">{text("L'Atelier Digitale", "The Digital Atelier")}</span>
               </div>
               
               <h2 className="text-[clamp(2.5rem,11vw,4.5rem)] md:text-7xl lg:text-[6rem] font-serif font-light tracking-tight text-foreground leading-[1.02] break-words">
-                Diamo forma <br />
-                all'<span className="italic text-primary/90 theme-accent-outline">identità digitale</span><br />
-                della tua attività.
+                {text("Diamo forma", "Shaping the")} <br />
+                {text("all'", "digital ")}<span className="italic text-primary/90 theme-accent-outline">{text("identità digitale", "identity")}</span><br />
+                {text("della tua attività.", "of your business.")}
               </h2>
               
               <p className="mt-7 text-lg sm:text-xl md:mt-10 md:text-2xl text-muted-foreground max-w-2xl font-sans font-light leading-relaxed">
-                Creiamo siti web e strumenti digitali su misura. Uniamo estetica e tecnica per raccontare la tua attività con un'esperienza chiara, riconoscibile e semplice da usare.
+                {text("Creiamo siti web e strumenti digitali su misura. Uniamo estetica e tecnica per raccontare la tua attività con un'esperienza chiara, riconoscibile e semplice da usare.", "We create custom websites and digital tools. By bringing design and technology together, we tell your story through an experience that feels clear, distinctive and easy to use.")}
               </p>
               
               <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <Link href="/contatti">
                   <div className="group relative min-h-14 w-full sm:w-fit px-7 py-4 bg-foreground text-background rounded-full cursor-pointer overflow-hidden flex items-center justify-center gap-3">
                     <div className="absolute inset-0 bg-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
-                    <span className="relative z-10 text-sm tracking-[0.1em] uppercase font-sans font-medium">Inizia il progetto</span>
+                    <span className="relative z-10 text-sm tracking-[0.1em] uppercase font-sans font-medium">{text("Inizia il progetto", "Start your project")}</span>
                     <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
@@ -115,8 +117,8 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <FadeIn className="grid lg:grid-cols-[.7fr_1.3fr] gap-14 items-start">
               <div>
-                <span className="eyebrow">Dove nasce Veroxa</span>
-                <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">Ogni progetto nasce da un <span className="italic text-primary theme-accent-outline">incontro.</span></h2>
+                <span className="eyebrow">{text("Dove nasce Veroxa", "Where Veroxa begins")}</span>
+                <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">{text("Ogni progetto nasce da un", "Every project begins with a")} <span className="italic text-primary theme-accent-outline">{text("incontro.", "conversation.")}</span></h2>
                 {/* Logo mark decorativo */}
                 <div className="mt-10 opacity-20">
                   <Logo1 className="w-16 h-16 text-primary" animated={false} />
@@ -126,21 +128,21 @@ export default function Home() {
                 <div className="absolute -top-10 right-4 h-36 w-36 text-foreground/[.06] select-none md:h-48 md:w-48" aria-hidden="true">
                   <Logo1 className="h-full w-full" animated={false} />
                 </div>
-                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">Il segno di Veroxa è una X essenziale, costruita da due direzioni che si incontrano e si sostengono. Racconta il dialogo tra le idee e il desiderio di esprimere ciò che rende speciale ogni attività, e la tecnologia che trasforma quelle idee in qualcosa di concreto e visibile.</p>
+                <p className="relative text-lg md:text-xl leading-relaxed text-foreground/75 max-w-2xl">{text("Il segno di Veroxa è una X essenziale, costruita da due direzioni che si incontrano e si sostengono. Racconta il dialogo tra le idee e il desiderio di esprimere ciò che rende speciale ogni attività, e la tecnologia che trasforma quelle idee in qualcosa di concreto e visibile.", "Veroxa's mark is a simple X, formed by two paths meeting and supporting one another. It reflects the exchange of ideas and the desire to express what makes every business special — brought to life through technology.")}</p>
                 <div className="relative grid sm:grid-cols-2 gap-4 mt-12">
                   <div className="rounded-2xl border border-primary/20 bg-background/70 p-6">
                     <span className="eyebrow">01</span>
-                    <h3 className="mt-3 text-2xl font-serif">Idee e creatività</h3>
-                    <p className="mt-2 text-sm text-muted-foreground font-light">La storia e lo stile della tua attività, tradotti in una presenza riconoscibile.</p>
+                    <h3 className="mt-3 text-2xl font-serif">{text("Idee e creatività", "Ideas and creativity")}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground font-light">{text("La storia e lo stile della tua attività, tradotti in una presenza riconoscibile.", "Your story and style, shaped into a distinctive online presence.")}</p>
                   </div>
                   <div className="rounded-2xl border border-primary/20 bg-background/70 p-6">
                     <span className="eyebrow">02</span>
-                    <h3 className="mt-3 text-2xl font-serif">Tecnologia e sviluppo</h3>
-                    <p className="mt-2 text-sm text-muted-foreground font-light">Gli strumenti tecnici che danno forma al sito e lo rendono semplice da usare.</p>
+                    <h3 className="mt-3 text-2xl font-serif">{text("Tecnologia e sviluppo", "Technology and development")}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground font-light">{text("Gli strumenti tecnici che danno forma al sito e lo rendono semplice da usare.", "The technology that brings the website to life and makes it easy to use.")}</p>
                   </div>
                 </div>
-                <p className="mt-12 text-2xl md:text-3xl font-serif leading-snug">Veroxa nasce proprio lì: dove creatività e tecnologia si uniscono per costruire siti semplici, veloci e riconoscibili. Ogni scelta dà valore alla tua attività e rende più naturale il rapporto con i tuoi clienti.</p>
-                <p className="mt-8 text-muted-foreground leading-relaxed">Il nostro segno racconta un metodo: dare spazio all'identità, poi unire tecnica, estetica e funzionalità in un risultato che funzioni davvero.</p>
+                <p className="mt-12 text-2xl md:text-3xl font-serif leading-snug">{text("Veroxa nasce proprio lì: dove creatività e tecnologia si uniscono per costruire siti semplici, veloci e riconoscibili. Ogni scelta dà valore alla tua attività e rende più naturale il rapporto con i tuoi clienti.", "That's where Veroxa begins: where creativity and technology come together to build websites that are simple, fast and distinctive. Every choice brings value to your business and makes connecting with customers feel natural.")}</p>
+                <p className="mt-8 text-muted-foreground leading-relaxed">{text("Il nostro segno racconta un metodo: dare spazio all'identità, poi unire tecnica, estetica e funzionalità in un risultato che funzioni davvero.", "Our mark reflects our approach: give identity room to breathe, then bring technology, aesthetics and function together in something that truly works.")}</p>
               </div>
             </FadeIn>
           </div>
@@ -150,18 +152,18 @@ export default function Home() {
           <div className="relative mx-auto max-w-7xl">
             <FadeIn className="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
               <div>
-                <span className="eyebrow">Un primo passo, insieme</span>
+                <span className="eyebrow">{text("Un primo passo, insieme", "A first step, together")}</span>
                 <h2 className="mt-5 text-4xl font-light leading-tight md:text-6xl">
-                  Che cosa vuoi <span className="italic text-primary theme-accent-outline">migliorare?</span>
+                  {text("Che cosa vuoi", "What would you like to")} <span className="italic text-primary theme-accent-outline">{text("migliorare?", "improve?")}</span>
                 </h2>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  Scegli il tuo obiettivo: ti mostriamo da dove partire e puoi mandarci la tua idea già pronta nel messaggio.
+                  {text("Scegli il tuo obiettivo: ti mostriamo da dove partire e puoi mandarci la tua idea già pronta nel messaggio.", "Choose a goal to see where to start, then send us your idea in a message.")}
                 </p>
               </div>
 
                 <div className="rounded-[1.5rem] border border-border/70 bg-background/90 p-4 sm:rounded-[2rem] sm:p-6 shadow-[0_24px_70px_rgba(21,39,58,.08)] md:p-9">
-                <p className="mb-5 text-xs font-medium uppercase tracking-[.16em] text-muted-foreground">Seleziona un obiettivo</p>
-                <div className="grid gap-2 sm:grid-cols-3 sm:gap-3" role="group" aria-label="Scegli il tuo obiettivo digitale">
+                <p className="mb-5 text-xs font-medium uppercase tracking-[.16em] text-muted-foreground">{text("Seleziona un obiettivo", "Choose a goal")}</p>
+                <div className="grid gap-2 sm:grid-cols-3 sm:gap-3" role="group" aria-label={text("Scegli il tuo obiettivo digitale", "Choose your digital goal")}>
                   {goals.map((goal) => (
                     <button
                       key={goal.id}
@@ -182,7 +184,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-7 border-t border-border pt-7" aria-live="polite" data-testid="text-goal-recommendation">
-                  <span className="text-xs uppercase tracking-[.16em] text-primary">Da dove partire</span>
+                  <span className="text-xs uppercase tracking-[.16em] text-primary">{text("Da dove partire", "A place to start")}</span>
                   <h3 className="mt-3 text-2xl font-serif font-light md:text-3xl">{activeGoal.title}</h3>
                   <p className="mt-3 max-w-xl leading-relaxed text-muted-foreground">{activeGoal.description}</p>
                   <Link
@@ -190,7 +192,7 @@ export default function Home() {
                     data-testid="link-goal-contact"
                     className="mt-6 inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-foreground px-5 py-3 text-center text-xs font-medium uppercase tracking-[.08em] text-background transition-colors hover:bg-primary sm:px-6 sm:text-sm sm:tracking-[.1em]"
                   >
-                    Raccontaci la tua idea <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    {text("Raccontaci la tua idea", "Tell us your idea")} <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
               </div>
@@ -198,30 +200,30 @@ export default function Home() {
 
             <FadeIn delay={0.12} className="mt-24 grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
               <div>
-                <span className="eyebrow">Domande rapide</span>
+                <span className="eyebrow">{text("Domande rapide", "Quick questions")}</span>
                 <h2 className="mt-5 text-3xl font-light leading-tight md:text-5xl">
-                  Le cose importanti, <span className="italic text-primary theme-accent-outline">senza giri.</span>
+                  {text("Le cose importanti,", "The important things,")} <span className="italic text-primary theme-accent-outline">{text("senza giri.", "without the detours.")}</span>
                 </h2>
                 <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
-                  Apri una domanda per trovare subito le informazioni che ti servono.
+                  {text("Apri una domanda per trovare subito le informazioni che ti servono.", "Open a question to find the information you need.")}
                 </p>
               </div>
               <div className="divide-y divide-border border-y border-border">
                 {[
                   {
                     id: "mobile",
-                    question: "Il sito sarà facile da usare anche da smartphone?",
-                    answer: "Sì. Progettiamo e verifichiamo ogni pagina anche su schermi piccoli, così contenuti e navigazione restano chiari da telefono.",
+                    question: text("Il sito sarà facile da usare anche da smartphone?", "Will the website be easy to use on a phone?"),
+                    answer: text("Sì. Progettiamo e verifichiamo ogni pagina anche su schermi piccoli, così contenuti e navigazione restano chiari da telefono.", "Yes. We design and test every page on smaller screens, so the content and navigation stay clear on mobile."),
                   },
                   {
                     id: "existing-site",
-                    question: "Posso rinnovare un sito che esiste già?",
-                    answer: "Certo. Possiamo partire da ciò che funziona, capire cosa va migliorato e ridisegnare l'esperienza intorno alle esigenze attuali.",
+                    question: text("Posso rinnovare un sito che esiste già?", "Can you refresh a website I already have?"),
+                    answer: text("Certo. Possiamo partire da ciò che funziona, capire cosa va migliorato e ridisegnare l'esperienza intorno alle esigenze attuali.", "Absolutely. We can build on what already works, identify what needs to improve and reshape the experience around your current needs."),
                   },
                   {
                     id: "estimate",
-                    question: "Come si definiscono tempi e costi?",
-                    answer: "Dipendono dalle pagine e dalle funzionalità richieste. Dopo aver ascoltato la tua idea, prepariamo una proposta chiara e personalizzata.",
+                    question: text("Come si definiscono tempi e costi?", "How do you set timelines and costs?"),
+                    answer: text("Dipendono dalle pagine e dalle funzionalità richieste. Dopo aver ascoltato la tua idea, prepariamo una proposta chiara e personalizzata.", "They depend on the pages and features you need. After hearing your idea, we'll prepare a clear proposal tailored to your project."),
                   },
                 ].map((item) => (
                   <details key={item.id} className="group py-5" data-testid={`faq-item-${item.id}`}>
@@ -242,11 +244,11 @@ export default function Home() {
         <section className="px-5 sm:px-6 md:px-12 py-16 md:py-28 bg-secondary/35">
           <div className="max-w-7xl mx-auto grid lg:grid-cols-[.7fr_1.3fr] gap-10 lg:gap-16 items-center">
             <FadeIn>
-              <span className="eyebrow">Veroxa, in movimento</span>
-              <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">Un’idea prende forma, <span className="italic text-primary theme-accent-outline">in 25 secondi.</span></h2>
-              <p className="mt-6 text-lg text-foreground/70 leading-relaxed">Un breve film sul nostro modo di unire identità, design e tecnologia. Premi play e guarda il mondo Veroxa da vicino.</p>
+              <span className="eyebrow">{text("Veroxa, in movimento", "Veroxa in motion")}</span>
+              <h2 className="mt-5 text-4xl md:text-6xl font-light leading-tight">{text("Un’idea prende forma,", "An idea takes shape,")} <span className="italic text-primary theme-accent-outline">{text("in 25 secondi.", "in 25 seconds.")}</span></h2>
+              <p className="mt-6 text-lg text-foreground/70 leading-relaxed">{text("Un breve film sul nostro modo di unire identità, design e tecnologia. Premi play e guarda il mondo Veroxa da vicino.", "A short film about how we bring identity, design and technology together. Press play and take a closer look at Veroxa.")}</p>
               <div className="mt-7 inline-flex items-center gap-3 text-xs tracking-[.16em] uppercase text-foreground/55">
-                <Play className="w-4 h-4 text-primary" aria-hidden="true" /> Film di presentazione · 00:25
+                <Play className="w-4 h-4 text-primary" aria-hidden="true" /> {text("Film di presentazione · 00:25", "Showreel · 00:25")}
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
@@ -254,15 +256,15 @@ export default function Home() {
                 <video
                   src="/veroxa-film/videos/veroxa-presentazione-25s.mp4"
                   poster="/veroxa-film/videos/veroxa-poster.jpg"
-                  title="Film di presentazione di Veroxa, studio digitale"
+                  title={text("Film di presentazione di Veroxa, studio digitale", "Veroxa digital studio showreel")}
                   className="absolute inset-0 h-full w-full object-contain"
                   controls
                   playsInline
                   preload="none"
-                  aria-label="Film di presentazione di Veroxa, studio digitale"
+                  aria-label={text("Film di presentazione di Veroxa, studio digitale", "Veroxa digital studio showreel")}
                   data-testid="video-veroxa-film"
                 >
-                  Il browser non supporta la riproduzione video.
+                  {text("Il browser non supporta la riproduzione video.", "Your browser does not support video playback.")}
                 </video>
               </div>
             </FadeIn>

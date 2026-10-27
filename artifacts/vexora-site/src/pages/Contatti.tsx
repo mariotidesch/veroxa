@@ -16,26 +16,28 @@ import {
 import { Logo1 } from "@/components/Logos";
 import { motion } from "framer-motion";
 import { PageHero } from "@/components/PageHero";
+import { useLanguage } from "@/components/LanguageContext";
 
 const serviceOptions = [
-  { value: "Sito web", icon: <MonitorSmartphone className="h-4 w-4" />, label: "Sito web" },
-  { value: "Landing page", icon: <MonitorSmartphone className="h-4 w-4" />, label: "Landing page / pagina singola" },
-  { value: "E-commerce e prenotazioni", icon: <ShoppingBag className="h-4 w-4" />, label: "E-commerce / prenotazioni" },
-  { value: "Restyling", icon: <RefreshCw className="h-4 w-4" />, label: "Restyling" },
-  { value: "Identità visiva", icon: <Palette className="h-4 w-4" />, label: "Identità visiva" },
-  { value: "SEO e visibilità", icon: <Search className="h-4 w-4" />, label: "SEO / visibilità" },
-  { value: "Consulenza", icon: <CircleHelp className="h-4 w-4" />, label: "Vorrei un consiglio" },
-  { value: "Altro", icon: <CircleHelp className="h-4 w-4" />, label: "Altro / da definire" },
+  { value: "Sito web", icon: <MonitorSmartphone className="h-4 w-4" />, it: "Sito web", en: "Website" },
+  { value: "Landing page", icon: <MonitorSmartphone className="h-4 w-4" />, it: "Landing page / pagina singola", en: "Landing page / single page" },
+  { value: "E-commerce e prenotazioni", icon: <ShoppingBag className="h-4 w-4" />, it: "E-commerce / prenotazioni", en: "E-commerce / bookings" },
+  { value: "Restyling", icon: <RefreshCw className="h-4 w-4" />, it: "Restyling", en: "Redesign" },
+  { value: "Identità visiva", icon: <Palette className="h-4 w-4" />, it: "Identità visiva", en: "Visual identity" },
+  { value: "SEO e visibilità", icon: <Search className="h-4 w-4" />, it: "SEO / visibilità", en: "SEO / visibility" },
+  { value: "Consulenza", icon: <CircleHelp className="h-4 w-4" />, it: "Vorrei un consiglio", en: "I'd like some advice" },
+  { value: "Altro", icon: <CircleHelp className="h-4 w-4" />, it: "Altro / da definire", en: "Other / not sure yet" },
 ];
 
 const styleOptions = [
-  { value: "Direzione tecnica e modulare", label: "Tecnico e modulare" },
-  { value: "Direzione visuale e narrativa", label: "Visuale e narrativo" },
-  { value: "Preferisco una direzione diversa", label: "Ho già un'altra idea" },
-  { value: "Vorrei un consiglio sullo stile", label: "Vorrei un consiglio" },
+  { value: "Direzione tecnica e modulare", it: "Tecnico e modulare", en: "Technical and modular" },
+  { value: "Direzione visuale e narrativa", it: "Visuale e narrativo", en: "Visual and expressive" },
+  { value: "Preferisco una direzione diversa", it: "Ho già un'altra idea", en: "I have another idea" },
+  { value: "Vorrei un consiglio sullo stile", it: "Vorrei un consiglio", en: "I'd like some advice" },
 ];
 
 export default function Contatti() {
+  const { language, text } = useLanguage();
   const initialMessage = new URLSearchParams(window.location.search).get("interesse") ?? "";
   const [isSuccess, setIsSuccess] = useState(false);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
@@ -66,13 +68,13 @@ export default function Contatti() {
     const currentWebsite = String(data.get("currentWebsite") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
     const extraDetails = [
-      selectedServices.length ? `Servizi di interesse: ${selectedServices.join(", ")}` : "",
-      projectStyle ? `Direzione visiva: ${projectStyle}` : "",
-      industry ? `Settore: ${industry}` : "",
-      currentWebsite ? `Sito attuale: ${currentWebsite}` : "",
-      projectTiming ? `Tempistiche: ${projectTiming}` : "",
-      contactMethod ? `Preferenza di contatto: ${contactMethod === "phone" ? "Telefono" : contactMethod === "email" ? "Email" : "Indifferente"}` : "",
-      contactMethod === "phone" && phone ? `Telefono: ${phone}` : "",
+      selectedServices.length ? `${text("Servizi di interesse", "Services of interest")}: ${selectedServices.join(", ")}` : "",
+      projectStyle ? `${text("Direzione visiva", "Visual direction")}: ${projectStyle}` : "",
+      industry ? `${text("Settore", "Industry")}: ${industry}` : "",
+      currentWebsite ? `${text("Sito attuale", "Current website")}: ${currentWebsite}` : "",
+      projectTiming ? `${text("Tempistiche", "Timeline")}: ${projectTiming}` : "",
+      contactMethod ? `${text("Preferenza di contatto", "Preferred contact method")}: ${contactMethod === "phone" ? text("Telefono", "Phone") : contactMethod === "email" ? "Email" : text("Indifferente", "No preference")}` : "",
+      contactMethod === "phone" && phone ? `${text("Telefono", "Phone")}: ${phone}` : "",
     ].filter(Boolean);
     const completeMessage = [message.trim(), ...extraDetails].filter(Boolean).join("\n\n");
 
@@ -88,7 +90,7 @@ export default function Contatti() {
 
       const result = (await response.json()) as { message?: string };
       if (!response.ok) {
-        throw new Error(result.message ?? "Non è stato possibile inviare la richiesta.");
+        throw new Error(result.message ?? text("Non è stato possibile inviare la richiesta.", "We couldn't send your request."));
       }
 
       setIsSuccess(true);
@@ -98,7 +100,7 @@ export default function Contatti() {
       if (successTimer.current) clearTimeout(successTimer.current);
       successTimer.current = setTimeout(() => setIsSuccess(false), 8000);
     } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : "Non è stato possibile inviare la richiesta.");
+      setSubmitError(error instanceof Error ? error.message : text("Non è stato possibile inviare la richiesta.", "We couldn't send your request."));
     } finally {
       setIsSubmitting(false);
     }
@@ -111,31 +113,31 @@ export default function Contatti() {
       <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent/30 rounded-full blur-[100px] opacity-50 pointer-events-none" />
       
       <main className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 relative z-10">
-        <PageHero label="Contatti" title="Parliamo del tuo progetto." description="Raccontaci la tua idea: ascoltiamo obiettivi e desideri per trovare insieme la strada giusta." />
+        <PageHero label={text("Contatti", "Contact")} title={text("Parliamo del tuo progetto.", "Let's talk about your project.")} description={text("Raccontaci la tua idea: ascoltiamo obiettivi e desideri per trovare insieme la strada giusta.", "Tell us your idea. We'll listen to your goals and help find the right direction together.")} />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-24">
           
           <div className="lg:col-span-5">
             <FadeIn direction="right">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-[1px] bg-primary" />
-                <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">Contatti</span>
+                <span className="text-primary tracking-[0.2em] uppercase text-xs font-sans font-medium">{text("Contatti", "Contact")}</span>
               </div>
               <h1 className="text-[clamp(2.25rem,10vw,3.5rem)] md:text-6xl font-serif font-light tracking-tight mb-6 md:mb-8 leading-[1.06] break-words">
-                Iniziamo a<br/>
-                costruire<br/>
-                <span className="italic text-muted-foreground">qualcosa di tuo.</span>
+                {text("Iniziamo a", "Let's start")}<br/>
+                {text("costruire", "building")}<br/>
+                <span className="italic text-muted-foreground">{text("qualcosa di tuo.", "something of your own.")}</span>
               </h1>
               <p className="text-lg md:text-xl text-foreground/70 font-sans font-light leading-relaxed mb-10 md:mb-16">
-                Siamo disponibili per ascoltare le tue idee e trasformarle in una presenza online solida, bella e professionale. Il confronto ci aiuta a costruire una proposta adatta a te.
+                {text("Siamo disponibili per ascoltare le tue idee e trasformarle in una presenza online solida, bella e professionale. Il confronto ci aiuta a costruire una proposta adatta a te.", "We're here to hear your ideas and turn them into a polished, professional online presence. A conversation helps us shape a proposal that fits you.")}
               </p>
 
               <div className="rounded-[1.5rem] border border-primary/20 bg-card/75 p-5 sm:p-6 md:rounded-[1.75rem] md:p-8">
-                <span className="eyebrow">Bastano poche informazioni</span>
+                <span className="eyebrow">{text("Bastano poche informazioni", "Just a few details")}</span>
                 <p className="mt-4 text-xl font-serif font-light leading-snug">
-                  Non devi avere già tutto deciso.
+                  {text("Non devi avere già tutto deciso.", "You don't need to have everything figured out.")}
                 </p>
                 <div className="mt-6 grid grid-cols-3 gap-3 text-center">
-                  {["Obiettivo", "Servizi", "Tempistiche"].map((step, index) => (
+                  {[text("Obiettivo", "Goal"), text("Servizi", "Services"), text("Tempistiche", "Timeline")].map((step, index) => (
                     <div key={step} className="rounded-xl bg-secondary/60 px-2 py-3">
                       <span className="block text-xs font-medium text-primary">0{index + 1}</span>
                       <span className="mt-1 block text-[11px] leading-tight text-muted-foreground">{step}</span>
@@ -144,7 +146,7 @@ export default function Contatti() {
                 </div>
                 <div className="mt-7 flex items-center gap-3 border-t border-border pt-5 text-sm text-muted-foreground">
                   <Logo1 className="h-8 w-8 shrink-0 text-primary" animated={false} />
-                  <span>Se hai dubbi, scegli “Vorrei un consiglio” e partiamo da lì.</span>
+                  <span>{text("Se hai dubbi, scegli “Vorrei un consiglio” e partiamo da lì.", "Not sure? Choose “I'd like some advice” and we'll take it from there.")}</span>
                 </div>
               </div>
             </FadeIn>
@@ -155,11 +157,11 @@ export default function Contatti() {
               <div className="relative rounded-[1.5rem] border border-primary/15 bg-card p-4 sm:p-6 md:rounded-[2.5rem] md:p-12 shadow-[0_18px_55px_hsl(var(--foreground)/.06)]">
                 <div className="mb-7 flex items-start justify-between gap-3 sm:mb-9 sm:gap-5">
                   <div>
-                    <span className="eyebrow">Da dove partiamo</span>
-                    <h3 className="mt-3 text-2xl sm:text-3xl font-serif font-light text-foreground">Raccontaci il tuo progetto</h3>
+                    <span className="eyebrow">{text("Da dove partiamo", "Let's start here")}</span>
+                    <h3 className="mt-3 text-2xl sm:text-3xl font-serif font-light text-foreground">{text("Raccontaci il tuo progetto", "Tell us about your project")}</h3>
                   </div>
                   <span className="hidden rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-medium text-primary sm:inline-flex">
-                    Proposta su misura
+                     {text("Proposta su misura", "A tailored proposal")}
                   </span>
                 </div>
                 
@@ -172,16 +174,16 @@ export default function Contatti() {
                     <div className="w-20 h-20 bg-background rounded-full flex items-center justify-center mb-6 shadow-sm text-primary">
                       <CheckCircle2 className="w-10 h-10" />
                     </div>
-                    <h4 className="text-2xl font-serif font-medium mb-4">Richiesta inviata</h4>
+                    <h4 className="text-2xl font-serif font-medium mb-4">{text("Richiesta inviata", "Request sent")}</h4>
                     <p className="font-sans font-light text-foreground/70 text-lg max-w-md">
-                      Abbiamo ricevuto la tua richiesta e ti ricontatteremo appena possibile.
+                      {text("Abbiamo ricevuto la tua richiesta e ti ricontatteremo appena possibile.", "We've received your request and will get back to you as soon as possible.")}
                     </p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-8">
                     <fieldset className="space-y-4">
                       <legend className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">
-                        Quali servizi ti interessano? <span className="normal-case tracking-normal">(Facoltativo · puoi scegliere più opzioni)</span>
+                        {text("Quali servizi ti interessano?", "Which services are you interested in?")} <span className="normal-case tracking-normal">{text("(Facoltativo · puoi scegliere più opzioni)", "(Optional · choose as many as you like)")}</span>
                       </legend>
                       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
                         {serviceOptions.map((service, index) => {
@@ -216,7 +218,7 @@ export default function Contatti() {
                                 <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${checked ? "bg-primary text-primary-foreground" : "bg-secondary text-primary"}`}>
                                   {service.icon}
                                 </span>
-                                <span className="flex-1 leading-snug">{service.label}</span>
+                                <span className="flex-1 leading-snug">{language === "en" ? service.en : service.it}</span>
                                 {checked && <Check className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />}
                               </label>
                             </div>
@@ -227,7 +229,7 @@ export default function Contatti() {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                       <div className="space-y-3">
-                        <label htmlFor="name" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Nome e Cognome</label>
+                        <label htmlFor="name" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("Nome e Cognome", "Full name")}</label>
                         <input 
                           type="text" 
                           id="name"
@@ -235,25 +237,25 @@ export default function Contatti() {
                           required
                           data-testid="input-contact-name"
                           className="w-full bg-background/50 border-b-2 border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors font-serif text-lg bg-transparent"
-                          placeholder="Mario Rossi"
+                          placeholder={text("Mario Rossi", "Jane Smith")}
                         />
                       </div>
                       <div className="space-y-3">
-                         <label htmlFor="company" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">La vostra attività <span className="normal-case tracking-normal">(Facoltativo)</span></label>
+                         <label htmlFor="company" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("La tua attività", "Your business")} <span className="normal-case tracking-normal">{text("(Facoltativo)", "(Optional)")}</span></label>
                         <input 
                           type="text" 
                           id="company"
                           name="company"
                           data-testid="input-contact-company"
                           className="w-full bg-background/50 border-b-2 border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors font-serif text-lg bg-transparent"
-                          placeholder="Nome dell'impresa"
+                           placeholder={text("Nome dell'impresa", "Business name")}
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
                       <div className="space-y-3">
-                        <label htmlFor="industry" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Settore <span className="normal-case tracking-normal">(Facoltativo)</span></label>
+                        <label htmlFor="industry" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("Settore", "Industry")} <span className="normal-case tracking-normal">{text("(Facoltativo)", "(Optional)")}</span></label>
                         <select
                           id="industry"
                           name="industry"
@@ -261,16 +263,16 @@ export default function Contatti() {
                           data-testid="select-project-industry"
                           className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                         >
-                          <option value="">Scegli se vuoi</option>
-                          <option value="Commercio">Commercio</option>
-                          <option value="Ristorazione e ospitalità">Ristorazione e ospitalità</option>
-                          <option value="Professionisti e servizi">Professionisti e servizi</option>
-                          <option value="Artigianato e produzione">Artigianato e produzione</option>
-                          <option value="Altro">Altro</option>
+                          <option value="">{text("Scegli se vuoi", "Choose if you like")}</option>
+                          <option value="Commercio">{text("Commercio", "Retail")}</option>
+                          <option value="Ristorazione e ospitalità">{text("Ristorazione e ospitalità", "Food and hospitality")}</option>
+                          <option value="Professionisti e servizi">{text("Professionisti e servizi", "Professional services")}</option>
+                          <option value="Artigianato e produzione">{text("Artigianato e produzione", "Craft and manufacturing")}</option>
+                          <option value="Altro">{text("Altro", "Other")}</option>
                         </select>
                       </div>
                       <div className="space-y-3">
-                        <label htmlFor="currentWebsite" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Sito attuale <span className="normal-case tracking-normal">(Facoltativo)</span></label>
+                        <label htmlFor="currentWebsite" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("Sito attuale", "Current website")} <span className="normal-case tracking-normal">{text("(Facoltativo)", "(Optional)")}</span></label>
                         <input
                           type="text"
                           id="currentWebsite"
@@ -284,7 +286,7 @@ export default function Contatti() {
                     </div>
 
                     <div className="space-y-3">
-                      <label htmlFor="projectStyle" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Direzione visiva <span className="normal-case tracking-normal">(Facoltativo)</span></label>
+                        <label htmlFor="projectStyle" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("Direzione visiva", "Visual direction")} <span className="normal-case tracking-normal">{text("(Facoltativo)", "(Optional)")}</span></label>
                       <select
                         id="projectStyle"
                         name="projectStyle"
@@ -292,18 +294,18 @@ export default function Contatti() {
                         data-testid="select-project-style"
                         className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                       >
-                        <option value="">Non ho ancora una preferenza</option>
+                        <option value="">{text("Non ho ancora una preferenza", "I don't have a preference yet")}</option>
                         {styleOptions.map((option) => (
-                          <option key={option.value} value={option.value}>{option.label}</option>
+                          <option key={option.value} value={option.value}>{language === "en" ? option.en : option.it}</option>
                         ))}
                       </select>
                       <p className="text-xs leading-relaxed text-muted-foreground">
-                        Sono solo punti di partenza: possiamo adattarli o cambiare direzione in base alle tue esigenze.
+                         {text("Sono solo punti di partenza: possiamo adattarli o cambiare direzione in base alle tue esigenze.", "These are just starting points. We can adapt them or take a different direction to suit your needs.")}
                       </p>
                     </div>
 
                     <div className="space-y-3">
-                      <label htmlFor="email" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Indirizzo Email</label>
+                        <label htmlFor="email" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("Indirizzo email", "Email address")}</label>
                       <input 
                         type="email" 
                         id="email"
@@ -311,13 +313,13 @@ export default function Contatti() {
                         required
                         data-testid="input-contact-email"
                         className="w-full bg-background/50 border-b-2 border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors font-serif text-lg bg-transparent"
-                        placeholder="mario@esempio.it"
+                        placeholder={text("mario@esempio.it", "jane@example.com")}
                       />
                     </div>
 
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
                       <div className="space-y-3">
-                        <label htmlFor="projectTiming" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Quando vorresti iniziare? <span className="normal-case tracking-normal">(Facoltativo)</span></label>
+                        <label htmlFor="projectTiming" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("Quando vorresti iniziare?", "When would you like to start?")} <span className="normal-case tracking-normal">{text("(Facoltativo)", "(Optional)")}</span></label>
                         <select
                           id="projectTiming"
                           name="projectTiming"
@@ -325,19 +327,19 @@ export default function Contatti() {
                           data-testid="select-project-timing"
                           className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                         >
-                          <option value="" disabled>Seleziona una tempistica</option>
-                          <option value="Appena possibile">Appena possibile</option>
-                          <option value="Entro 1–3 mesi">Entro 1–3 mesi</option>
-                          <option value="Sto valutando">Sto ancora valutando</option>
+                          <option value="" disabled>{text("Seleziona una tempistica", "Choose a timeline")}</option>
+                          <option value="Appena possibile">{text("Appena possibile", "As soon as possible")}</option>
+                          <option value="Entro 1–3 mesi">{text("Entro 1–3 mesi", "Within 1–3 months")}</option>
+                          <option value="Sto valutando">{text("Sto ancora valutando", "I'm still considering it")}</option>
                         </select>
                       </div>
                       <fieldset className="space-y-3">
-                        <legend className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Come preferisci essere ricontattato? <span className="normal-case tracking-normal">(Facoltativo)</span></legend>
+                        <legend className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("Come preferisci essere ricontattato?", "How should we contact you?")} <span className="normal-case tracking-normal">{text("(Facoltativo)", "(Optional)")}</span></legend>
                         <div className="grid grid-cols-3 gap-2">
                           {[
                             { value: "email", label: "Email", icon: <Mail className="h-4 w-4 text-primary" aria-hidden="true" /> },
-                            { value: "phone", label: "Telefono", icon: <Phone className="h-4 w-4 text-primary" aria-hidden="true" /> },
-                            { value: "any", label: "Indifferente", icon: null },
+                            { value: "phone", label: text("Telefono", "Phone"), icon: <Phone className="h-4 w-4 text-primary" aria-hidden="true" /> },
+                            { value: "any", label: text("Indifferente", "No preference"), icon: null },
                           ].map((method) => (
                             <button
                               key={method.value}
@@ -358,7 +360,7 @@ export default function Contatti() {
 
                     {contactMethod === "phone" && (
                       <div className="space-y-3">
-                        <label htmlFor="phone" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Numero di telefono <span className="normal-case tracking-normal">(Facoltativo)</span></label>
+                        <label htmlFor="phone" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("Numero di telefono", "Phone number")} <span className="normal-case tracking-normal">{text("(Facoltativo)", "(Optional)")}</span></label>
                         <input
                           type="tel"
                           id="phone"
@@ -372,7 +374,7 @@ export default function Contatti() {
                     )}
 
                     <div className="space-y-3">
-                        <label htmlFor="message" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">Il tuo progetto</label>
+                        <label htmlFor="message" className="text-xs font-sans font-medium tracking-widest uppercase text-muted-foreground">{text("Il tuo progetto", "Your project")}</label>
                       <textarea 
                         id="message"
                         name="message"
@@ -381,7 +383,7 @@ export default function Contatti() {
                         defaultValue={initialMessage}
                         data-testid="input-project-message"
                         className="w-full rounded-2xl border border-border bg-background/60 px-4 py-4 font-serif text-lg text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
-                        placeholder="Descrivete brevemente le vostre esigenze..."
+                        placeholder={text("Descrivi brevemente le tue esigenze...", "Briefly describe what you need...")}
                       ></textarea>
                     </div>
 
@@ -392,7 +394,7 @@ export default function Contatti() {
                       className="w-full group relative px-8 py-5 bg-foreground text-background rounded-full overflow-hidden flex items-center justify-center gap-3 mt-10 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <div className="absolute inset-0 bg-primary translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
-                      <span className="relative z-10 text-sm tracking-[0.1em] uppercase font-sans font-medium">{isSubmitting ? "Invio in corso..." : "Invia richiesta"}</span>
+                       <span className="relative z-10 text-sm tracking-[0.1em] uppercase font-sans font-medium">{isSubmitting ? text("Invio in corso...", "Sending...") : text("Invia richiesta", "Send request")}</span>
                       <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                     </button>
                     {submitError && (
@@ -401,7 +403,7 @@ export default function Contatti() {
                       </p>
                     )}
                     <p className="text-xs text-muted-foreground text-center font-sans mt-6">
-                      La richiesta verrà inviata direttamente a info.veroxa@gmail.com.
+                      {text("La richiesta verrà inviata direttamente a info.veroxa@gmail.com.", "Your request will be sent directly to info.veroxa@gmail.com.")}
                     </p>
                   </form>
                 )}
