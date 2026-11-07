@@ -14,7 +14,6 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import { Logo1 } from "@/components/Logos";
-import { motion } from "framer-motion";
 import { PageHero } from "@/components/PageHero";
 import { useLanguage } from "@/components/LanguageContext";
 
@@ -109,8 +108,8 @@ export default function Contatti() {
   return (
     <div className="w-full bg-background min-h-screen pt-28 pb-14 md:pt-40 md:pb-20 relative overflow-hidden">
       {/* Soft abstract background blobs */}
-      <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary/30 rounded-full blur-[120px] opacity-60 pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent/30 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+      <div className="ambient-blur absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary/30 rounded-full blur-[120px] opacity-60 pointer-events-none" />
+      <div className="ambient-blur absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent/30 rounded-full blur-[100px] opacity-50 pointer-events-none" />
       
       <main className="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 relative z-10">
         <PageHero label={text("Contatti", "Contact")} title={text("Parliamo del tuo progetto.", "Let's talk about your project.")} description={text("Raccontaci la tua idea: ascoltiamo obiettivi e desideri per trovare insieme la strada giusta.", "Tell us your idea. We'll listen to your goals and help find the right direction together.")} />
@@ -166,10 +165,8 @@ export default function Contatti() {
                 </div>
                 
                 {isSuccess ? (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="bg-secondary/20 border border-secondary/30 p-10 rounded-[2rem] flex flex-col items-center text-center py-16"
+                  <div
+                    className="success-enter bg-secondary/20 border border-secondary/30 p-10 rounded-[2rem] flex flex-col items-center text-center py-16"
                   >
                     <div className="w-20 h-20 bg-background rounded-full flex items-center justify-center mb-6 shadow-sm text-primary">
                       <CheckCircle2 className="w-10 h-10" />
@@ -178,7 +175,7 @@ export default function Contatti() {
                     <p className="font-sans font-light text-foreground/70 text-lg max-w-md">
                       {text("Abbiamo ricevuto la tua richiesta e ti ricontatteremo appena possibile.", "We've received your request and will get back to you as soon as possible.")}
                     </p>
-                  </motion.div>
+                  </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-8">
                     <fieldset className="space-y-4">

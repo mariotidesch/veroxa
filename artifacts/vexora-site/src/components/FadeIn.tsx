@@ -1,6 +1,32 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, ReactNode } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+
+function shouldShowImmediately() {
+  return typeof window === "undefined"
+    || window.matchMedia("(max-width: 767px)").matches
+    || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(shouldShowImmediately);
+
+  useEffect(() => {
+    if (shouldShowImmediately() || !ref.current || !("IntersectionObserver" in window)) {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: "-10%" });
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, visible };
+}
 
 export function FadeIn({ 
   children, 
@@ -15,54 +41,31 @@ export function FadeIn({
   className?: string;
   staggerChildren?: boolean;
 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-10%" });
-  const reducedMotion = useReducedMotion();
-
-  const directions = {
-    up: { y: 60, x: 0, opacity: 0, scale: 1 },
-    down: { y: -60, x: 0, opacity: 0, scale: 1 },
-    left: { x: 60, y: 0, opacity: 0, scale: 1 },
-    right: { x: -60, y: 0, opacity: 0, scale: 1 },
-    scale: { x: 0, y: 0, opacity: 0, scale: 0.9 },
-    none: { x: 0, y: 0, opacity: 0, scale: 1 }
+  const { ref, visible } = useReveal();
+  const offsets = {
+    up: "translate3d(0, 24px, 0)",
+    down: "translate3d(0, -24px, 0)",
+    left: "translate3d(24px, 0, 0)",
+    right: "translate3d(-24px, 0, 0)",
+    scale: "scale(.96)",
+    none: "none",
   };
-
-  const initial = directions[direction];
-  
-  if (staggerChildren) {
-    return (
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={reducedMotion || isInView ? "visible" : "hidden"}
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.15,
-              delayChildren: delay
-            }
-          }
-        }}
-        className={className}
-      >
-        {children}
-      </motion.div>
-    );
-  }
-
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={initial}
-      animate={reducedMotion || isInView ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] as const }}
+      data-reveal
+      data-reveal-visible={visible}
+      data-reveal-direction={direction}
+      data-stagger={staggerChildren || undefined}
       className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : offsets[direction],
+        transitionDelay: `${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -75,25 +78,28 @@ export function FadeInItem({
   className?: string;
   direction?: "up" | "down" | "left" | "right" | "scale";
 }) {
-  const directions = {
-    up: { y: 40, x: 0, opacity: 0, scale: 1 },
-    down: { y: -40, x: 0, opacity: 0, scale: 1 },
-    left: { x: 40, y: 0, opacity: 0, scale: 1 },
-    right: { x: -40, y: 0, opacity: 0, scale: 1 },
-    scale: { x: 0, y: 0, opacity: 0, scale: 0.95 },
+  const { ref, visible } = useReveal();
+  const offsets = {
+    up: "translate3d(0, 20px, 0)",
+    down: "translate3d(0, -20px, 0)",
+    left: "translate3d(20px, 0, 0)",
+    right: "translate3d(-20px, 0, 0)",
+    scale: "scale(.97)",
   };
-
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={{
-          hidden: directions[direction],
-          visible: { opacity: 1, x: 0, y: 0, scale: 1, transition: { duration: 0.52, ease: [0.16, 1, 0.3, 1] as const } }
-      }}
+    <div
+      ref={ref}
+      data-reveal
+      data-reveal-item
+      data-reveal-visible={visible}
+      data-reveal-direction={direction}
       className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : offsets[direction],
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation } from "wouter";
-import { AnimatePresence, motion } from "framer-motion";
 import { Bot, Languages, Moon, Sun, X } from "lucide-react";
 import { Logo3 } from "./Logos";
 import { openCookiePreferences } from "./CookieConsent";
@@ -81,7 +80,7 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
           aria-label={isOpen ? text("Chiudi menu", "Close menu") : text("Apri menu", "Open menu")}
           aria-expanded={isOpen}
           aria-controls="site-nav-menu"
-          className="flex h-12 items-center gap-3 rounded-full border border-border/70 bg-background/85 px-5 text-xs font-medium uppercase tracking-[0.16em] shadow-sm backdrop-blur-md transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="flex h-12 items-center gap-3 rounded-full border border-border/70 bg-background px-5 text-xs font-medium uppercase tracking-[0.16em] shadow-sm backdrop-blur-none transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:bg-background/85 md:backdrop-blur-md"
           data-testid="button-menu"
         >
           <span>{isOpen ? text("Chiudi", "Close") : "Menu"}</span>
@@ -89,27 +88,22 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
         </button>
       </header>
 
-      <AnimatePresence>
-        {isOpen && (
+      {isOpen && (
           <>
             <button
               type="button"
               aria-label={text("Chiudi menu", "Close menu")}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40 cursor-default bg-foreground/10 backdrop-blur-[2px]"
+              className="fixed inset-0 z-40 cursor-default bg-foreground/10 md:backdrop-blur-[2px]"
               data-testid="button-dismiss-menu"
             />
-            <motion.div
+            <div
               ref={menuRef}
               id="site-nav-menu"
               role="dialog"
               aria-modal="true"
               aria-label={text("Menu di navigazione", "Navigation menu")}
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-               className="fixed left-3 right-3 top-[5.25rem] z-50 mx-auto max-w-5xl overflow-hidden rounded-[1.35rem] border border-border/80 bg-background/98 text-foreground shadow-[0_24px_70px_hsl(var(--foreground)/.15)] backdrop-blur-xl sm:left-6 sm:right-6 md:top-24"
+              className="mobile-menu-enter fixed left-3 right-3 top-[5.25rem] z-50 mx-auto max-w-5xl overflow-hidden rounded-[1.35rem] border border-border/80 bg-background text-foreground shadow-[0_24px_70px_hsl(var(--foreground)/.15)] md:bg-background/98 md:backdrop-blur-xl sm:left-6 sm:right-6 md:top-24"
             >
                <div className="flex items-center justify-between border-b border-border/70 px-5 py-4 sm:px-7">
                  <div>
@@ -181,10 +175,9 @@ export function Navbar({ onOpenAssistant }: NavbarProps) {
                     {text("Preferenze cookie", "Cookie preferences")}
                  </button>
                </div>
-            </motion.div>
+            </div>
           </>
         )}
-      </AnimatePresence>
     </>
   );
 }

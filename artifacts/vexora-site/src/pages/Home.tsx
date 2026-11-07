@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/FadeIn";
 import { Logo1 } from "@/components/Logos";
 import { Link } from "wouter";
@@ -8,9 +7,13 @@ import { useLanguage } from "@/components/LanguageContext";
 
 export default function Home() {
   const { text } = useLanguage();
-  const [showWelcome, setShowWelcome] = useState(() => typeof window !== "undefined" && !window.matchMedia("(max-width: 767px)").matches);
+  const [showWelcome, setShowWelcome] = useState(() =>
+    typeof window !== "undefined"
+    && !window.matchMedia("(max-width: 767px)").matches
+    && !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+  const [welcomeLeaving, setWelcomeLeaving] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState("new-site");
-  const reducedMotion = useReducedMotion();
   const goals = [
     {
       id: "new-site",
@@ -40,48 +43,37 @@ export default function Home() {
   const activeGoal = goals.find((goal) => goal.id === selectedGoal) ?? goals[0];
 
   useEffect(() => {
-    // Apertura breve, con animazione ancora leggibile
     if (!showWelcome) return;
-    const timer = setTimeout(() => {
-      setShowWelcome(false);
-    }, reducedMotion ? 0 : 1450);
-    return () => clearTimeout(timer);
-  }, [showWelcome, reducedMotion]);
+    const exitTimer = setTimeout(() => setWelcomeLeaving(true), 1150);
+    const removeTimer = setTimeout(() => setShowWelcome(false), 1450);
+    return () => {
+      clearTimeout(exitTimer);
+      clearTimeout(removeTimer);
+    };
+  }, [showWelcome]);
 
   return (
     <div className="w-full bg-background min-h-screen flex flex-col">
-      <AnimatePresence>
-        {showWelcome && (
-          <motion.div
-            initial={{ y: 0 }}
-            exit={{ y: "-100%" }}
-            transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] as const }}
-            className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center overflow-hidden"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
+      {showWelcome && (
+          <div className={`welcome-overlay fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-background ${welcomeLeaving ? "welcome-overlay--leaving" : ""}`}>
+            <div className="ambient-blur pointer-events-none absolute left-1/2 top-1/2 h-[40vw] w-[40vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[100px]" />
             
             <div className="flex flex-col items-center gap-10 relative z-10">
-              <Logo1 className="w-24 h-24 text-foreground" animated={!reducedMotion} />
-                <motion.h1
-                initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.45, delay: 0.35, ease: "easeOut" as const }}
-                className="text-3xl md:text-4xl tracking-[0.3em] font-serif font-light text-foreground ml-3"
-              >
+              <Logo1 className="w-24 h-24 text-foreground" animated />
+              <h1 className="welcome-title ml-3 text-3xl font-serif font-light tracking-[0.3em] text-foreground md:text-4xl">
                   VEROXA
-              </motion.h1>
+              </h1>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+      )}
 
       <main className="w-full relative flex-1 flex flex-col">
         {/* HERO */}
         <section className="flex-1 flex flex-col justify-center px-5 sm:px-6 md:px-12 pt-16 md:pt-20 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+            <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none -z-10">
             <div className="x-visual x-grid" />
-            <div className="absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-accent/30 rounded-full blur-[120px] opacity-60" />
-            <div className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-secondary/40 rounded-full blur-[100px] opacity-60" />
+            <div className="ambient-blur absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-accent/30 rounded-full blur-[120px] opacity-60" />
+            <div className="ambient-blur absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-secondary/40 rounded-full blur-[100px] opacity-60" />
           </div>
 
           <div className="max-w-7xl mx-auto w-full relative z-10 py-12 sm:py-16 md:py-20">

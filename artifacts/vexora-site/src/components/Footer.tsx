@@ -9,7 +9,7 @@ export function Footer() {
   return (
     <footer id="site-footer" className="bg-footer-background text-footer-foreground py-14 px-6 md:py-20 md:px-12 relative overflow-hidden">
       {/* Decorative background glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-t-full blur-[120px] pointer-events-none" />
+      <div className="ambient-blur absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-t-full blur-[120px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 relative z-10">
         <div className="md:col-span-5 flex flex-col gap-7 md:gap-10">

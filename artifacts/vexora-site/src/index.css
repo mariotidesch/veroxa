@@ -175,6 +175,30 @@
   background-size: 44px 44px;
   mask-image: radial-gradient(circle at 50% 50%, black, transparent 72%);
 }
+.veroxa-logo-mark,
+.vexora-wordmark-line {
+  transition: transform .24s ease, opacity .24s ease, width .24s ease;
+}
+.veroxa-logo-mark--interactive:hover { transform: scale(1.045) rotate(-2deg); }
+.vexora-wordmark-line { width: 0; opacity: 0; }
+.vexora-wordmark:hover .vexora-wordmark-line,
+.vexora-lockup:hover .vexora-wordmark-line { width: 100%; opacity: 1; }
+.welcome-overlay { animation: welcome-enter .5s cubic-bezier(.16, 1, .3, 1) both; }
+.welcome-overlay--leaving { animation: welcome-exit .3s cubic-bezier(.76, 0, .24, 1) both; }
+.welcome-title { animation: welcome-title-enter .45s .35s ease-out both; }
+.mobile-menu-enter { animation: menu-enter .18s ease-out both; }
+.success-enter { animation: success-enter .24s ease-out both; }
+[data-reveal] {
+  transition: opacity .55s cubic-bezier(.16, 1, .3, 1), transform .55s cubic-bezier(.16, 1, .3, 1);
+}
+[data-stagger="true"] > [data-reveal-item]:nth-child(2) { transition-delay: .12s; }
+[data-stagger="true"] > [data-reveal-item]:nth-child(3) { transition-delay: .24s; }
+[data-stagger="true"] > [data-reveal-item]:nth-child(4) { transition-delay: .36s; }
+@keyframes welcome-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes welcome-exit { to { transform: translateY(-100%); } }
+@keyframes welcome-title-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes menu-enter { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@keyframes success-enter { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
 .glass-button { background: hsl(var(--background) / .72); backdrop-filter: blur(14px); border: 1px solid hsl(var(--foreground) / .12); }
 .eyebrow { color: hsl(var(--primary)); font: 600 .7rem/1 var(--font-sans); letter-spacing: .2em; text-transform: uppercase; }
 .section-rule { height: 1px; background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent); }
@@ -304,6 +328,18 @@ details[open] .faq-chevron {
   [data-testid="dialog-cookie-preferences"] {
     max-height: calc(100dvh - 2rem);
     overflow-y: auto;
+  }
+}
+@media (max-width: 767px) {
+  .ambient-blur,
+  .x-grid {
+    display: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 @media (prefers-reduced-motion: reduce) {
